@@ -26,6 +26,27 @@
 		A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC152802A99800EE27A3 /* NavigationUtility.swift */; };
 		A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC172802AFCD00EE27A3 /* Configuration.swift */; };
 		A311FC1A2802B8CC00EE27A3 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC192802B8CC00EE27A3 /* Styling.swift */; };
+		A311FC1D2802BC6F00EE27A3 /* EREndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC1C2802BC6F00EE27A3 /* EREndpoint.swift */; };
+		A311FC1F2802BD4D00EE27A3 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */; };
+		A311FC232802C0A100EE27A3 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC222802C0A100EE27A3 /* KeychainWrapper.swift */; };
+		A311FC252802C11700EE27A3 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC242802C11700EE27A3 /* Const.swift */; };
+		A311FC292802C44300EE27A3 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC272802C44300EE27A3 /* Promise.swift */; };
+		A311FC2A2802C44300EE27A3 /* Promise+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC282802C44300EE27A3 /* Promise+Extras.swift */; };
+		A311FC3A2802C59800EE27A3 /* NetworkingLogProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC2C2802C59700EE27A3 /* NetworkingLogProvider.swift */; };
+		A311FC3B2802C59800EE27A3 /* NetworkingJsonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC2D2802C59700EE27A3 /* NetworkingJsonResponse.swift */; };
+		A311FC3C2802C59800EE27A3 /* NetworkingRequestProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC2E2802C59700EE27A3 /* NetworkingRequestProtocols.swift */; };
+		A311FC3D2802C59800EE27A3 /* NetworkingRequestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC2F2802C59700EE27A3 /* NetworkingRequestHeader.swift */; };
+		A311FC3E2802C59800EE27A3 /* NetworkSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC302802C59700EE27A3 /* NetworkSessionConfiguration.swift */; };
+		A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC312802C59700EE27A3 /* NetworkingError.swift */; };
+		A311FC402802C59800EE27A3 /* NetworkingConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC322802C59800EE27A3 /* NetworkingConsoleLogger.swift */; };
+		A311FC412802C59800EE27A3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC332802C59800EE27A3 /* Networking.swift */; };
+		A311FC422802C59800EE27A3 /* NetworkingDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */; };
+		A311FC432802C59800EE27A3 /* NetworkingRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */; };
+		A311FC442802C59800EE27A3 /* NetworkingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC362802C59800EE27A3 /* NetworkingResponse.swift */; };
+		A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC372802C59800EE27A3 /* NetworkingSession.swift */; };
+		A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */; };
+		A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC392802C59800EE27A3 /* NetworkingValidator.swift */; };
+		A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC482802F53400EE27A3 /* EksiCloud.swift */; };
 		A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331001A27FCD1C700431F26 /* AppDelegate.swift */; };
 		A331001D27FCD1C700431F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331001C27FCD1C700431F26 /* SceneDelegate.swift */; };
 		A331002427FCD1C900431F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A331002327FCD1C900431F26 /* Assets.xcassets */; };
@@ -85,6 +106,27 @@
 		A311FC152802A99800EE27A3 /* NavigationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtility.swift; sourceTree = "<group>"; };
 		A311FC172802AFCD00EE27A3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A311FC192802B8CC00EE27A3 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
+		A311FC1C2802BC6F00EE27A3 /* EREndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EREndpoint.swift; sourceTree = "<group>"; };
+		A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		A311FC222802C0A100EE27A3 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		A311FC242802C11700EE27A3 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		A311FC272802C44300EE27A3 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		A311FC282802C44300EE27A3 /* Promise+Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Extras.swift"; sourceTree = "<group>"; };
+		A311FC2C2802C59700EE27A3 /* NetworkingLogProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLogProvider.swift; sourceTree = "<group>"; };
+		A311FC2D2802C59700EE27A3 /* NetworkingJsonResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingJsonResponse.swift; sourceTree = "<group>"; };
+		A311FC2E2802C59700EE27A3 /* NetworkingRequestProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingRequestProtocols.swift; sourceTree = "<group>"; };
+		A311FC2F2802C59700EE27A3 /* NetworkingRequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingRequestHeader.swift; sourceTree = "<group>"; };
+		A311FC302802C59700EE27A3 /* NetworkSessionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSessionConfiguration.swift; sourceTree = "<group>"; };
+		A311FC312802C59700EE27A3 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		A311FC322802C59800EE27A3 /* NetworkingConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingConsoleLogger.swift; sourceTree = "<group>"; };
+		A311FC332802C59800EE27A3 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingDataRequest.swift; sourceTree = "<group>"; };
+		A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingRequestMethod.swift; sourceTree = "<group>"; };
+		A311FC362802C59800EE27A3 /* NetworkingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingResponse.swift; sourceTree = "<group>"; };
+		A311FC372802C59800EE27A3 /* NetworkingSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingSession.swift; sourceTree = "<group>"; };
+		A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingURLRequestBuilder.swift; sourceTree = "<group>"; };
+		A311FC392802C59800EE27A3 /* NetworkingValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingValidator.swift; sourceTree = "<group>"; };
+		A311FC482802F53400EE27A3 /* EksiCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiCloud.swift; sourceTree = "<group>"; };
 		A331001727FCD1C700431F26 /* EksiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EksiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A331001A27FCD1C700431F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A331001C27FCD1C700431F26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +206,7 @@
 		A311FC022802A6C400EE27A3 /* AcukaKit */ = {
 			isa = PBXGroup;
 			children = (
+				A311FC212802C09000EE27A3 /* External */,
 				A3F5D0A327FD346D0031FA1F /* Lib */,
 				A3F5D0AB27FD346D0031FA1F /* Extensions */,
 				A311FBEA2802A69E00EE27A3 /* Views */,
@@ -199,6 +242,7 @@
 		A311FC102802A8FF00EE27A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,8 +261,57 @@
 				A311FC152802A99800EE27A3 /* NavigationUtility.swift */,
 				A311FC172802AFCD00EE27A3 /* Configuration.swift */,
 				A311FC192802B8CC00EE27A3 /* Styling.swift */,
+				A311FC242802C11700EE27A3 /* Const.swift */,
+				A311FC482802F53400EE27A3 /* EksiCloud.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		A311FC1B2802BC0B00EE27A3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC1C2802BC6F00EE27A3 /* EREndpoint.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A311FC212802C09000EE27A3 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC262802C44300EE27A3 /* Promise */,
+				A311FC222802C0A100EE27A3 /* KeychainWrapper.swift */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		A311FC262802C44300EE27A3 /* Promise */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC272802C44300EE27A3 /* Promise.swift */,
+				A311FC282802C44300EE27A3 /* Promise+Extras.swift */,
+			);
+			path = Promise;
+			sourceTree = "<group>";
+		};
+		A311FC2B2802C57C00EE27A3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC332802C59800EE27A3 /* Networking.swift */,
+				A311FC322802C59800EE27A3 /* NetworkingConsoleLogger.swift */,
+				A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */,
+				A311FC312802C59700EE27A3 /* NetworkingError.swift */,
+				A311FC2D2802C59700EE27A3 /* NetworkingJsonResponse.swift */,
+				A311FC2C2802C59700EE27A3 /* NetworkingLogProvider.swift */,
+				A311FC2F2802C59700EE27A3 /* NetworkingRequestHeader.swift */,
+				A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */,
+				A311FC2E2802C59700EE27A3 /* NetworkingRequestProtocols.swift */,
+				A311FC362802C59800EE27A3 /* NetworkingResponse.swift */,
+				A311FC372802C59800EE27A3 /* NetworkingSession.swift */,
+				A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */,
+				A311FC392802C59800EE27A3 /* NetworkingValidator.swift */,
+				A311FC302802C59700EE27A3 /* NetworkSessionConfiguration.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		A331000E27FCD1C700431F26 = {
@@ -244,6 +337,7 @@
 		A331001927FCD1C700431F26 /* EksiReader */ = {
 			isa = PBXGroup;
 			children = (
+				A311FC1B2802BC0B00EE27A3 /* API */,
 				A311FC122802A92D00EE27A3 /* Application */,
 				A311FC102802A8FF00EE27A3 /* Model */,
 				A311FC022802A6C400EE27A3 /* AcukaKit */,
@@ -314,6 +408,7 @@
 		A3F5D0A327FD346D0031FA1F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A311FC2B2802C57C00EE27A3 /* Networking */,
 				A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */,
 				A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */,
 				A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */,
@@ -425,6 +520,8 @@
 				Base,
 			);
 			mainGroup = A331000E27FCD1C700431F26;
+			packageReferences = (
+			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -468,38 +565,59 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3F5D0B927FD346D0031FA1F /* UIEdgeInsets+Extensions.swift in Sources */,
+				A311FC252802C11700EE27A3 /* Const.swift in Sources */,
+				A311FC3E2802C59800EE27A3 /* NetworkSessionConfiguration.swift in Sources */,
+				A311FC412802C59800EE27A3 /* Networking.swift in Sources */,
 				A311FBFD2802A69E00EE27A3 /* Date+Extensions.swift in Sources */,
 				A311FBFC2802A69E00EE27A3 /* URL+Extensions.swift in Sources */,
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
 				A311FBFA2802A69E00EE27A3 /* ScrollableView.swift in Sources */,
+				A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */,
 				A3F5D0B627FD346D0031FA1F /* Debouncer.swift in Sources */,
 				A311FC0A2802A79300EE27A3 /* TodayViewModel.swift in Sources */,
 				A311FC062802A75C00EE27A3 /* TodayRouter.swift in Sources */,
 				A311FBFE2802A69E00EE27A3 /* DeclarativeCollectionView.swift in Sources */,
+				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
 				A331004E27FCD25500431F26 /* TodayVC.swift in Sources */,
+				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
 				A311FC1A2802B8CC00EE27A3 /* Styling.swift in Sources */,
+				A311FC3D2802C59800EE27A3 /* NetworkingRequestHeader.swift in Sources */,
 				A311FC012802A69E00EE27A3 /* UICollectionView+Extensions.swift in Sources */,
 				A311FBFF2802A69E00EE27A3 /* DeclarativeCVSizeCalculator.swift in Sources */,
+				A311FC2A2802C44300EE27A3 /* Promise+Extras.swift in Sources */,
 				A311FC0F2802A7ED00EE27A3 /* ERNavigationController.swift in Sources */,
 				A3F5D0BB27FD346D0031FA1F /* UIViewGestureExtension.swift in Sources */,
+				A311FC442802C59800EE27A3 /* NetworkingResponse.swift in Sources */,
+				A311FC232802C0A100EE27A3 /* KeychainWrapper.swift in Sources */,
+				A311FC1F2802BD4D00EE27A3 /* AuthToken.swift in Sources */,
+				A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */,
+				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
 				A311FC002802A69E00EE27A3 /* DeclarativeTableView.swift in Sources */,
 				A311FC142802A94400EE27A3 /* ERApplication.swift in Sources */,
 				A3F5D0BA27FD346D0031FA1F /* CGRect+Extensions.swift in Sources */,
+				A311FC402802C59800EE27A3 /* NetworkingConsoleLogger.swift in Sources */,
 				A311FBF82802A69E00EE27A3 /* StackedView.swift in Sources */,
 				A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */,
+				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
 				A3F5D0B827FD346D0031FA1F /* UIViewController+Extensions.swift in Sources */,
 				A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */,
 				A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */,
 				A311FC082802A77400EE27A3 /* TodayDataController.swift in Sources */,
 				A311FBF72802A69E00EE27A3 /* ScrollableViewController.swift in Sources */,
 				A3F5D0BC27FD346D0031FA1F /* UINib+Loading.swift in Sources */,
+				A311FC1D2802BC6F00EE27A3 /* EREndpoint.swift in Sources */,
 				A311FC0D2802A7C100EE27A3 /* ERViewController.swift in Sources */,
 				A311FBFB2802A69E00EE27A3 /* UITableView+Extensions.swift in Sources */,
+				A311FC3A2802C59800EE27A3 /* NetworkingLogProvider.swift in Sources */,
+				A311FC3C2802C59800EE27A3 /* NetworkingRequestProtocols.swift in Sources */,
+				A311FC3B2802C59800EE27A3 /* NetworkingJsonResponse.swift in Sources */,
 				A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */,
+				A311FC422802C59800EE27A3 /* NetworkingDataRequest.swift in Sources */,
 				A331001D27FCD1C700431F26 /* SceneDelegate.swift in Sources */,
+				A311FC432802C59800EE27A3 /* NetworkingRequestMethod.swift in Sources */,
 				A3F5D0B527FD346D0031FA1F /* KeyboardHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

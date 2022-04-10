@@ -1,0 +1,208 @@
+//
+//  NetworkingSession.swift
+//  UIElementsApp
+//
+//  Created by aybek can kaya on 2.04.2022.
+//
+
+import Foundation
+
+class NetworkingSession {
+    private let request: NetworkRequest
+    private let sessionConfiguration: NetworkSessionConfiguration
+    private let responseProviders: [NetworkingResponseProvider]
+    private let errorCallback: NetworkingResponseErrorCallback?
+    private let logProviders: [NetworkingLogProvider]
+
+    private var dataTask: URLSessionDataTask?
+
+    init (request: NetworkRequest,
+          sessionConfiguration: NetworkSessionConfiguration,
+          responseProviders: [NetworkingResponseProvider],
+          errorCallback: NetworkingResponseErrorCallback?,
+          logProviders: [NetworkingLogProvider]) {
+        self.request = request
+        self.sessionConfiguration = sessionConfiguration
+        self.responseProviders = responseProviders
+        self.errorCallback = errorCallback
+        self.logProviders = logProviders
+    }
+}
+
+// MARK: - Public
+extension NetworkingSession {
+    func call() {
+        _call()
+    }
+
+    func cancel() {
+        _cancel()
+    }
+}
+
+// MARK: - Call Session
+extension NetworkingSession {
+    private func _call() {
+        responseProviders
+           .compactMap { $0 as? NetworkingErrorPresentable }
+           .forEach {
+               $0.onError(self.errorCallback)
+           }
+
+        let requestBuilder = NetworkingURLRequestBuilder(request: request,
+                                                         sessionConfiguration: sessionConfiguration)
+        let builtRequest = requestBuilder.build()
+
+        guard let urlRequest = builtRequest.request else {
+            builtRequest.errors.forEach { error in
+                    self.errorCallback?(error)
+            }
+            return
+        }
+
+        logRequest(request, urlRequest: urlRequest)
+        let responseProviders = self.responseProviders
+        let logProviders = self.logProviders
+        self.dataTask = urlRequest
+            .sessionDataTask { [weak self] response in
+                guard let _ = self else {
+                    let response = NetworkingResponse(error: .objectDeallocated)
+                    let handler = NetworkDataHandler(response: response,
+                                                     responseProviders: responseProviders,
+                                                     logProviders: logProviders)
+                    handler.handle()
+                    return
+                }
+
+                let handler = NetworkDataHandler(response: response,
+                                                 responseProviders: responseProviders,
+                                                 logProviders: logProviders)
+                handler.handle()
+                self?.dataTask = nil
+            }
+        self.dataTask?.resume()
+    }
+}
+
+// MARK: - Loggers
+extension NetworkingSession {
+    private func logRequest(_ req: NetworkRequest, urlRequest: URLRequest) {
+        let logText = RequestLogger.logText(req, urlRequest: urlRequest)
+        logProviders.forEach {
+            if $0.enabledLogTypes.contains(.request) {
+                $0.log(logText)
+            }
+        }
+    }
+}
+
+// MARK: - Cancel Session
+extension NetworkingSession {
+    private func _cancel() {
+        guard let dataTask = dataTask else { return }
+        dataTask.cancel()
+    }
+}
+
+// MARK: - Callbacks
+extension NetworkingSession {
+    private func callError(_ error: NetworkingError) {
+        guard let callback = errorCallback else {
+            return
+        }
+        callback(error)
+    }
+}
+
+// MARK: - Request Creator
+extension NetworkingSession {
+
+}
+
+private extension URLRequest {
+    func sessionDataTask(_ callback: @escaping NetworkingResponseCallback) -> URLSessionDataTask {
+        return URLSession
+            .shared
+            .dataTask(with: self) { data, response, error in
+                let response = NetworkingResponse(data: data,
+                                                  error: error,
+                                                  response: response)
+                callback(response)
+            }
+    }
+
+}
+
+
+// MARK: - { Class } Data Handler
+private class NetworkDataHandler {
+    private let response: NetworkingResponse
+    private let providers: [NetworkingResponseProvider]
+    private let logProviders: [NetworkingLogProvider]
+
+    init(response: NetworkingResponse,
+         responseProviders: [NetworkingResponseProvider],
+         logProviders: [NetworkingLogProvider] ) {
+        self.response = response
+        self.providers = responseProviders
+        self.logProviders = logProviders
+    }
+
+    func handle() {
+
+            self.logResponse()
+            self.providers.forEach {
+                $0.handleResponse(self.response)
+            }
+
+    }
+
+    private func logResponse() {
+        let logText = ResponseLogger.logText(response: response)
+        logProviders.forEach { provider in
+            if provider.enabledLogTypes.contains(.response) {
+                provider.log(logText)
+            }
+        }
+    }
+}
+
+// MARK: - {Class} Request Logger
+private class RequestLogger {
+    static func logText(_ req: NetworkRequest, urlRequest: URLRequest) -> String {
+        let headerVal = urlRequest.allHTTPHeaderFields?.map { (key, value) -> String in
+            return "\(key) : \(value)"
+        }.joined(separator: "\n") ?? "No Header"
+
+        let bodyString = req.requestData.toString() ?? "nil"
+
+        var text = "\n\nRequest \n"
+        text += "\n"
+        text += "URL: \n\(req.url)"
+        text += "\n"
+        text += "\n"
+        text += "Method: \(req.method.stringify)"
+        text += "\n"
+        text += "\n"
+        text += "Headers:"
+        text += "\n"
+        text += headerVal
+        text += "\n"
+        text += "\n"
+        text += "Request Data: \n"
+        text += bodyString
+
+        text += "\n"
+        text += "\n"
+        return text
+    }
+
+
+}
+
+// MARK: - {Class} Response Logger
+private class ResponseLogger {
+    static func logText(response: NetworkingResponse) -> String {
+        return ""
+    }
+}

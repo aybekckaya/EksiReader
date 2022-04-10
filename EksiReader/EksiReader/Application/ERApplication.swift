@@ -10,5 +10,10 @@ import Foundation
 let APP = ERApplication()
 
 class ERApplication {
-    
+
+}
+
+// MARK: - Public
+extension ERApplication {
+
 }

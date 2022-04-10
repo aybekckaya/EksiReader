@@ -26,5 +26,10 @@ class TodayVC: ERViewController {
 extension TodayVC {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // AuthToken.reset()
+        EksiCloud.shared.call(endpoint: .today(page: 1), responseType: TodaysResponse.self) { response in
+            NSLog("Response A: \(response)")
+        }
     }
 }
