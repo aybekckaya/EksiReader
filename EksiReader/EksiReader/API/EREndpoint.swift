@@ -8,9 +8,21 @@
 import Foundation
 
 
+protocol EksiRequestable {
+    func request() -> NetworkingDataRequest?
+}
+
 enum EREndpoint {
     enum Const {
-        static let baseURL = ""
+        static let baseURL: String = "https://api.eksisozluk.com/"
+        static let version: String = "v2"
+        static let clientSecret: String = "eabb8841-258d-4561-89a6-66c6501dee83"
+        static let clientSecretHeader: NetworkingRequestHeader = .init(key: "Client-Secret", value: Const.clientSecret)
+        static let clientUniqueId: String = "1a62383d-742e-4bcf-bf77-2fe1a1edcd39"
+        static let apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
+        static let build: String = "51"
+        static let buildVersion: String = "2.0.0"
+        static let platform: String = "g"
     }
 
     case authorizationToken
@@ -22,15 +34,47 @@ extension EREndpoint {
     func request() -> NetworkingDataRequest? {
         switch self {
         case .authorizationToken:
-            return AuthTokenTokenRequest.request
+            return authRequest()
         case .today(let page):
             return todaysRequest(page: page)
         }
     }
 }
 
-// MARK: - Call
+// MARK: - URL Builder
 extension EREndpoint {
+    private func buildURL() -> String {
+        switch self {
+        case .authorizationToken:
+            return Const.baseURL + Const.version + "/account/anonymoustoken"
+        case .today( _ ):
+            return Const.baseURL + Const.version + "/index/today/"
+        }
+
+    }
+}
+
+// MARK: - Requests
+extension EREndpoint {
+    private func authRequest() -> NetworkingDataRequest? {
+        let reqModel = AuthTokenTokenRequest(Platform: Const.platform,
+                                             Version: Const.buildVersion,
+                                             Build: Const.build,
+                                             ApiSecret: Const.apiSecret,
+                                             ClientSecret: Const.clientSecret,
+                                             ClientUniqueId: Const.clientUniqueId)
+        let headers: [NetworkingRequestHeader] = [
+            .contentTypeValue(.urlEncodedForm)
+        ]
+
+        let url = buildURL()
+        let req = NetworkingDataRequest(url: url, method: .post)
+            .requestModel(reqModel)
+            .headers(headers)
+
+        return req
+    }
+
     private func todaysRequest(page: Int) -> NetworkingDataRequest? {
         guard let authToken = EksiCloud.shared.authToken,
                 let accessToken = authToken.token
@@ -42,12 +86,11 @@ extension EREndpoint {
         let headers: [NetworkingRequestHeader] = [
             .contentTypeValue(.urlEncodedForm),
             .bearerToken(accessToken),
-            .init(key: "Client-Secret", value: "eabb8841-258d-4561-89a6-66c6501dee83")
+            EREndpoint.Const.clientSecretHeader
         ]
 
-        let url = "https://api.eksisozluk.com/v2/index/today/"
-        let req = NetworkingDataRequest(url: url,
-                                        method: .get)
+        let url = buildURL()
+        let req = NetworkingDataRequest(url: url, method: .get)
             .headers(headers)
             .requestModel(reqModel)
 
@@ -57,138 +100,10 @@ extension EREndpoint {
 
 
 
-/**
- private func todaysRequest(page: Int, accessToken: String) -> NetworkingDataRequest {
-     let reqModel = TodaysRequest(page: page)
-     let headers: [NetworkingRequestHeader] = [
-         .contentTypeValue(.urlEncodedForm),
-         .bearerToken(accessToken),
-         .init(key: "Client-Secret", value: "eabb8841-258d-4561-89a6-66c6501dee83")
-     ]
-
-     let url = "https://api.eksisozluk.com/v2/index/today/"
-     let req = NetworkingDataRequest(url: url,
-                                     method: .get)
-         .headers(headers)
-         .requestModel(reqModel)
-
-     return req
- }
-
- */
-
-
-struct TodaysRequest: Encodable {
-    let page: Int
-
-    enum CodingKeys: String, CodingKey {
-        case page = "p"
-    }
-}
-
-
-
-struct AuthTokenTokenRequest: Encodable {
-    let Platform: String
-    let Version: String
-    let Build: String
-    let ApiSecret: String
-    let ClientSecret: String
-    let ClientUniqueId: String
-
-    enum CodingKeys: String, CodingKey {
-        case Platform = "Platform"
-        case Version = "Version"
-        case Build = "Build"
-        case ApiSecret = "Api-Secret"
-        case ClientSecret = "Client-Secret"
-        case ClientUniqueId = "ClientUniqueId"
-    }
-
-    static var request: NetworkingDataRequest {
-        let reqModel = AuthTokenTokenRequest(Platform: "g",
-                                             Version: "2.0.0",
-                                             Build: "51",
-                                             ApiSecret: "68f779c5-4d39-411a-bd12-cbcc50dc83dd",
-                                             ClientSecret: "eabb8841-258d-4561-89a6-66c6501dee83",
-                                             ClientUniqueId: "1a62383d-742e-4bcf-bf77-2fe1a1edcd39")
-        let headers: [NetworkingRequestHeader] = [
-            .contentTypeValue(.urlEncodedForm)
-        ]
-      //  let reqData = try! JSONEncoder().encode(reqModel)
-
-        let req = NetworkingDataRequest(url: "https://api.eksisozluk.com/v2/account/anonymoustoken",
-                                        method: .post)
-            .requestModel(reqModel)
-            .headers(headers)
-
-        return req
-    }
-}
 
 
 
 
-
-struct AuthTokenResponse: Decodable {
-    let success: Bool
-    let message: String?
-    let accessToken: String?
-    let expiresIn: String?
-
-    enum CodingKeys: String, CodingKey {
-        case success = "Success"
-        case message = "Message"
-        case accessToken = "access_token"
-        case data = "Data"
-        case expiresIn = "expires_in"
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.success = try container.decode(Bool.self, forKey: .success)
-        self.message = try container.decodeIfPresent(String.self, forKey: .message)
-        let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        self.accessToken = try dataContainer.decodeIfPresent(String.self, forKey: .accessToken)
-        self.expiresIn = try dataContainer.decodeIfPresent(String.self, forKey: .expiresIn) ?? "0"
-    }
-}
-
-
-struct TodaysEntry: Decodable {
-    let fullCount: Int
-    let title: String
-    let id: Int
-
-    enum CodingKeys: String, CodingKey {
-        case fullCount = "FullCount"
-        case title = "Title"
-        case id = "TopicId"
-    }
-}
-
-struct TodaysResponse: Decodable {
-    let entries: [TodaysEntry]
-    let pageCount: Int
-    let pageIndex: Int
-
-    enum CodingKeys: String, CodingKey {
-        case entries = "Topics"
-        case data = "Data"
-        case pageCount = "PageCount"
-        case pageIndex = "PageIndex"
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
-        self.pageIndex = try dataContainer.decodeIfPresent(Int.self, forKey: .pageIndex) ?? 0
-        self.entries = try dataContainer.decode([TodaysEntry].self, forKey: .entries)
-       // let entriesContainer = try dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .entries)
-    }
-}
 
 
 
