@@ -38,9 +38,27 @@ extension TodayVC {
             }
         }
 
-//        EksiCloud.shared.call(endpoint: .today(page: 4), responseType: TodaysResponse.self) { response in
-//            NSLog("Response 4: \(response)")
-//        }
+        
+
+        EksiCloud.shared.call(endpoint: .today(page: 4), responseType: TodaysResponse.self) { response in
+            NSLog("Response 4: \(response)")
+        }
+
+        EksiCloud.shared.call(endpoint: .today(page: 5), responseType: TodaysResponse.self) { response in
+            NSLog("Response 5: \(response)")
+        }
+
+        EksiCloud.shared.call(endpoint: .today(page: 6), responseType: TodaysResponse.self) { response in
+            NSLog("Response 6: \(response)")
+        }
+
+        EksiCloud.shared.call(endpoint: .today(page: 7), responseType: TodaysResponse.self) { response in
+            NSLog("Response 7: \(response)")
+        }
+
+        EksiCloud.shared.call(endpoint: .today(page: 8), responseType: TodaysResponse.self) { response in
+            NSLog("Response 8: \(response)")
+        }
 
     }
 }

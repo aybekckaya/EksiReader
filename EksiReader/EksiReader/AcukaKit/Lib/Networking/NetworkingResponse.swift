@@ -10,6 +10,7 @@ import Foundation
 typealias NetworkingResponseCallback = (NetworkingResponse) -> Void
 typealias NetworkingResponseErrorCallback = (NetworkingError) -> Void
 typealias NetworkingResponseSuccessCallback<T> = (T) -> Void
+typealias NetworkingResponseOnCompletedCallback = (NetworkingCore) -> Void
 
 protocol NetworkingResponseProvider {
     //associatedtype T

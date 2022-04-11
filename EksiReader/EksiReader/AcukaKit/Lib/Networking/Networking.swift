@@ -9,19 +9,30 @@ import Foundation
 
 //let Kedi = NetworkingCore()
 
-class NetworkingCore {
-   
 
+class NetworkingCore {
+    let identifier: String
     private var sessionConfiguration: NetworkSessionConfiguration = .defaultConfiguration()
     private var request: NetworkRequest?
     private var session: NetworkingSession?
     private var errorCallback: NetworkingResponseErrorCallback?
     private var responseProviders: [NetworkingResponseProvider] = []
     private var logProviders: [NetworkingLogProvider] = []
+    private var onCompletedCallback: NetworkingResponseOnCompletedCallback?
+
+    init(identifier: String) {
+        self.identifier = identifier
+    }
 }
 
 // MARK: - Public
 extension NetworkingCore {
+    @discardableResult
+    func onCompleted(_ callback: @escaping NetworkingResponseOnCompletedCallback) -> NetworkingCore {
+        self.onCompletedCallback = callback
+        return self
+    }
+
     @discardableResult
     func consoleLogProvider(_ enabledTypes: [NetworkingLogType]) -> NetworkingCore {
         let consoleLogger = NetworkingConsoleLogger(enabledLogTypes: enabledTypes)
@@ -74,6 +85,9 @@ extension NetworkingCore {
                                          responseProviders: responseProviders,
                                          errorCallback: self.errorCallback,
                                          logProviders: logProviders)
+        session?.onCompleted {
+            self.onCompletedCallback?(self)
+        }
         self.session?.call()
         return self
     }

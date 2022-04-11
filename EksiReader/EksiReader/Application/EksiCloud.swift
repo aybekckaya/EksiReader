@@ -13,7 +13,7 @@ class EksiCloud {
     static let shared = EksiCloud()
 
     private(set) var authToken: AuthToken?
-    private var networker: NetworkingCore = .init()
+    private var networkers: [NetworkingCore] = []
 }
 
 // MARK: - Public
@@ -78,16 +78,25 @@ extension EksiCloud {
 //            }.call()
 
 
-        let networker = NetworkingCore()
-        self.networker = networker
-
+        let networker = NetworkingCore(identifier: UUID().uuidString)
+        self.networkers.append(networker)
+        NSLog("NEtworkers Count Start: \(networkers.count)")
         networker
             .consoleLogProvider([.request, .response])
             .request(request)
-            .onDecodableResponse(of: responseType, callback: callback)
+            .onCompleted{ [weak self] networker in
+                self?.removeNetworker(networker: networker)
+                NSLog("NEtworkers Count End: \(self?.networkers.count)")
+            }.onDecodableResponse(of: responseType, callback: callback)
             .onError { error in
                 NSLog("Error: \(error)")
                 callback(nil)
             }.call()
+    }
+
+    private func removeNetworker(networker: NetworkingCore) {
+        let newNetworkers = self.networkers
+            .filter { $0.identifier != networker.identifier }
+        self.networkers = newNetworkers
     }
 }

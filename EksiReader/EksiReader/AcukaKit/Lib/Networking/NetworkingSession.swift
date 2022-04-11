@@ -14,6 +14,7 @@ class NetworkingSession {
     private let errorCallback: NetworkingResponseErrorCallback?
     private let logProviders: [NetworkingLogProvider]
 
+    private var onCompletedCallback: (() -> Void)?
     private var dataTask: URLSessionDataTask?
 
     init (request: NetworkRequest,
@@ -38,7 +39,12 @@ extension NetworkingSession {
     func cancel() {
         _cancel()
     }
+
+    func onCompleted(_ callback: @escaping () -> Void) {
+        self.onCompletedCallback = callback
+    }
 }
+
 
 // MARK: - Call Session
 extension NetworkingSession {
@@ -57,12 +63,14 @@ extension NetworkingSession {
             builtRequest.errors.forEach { error in
                     self.errorCallback?(error)
             }
+            self.onCompletedCallback?()
             return
         }
 
         logRequest(request, urlRequest: urlRequest)
         let responseProviders = self.responseProviders
         let logProviders = self.logProviders
+        let onCompletedCallback = self.onCompletedCallback
         self.dataTask = urlRequest
             .sessionDataTask { [weak self] response in
                 guard let _ = self else {
@@ -71,6 +79,7 @@ extension NetworkingSession {
                                                      responseProviders: responseProviders,
                                                      logProviders: logProviders)
                     handler.handle()
+                    onCompletedCallback?()
                     return
                 }
 
@@ -79,6 +88,7 @@ extension NetworkingSession {
                                                  logProviders: logProviders)
                 handler.handle()
                 self?.dataTask = nil
+                onCompletedCallback?()
             }
         self.dataTask?.resume()
     }
@@ -101,16 +111,6 @@ extension NetworkingSession {
     private func _cancel() {
         guard let dataTask = dataTask else { return }
         dataTask.cancel()
-    }
-}
-
-// MARK: - Callbacks
-extension NetworkingSession {
-    private func callError(_ error: NetworkingError) {
-        guard let callback = errorCallback else {
-            return
-        }
-        callback(error)
     }
 }
 
@@ -149,12 +149,10 @@ private class NetworkDataHandler {
     }
 
     func handle() {
-
-            self.logResponse()
-            self.providers.forEach {
-                $0.handleResponse(self.response)
-            }
-
+        self.logResponse()
+        self.providers.forEach {
+            $0.handleResponse(self.response)
+        }
     }
 
     private func logResponse() {
