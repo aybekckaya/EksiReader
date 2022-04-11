@@ -12,7 +12,7 @@ typealias EksiCloudResponseCallback<T: Decodable> = (T?) -> Void
 class EksiCloud {
     static let shared = EksiCloud()
 
-    private(set) var authToken: AuthToken?
+    private var authToken: AuthToken?
     private var networkers: [NetworkingCore] = []
 }
 
@@ -34,6 +34,7 @@ extension EksiCloud {
         }
         _call(endpoint: .authorizationToken, responseType: AuthTokenResponse.self) { response in
             EksiCloud.shared.authToken = AuthToken(authTokenResponse: response)
+            //self.authToken = AuthToken(authTokenResponse: response)
             callback()
         }
     }
@@ -52,46 +53,48 @@ extension EksiCloud {
     private func _call<T: Decodable>(endpoint: EREndpoint,
                                      responseType: T.Type,
                                      callback: @escaping EksiCloudResponseCallback<T>) {
-
-        if case .authorizationToken = endpoint {
-            NSLog("Call Auth Token")
-        } else {
-            NSLog("Call Today: \(EksiCloud.shared.authToken)")
-            guard let _ =  EksiCloud.shared.authToken else {
-                callback(nil)
-                return
-            }
-        }
-
-        guard let request = endpoint.request() else {
+        guard let request = self.request(endpoint: endpoint) else {
             callback(nil)
             return
         }
 
-//        networker
-//            .consoleLogProvider([.request, .response])
-//            .request(request)
-//            .onDecodableResponse(of: responseType, callback: callback)
-//            .onError { error in
-//                NSLog("Error: \(error)")
-//                callback(nil)
-//            }.call()
-
-
         let networker = NetworkingCore(identifier: UUID().uuidString)
         self.networkers.append(networker)
-        NSLog("NEtworkers Count Start: \(networkers.count)")
+        NSLog("Networkers Count Start: \(networkers.count)")
         networker
             .consoleLogProvider([.request, .response])
             .request(request)
             .onCompleted{ [weak self] networker in
                 self?.removeNetworker(networker: networker)
-                NSLog("NEtworkers Count End: \(self?.networkers.count)")
+                NSLog("Networkers Count End: \(self?.networkers.count)")
             }.onDecodableResponse(of: responseType, callback: callback)
             .onError { error in
                 NSLog("Error: \(error)")
                 callback(nil)
             }.call()
+    }
+
+    private func request(endpoint: EREndpoint) -> NetworkingDataRequest? {
+        var request: NetworkingDataRequest?
+        if case .authorizationToken = endpoint {
+            guard let _request = endpoint.request() else {
+                return nil
+            }
+            request = _request
+        } else {
+            guard let token =  EksiCloud.shared.authToken, let accessToken = token.token else {
+                return nil
+            }
+            guard let _request = endpoint.request() else {
+                return nil
+            }
+
+            var currentHeaders = _request.headers
+            currentHeaders?.append(.bearerToken(accessToken))
+            _request.headers(currentHeaders ?? [])
+            request = _request
+        }
+        return request
     }
 
     private func removeNetworker(networker: NetworkingCore) {

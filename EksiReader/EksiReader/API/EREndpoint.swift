@@ -76,16 +76,10 @@ extension EREndpoint {
     }
 
     private func todaysRequest(page: Int) -> NetworkingDataRequest? {
-        guard let authToken = EksiCloud.shared.authToken,
-                let accessToken = authToken.token
-        else {
-            return nil
-        }
-
         let reqModel = TodaysRequest(page: page)
         let headers: [NetworkingRequestHeader] = [
             .contentTypeValue(.urlEncodedForm),
-            .bearerToken(accessToken),
+           // .bearerToken(accessToken),
             EREndpoint.Const.clientSecretHeader
         ]
 

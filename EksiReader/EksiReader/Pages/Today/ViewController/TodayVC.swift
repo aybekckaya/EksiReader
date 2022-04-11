@@ -11,6 +11,12 @@ import UIKit
 class TodayVC: ERViewController {
     private let viewModel: TodayViewModel
 
+    private let tableViewToday: DeclarativeTableView<TodayCell, TodayPresentation> =
+    DeclarativeTableView<TodayCell, TodayPresentation>
+        .declarativeTableView()
+
+    private let refreshControl = UIRefreshControl()
+
     init(viewModel: TodayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -26,39 +32,109 @@ class TodayVC: ERViewController {
 extension TodayVC {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       // AuthToken.reset()
-        EksiCloud.shared.call(endpoint: .today(page: 1), responseType: TodaysResponse.self) { response in
-            NSLog("Response 1: \(response)")
-            EksiCloud.shared.call(endpoint: .today(page: 2), responseType: TodaysResponse.self) { response in
-                NSLog("Response 2: \(response)")
-                EksiCloud.shared.call(endpoint: .today(page: 3), responseType: TodaysResponse.self) { response in
-                    NSLog("Response 3: \(response)")
-                }
-            }
-        }
-
-        
-
-        EksiCloud.shared.call(endpoint: .today(page: 4), responseType: TodaysResponse.self) { response in
-            NSLog("Response 4: \(response)")
-        }
-
-        EksiCloud.shared.call(endpoint: .today(page: 5), responseType: TodaysResponse.self) { response in
-            NSLog("Response 5: \(response)")
-        }
-
-        EksiCloud.shared.call(endpoint: .today(page: 6), responseType: TodaysResponse.self) { response in
-            NSLog("Response 6: \(response)")
-        }
-
-        EksiCloud.shared.call(endpoint: .today(page: 7), responseType: TodaysResponse.self) { response in
-            NSLog("Response 7: \(response)")
-        }
-
-        EksiCloud.shared.call(endpoint: .today(page: 8), responseType: TodaysResponse.self) { response in
-            NSLog("Response 8: \(response)")
-        }
-
+        setUpUI()
+        addListeners()
+        viewModel.loadNewItems()
     }
 }
+
+// MARK: - Set Up UI
+extension TodayVC {
+    private func setUpUI() {
+        title = "Güncel"
+       // navigationController?.hidesBarsOnSwipe = true
+        tableViewToday.backgroundColor = .clear
+        tableViewToday
+            .add(into: self.view)
+            .fit()
+
+
+        let refreshViewFrame = CGRect(origin: .zero, size: .init(width: view.frame.size.width, height: 64))
+        let refreshView = EksiFooterLoadingView(frame: refreshViewFrame)
+        refreshView.backgroundColor = Styling.Application.backgroundColor
+        refreshControl.addSubview(refreshView)
+        tableViewToday.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
+    }
+}
+
+// MARK: - Actions
+extension TodayVC {
+    @objc private func refreshItems() {
+        viewModel.resetEntries()
+        viewModel.loadNewItems()
+    }
+}
+
+// MARK: - Listeners
+extension TodayVC {
+    private func addListeners() {
+        viewModel.bind { [weak self] change in
+            self?.handle(change)
+        }
+
+        tableViewToday
+            .cellAtIndex { tableView, cell, presentation, IndexPath in
+                cell.configure(presentation)
+            }.didSelectCell { tableView, presentation, indexPath in
+                NSLog("Selected: \(presentation)")
+            }.willDisplayLastCell { tableView, cell, presentation, indexPath in
+                self.viewModel.loadNewItems()
+            }
+    }
+}
+
+
+// MARK: - Handle Change Handler Data
+extension TodayVC {
+    private func handle(_ change: TodayViewModel.Change) {
+        switch change {
+        case .loading(let isVisible):
+            isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
+        case .footerViewLoading(let isVisible):
+            tableViewToday
+                .footerView {
+                    guard isVisible else { return nil }
+                    let frame = CGRect(origin: .zero, size: .init(width: self.tableViewToday.frame.size.width, height: 64))
+                    let view = EksiFooterLoadingView(frame: frame)
+                    return view
+                }
+        case .presentations(let itemPresentations):
+            self.refreshControl.endRefreshing()
+            tableViewToday.updateItems(itemPresentations)
+        case .error(let error):
+            break
+        }
+    }
+}
+
+// MARK: -
+extension TodayVC {
+
+}
+
+// MARK: -
+extension TodayVC {
+
+}
+
+// MARK: -
+extension TodayVC {
+
+}
+
+// MARK: -
+extension TodayVC {
+
+}
+
+// MARK: -
+extension TodayVC {
+
+}
+
+// MARK: -
+extension TodayVC {
+
+}
+

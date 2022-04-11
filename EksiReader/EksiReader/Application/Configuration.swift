@@ -16,6 +16,7 @@ struct C {
 extension C {
     struct Color {
         static let black: UIColor = .init(red: 0, green: 0, blue: 0, alpha: 1.0)
+        static let white: UIColor = .init(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 }
 

@@ -57,6 +57,13 @@
 		A331003C27FCD1C900431F26 /* EksiReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */; };
 		A331003E27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */; };
 		A331004E27FCD25500431F26 /* TodayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331004D27FCD25500431F26 /* TodayVC.swift */; };
+		A37B7870280499F900DED4F1 /* EksiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B786F280499F900DED4F1 /* EksiError.swift */; };
+		A37B787228049CF300DED4F1 /* TodayPresentations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787128049CF300DED4F1 /* TodayPresentations.swift */; };
+		A37B78752804AE5800DED4F1 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78742804AE5800DED4F1 /* TodayCell.swift */; };
+		A37B78782804B97100DED4F1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A37B78772804B97100DED4F1 /* Lottie */; };
+		A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */; };
+		A37B78802804CF0B00DED4F1 /* EksiLoadingView.json in Resources */ = {isa = PBXBuildFile; fileRef = A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */; };
+		A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
 		A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */; };
@@ -143,6 +150,12 @@
 		A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiReaderUITests.swift; sourceTree = "<group>"; };
 		A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A331004D27FCD25500431F26 /* TodayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVC.swift; sourceTree = "<group>"; };
+		A37B786F280499F900DED4F1 /* EksiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiError.swift; sourceTree = "<group>"; };
+		A37B787128049CF300DED4F1 /* TodayPresentations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPresentations.swift; sourceTree = "<group>"; };
+		A37B78742804AE5800DED4F1 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
+		A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiLoadingView.swift; sourceTree = "<group>"; };
+		A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EksiLoadingView.json; sourceTree = "<group>"; };
+		A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiFooterLoadingView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
 		A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeLayout.swift; sourceTree = "<group>"; };
@@ -162,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */,
+				A37B786F280499F900DED4F1 /* EksiError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +269,7 @@
 		A311FC112802A90B00EE27A3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A37B787128049CF300DED4F1 /* TodayPresentations.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -343,6 +359,8 @@
 		A331001927FCD1C700431F26 /* EksiReader */ = {
 			isa = PBXGroup;
 			children = (
+				A37B787C2804BF6400DED4F1 /* Lottie */,
+				A37B78792804BD5A00DED4F1 /* Views */,
 				A311FC1B2802BC0B00EE27A3 /* API */,
 				A311FC122802A92D00EE27A3 /* Application */,
 				A311FC102802A8FF00EE27A3 /* Model */,
@@ -386,6 +404,7 @@
 		A331004B27FCD23800431F26 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				A37B78732804AE4900DED4F1 /* Views */,
 				A311FC112802A90B00EE27A3 /* Presentation */,
 				A311FC042802A6F900EE27A3 /* Router */,
 				A311FC032802A6EF00EE27A3 /* DataController */,
@@ -409,6 +428,31 @@
 				A311FC092802A79300EE27A3 /* TodayViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A37B78732804AE4900DED4F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A37B78742804AE5800DED4F1 /* TodayCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A37B78792804BD5A00DED4F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */,
+				A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A37B787C2804BF6400DED4F1 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		A3F5D0A327FD346D0031FA1F /* Lib */ = {
@@ -454,6 +498,9 @@
 			dependencies = (
 			);
 			name = EksiReader;
+			packageProductDependencies = (
+				A37B78772804B97100DED4F1 /* Lottie */,
+			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
 			productType = "com.apple.product-type.application";
@@ -527,6 +574,7 @@
 			);
 			mainGroup = A331000E27FCD1C700431F26;
 			packageReferences = (
+				A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -545,6 +593,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A331002727FCD1C900431F26 /* LaunchScreen.storyboard in Resources */,
+				A37B78802804CF0B00DED4F1 /* EksiLoadingView.json in Resources */,
 				A331002427FCD1C900431F26 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,11 +630,14 @@
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
 				A311FBFA2802A69E00EE27A3 /* ScrollableView.swift in Sources */,
 				A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */,
+				A37B78752804AE5800DED4F1 /* TodayCell.swift in Sources */,
+				A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */,
 				A3F5D0B627FD346D0031FA1F /* Debouncer.swift in Sources */,
 				A311FC0A2802A79300EE27A3 /* TodayViewModel.swift in Sources */,
 				A311FC062802A75C00EE27A3 /* TodayRouter.swift in Sources */,
 				A311FBFE2802A69E00EE27A3 /* DeclarativeCollectionView.swift in Sources */,
 				A311FC4D2803334800EE27A3 /* EksiResponses.swift in Sources */,
+				A37B7870280499F900DED4F1 /* EksiError.swift in Sources */,
 				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
 				A331004E27FCD25500431F26 /* TodayVC.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
@@ -603,6 +655,7 @@
 				A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */,
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
+				A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */,
 				A311FC002802A69E00EE27A3 /* DeclarativeTableView.swift in Sources */,
 				A311FC142802A94400EE27A3 /* ERApplication.swift in Sources */,
 				A3F5D0BA27FD346D0031FA1F /* CGRect+Extensions.swift in Sources */,
@@ -617,6 +670,7 @@
 				A311FBF72802A69E00EE27A3 /* ScrollableViewController.swift in Sources */,
 				A3F5D0BC27FD346D0031FA1F /* UINib+Loading.swift in Sources */,
 				A311FC1D2802BC6F00EE27A3 /* EREndpoint.swift in Sources */,
+				A37B787228049CF300DED4F1 /* TodayPresentations.swift in Sources */,
 				A311FC0D2802A7C100EE27A3 /* ERViewController.swift in Sources */,
 				A311FBFB2802A69E00EE27A3 /* UITableView+Extensions.swift in Sources */,
 				A311FC3A2802C59800EE27A3 /* NetworkingLogProvider.swift in Sources */,
@@ -980,6 +1034,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A37B78772804B97100DED4F1 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A331000F27FCD1C700431F26 /* Project object */;
 }

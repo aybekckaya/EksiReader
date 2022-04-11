@@ -32,25 +32,37 @@ struct AuthTokenResponse: Decodable {
     }
 }
 
+//"Day": "2022-04-11T20:25:11.647",
+//               "MatchedCount": 102,
+//               "TopicId": 7186466,
+//               "FullCount": 450,
+//               "Title": "seks yapmak isteyen yazarlar veritabanı"
+
 // MARK: - Todays Response
 struct TodaysEntry: Decodable {
     let fullCount: Int
     let title: String
     let id: Int
+    let day: String
+    let matchedCount: Int
 
     enum CodingKeys: String, CodingKey {
         case fullCount = "FullCount"
         case title = "Title"
         case id = "TopicId"
+        case day = "Day"
+        case matchedCount = "MatchedCount"
     }
 }
 
 struct TodaysResponse: Decodable {
+    let message: String?
     let entries: [TodaysEntry]
     let pageCount: Int
     let pageIndex: Int
 
     enum CodingKeys: String, CodingKey {
+        case message = "Message"
         case entries = "Topics"
         case data = "Data"
         case pageCount = "PageCount"
@@ -59,7 +71,7 @@ struct TodaysResponse: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        self.message = try container.decodeIfPresent(String.self, forKey: .message)
         let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
         self.pageIndex = try dataContainer.decodeIfPresent(Int.self, forKey: .pageIndex) ?? 0
