@@ -13,7 +13,7 @@ class EksiCloud {
     static let shared = EksiCloud()
 
     private(set) var authToken: AuthToken?
-    private var networker: NetworkingCore?
+    private var networker: NetworkingCore = .init()
 }
 
 // MARK: - Public
@@ -54,8 +54,9 @@ extension EksiCloud {
                                      callback: @escaping EksiCloudResponseCallback<T>) {
 
         if case .authorizationToken = endpoint {
-
+            NSLog("Call Auth Token")
         } else {
+            NSLog("Call Today: \(EksiCloud.shared.authToken)")
             guard let _ =  EksiCloud.shared.authToken else {
                 callback(nil)
                 return
@@ -67,10 +68,21 @@ extension EksiCloud {
             return
         }
 
+//        networker
+//            .consoleLogProvider([.request, .response])
+//            .request(request)
+//            .onDecodableResponse(of: responseType, callback: callback)
+//            .onError { error in
+//                NSLog("Error: \(error)")
+//                callback(nil)
+//            }.call()
+
+
         let networker = NetworkingCore()
         self.networker = networker
 
         networker
+            .consoleLogProvider([.request, .response])
             .request(request)
             .onDecodableResponse(of: responseType, callback: callback)
             .onError { error in

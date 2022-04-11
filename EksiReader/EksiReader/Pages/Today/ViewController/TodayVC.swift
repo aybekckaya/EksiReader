@@ -29,7 +29,18 @@ extension TodayVC {
         
        // AuthToken.reset()
         EksiCloud.shared.call(endpoint: .today(page: 1), responseType: TodaysResponse.self) { response in
-            NSLog("Response A: \(response)")
+            NSLog("Response 1: \(response)")
+            EksiCloud.shared.call(endpoint: .today(page: 2), responseType: TodaysResponse.self) { response in
+                NSLog("Response 2: \(response)")
+                EksiCloud.shared.call(endpoint: .today(page: 3), responseType: TodaysResponse.self) { response in
+                    NSLog("Response 3: \(response)")
+                }
+            }
         }
+
+//        EksiCloud.shared.call(endpoint: .today(page: 4), responseType: TodaysResponse.self) { response in
+//            NSLog("Response 4: \(response)")
+//        }
+
     }
 }
