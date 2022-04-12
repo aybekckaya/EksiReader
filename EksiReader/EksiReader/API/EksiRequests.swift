@@ -35,3 +35,11 @@ struct AuthTokenTokenRequest: Encodable {
     }
 }
 
+// MARK: - Today Topic Request
+struct TodayTopicRequest: Encodable {
+    let page: Int
+
+    enum CodingKeys: String, CodingKey {
+        case page = "p"
+    }
+}

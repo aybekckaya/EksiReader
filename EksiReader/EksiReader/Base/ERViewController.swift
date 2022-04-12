@@ -9,5 +9,9 @@ import Foundation
 import UIKit
 
 class ERViewController: UIViewController {
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = Styling.Application.backgroundColor
+        self.navigationController?.navigationBar.tintColor = .white
+    }
 }

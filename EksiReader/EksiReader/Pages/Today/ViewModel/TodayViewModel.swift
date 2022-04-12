@@ -32,6 +32,10 @@ class TodayViewModel {
 
 // MARK: - Public
 extension TodayViewModel {
+    func selectItem(withIdentifier id: Int) {
+        router.routeToDetail(topicId: id)
+    }
+
     func bind(_ callback: @escaping TodayViewModelChangeCallback) {
         self.changeHandler = callback
     }

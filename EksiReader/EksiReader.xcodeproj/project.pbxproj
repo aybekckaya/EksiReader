@@ -64,6 +64,10 @@
 		A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */; };
 		A37B78802804CF0B00DED4F1 /* EksiLoadingView.json in Resources */ = {isa = PBXBuildFile; fileRef = A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */; };
 		A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */; };
+		A37B788B2804EA2200DED4F1 /* TodayDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B788A2804EA2200DED4F1 /* TodayDetailRouter.swift */; };
+		A37B788D2804EA3E00DED4F1 /* TodayDetailDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B788C2804EA3E00DED4F1 /* TodayDetailDataController.swift */; };
+		A37B788F2804EA7200DED4F1 /* TodayDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B788E2804EA7200DED4F1 /* TodayDetailViewModel.swift */; };
+		A37B78912804EA9A00DED4F1 /* TodayDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78902804EA9A00DED4F1 /* TodayDetailVC.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
 		A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */; };
@@ -156,6 +160,10 @@
 		A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiLoadingView.swift; sourceTree = "<group>"; };
 		A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EksiLoadingView.json; sourceTree = "<group>"; };
 		A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiFooterLoadingView.swift; sourceTree = "<group>"; };
+		A37B788A2804EA2200DED4F1 /* TodayDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDetailRouter.swift; sourceTree = "<group>"; };
+		A37B788C2804EA3E00DED4F1 /* TodayDetailDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDetailDataController.swift; sourceTree = "<group>"; };
+		A37B788E2804EA7200DED4F1 /* TodayDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDetailViewModel.swift; sourceTree = "<group>"; };
+		A37B78902804EA9A00DED4F1 /* TodayDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDetailVC.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
 		A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeLayout.swift; sourceTree = "<group>"; };
@@ -396,6 +404,7 @@
 		A331004A27FCD22C00431F26 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				A37B78832804E9B100DED4F1 /* TodayDetail */,
 				A331004B27FCD23800431F26 /* Today */,
 			);
 			path = Pages;
@@ -453,6 +462,65 @@
 				A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		A37B78832804E9B100DED4F1 /* TodayDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A37B78892804E9FD00DED4F1 /* Router */,
+				A37B78882804E9F200DED4F1 /* DataController */,
+				A37B78872804E9E500DED4F1 /* View */,
+				A37B78862804E9DD00DED4F1 /* ViewModel */,
+				A37B78852804E9D500DED4F1 /* ViewController */,
+				A37B78842804E9CA00DED4F1 /* Presentations */,
+			);
+			path = TodayDetail;
+			sourceTree = "<group>";
+		};
+		A37B78842804E9CA00DED4F1 /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		A37B78852804E9D500DED4F1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A37B78902804EA9A00DED4F1 /* TodayDetailVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A37B78862804E9DD00DED4F1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A37B788E2804EA7200DED4F1 /* TodayDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A37B78872804E9E500DED4F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A37B78882804E9F200DED4F1 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				A37B788C2804EA3E00DED4F1 /* TodayDetailDataController.swift */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		A37B78892804E9FD00DED4F1 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A37B788A2804EA2200DED4F1 /* TodayDetailRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		A3F5D0A327FD346D0031FA1F /* Lib */ = {
@@ -650,18 +718,22 @@
 				A3F5D0BB27FD346D0031FA1F /* UIViewGestureExtension.swift in Sources */,
 				A311FC442802C59800EE27A3 /* NetworkingResponse.swift in Sources */,
 				A311FC232802C0A100EE27A3 /* KeychainWrapper.swift in Sources */,
+				A37B78912804EA9A00DED4F1 /* TodayDetailVC.swift in Sources */,
 				A311FC1F2802BD4D00EE27A3 /* AuthToken.swift in Sources */,
 				A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */,
 				A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */,
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
+				A37B788F2804EA7200DED4F1 /* TodayDetailViewModel.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
 				A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */,
 				A311FC002802A69E00EE27A3 /* DeclarativeTableView.swift in Sources */,
 				A311FC142802A94400EE27A3 /* ERApplication.swift in Sources */,
 				A3F5D0BA27FD346D0031FA1F /* CGRect+Extensions.swift in Sources */,
 				A311FC402802C59800EE27A3 /* NetworkingConsoleLogger.swift in Sources */,
+				A37B788B2804EA2200DED4F1 /* TodayDetailRouter.swift in Sources */,
 				A311FBF82802A69E00EE27A3 /* StackedView.swift in Sources */,
 				A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */,
+				A37B788D2804EA3E00DED4F1 /* TodayDetailDataController.swift in Sources */,
 				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
 				A3F5D0B827FD346D0031FA1F /* UIViewController+Extensions.swift in Sources */,
 				A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */,

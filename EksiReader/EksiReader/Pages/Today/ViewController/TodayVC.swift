@@ -42,6 +42,7 @@ extension TodayVC {
 extension TodayVC {
     private func setUpUI() {
         title = "Güncel"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
        // navigationController?.hidesBarsOnSwipe = true
         tableViewToday.backgroundColor = .clear
         tableViewToday
@@ -77,7 +78,7 @@ extension TodayVC {
             .cellAtIndex { tableView, cell, presentation, IndexPath in
                 cell.configure(presentation)
             }.didSelectCell { tableView, presentation, indexPath in
-                NSLog("Selected: \(presentation)")
+                self.viewModel.selectItem(withIdentifier: presentation.id)
             }.willDisplayLastCell { tableView, cell, presentation, indexPath in
                 self.viewModel.loadNewItems()
             }

@@ -27,6 +27,7 @@ enum EREndpoint {
 
     case authorizationToken
     case today(page: Int)
+    case topic(id: Int, page: Int)
 }
 
 // MARK: - Request
@@ -37,6 +38,8 @@ extension EREndpoint {
             return authRequest()
         case .today(let page):
             return todaysRequest(page: page)
+        case .topic(_, let page):
+            return topicRequest(page: page)
         }
     }
 }
@@ -49,6 +52,8 @@ extension EREndpoint {
             return Const.baseURL + Const.version + "/account/anonymoustoken"
         case .today( _ ):
             return Const.baseURL + Const.version + "/index/today/"
+        case .topic(let id, _ ):
+            return Const.baseURL + Const.version + "/topic/\(id)"
         }
 
     }
@@ -77,6 +82,22 @@ extension EREndpoint {
 
     private func todaysRequest(page: Int) -> NetworkingDataRequest? {
         let reqModel = TodaysRequest(page: page)
+        let headers: [NetworkingRequestHeader] = [
+            .contentTypeValue(.urlEncodedForm),
+           // .bearerToken(accessToken),
+            EREndpoint.Const.clientSecretHeader
+        ]
+
+        let url = buildURL()
+        let req = NetworkingDataRequest(url: url, method: .get)
+            .headers(headers)
+            .requestModel(reqModel)
+
+        return req
+    }
+
+    private func topicRequest(page: Int) -> NetworkingDataRequest? {
+        let reqModel = TodayTopicRequest(page: page)
         let headers: [NetworkingRequestHeader] = [
             .contentTypeValue(.urlEncodedForm),
            // .bearerToken(accessToken),
