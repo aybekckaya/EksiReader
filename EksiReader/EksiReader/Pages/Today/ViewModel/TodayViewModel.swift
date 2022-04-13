@@ -15,6 +15,7 @@ class TodayViewModel {
         case footerViewLoading(isVisible: Bool)
         case presentations(itemPresentations: [TodayPresentation])
         case error(error: EksiError)
+        case fetchNewItemsEnabled(isEnabled: Bool)
     }
 
     private let dataController: TodayDataController
@@ -41,14 +42,16 @@ extension TodayViewModel {
     }
 
     func resetEntries() {
-        dataController.resetEntries()
+        var _dataController = dataController
+        _dataController.reset()
     }
 
     func loadNewItems() {
         updateFooterLoadingViewVisibility()
         updateLoadingViewVisiblity(forcedVisiblity: nil)
         let handler = self.changeHandler
-        dataController.loadNewItems { [weak self] currentEntries, newEntries, error in
+        var _dataController = dataController
+        _dataController.loadNewItems { [weak self] currentEntries, newEntries, error in
             guard let self = self else {
                 handler?(.error(error: .selfIsDeallocated))
                 return
@@ -76,13 +79,16 @@ extension TodayViewModel {
     private func updateFooterLoadingViewVisibility() {
         guard !currentPresentations.isEmpty else {
             trigger(.footerViewLoading(isVisible: false))
+            trigger(.fetchNewItemsEnabled(isEnabled: true))
             return
         }
         let canLoadNewItems = dataController.canLoadNewItems()
         if canLoadNewItems {
             trigger(.footerViewLoading(isVisible: true))
+            trigger(.fetchNewItemsEnabled(isEnabled: true))
         } else {
             trigger(.footerViewLoading(isVisible: false))
+            trigger(.fetchNewItemsEnabled(isEnabled: false))
         }
     }
 

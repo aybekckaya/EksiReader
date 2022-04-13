@@ -20,7 +20,9 @@ class TodayDetailViewModel {
 // MARK: - Public
 extension TodayDetailViewModel {
     func loadNewItems() {
-        dataController.loadNewItems()
+        dataController.loadNewItems { currentEntries, newEntries, error in
+            
+        }
     }
 }
 

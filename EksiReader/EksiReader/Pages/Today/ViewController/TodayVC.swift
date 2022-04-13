@@ -79,8 +79,6 @@ extension TodayVC {
                 cell.configure(presentation)
             }.didSelectCell { tableView, presentation, indexPath in
                 self.viewModel.selectItem(withIdentifier: presentation.id)
-            }.willDisplayLastCell { tableView, cell, presentation, indexPath in
-                self.viewModel.loadNewItems()
             }
     }
 }
@@ -105,6 +103,16 @@ extension TodayVC {
             tableViewToday.updateItems(itemPresentations)
         case .error(let error):
             break
+        case .fetchNewItemsEnabled(let isEnabled):
+            if isEnabled {
+                tableViewToday
+                    .willDisplayLastCell { tableView, cell, presentation, indexPath in
+                    NSLog("Last Cell Visible")
+                    self.viewModel.loadNewItems()
+                }
+            } else {
+                tableViewToday.willDisplayLastCell(nil)
+            }
         }
     }
 }

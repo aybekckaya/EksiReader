@@ -30,6 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = TodayVC(viewModel: viewModel)
         ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
 
+//        let dataController = TodayDetailDataController(topicId: 7238539)
+//        let router = TodayDetailRouter()
+//        let viewModel = TodayDetailViewModel(dataController: dataController, router: router)
+//        let vc = TodayDetailVC(viewModel: viewModel)
+//        ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -7,10 +7,11 @@
 
 import Foundation
 
+
 // MARK: - AuthTokenResponse
-struct AuthTokenResponse: Decodable {
-    let success: Bool
-    let message: String?
+struct AuthTokenResponse: ERBaseResponse {
+    var success: Bool?
+    var message: String?
     let accessToken: String?
     let expiresIn: String?
 
@@ -24,7 +25,7 @@ struct AuthTokenResponse: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.success = try container.decode(Bool.self, forKey: .success)
+        self.success = try container.decodeIfPresent(Bool.self, forKey: .success)
         self.message = try container.decodeIfPresent(String.self, forKey: .message)
         let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         self.accessToken = try dataContainer.decodeIfPresent(String.self, forKey: .accessToken)
@@ -49,11 +50,13 @@ struct TodaysEntry: Decodable {
     }
 }
 
-struct TodaysResponse: Decodable {
-    let message: String?
-    let entries: [TodaysEntry]
-    let pageCount: Int
-    let pageIndex: Int
+struct TodaysResponse: ERBaseResponse, ERPagable {
+    typealias T = TodaysEntry
+    var success: Bool?
+    var message: String?
+    var entries: [T]
+    var pageCount: Int
+    var pageIndex: Int
 
     enum CodingKeys: String, CodingKey {
         case message = "Message"
@@ -61,10 +64,12 @@ struct TodaysResponse: Decodable {
         case data = "Data"
         case pageCount = "PageCount"
         case pageIndex = "PageIndex"
+        case success = "Success"
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.success = try container.decodeIfPresent(Bool.self, forKey: .success)
         self.message = try container.decodeIfPresent(String.self, forKey: .message)
         let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
@@ -81,7 +86,7 @@ struct TodayTopicEntry: Decodable {
     let content: String
     let favoriteCount: Int
     let created: String
-    let lastUpdated: String
+    let lastUpdated: String?
     let commentCount: Int
     let avatarUrl: String?
     let isSponsored: Bool
@@ -111,15 +116,18 @@ struct EksiAuthor: Decodable {
     }
 }
 
-struct TodayTopicResponse: Decodable {
-    let message: String?
-    let entries: [TodayTopicEntry]
-    let pageCount: Int
-    let pageIndex: Int
+struct TodayTopicResponse: ERBaseResponse, ERPagable {
+    typealias T = TodayTopicEntry
+    var success: Bool?
+    var message: String?
+    var entries: [TodayTopicEntry]
+    var pageCount: Int
+    var pageIndex: Int
     let title: String
 
     enum CodingKeys: String, CodingKey {
         case message = "Message"
+        case success = "Success"
         case entries = "Entries"
         case pageCount = "PageCount"
         case pageIndex = "PageIndex"
@@ -129,6 +137,7 @@ struct TodayTopicResponse: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.success = try container.decodeIfPresent(Bool.self, forKey: .success)
         self.message = try container.decodeIfPresent(String.self, forKey: .message)
         let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
