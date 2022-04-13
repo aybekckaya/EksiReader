@@ -69,6 +69,8 @@
 		A37B788F2804EA7200DED4F1 /* TodayDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B788E2804EA7200DED4F1 /* TodayDetailViewModel.swift */; };
 		A37B78912804EA9A00DED4F1 /* TodayDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78902804EA9A00DED4F1 /* TodayDetailVC.swift */; };
 		A3E8E88E28073CBE006DF479 /* ERProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E88D28073CBE006DF479 /* ERProtocol.swift */; };
+		A3E8E890280763A7006DF479 /* TopicEntryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E88F280763A7006DF479 /* TopicEntryPresentation.swift */; };
+		A3E8E89428076993006DF479 /* ERListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E89328076993006DF479 /* ERListView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
 		A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */; };
@@ -166,6 +168,8 @@
 		A37B788E2804EA7200DED4F1 /* TodayDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDetailViewModel.swift; sourceTree = "<group>"; };
 		A37B78902804EA9A00DED4F1 /* TodayDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDetailVC.swift; sourceTree = "<group>"; };
 		A3E8E88D28073CBE006DF479 /* ERProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERProtocol.swift; sourceTree = "<group>"; };
+		A3E8E88F280763A7006DF479 /* TopicEntryPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicEntryPresentation.swift; sourceTree = "<group>"; };
+		A3E8E89328076993006DF479 /* ERListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERListView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
 		A3F5D0A627FD346D0031FA1F /* DeclarativeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeLayout.swift; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 			children = (
 				A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */,
 				A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */,
+				A3E8E89328076993006DF479 /* ERListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 		A37B78842804E9CA00DED4F1 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				A3E8E88F280763A7006DF479 /* TopicEntryPresentation.swift */,
 			);
 			path = Presentations;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				A37B78912804EA9A00DED4F1 /* TodayDetailVC.swift in Sources */,
 				A311FC1F2802BD4D00EE27A3 /* AuthToken.swift in Sources */,
 				A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */,
+				A3E8E89428076993006DF479 /* ERListView.swift in Sources */,
 				A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */,
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A37B788F2804EA7200DED4F1 /* TodayDetailViewModel.swift in Sources */,
@@ -746,6 +753,7 @@
 				A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */,
 				A37B788D2804EA3E00DED4F1 /* TodayDetailDataController.swift in Sources */,
 				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
+				A3E8E890280763A7006DF479 /* TopicEntryPresentation.swift in Sources */,
 				A3F5D0B827FD346D0031FA1F /* UIViewController+Extensions.swift in Sources */,
 				A3E8E88E28073CBE006DF479 /* ERProtocol.swift in Sources */,
 				A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */,

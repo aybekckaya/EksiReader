@@ -7,8 +7,6 @@
 
 import Foundation
 
-//typealias TodayViewModelChangeCallback = (TodayViewModel.Change) -> Void
-
 class TodayViewModel: PagableViewModel {
 
     typealias DataController = TodayDataController

@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-class TodayCell: UITableViewCell {
+class TodayCell: UITableViewCell, ERListCell {
+
+
+    typealias T = TodayPresentation
+
 
     private let lblTitle = UILabel
         .label()
@@ -50,13 +54,18 @@ class TodayCell: UITableViewCell {
             .margin(to: .left(of: lblCount, value: .constant(-16)))
     }
 
-    func configure(_ item: TodayPresentation) {
+    func configure(with item: TodayPresentation) {
         lblTitle.attributedText = item.attributedTitle
         lblCount.text = "(\(item.count))"
-
-//        let length = Int.random(in: 50 ..< 1000)
-//        lblTitle.text = String.random(length: length)
     }
+
+//    func configure(_ item: TodayPresentation) {
+//        lblTitle.attributedText = item.attributedTitle
+//        lblCount.text = "(\(item.count))"
+//
+////        let length = Int.random(in: 50 ..< 1000)
+////        lblTitle.text = String.random(length: length)
+//    }
 }
 
 

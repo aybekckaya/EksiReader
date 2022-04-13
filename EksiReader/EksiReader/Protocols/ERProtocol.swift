@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - PagableDataControllerParser
 // current_page, max_page
@@ -94,6 +95,12 @@ extension PagableDataController {
                 }
             }
     }
+}
+
+// MARK: - ERListCell
+protocol ERListCell: AnyObject where Self: UITableViewCell {
+    associatedtype T
+    func configure(with item: T) 
 }
 
 // MARK: - ERBaseResponse

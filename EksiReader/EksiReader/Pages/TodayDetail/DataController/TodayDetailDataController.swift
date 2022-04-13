@@ -21,7 +21,6 @@ class TodayDetailDataController: PagableDataController {
         return EREndpoint.topic(id: topicId, page: currentPage)
     }
 
-
     init(topicId: Int) {
         self.topicId = topicId
     }

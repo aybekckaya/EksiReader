@@ -25,6 +25,39 @@ class TodayDetailVC: ERViewController {
 extension TodayDetailVC {
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.loadNewItems()
+        setUpUI()
+        addListeners()
+        var _viewModel = viewModel
+        _viewModel.loadNewItems()
+    }
+}
+
+// MARK: - Set Up UI
+extension TodayDetailVC {
+    private func setUpUI() {
+
+    }
+}
+
+
+// MARK: - Listeners
+extension TodayDetailVC {
+    private func addListeners() {
+        var _viewModel = viewModel
+        _viewModel.bind { change in
+            switch change {
+            case .fetchNewItemsEnabled(let isEnabled):
+                break
+            case .error(let error):
+                break
+            case .footerViewLoading(let isVisible):
+                break
+            case .loading(let isVisible):
+                break
+            case .presentations(let itemPresentations):
+                NSLog("\(itemPresentations)")
+                break
+            }
+        }
     }
 }

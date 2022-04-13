@@ -8,14 +8,18 @@
 import Foundation
 import UIKit
 
+
+
+
 class TodayVC: ERViewController {
     private let viewModel: TodayViewModel
+    private let listView: ERListView<TodayCell, TodayPresentation> = .init()
 
-    private let tableViewToday: DeclarativeTableView<TodayCell, TodayPresentation> =
-    DeclarativeTableView<TodayCell, TodayPresentation>
-        .declarativeTableView()
+//    private let tableViewToday: DeclarativeTableView<TodayCell, TodayPresentation> =
+//    DeclarativeTableView<TodayCell, TodayPresentation>
+//        .declarativeTableView()
 
-    private let refreshControl = UIRefreshControl()
+    // private let refreshControl = UIRefreshControl()
 
     init(viewModel: TodayViewModel) {
         self.viewModel = viewModel
@@ -44,19 +48,19 @@ extension TodayVC {
     private func setUpUI() {
         title = "Güncel"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-       // navigationController?.hidesBarsOnSwipe = true
-        tableViewToday.backgroundColor = .clear
-        tableViewToday
+
+        listView
             .add(into: self.view)
             .fit()
 
+        listView
+            .loadNewItems { list in
+                var _viewModel = self.viewModel
+                _viewModel.loadNewItems()
+            }.resetItems { list in
+                self.refreshItems()
+            }
 
-        let refreshViewFrame = CGRect(origin: .zero, size: .init(width: view.frame.size.width, height: 64))
-        let refreshView = EksiFooterLoadingView(frame: refreshViewFrame)
-        refreshView.backgroundColor = Styling.Application.backgroundColor
-        refreshControl.addSubview(refreshView)
-        tableViewToday.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
     }
 }
 
@@ -76,16 +80,8 @@ extension TodayVC {
         _viewModel.bind { [weak self] change in
             self?.handle(change)
         }
-
-        tableViewToday
-            .cellAtIndex { tableView, cell, presentation, IndexPath in
-                cell.configure(presentation)
-            }.didSelectCell { tableView, presentation, indexPath in
-                self.viewModel.selectItem(withIdentifier: presentation.id)
-            }
     }
 }
-
 
 // MARK: - Handle Change Handler Data
 extension TodayVC {
@@ -94,29 +90,13 @@ extension TodayVC {
         case .loading(let isVisible):
             isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
         case .footerViewLoading(let isVisible):
-            tableViewToday
-                .footerView {
-                    guard isVisible else { return nil }
-                    let frame = CGRect(origin: .zero, size: .init(width: self.tableViewToday.frame.size.width, height: 64))
-                    let view = EksiFooterLoadingView(frame: frame)
-                    return view
-                }
+            listView.updateFooterViewVisibility(isVisible: isVisible)
         case .presentations(let itemPresentations):
-            self.refreshControl.endRefreshing()
-            tableViewToday.updateItems(itemPresentations)
+            listView.configure(with: itemPresentations)
         case .error(let error):
             break
         case .fetchNewItemsEnabled(let isEnabled):
-            if isEnabled {
-                var _viewModel = viewModel
-                tableViewToday
-                    .willDisplayLastCell { tableView, cell, presentation, indexPath in
-                    NSLog("Last Cell Visible")
-                    _viewModel.loadNewItems()
-                }
-            } else {
-                tableViewToday.willDisplayLastCell(nil)
-            }
+            listView.fetchNewItemsEnabled(isEnabled: isEnabled)
         }
     }
 }
