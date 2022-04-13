@@ -34,7 +34,8 @@ extension TodayVC {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-        viewModel.loadNewItems()
+        var _viewModel = viewModel
+        _viewModel.loadNewItems()
     }
 }
 
@@ -62,15 +63,17 @@ extension TodayVC {
 // MARK: - Actions
 extension TodayVC {
     @objc private func refreshItems() {
-        viewModel.resetEntries()
-        viewModel.loadNewItems()
+        var _viewModel = viewModel
+        _viewModel.resetEntries()
+        _viewModel.loadNewItems()
     }
 }
 
 // MARK: - Listeners
 extension TodayVC {
     private func addListeners() {
-        viewModel.bind { [weak self] change in
+        var _viewModel = viewModel
+        _viewModel.bind { [weak self] change in
             self?.handle(change)
         }
 
@@ -86,7 +89,7 @@ extension TodayVC {
 
 // MARK: - Handle Change Handler Data
 extension TodayVC {
-    private func handle(_ change: TodayViewModel.Change) {
+    private func handle(_ change: PagableViewModelChange<TodayPresentation>) {
         switch change {
         case .loading(let isVisible):
             isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
@@ -105,10 +108,11 @@ extension TodayVC {
             break
         case .fetchNewItemsEnabled(let isEnabled):
             if isEnabled {
+                var _viewModel = viewModel
                 tableViewToday
                     .willDisplayLastCell { tableView, cell, presentation, indexPath in
                     NSLog("Last Cell Visible")
-                    self.viewModel.loadNewItems()
+                    _viewModel.loadNewItems()
                 }
             } else {
                 tableViewToday.willDisplayLastCell(nil)

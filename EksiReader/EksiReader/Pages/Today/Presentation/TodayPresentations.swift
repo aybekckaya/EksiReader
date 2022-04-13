@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 
-struct TodayPresentation: DeclarativeListItem {
+struct TodayPresentation: DeclarativeListItem, PagablePresentation {
+    typealias PresentationEntry = TodaysEntry
+
     let id: Int
     let title: String
     let count: Int
     let attributedTitle: NSAttributedString
-}
 
-extension TodayPresentation {
-    init(entry: TodaysEntry) {
+init(entry: PresentationEntry) {
         self.id = entry.id
         self.title = entry.title
         self.count = entry.fullCount
