@@ -22,20 +22,11 @@ class TodayDetailViewModel: PagableViewModel {
         self.dataController = dataController
         self.router = router
     }
-
-
-//    private let dataController: TodayDetailDataController
-//    private let router: TodayDetailRouter
-//
-//    init(dataController: TodayDetailDataController, router: TodayDetailRouter) {
-//        self.dataController = dataController
-//        self.router = router
-//    }
 }
 
 // MARK: - Public
 extension TodayDetailViewModel {
-
+    
 }
 
 

@@ -8,18 +8,10 @@
 import Foundation
 import UIKit
 
-
-
-
 class TodayVC: ERViewController {
     private let viewModel: TodayViewModel
     private let listView: ERListView<TodayCell, TodayPresentation> = .init()
 
-//    private let tableViewToday: DeclarativeTableView<TodayCell, TodayPresentation> =
-//    DeclarativeTableView<TodayCell, TodayPresentation>
-//        .declarativeTableView()
-
-    // private let refreshControl = UIRefreshControl()
 
     init(viewModel: TodayViewModel) {
         self.viewModel = viewModel
@@ -46,7 +38,6 @@ extension TodayVC {
 // MARK: - Set Up UI
 extension TodayVC {
     private func setUpUI() {
-        title = "Güncel"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
         listView
@@ -59,8 +50,11 @@ extension TodayVC {
                 _viewModel.loadNewItems()
             }.resetItems { list in
                 self.refreshItems()
-            }
+            }.selectedItem { list, indexPath, presentation in
+                var _viewModel = self.viewModel
+                _viewModel.selectItem(withIdentifier: presentation.id)
 
+            }
     }
 }
 
@@ -87,6 +81,8 @@ extension TodayVC {
 extension TodayVC {
     private func handle(_ change: PagableViewModelChange<TodayPresentation>) {
         switch change {
+        case .title(let title):
+            self.title = "Bugün"
         case .loading(let isVisible):
             isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
         case .footerViewLoading(let isVisible):

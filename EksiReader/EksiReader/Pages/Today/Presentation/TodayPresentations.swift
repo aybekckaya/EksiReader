@@ -30,6 +30,7 @@ extension String {
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = Styling.TodaysCell.titleLineSpacing
+        paragraphStyle.lineHeightMultiple = 1
 
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
                                       value:paragraphStyle,

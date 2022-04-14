@@ -34,6 +34,8 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
 
     private func setUpUI() {
 
+        tableViewItems.separatorStyle = .singleLine
+        tableViewItems.separatorColor = .white.withAlphaComponent(0.5)
         tableViewItems.backgroundColor = .clear
         tableViewItems
             .add(into: self)
@@ -70,6 +72,12 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
     @discardableResult
     func resetItems(_ callback: ERListCallback<C, T>?) -> ERListView<C, T> {
         self.refreshItemsCallback = callback
+        return self
+    }
+
+    @discardableResult
+    func selectedItem(_ callback: ERListItemSelectedCallback<C,T>?) -> ERListView<C, T> {
+        self.itemsSelectedCallback = callback
         return self
     }
 

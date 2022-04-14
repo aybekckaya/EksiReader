@@ -7,9 +7,6 @@
 
 import Foundation
 
-//let Kedi = NetworkingCore()
-
-
 class NetworkingCore {
     let identifier: String
     private var sessionConfiguration: NetworkSessionConfiguration = .defaultConfiguration()

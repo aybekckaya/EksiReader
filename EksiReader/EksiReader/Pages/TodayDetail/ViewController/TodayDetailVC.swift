@@ -10,6 +10,7 @@ import UIKit
 
 class TodayDetailVC: ERViewController {
     private let viewModel: TodayDetailViewModel
+    private let listView: ERListView<TopicCell, TopicEntryPresentation> = .init()
 
     init(viewModel: TodayDetailViewModel) {
         self.viewModel = viewModel
@@ -23,19 +24,38 @@ class TodayDetailVC: ERViewController {
 
 // MARK: - Lifecycle
 extension TodayDetailVC {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        var _viewModel = viewModel
+        _viewModel.loadNewItems()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-        var _viewModel = viewModel
-        _viewModel.loadNewItems()
+
     }
 }
 
 // MARK: - Set Up UI
 extension TodayDetailVC {
     private func setUpUI() {
+        listView
+            .add(into: self.view)
+            .fit()
 
+        listView
+            .loadNewItems { _ in
+                var _viewModel = self.viewModel
+                _viewModel.loadNewItems()
+            }.resetItems { _ in
+                var _viewModel = self.viewModel
+                _viewModel.resetEntries()
+                _viewModel.loadNewItems()
+            }.selectedItem { _, indexPath, presentation in
+                NSLog("Selected: \(presentation)")
+            }
     }
 }
 
@@ -46,17 +66,18 @@ extension TodayDetailVC {
         var _viewModel = viewModel
         _viewModel.bind { change in
             switch change {
+            case .title(let title):
+                self.title = title
             case .fetchNewItemsEnabled(let isEnabled):
-                break
+                self.listView.fetchNewItemsEnabled(isEnabled: isEnabled)
             case .error(let error):
                 break
             case .footerViewLoading(let isVisible):
-                break
+                self.listView.updateFooterViewVisibility(isVisible: isVisible)
             case .loading(let isVisible):
-                break
+                isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
             case .presentations(let itemPresentations):
-                NSLog("\(itemPresentations)")
-                break
+                self.listView.configure(with: itemPresentations)
             }
         }
     }

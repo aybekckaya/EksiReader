@@ -8,6 +8,7 @@
 import Foundation
 
 class TodayDetailDataController: PagableDataController {
+
     private let topicId: Int
 
     typealias T = TodayTopicEntry
@@ -16,6 +17,7 @@ class TodayDetailDataController: PagableDataController {
     var entries: [TodayTopicEntry] = []
     var currentPage: Int = 0
     var totalPageCount: Int = .max
+    var response: TodayTopicResponse?
 
     var endpoint: EREndpoint {
         return EREndpoint.topic(id: topicId, page: currentPage)
@@ -28,5 +30,5 @@ class TodayDetailDataController: PagableDataController {
 
 // MARK: - Public
 extension TodayDetailDataController {
-
+  
 }

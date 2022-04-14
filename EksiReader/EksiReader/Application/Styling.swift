@@ -58,3 +58,32 @@ extension Styling {
         }
     }
 }
+
+// MARK: - Topic View
+extension Styling {
+    struct TopicCell {
+        static var titleLineSpacing: CGFloat {
+            return 8
+        }
+
+        static var verticalMargin: CGFloat {
+            return 16
+        }
+
+        static var contentLabelFont: UIFont {
+            return C.Font.regular.font(size: 13)
+        }
+
+        static var countLabelFont: UIFont {
+            return C.Font.regular.font(size: 12)
+        }
+
+        static var contentColor: UIColor {
+            return Styling.Application.generalTextColor.withAlphaComponent(0.9)
+        }
+
+        static var countLabelColor: UIColor {
+            return Styling.Application.generalTextColor.withAlphaComponent(0.7)
+        }
+    }
+}

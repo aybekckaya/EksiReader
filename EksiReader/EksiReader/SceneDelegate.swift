@@ -19,10 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let ws = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: ws)
 
-        UIFont.familyNames.forEach({ familyName in
-            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-            print(familyName, fontNames)
-        })
+//        UIFont.familyNames.forEach({ familyName in
+//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+//            print(familyName, fontNames)
+//        })
 
         let dataController = TodayDataController()
         let router = TodayRouter()

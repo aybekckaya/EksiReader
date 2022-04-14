@@ -55,6 +55,7 @@ protocol PagableDataController {
     var currentPage: Int { get set }
     var totalPageCount: Int { get set }
     var endpoint: EREndpoint { get }
+    var response: Response? { get set }
 
     mutating func reset()
     func canLoadNewItems() -> Bool
@@ -85,6 +86,7 @@ extension PagableDataController {
         _self.currentPage += 1 
         EksiCloud.shared
             .call(endpoint: endpoint, responseType: Response.self) { response in
+                _self.response = response
                 let parser: PagableDataControllerParser<Response, T> = .init(response: response, currentEntries: _self.entries)
                 parser.parse { currentEntries, newEntries, error, pageIndex, pageCount in
                     _self.currentPage = pageIndex
@@ -117,6 +119,10 @@ protocol ERPagable {
     var entries: [T] { get set }
 }
 
+protocol ERResponseTitle {
+    var title: String? { get set }
+}
+
 // MARK: - Pagable Presentation
 protocol PagablePresentation {
     associatedtype PresentationEntry
@@ -125,6 +131,7 @@ protocol PagablePresentation {
 
 // MARK: - PagableViewModel
 enum PagableViewModelChange<P> {
+    case title(title: String?)
     case loading(isVisible: Bool)
     case footerViewLoading(isVisible: Bool)
     case presentations(itemPresentations: [P])
@@ -155,7 +162,6 @@ protocol PagableViewModel {
 
 extension PagableViewModel {
 
-
     mutating func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>) {
         self.changeHandler = callback
     }
@@ -166,9 +172,9 @@ extension PagableViewModel {
     }
 
     mutating func loadNewItems() {
+        updateTitle()
         updateFooterLoadingViewVisibility()
         updateLoadingViewVisiblity(forcedVisiblity: nil)
-        let handler = self.changeHandler
         var _dataController = dataController
         var _self = self
         _dataController.loadNewItems { currentEntries, newEntries, error in
@@ -176,6 +182,7 @@ extension PagableViewModel {
             let _newEntries = (newEntries as? [Entry]) ?? []
             _self.handleData(currentEntries: _currentEntries, newEntries: _newEntries, error: error)
             _self.updateLoadingViewVisiblity(forcedVisiblity: nil)
+            _self.updateTitle()
         }
     }
 
@@ -215,6 +222,14 @@ extension PagableViewModel {
             return
         }
         trigger(.loading(isVisible: true))
+    }
+
+    private func updateTitle() {
+        if let response = dataController.response as? ERResponseTitle {
+            trigger(.title(title: response.title))
+            return
+        }
+        trigger(.title(title: nil))
     }
 
      func trigger(_ change: PagableViewModelChange<Presentation>) {

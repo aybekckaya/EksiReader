@@ -116,14 +116,14 @@ struct EksiAuthor: Decodable {
     }
 }
 
-struct TodayTopicResponse: ERBaseResponse, ERPagable {
+struct TodayTopicResponse: ERBaseResponse, ERPagable, ERResponseTitle {
     typealias T = TodayTopicEntry
     var success: Bool?
     var message: String?
     var entries: [TodayTopicEntry]
     var pageCount: Int
     var pageIndex: Int
-    let title: String
+    var title: String?
 
     enum CodingKeys: String, CodingKey {
         case message = "Message"

@@ -8,6 +8,8 @@
 import Foundation
 
 class TodayDataController: PagableDataController {
+    var response: TodaysResponse?
+    
 
     typealias T = TodaysEntry
     typealias Response = TodaysResponse
