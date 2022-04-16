@@ -10,6 +10,11 @@ import Foundation
 class TodayDetailDataController: PagableDataController {
 
     private let topicId: Int
+    private var storage: ERStorage?
+
+    var currentStorage: ERStorage {
+        return storage ?? APP.storage
+    }
 
     typealias T = TodayTopicEntry
     typealias Response = TodayTopicResponse
@@ -23,12 +28,32 @@ class TodayDetailDataController: PagableDataController {
         return EREndpoint.topic(id: topicId, page: currentPage)
     }
 
-    init(topicId: Int) {
+    // Use  storage  as dependency when testing
+    init(topicId: Int, storage: ERStorage? = nil) {
         self.topicId = topicId
+        self.storage = storage
     }
 }
 
 // MARK: - Public
 extension TodayDetailDataController {
-  
+    func isEntryFavorited(entryId: Int) -> Bool {
+        return currentStorage.localStorageModel.favoritedEntries.contains(entryId)
+    }
+
+    func changeFavoriteStatusOfEntry(entryId: Int) {
+        let currentFavoritedItems: [Int] = currentStorage.localStorageModel.favoritedEntries
+        var newFavoritedItems: [Int] = []
+
+        if isEntryFavorited(entryId: entryId) {
+            newFavoritedItems = currentFavoritedItems
+                .filter { $0 != entryId }
+        } else {
+            newFavoritedItems.append(entryId)
+        }
+
+        let newStorageModel: ERLocalModel = .init(favoritedEntries: newFavoritedItems,
+                                                  favoritedAuthors: currentStorage.localStorageModel.favoritedAuthors)
+        currentStorage.setLocalStorageModel(newStorageModel)
+    }
 }

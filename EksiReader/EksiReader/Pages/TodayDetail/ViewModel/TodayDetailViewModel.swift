@@ -32,7 +32,22 @@ extension TodayDetailViewModel {
     }
 
     func favorite(id: Int) {
+        dataController.changeFavoriteStatusOfEntry(entryId: id)
+        trigger(.presentations(itemPresentations: []))
+        if dataController.isEntryFavorited(entryId: id) {
+            trigger(.infoToast(message: "Favoriye aldığınız entry cihazınıza kaydedilmiştir. Kullanıcı adınız ile kayıt edilmesini istiyorsanız Ekşi Sözlük'ü ziyaret etmelisiniz"))
+        }
+    }
 
+    func updatedPresentations() -> [TopicEntryPresentation] {
+        var newPresentations: [TopicEntryPresentation] = []
+        currentPresentations.forEach {
+            var presentation = $0
+            presentation.setFavorited(dataController.isEntryFavorited(entryId: $0.id))
+            newPresentations.append(presentation)
+        }
+        currentPresentations = newPresentations
+        return newPresentations
     }
 }
 

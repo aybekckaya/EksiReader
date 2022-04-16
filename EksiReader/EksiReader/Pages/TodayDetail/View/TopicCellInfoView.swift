@@ -89,6 +89,7 @@ extension TopicCellInfoView {
 // MARK: - Public
 extension TopicCellInfoView {
     func configure(date: String, nick: String, profileURL: String?) {
+        imViewProfile.image = nil 
         lblNick.text = nick
         lblDate.text = date
         imViewProfile.setImage(with: profileURL)

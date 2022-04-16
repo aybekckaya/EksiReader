@@ -137,6 +137,8 @@ enum PagableViewModelChange<P> {
     case presentations(itemPresentations: [P])
     case error(error: EksiError)
     case fetchNewItemsEnabled(isEnabled: Bool)
+    case reloadItemsAtIndexes(indexes: [Int])
+    case infoToast(message: String)
 }
 
 typealias PagableViewModelChangeCallback<T> = (T) -> Void

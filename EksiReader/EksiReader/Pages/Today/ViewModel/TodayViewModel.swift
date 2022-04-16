@@ -31,6 +31,10 @@ extension TodayViewModel {
         router.routeToDetail(topicId: id)
     }
 
+    func initializeViewModel() {
+
+    }
+
 }
 
 // MARK: - Response Handler

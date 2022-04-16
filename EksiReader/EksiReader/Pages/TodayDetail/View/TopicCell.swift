@@ -101,7 +101,9 @@ extension TopicCell {
     func configure(with item: TopicEntryPresentation) {
         self.presentation = item
         lblContent.attributedText = item.content.attributedTodayTitle()
-        cellInputView.configure(favoriteCount: item.favoriteCount, delegate: self)
+        cellInputView.configure(favoriteCount: item.favoriteCount,
+                                isFavoritedByUser: item.isFavorited,
+                                delegate: self)
         infoView.configure(date: item.createdDatePresentable, nick: item.authorName, profileURL: item.authorImageURL)
     }
 }

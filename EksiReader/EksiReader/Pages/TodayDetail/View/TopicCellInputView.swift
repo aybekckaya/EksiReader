@@ -124,10 +124,10 @@ extension TopicCellInputView {
 
 // MARK: - Public
 extension TopicCellInputView {
-    func configure(favoriteCount: Int, delegate: TopicCellInputViewDelegate) {
+    func configure(favoriteCount: Int, isFavoritedByUser: Bool, delegate: TopicCellInputViewDelegate) {
         self.delegate = delegate
         favoriteItemView
-            .configure(image: "heart", value: "\(favoriteCount)")
+            .configure(image: isFavoritedByUser ? "heart.fill" : "heart", value: "\(favoriteCount)")
 
         shareItemView
             .configure(image: "square.and.arrow.up", value: nil)

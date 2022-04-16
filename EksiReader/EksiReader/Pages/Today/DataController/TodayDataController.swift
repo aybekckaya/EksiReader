@@ -9,7 +9,6 @@ import Foundation
 
 class TodayDataController: PagableDataController {
     var response: TodaysResponse?
-    
 
     typealias T = TodaysEntry
     typealias Response = TodaysResponse
@@ -22,8 +21,15 @@ class TodayDataController: PagableDataController {
         EREndpoint.today(page: currentPage)
     }
 
+   
+
     init() {
 
     }
+}
+
+// MARK: - Public
+extension TodayDataController {
+
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Loaf
 
 class TodayDetailVC: ERViewController {
     private let viewModel: TodayDetailViewModel
@@ -63,6 +64,15 @@ extension TodayDetailVC {
     }
 }
 
+// MARK: - UI Update
+extension TodayDetailVC {
+    private func showToast(message: String) {
+        Loaf(message,
+             presentingDirection: .vertical,
+             dismissingDirection: .vertical,
+             sender: self).show()
+    }
+}
 
 // MARK: - Listeners
 extension TodayDetailVC {
@@ -80,8 +90,14 @@ extension TodayDetailVC {
                 self.listView.updateFooterViewVisibility(isVisible: isVisible)
             case .loading(let isVisible):
                 isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
-            case .presentations(let itemPresentations):
-                self.listView.configure(with: itemPresentations)
+            case .presentations(let _):
+
+                let updatedPresentations = self.viewModel.updatedPresentations()
+                self.listView.configure(with: updatedPresentations)
+            case .reloadItemsAtIndexes(let indexes):
+                break
+            case .infoToast( let message):
+                self.showToast(message: message)
             }
         }
     }

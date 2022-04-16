@@ -56,6 +56,8 @@
 		A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA81F280AE946005DE47B /* DateFormatter+Extensions.swift */; };
 		A32CA822280AEFF6005DE47B /* UIImageCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA821280AEFF6005DE47B /* UIImageCacheExtension.swift */; };
 		A32CA824280AF1B3005DE47B /* TopicCellInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA823280AF1B3005DE47B /* TopicCellInputView.swift */; };
+		A32CA828280B0F11005DE47B /* ERStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA827280B0F11005DE47B /* ERStorage.swift */; };
+		A32CA82B280B313F005DE47B /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = A32CA82A280B313F005DE47B /* Loaf */; };
 		A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331001A27FCD1C700431F26 /* AppDelegate.swift */; };
 		A331001D27FCD1C700431F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331001C27FCD1C700431F26 /* SceneDelegate.swift */; };
 		A331002427FCD1C900431F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A331002327FCD1C900431F26 /* Assets.xcassets */; };
@@ -159,6 +161,7 @@
 		A32CA81F280AE946005DE47B /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		A32CA821280AEFF6005DE47B /* UIImageCacheExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageCacheExtension.swift; sourceTree = "<group>"; };
 		A32CA823280AF1B3005DE47B /* TopicCellInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellInputView.swift; sourceTree = "<group>"; };
+		A32CA827280B0F11005DE47B /* ERStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERStorage.swift; sourceTree = "<group>"; };
 		A331001727FCD1C700431F26 /* EksiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EksiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A331001A27FCD1C700431F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A331001C27FCD1C700431F26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 			files = (
 				A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
+				A32CA82B280B313F005DE47B /* Loaf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +380,14 @@
 			path = Styling;
 			sourceTree = "<group>";
 		};
+		A32CA826280B0EF8005DE47B /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				A32CA827280B0F11005DE47B /* ERStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		A331000E27FCD1C700431F26 = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +411,7 @@
 		A331001927FCD1C700431F26 /* EksiReader */ = {
 			isa = PBXGroup;
 			children = (
+				A32CA826280B0EF8005DE47B /* Storage */,
 				A32CA815280ADF3B005DE47B /* Styling */,
 				A3E8E88C28073CA5006DF479 /* Protocols */,
 				A37B787C2804BF6400DED4F1 /* Lottie */,
@@ -617,6 +630,7 @@
 			packageProductDependencies = (
 				A37B78772804B97100DED4F1 /* Lottie */,
 				A32CA81D280AE7E3005DE47B /* Kingfisher */,
+				A32CA82A280B313F005DE47B /* Loaf */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -693,6 +707,7 @@
 			packageReferences = (
 				A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -763,6 +778,7 @@
 				A331004E27FCD25500431F26 /* TodayVC.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
 				A32CA824280AF1B3005DE47B /* TopicCellInputView.swift in Sources */,
+				A32CA828280B0F11005DE47B /* ERStorage.swift in Sources */,
 				A311FC3D2802C59800EE27A3 /* NetworkingRequestHeader.swift in Sources */,
 				A311FC012802A69E00EE27A3 /* UICollectionView+Extensions.swift in Sources */,
 				A311FBFF2802A69E00EE27A3 /* DeclarativeCVSizeCalculator.swift in Sources */,
@@ -1176,6 +1192,14 @@
 				kind = branch;
 			};
 		};
+		A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/schmidyy/Loaf.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
 		A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1191,6 +1215,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		A32CA82A280B313F005DE47B /* Loaf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */;
+			productName = Loaf;
 		};
 		A37B78772804B97100DED4F1 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

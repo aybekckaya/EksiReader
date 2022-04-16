@@ -12,7 +12,6 @@ class TodayVC: ERViewController {
     private let viewModel: TodayViewModel
     private let listView: ERListView<TodayCell, TodayPresentation> = .init()
 
-
     init(viewModel: TodayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -21,7 +20,6 @@ class TodayVC: ERViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 // MARK: - Lifecycle
@@ -32,6 +30,7 @@ extension TodayVC {
         addListeners()
         var _viewModel = viewModel
         _viewModel.loadNewItems()
+        _viewModel.initializeViewModel()
     }
 }
 
@@ -53,7 +52,6 @@ extension TodayVC {
             }.selectedItem { list, indexPath, presentation in
                 var _viewModel = self.viewModel
                 _viewModel.selectItem(withIdentifier: presentation.id)
-
             }
     }
 }
@@ -93,6 +91,10 @@ extension TodayVC {
             break
         case .fetchNewItemsEnabled(let isEnabled):
             listView.fetchNewItemsEnabled(isEnabled: isEnabled)
+        case .reloadItemsAtIndexes(let indexes):
+            break
+        case .infoToast(let message):
+            break 
         }
     }
 }

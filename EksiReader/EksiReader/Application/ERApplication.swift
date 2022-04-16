@@ -11,10 +11,16 @@ import UIKit
 let APP = ERApplication()
 
 class ERApplication {
-
+    let storage = ERStorage()
 }
 
 // MARK: - Public
 extension ERApplication {
+    func initialize() {
+        storage.initialize()
+    }
 
+    func deInitialize() {
+        storage.deinitialize()
+    }
 }

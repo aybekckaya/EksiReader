@@ -20,6 +20,8 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
     let createdDatePresentable: String
     let createdDateValue: Date?
 
+    private(set) var isFavorited: Bool = false
+
     init(entry: TodayTopicEntry) {
         self.id = entry.id
         self.authorName = entry.author?.nick ?? ""
@@ -29,5 +31,9 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
         self.commentCount = entry.commentCount
         self.createdDateValue = entry.created.toDate(with: DateFormatter.erStringToDateFormatter)
         self.createdDatePresentable = self.createdDateValue?.toString(with: DateFormatter.erDateToStringFormatter) ?? ""
+    }
+
+    mutating func setFavorited(_ isFavorite: Bool) {
+        self.isFavorited = isFavorite
     }
 }
