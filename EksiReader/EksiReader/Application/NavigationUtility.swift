@@ -28,5 +28,14 @@ class NavigationUtility {
         activeNavigationController.pushViewController(viewController, animated: true)
     }
 
+    public func showActivityViewController(_ viewController: UIActivityViewController) {
+        guard let activeNavigationController = activeNavigationController else {
+            return
+        }
+        viewController.popoverPresentationController?.sourceView = activeNavigationController.view
+        activeNavigationController.present(viewController, animated: true) {
+            
+        }
+    }
     
 }

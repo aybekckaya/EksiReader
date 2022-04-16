@@ -26,15 +26,15 @@ class TodayDetailVC: ERViewController {
 extension TodayDetailVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        var _viewModel = viewModel
-        _viewModel.loadNewItems()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-
+        var _viewModel = viewModel
+        _viewModel.loadNewItems()
     }
 }
 
@@ -55,10 +55,10 @@ extension TodayDetailVC {
                 _viewModel.loadNewItems()
             }.selectedItem { _, indexPath, presentation in
                 NSLog("Selected: \(presentation)")
-            }.favoriteItem { _, entryId in
-                NSLog("Favorite: \(entryId)")
-            }.shareItem { _, entryId in
-                NSLog("Share: \(entryId)")
+            }.favoriteItem { [weak self] _, entryId in
+                self?.viewModel.favorite(id: entryId)
+            }.shareItem { [weak self] _, entryId in
+                self?.viewModel.share(id: entryId)
             }
     }
 }

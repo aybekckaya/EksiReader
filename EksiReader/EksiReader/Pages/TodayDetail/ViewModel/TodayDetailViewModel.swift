@@ -26,7 +26,14 @@ class TodayDetailViewModel: PagableViewModel {
 
 // MARK: - Public
 extension TodayDetailViewModel {
-    
+    func share(id: Int) {
+        let link = "https://eksisozluk.com/entry/\(id)"
+        router.showShareSheet(eksiLink: link)
+    }
+
+    func favorite(id: Int) {
+
+    }
 }
 
 

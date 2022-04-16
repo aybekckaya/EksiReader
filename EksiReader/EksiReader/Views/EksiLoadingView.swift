@@ -14,7 +14,7 @@ class EksiLoadingView: UIView {
     private let bgView = UIVisualEffectView
         .visualEffectView()
         .blurEffect(.regular)
-        .backgroundColor(.black.withAlphaComponent(0.2))
+        .backgroundColor(.black.withAlphaComponent(0.02))
         .asVisualEffectsView()
 
     private let contentView = UIView

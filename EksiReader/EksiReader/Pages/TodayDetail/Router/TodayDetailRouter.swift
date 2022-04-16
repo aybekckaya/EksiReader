@@ -9,5 +9,9 @@ import Foundation
 import UIKit
 
 class TodayDetailRouter {
-    
+
+    func showShareSheet(eksiLink: String) {
+        let activityViewController = UIActivityViewController(activityItems: [eksiLink], applicationActivities: nil)
+        ERNavUtility.showActivityViewController(activityViewController)
+    }
 }
