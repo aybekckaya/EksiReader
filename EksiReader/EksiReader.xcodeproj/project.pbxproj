@@ -25,7 +25,6 @@
 		A311FC142802A94400EE27A3 /* ERApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC132802A94400EE27A3 /* ERApplication.swift */; };
 		A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC152802A99800EE27A3 /* NavigationUtility.swift */; };
 		A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC172802AFCD00EE27A3 /* Configuration.swift */; };
-		A311FC1A2802B8CC00EE27A3 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC192802B8CC00EE27A3 /* Styling.swift */; };
 		A311FC1D2802BC6F00EE27A3 /* EREndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC1C2802BC6F00EE27A3 /* EREndpoint.swift */; };
 		A311FC1F2802BD4D00EE27A3 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */; };
 		A311FC232802C0A100EE27A3 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC222802C0A100EE27A3 /* KeychainWrapper.swift */; };
@@ -49,6 +48,13 @@
 		A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC482802F53400EE27A3 /* EksiCloud.swift */; };
 		A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC4A2803333900EE27A3 /* EksiRequests.swift */; };
 		A311FC4D2803334800EE27A3 /* EksiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC4C2803334800EE27A3 /* EksiResponses.swift */; };
+		A32CA814280AD5A5005DE47B /* TopicCellInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA813280AD5A5005DE47B /* TopicCellInfoView.swift */; };
+		A32CA817280ADF5C005DE47B /* MainStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA816280ADF5C005DE47B /* MainStyling.swift */; };
+		A32CA819280ADFAD005DE47B /* TodaysViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA818280ADFAD005DE47B /* TodaysViewStyling.swift */; };
+		A32CA81B280ADFD7005DE47B /* TopicViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA81A280ADFD7005DE47B /* TopicViewStyling.swift */; };
+		A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A32CA81D280AE7E3005DE47B /* Kingfisher */; };
+		A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA81F280AE946005DE47B /* DateFormatter+Extensions.swift */; };
+		A32CA822280AEFF6005DE47B /* UIImageCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA821280AEFF6005DE47B /* UIImageCacheExtension.swift */; };
 		A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331001A27FCD1C700431F26 /* AppDelegate.swift */; };
 		A331001D27FCD1C700431F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331001C27FCD1C700431F26 /* SceneDelegate.swift */; };
 		A331002427FCD1C900431F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A331002327FCD1C900431F26 /* Assets.xcassets */; };
@@ -122,7 +128,6 @@
 		A311FC132802A94400EE27A3 /* ERApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERApplication.swift; sourceTree = "<group>"; };
 		A311FC152802A99800EE27A3 /* NavigationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtility.swift; sourceTree = "<group>"; };
 		A311FC172802AFCD00EE27A3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		A311FC192802B8CC00EE27A3 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
 		A311FC1C2802BC6F00EE27A3 /* EREndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EREndpoint.swift; sourceTree = "<group>"; };
 		A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		A311FC222802C0A100EE27A3 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -146,6 +151,12 @@
 		A311FC482802F53400EE27A3 /* EksiCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiCloud.swift; sourceTree = "<group>"; };
 		A311FC4A2803333900EE27A3 /* EksiRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiRequests.swift; sourceTree = "<group>"; };
 		A311FC4C2803334800EE27A3 /* EksiResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiResponses.swift; sourceTree = "<group>"; };
+		A32CA813280AD5A5005DE47B /* TopicCellInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellInfoView.swift; sourceTree = "<group>"; };
+		A32CA816280ADF5C005DE47B /* MainStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStyling.swift; sourceTree = "<group>"; };
+		A32CA818280ADFAD005DE47B /* TodaysViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysViewStyling.swift; sourceTree = "<group>"; };
+		A32CA81A280ADFD7005DE47B /* TopicViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewStyling.swift; sourceTree = "<group>"; };
+		A32CA81F280AE946005DE47B /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		A32CA821280AEFF6005DE47B /* UIImageCacheExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageCacheExtension.swift; sourceTree = "<group>"; };
 		A331001727FCD1C700431F26 /* EksiReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EksiReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A331001A27FCD1C700431F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A331001C27FCD1C700431F26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +252,7 @@
 		A311FC022802A6C400EE27A3 /* AcukaKit */ = {
 			isa = PBXGroup;
 			children = (
+				A32CA821280AEFF6005DE47B /* UIImageCacheExtension.swift */,
 				A311FC212802C09000EE27A3 /* External */,
 				A3F5D0A327FD346D0031FA1F /* Lib */,
 				A3F5D0AB27FD346D0031FA1F /* Extensions */,
@@ -296,7 +309,6 @@
 				A311FC132802A94400EE27A3 /* ERApplication.swift */,
 				A311FC152802A99800EE27A3 /* NavigationUtility.swift */,
 				A311FC172802AFCD00EE27A3 /* Configuration.swift */,
-				A311FC192802B8CC00EE27A3 /* Styling.swift */,
 				A311FC242802C11700EE27A3 /* Const.swift */,
 				A311FC482802F53400EE27A3 /* EksiCloud.swift */,
 			);
@@ -352,6 +364,16 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		A32CA815280ADF3B005DE47B /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				A32CA816280ADF5C005DE47B /* MainStyling.swift */,
+				A32CA818280ADFAD005DE47B /* TodaysViewStyling.swift */,
+				A32CA81A280ADFD7005DE47B /* TopicViewStyling.swift */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
 		A331000E27FCD1C700431F26 = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +397,7 @@
 		A331001927FCD1C700431F26 /* EksiReader */ = {
 			isa = PBXGroup;
 			children = (
+				A32CA815280ADF3B005DE47B /* Styling */,
 				A3E8E88C28073CA5006DF479 /* Protocols */,
 				A37B787C2804BF6400DED4F1 /* Lottie */,
 				A37B78792804BD5A00DED4F1 /* Views */,
@@ -515,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				A3E8E89528078147006DF479 /* TopicCell.swift */,
+				A32CA813280AD5A5005DE47B /* TopicCellInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -566,6 +590,7 @@
 				A3F5D0AE27FD346D0031FA1F /* CGRect+Extensions.swift */,
 				A3F5D0AF27FD346D0031FA1F /* UIViewGestureExtension.swift */,
 				A3F5D0B027FD346D0031FA1F /* UINib+Loading.swift */,
+				A32CA81F280AE946005DE47B /* DateFormatter+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -588,6 +613,7 @@
 			name = EksiReader;
 			packageProductDependencies = (
 				A37B78772804B97100DED4F1 /* Lottie */,
+				A32CA81D280AE7E3005DE47B /* Kingfisher */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -663,6 +689,7 @@
 			mainGroup = A331000E27FCD1C700431F26;
 			packageReferences = (
 				A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -715,21 +742,23 @@
 				A311FBFC2802A69E00EE27A3 /* URL+Extensions.swift in Sources */,
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
+				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
 				A311FBFA2802A69E00EE27A3 /* ScrollableView.swift in Sources */,
 				A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */,
 				A37B78752804AE5800DED4F1 /* TodayCell.swift in Sources */,
 				A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */,
+				A32CA81B280ADFD7005DE47B /* TopicViewStyling.swift in Sources */,
 				A3F5D0B627FD346D0031FA1F /* Debouncer.swift in Sources */,
 				A311FC0A2802A79300EE27A3 /* TodayViewModel.swift in Sources */,
 				A311FC062802A75C00EE27A3 /* TodayRouter.swift in Sources */,
 				A311FBFE2802A69E00EE27A3 /* DeclarativeCollectionView.swift in Sources */,
 				A311FC4D2803334800EE27A3 /* EksiResponses.swift in Sources */,
 				A37B7870280499F900DED4F1 /* EksiError.swift in Sources */,
+				A32CA817280ADF5C005DE47B /* MainStyling.swift in Sources */,
 				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
 				A331004E27FCD25500431F26 /* TodayVC.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
-				A311FC1A2802B8CC00EE27A3 /* Styling.swift in Sources */,
 				A311FC3D2802C59800EE27A3 /* NetworkingRequestHeader.swift in Sources */,
 				A311FC012802A69E00EE27A3 /* UICollectionView+Extensions.swift in Sources */,
 				A311FBFF2802A69E00EE27A3 /* DeclarativeCVSizeCalculator.swift in Sources */,
@@ -749,6 +778,7 @@
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
 				A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */,
 				A311FC002802A69E00EE27A3 /* DeclarativeTableView.swift in Sources */,
+				A32CA814280AD5A5005DE47B /* TopicCellInfoView.swift in Sources */,
 				A311FC142802A94400EE27A3 /* ERApplication.swift in Sources */,
 				A3F5D0BA27FD346D0031FA1F /* CGRect+Extensions.swift in Sources */,
 				A311FC402802C59800EE27A3 /* NetworkingConsoleLogger.swift in Sources */,
@@ -772,7 +802,9 @@
 				A311FC3A2802C59800EE27A3 /* NetworkingLogProvider.swift in Sources */,
 				A311FC3C2802C59800EE27A3 /* NetworkingRequestProtocols.swift in Sources */,
 				A311FC3B2802C59800EE27A3 /* NetworkingJsonResponse.swift in Sources */,
+				A32CA819280ADFAD005DE47B /* TodaysViewStyling.swift in Sources */,
 				A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */,
+				A32CA822280AEFF6005DE47B /* UIImageCacheExtension.swift in Sources */,
 				A311FC422802C59800EE27A3 /* NetworkingDataRequest.swift in Sources */,
 				A331001D27FCD1C700431F26 /* SceneDelegate.swift in Sources */,
 				A311FC432802C59800EE27A3 /* NetworkingRequestMethod.swift in Sources */,
@@ -1132,6 +1164,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1143,6 +1183,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A32CA81D280AE7E3005DE47B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		A37B78772804B97100DED4F1 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */;

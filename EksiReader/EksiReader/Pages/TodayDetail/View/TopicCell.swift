@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+
+// MARK: - TopicCell
 class TopicCell: UITableViewCell, ERListCell {
     typealias T = TopicEntryPresentation
 
@@ -18,6 +20,8 @@ class TopicCell: UITableViewCell, ERListCell {
         .alignment(.left)
         .numberOfLines(0)
 
+    private let infoView = TopicCellInfoView
+        .topicCellInfoView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,12 +37,21 @@ class TopicCell: UITableViewCell, ERListCell {
             .add(into: self)
             .leading(.constant(16))
             .trailing(.constant(16))
-            .bottom(.constant(16))
+            //.bottom(.constant(16))
             .top(.constant(16))
+
+        infoView
+            .add(into: self)
+            .margin(to: .bottom(of: lblContent, value: .constant(8)))
+            .align(with: .right(of: lblContent, value: .constant(0)))
+            .height(.min(1)) // add Min
+            .ratio(to: .width(of: self, value: 0.5))
+            .bottom(.constant(8))
     }
 
     func configure(with item: TopicEntryPresentation) {
         lblContent.attributedText = item.content.attributedTodayTitle()
+        infoView.configure(date: item.createdDatePresentable, nick: item.authorName, profileURL: item.authorImageURL)
     }
 
 

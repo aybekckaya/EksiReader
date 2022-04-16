@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": "master",
+          "revision": "bef0d09d2cab299fdeb2446de080df9f2b7dee91",
+          "version": null
+        }
+      },
+      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios",
         "state": {

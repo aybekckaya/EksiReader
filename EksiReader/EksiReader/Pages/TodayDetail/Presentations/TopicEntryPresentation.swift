@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
     typealias PresentationEntry = TodayTopicEntry
@@ -16,6 +17,8 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
     let content: String
     let favoriteCount: Int
     let commentCount: Int
+    let createdDatePresentable: String
+    let createdDateValue: Date?
 
     init(entry: TodayTopicEntry) {
         self.id = entry.id
@@ -24,5 +27,7 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
         self.content = entry.content
         self.favoriteCount = entry.favoriteCount
         self.commentCount = entry.commentCount
+        self.createdDateValue = entry.created.toDate(with: DateFormatter.erStringToDateFormatter)
+        self.createdDatePresentable = self.createdDateValue?.toString(with: DateFormatter.erDateToStringFormatter) ?? ""
     }
 }
