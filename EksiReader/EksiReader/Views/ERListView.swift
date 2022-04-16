@@ -10,8 +10,9 @@ import UIKit
 
 typealias ERListCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>) -> Void
 typealias ERListItemSelectedCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>, IndexPath, T) -> Void
+typealias ERListItemInputSelectedCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>, Int) -> Void
 
-class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
+class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelegate {
 
     private let tableViewItems: DeclarativeTableView<C, T> =
     DeclarativeTableView<C, T>
@@ -22,6 +23,8 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
     private var loadNewItemsCallback: ERListCallback<C, T>?
     private var refreshItemsCallback: ERListCallback<C, T>?
     private var itemsSelectedCallback: ERListItemSelectedCallback<C, T>?
+    private var favoriteDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
+    private var shareDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
 
     init() {
         super.init(frame: .zero)
@@ -51,11 +54,12 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
         tableViewItems
             .cellAtIndex { tableView, cell, presentation, IndexPath in
                 cell.configure(with: presentation as! C.T)
+                if let cell = cell as? TopicCell {
+                    cell.setDelegate(self)
+                }
             }.didSelectCell { tableView, presentation, indexPath in
                 self.itemsSelectedCallback?(self, indexPath, presentation)
-                //self.viewModel.selectItem(withIdentifier: presentation.id)
             }
-
     }
 
     func configure(with items: [T]) {
@@ -78,6 +82,18 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
     @discardableResult
     func selectedItem(_ callback: ERListItemSelectedCallback<C,T>?) -> ERListView<C, T> {
         self.itemsSelectedCallback = callback
+        return self
+    }
+
+    @discardableResult
+    func shareItem(_ callback: ERListItemInputSelectedCallback<C,T>?) -> ERListView<C, T> {
+        self.shareDidTappedCallback = callback
+        return self
+    }
+
+    @discardableResult
+    func favoriteItem(_ callback: ERListItemInputSelectedCallback<C,T>?) -> ERListView<C, T> {
+        self.favoriteDidTappedCallback = callback
         return self
     }
 
@@ -108,5 +124,13 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView {
 //        var _viewModel = viewModel
 //        _viewModel.resetEntries()
 //        _viewModel.loadNewItems()
+    }
+
+    func topicCellDidTappedShare(_ cell: TopicCell, entryId: Int) {
+        shareDidTappedCallback?(self, entryId)
+    }
+
+    func topicCellDidTappedFavorite(_ cell: TopicCell, entryId: Int) {
+        favoriteDidTappedCallback?(self, entryId)
     }
 }

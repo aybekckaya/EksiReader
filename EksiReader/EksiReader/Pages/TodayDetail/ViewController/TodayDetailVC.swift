@@ -55,6 +55,10 @@ extension TodayDetailVC {
                 _viewModel.loadNewItems()
             }.selectedItem { _, indexPath, presentation in
                 NSLog("Selected: \(presentation)")
+            }.favoriteItem { _, entryId in
+                NSLog("Favorite: \(entryId)")
+            }.shareItem { _, entryId in
+                NSLog("Share: \(entryId)")
             }
     }
 }

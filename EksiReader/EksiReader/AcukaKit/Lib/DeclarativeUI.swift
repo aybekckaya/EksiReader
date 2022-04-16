@@ -360,6 +360,12 @@ extension CALayer {
 // MARK: - UIImageView
 extension UIImageView {
     @discardableResult
+    public func tintColor(_ color: UIColor) -> UIImageView {
+        self.tintColor = color
+        return self 
+    }
+
+    @discardableResult
     public func clipToBounds(_ isClipped: Bool) -> UIImageView {
         self.clipsToBounds = isClipped
         return self 

@@ -51,7 +51,10 @@ class TopicCellInfoView: UIView {
         super.layoutSubviews()
 
     }
+}
 
+// MARK: - Set Up UI
+extension TopicCellInfoView {
     private func setUpUI() {
         self.backgroundColor = .clear
 
@@ -69,33 +72,11 @@ class TopicCellInfoView: UIView {
             .trailing(.constant(0))
             .centerY(.constant(0))
 
-//        labelsStackView
-//            .add(intoStackView: mainStackView)
-
-//        UIView
-//            .view()
-//            .add(intoStackView: labelsStackView)
-
         lblDate
             .add(intoStackView: labelsStackView)
 
         lblNick
             .add(intoStackView: labelsStackView)
-           // .height(.constant(14))
-
-//        UIView
-//            .view()
-//            .add(intoStackView: labelsStackView)
-
-        lblNick.text = "Aybek Can Kaya"
-        lblDate.text = "12/03/2020 14:43"
-
-//        let sampleLabelView = UIView
-//            .view()
-//            .add(intoStackView: labelsStackView)
-//            .height(.constant(64))
-//            .backgroundColor(.green)
-
 
         imViewProfile
             .add(intoStackView: mainStackView)
@@ -103,7 +84,10 @@ class TopicCellInfoView: UIView {
             .height(.constant(Styling.TopicCell.imageViewEdgeSize))
             .roundCorners(by: Styling.TopicCell.imageViewEdgeSize / 2, maskToBounds: true)
     }
+}
 
+// MARK: - Public
+extension TopicCellInfoView {
     func configure(date: String, nick: String, profileURL: String?) {
         lblNick.text = nick
         lblDate.text = date

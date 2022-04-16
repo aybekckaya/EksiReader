@@ -60,8 +60,6 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
         return closure(self, model, indexPath)
     }
 
-
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let closure = cellDidSelectClosure else { return }
         let model = items[indexPath.row]
