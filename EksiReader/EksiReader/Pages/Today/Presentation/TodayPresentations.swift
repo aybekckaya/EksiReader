@@ -24,18 +24,3 @@ init(entry: PresentationEntry) {
     }
 }
 
-extension String {
-    func attributedTodayTitle() -> NSAttributedString {
-        let attributedString = NSMutableAttributedString(string: self)
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = Styling.TodaysCell.titleLineSpacing
-        paragraphStyle.lineHeightMultiple = 1
-
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
-                                      value:paragraphStyle,
-                                      range:NSMakeRange(0, attributedString.length))
-
-        return attributedString
-    }
-}

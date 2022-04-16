@@ -11,6 +11,7 @@ import UIKit
 protocol TopicCellDelegate: AnyObject {
     func topicCellDidTappedShare(_ cell: TopicCell, entryId: Int)
     func topicCellDidTappedFavorite(_ cell: TopicCell, entryId: Int)
+    func topicCellDidTappedReport(_ cell: TopicCell, entryId: Int)
 }
 
 // MARK: - TopicCell
@@ -54,18 +55,18 @@ extension TopicCell {
 
         infoView
             .add(into: self.contentView)
-            .margin(to: .bottom(of: lblContent, value: .constant(8)))
+            .margin(to: .bottom(of: lblContent, value: .constant(16)))
             .align(with: .right(of: lblContent, value: .constant(0)))
             .height(.min(1)) // add Min
-            .ratio(to: .width(of: self.contentView, value: 0.5))
+            .ratio(to: .width(of: self.contentView, value: 1.0))
 
         cellInputView
             .add(into: self.contentView)
-            .leading(.constant(8))
-            .margin(to: .bottom(of: infoView, value: .constant(8)))
+           // .leading(.constant(8))
+            .margin(to: .bottom(of: infoView, value: .constant(16)))
             .bottom(.constant(8))
             .height(.constant(44))
-            .align(with: .right(of: infoView, value: .constant(0)))
+            .align(with: .right(of: infoView, value: .constant(-8)))
     }
 }
 
@@ -90,6 +91,17 @@ extension TopicCell: TopicCellInputViewDelegate {
         }
         delegate.topicCellDidTappedFavorite(self, entryId: entryId)
     }
+
+    func topicCellInputViewReportDidTapped(_ view: TopicCellInputView) {
+        guard
+            let delegate = delegate,
+                let entryId = presentation?.id
+        else {
+            return
+        }
+        delegate.topicCellDidTappedReport(self, entryId: entryId)
+    }
+
 }
 
 // MARK: - Public
@@ -100,11 +112,14 @@ extension TopicCell {
 
     func configure(with item: TopicEntryPresentation) {
         self.presentation = item
-        lblContent.attributedText = item.content.attributedTodayTitle()
+        lblContent.attributedText = item.content
         cellInputView.configure(favoriteCount: item.favoriteCount,
                                 isFavoritedByUser: item.isFavorited,
+                                attachmentCount: item.attachmentURLs.count,
                                 delegate: self)
-        infoView.configure(date: item.createdDatePresentable, nick: item.authorName, profileURL: item.authorImageURL)
+        infoView.configure(date: item.createdDatePresentable,
+                           nick: item.authorName,
+                           profileURL: item.authorImageURL)
     }
 }
 

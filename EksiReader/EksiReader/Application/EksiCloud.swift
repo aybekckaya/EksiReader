@@ -12,6 +12,7 @@ typealias EksiCloudResponseCallback<T: Decodable> = (T?) -> Void
 class EksiCloud {
     static let shared = EksiCloud()
 
+    private var reachability = try? Reachability()
     private var authToken: AuthToken?
     private var networkers: [NetworkingCore] = []
 }
@@ -19,9 +20,29 @@ class EksiCloud {
 // MARK: - Public
 extension EksiCloud {
     func call<T: Decodable>(endpoint: EREndpoint, responseType: T.Type, callback: @escaping EksiCloudResponseCallback<T>) {
+
+        // if not reachable , no need to call auth token , because we will be reading
+        // from cached files
+        guard isNetworkReachable() else {
+            self._call(endpoint: endpoint, responseType: responseType, callback: callback)
+            return
+        }
+
         callForAuthTokenIfNeeded {
             self._call(endpoint: endpoint, responseType: responseType, callback: callback)
         }
+    }
+}
+
+// MARK: - Reachablity
+extension EksiCloud {
+    private func isNetworkReachable() -> Bool {
+        guard let reachability = reachability else {
+            self.reachability = try? Reachability()
+            return true
+        }
+
+        return reachability.connection != .unavailable
     }
 }
 
@@ -60,13 +81,12 @@ extension EksiCloud {
 
         let networker = NetworkingCore(identifier: UUID().uuidString)
         self.networkers.append(networker)
-        NSLog("Networkers Count Start: \(networkers.count)")
+
         networker
             .consoleLogProvider([.request, .response])
             .request(request)
             .onCompleted{ [weak self] networker in
                 self?.removeNetworker(networker: networker)
-                NSLog("Networkers Count End: \(self?.networkers.count)")
             }.onDecodableResponse(of: responseType, callback: callback)
             .onError { error in
                 NSLog("Error: \(error)")

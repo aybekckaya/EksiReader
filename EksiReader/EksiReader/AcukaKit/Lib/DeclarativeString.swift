@@ -23,6 +23,19 @@ extension String {
 //    }
 }
 
+extension String {
+    func getLinks() -> [String] {
+        let input = self
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
+        return matches.compactMap {
+            guard let range = Range($0.range, in: input) else { return nil }
+            let url = input[range]
+            return String(url)
+        }
+    }
+}
+
 extension NSAttributedString {
     @discardableResult
     static func combine(_ arr: [NSAttributedString]) -> NSAttributedString {

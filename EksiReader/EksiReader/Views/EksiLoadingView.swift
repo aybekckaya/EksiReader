@@ -14,8 +14,10 @@ class EksiLoadingView: UIView {
     private let bgView = UIVisualEffectView
         .visualEffectView()
         .blurEffect(.regular)
-        .backgroundColor(.black.withAlphaComponent(0.02))
+        .backgroundColor(.black)
+        .opacity(0.8)
         .asVisualEffectsView()
+
 
     private let contentView = UIView
         .view()
@@ -41,20 +43,20 @@ class EksiLoadingView: UIView {
             .add(into: self)
             .centerX(.constant(0))
             .centerY(.constant(0))
-            .width(.constant(100))
-            .height(.constant(100))
+            .width(.constant(120))
+            .height(.constant(120))
 
         let loadingAnimationView = AnimationView()
         loadingAnimationView.translatesAutoresizingMaskIntoConstraints = false
-        let loadingAnimation = Animation.named("EksiLoadingView")
+        let loadingAnimation = Animation.named("lemonLoading")
         loadingAnimationView.animation = loadingAnimation
         contentView.addSubview(loadingAnimationView)
 
         loadingAnimationView
             .centerX(.constant(0))
             .centerY(.constant(0))
-            .width(.constant(150))
-            .height(.constant(150))
+            .width(.constant(200))
+            .height(.constant(200))
 
         loadingAnimationView.play(fromProgress: 0, toProgress: 1, loopMode: .loop) { _ in
 
@@ -78,10 +80,10 @@ extension EksiLoadingView {
     }
 
     static func hide() {
-        DispatchQueue.main.async {
-            let vv = KeyWindow.subviews.first { $0.tag == ERKey.loadingViewTag }
-            guard  let view = vv else { return }
-            view.removeFromSuperview()
-        }
+//        DispatchQueue.main.async {
+//            let vv = KeyWindow.subviews.first { $0.tag == ERKey.loadingViewTag }
+//            guard  let view = vv else { return }
+//            view.removeFromSuperview()
+//        }
     }
 }

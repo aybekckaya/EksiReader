@@ -20,6 +20,7 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
     private var willDisplayCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
     private var willDisplayLastCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
     private var didEndDisplayCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
+    private var didScrollTableClosure: ((DeclarativeTableView, CGPoint) -> Void)?
     private var footerViewClosure: (() -> UIView?)?
 
     init() {
@@ -82,6 +83,14 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
         let model = items[indexPath.row]
         didEndDisplayCellClosure(self, currentCell, model, indexPath)
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let didScrollTableClosure = didScrollTableClosure else {
+            return
+        }
+        didScrollTableClosure(self, scrollView.contentOffset)
+    }
+
 }
 
 // MARK: - Delegate / Datasource helpers
@@ -142,6 +151,12 @@ extension DeclarativeTableView {
             self.reload()
             self.layoutIfNeeded()
         }
+    }
+
+    @discardableResult
+    func didScrollTable(_ closure: ((DeclarativeTableView, CGPoint) -> Void)?) -> DeclarativeTableView {
+        self.didScrollTableClosure = closure
+        return self
     }
 
     @discardableResult

@@ -18,13 +18,14 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
     DeclarativeTableView<C, T>
         .declarativeTableView()
 
-    private let refreshControl = UIRefreshControl()
+    private let refreshControl = LottieRefreshControl()
 
     private var loadNewItemsCallback: ERListCallback<C, T>?
     private var refreshItemsCallback: ERListCallback<C, T>?
     private var itemsSelectedCallback: ERListItemSelectedCallback<C, T>?
     private var favoriteDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
     private var shareDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
+    private var reportDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
 
     init() {
         super.init(frame: .zero)
@@ -59,12 +60,14 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
                 }
             }.didSelectCell { tableView, presentation, indexPath in
                 self.itemsSelectedCallback?(self, indexPath, presentation)
+            }.didScrollTable { tableView, offset in
+                self.refreshControl.updateProgress(with: offset.y)
             }
     }
 
     func configure(with items: [T]) {
         self.tableViewItems.updateItems(items)
-        self.refreshControl.endRefreshing()
+        //self.refreshControl.endRefreshing()
     }
 
     @discardableResult
@@ -94,6 +97,12 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
     @discardableResult
     func favoriteItem(_ callback: ERListItemInputSelectedCallback<C,T>?) -> ERListView<C, T> {
         self.favoriteDidTappedCallback = callback
+        return self
+    }
+
+    @discardableResult
+    func reportItem(_ callback: ERListItemInputSelectedCallback<C,T>?) -> ERListView<C, T> {
+        self.reportDidTappedCallback = callback
         return self
     }
 
@@ -132,5 +141,9 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
 
     func topicCellDidTappedFavorite(_ cell: TopicCell, entryId: Int) {
         favoriteDidTappedCallback?(self, entryId)
+    }
+
+    func topicCellDidTappedReport(_ cell: TopicCell, entryId: Int) {
+        reportDidTappedCallback?(self, entryId)
     }
 }

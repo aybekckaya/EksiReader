@@ -14,11 +14,12 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
     let id: Int
     let authorName: String
     let authorImageURL: String?
-    let content: String
+    let content: NSAttributedString
     let favoriteCount: Int
     let commentCount: Int
     let createdDatePresentable: String
     let createdDateValue: Date?
+    let attachmentURLs: [String]
 
     private(set) var isFavorited: Bool = false
 
@@ -26,9 +27,10 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
         self.id = entry.id
         self.authorName = entry.author?.nick ?? ""
         self.authorImageURL = entry.avatarUrl
-        self.content = entry.content
         self.favoriteCount = entry.favoriteCount
         self.commentCount = entry.commentCount
+        self.attachmentURLs = entry.content.getLinks()
+        self.content = entry.content.attributedTopicContent(links: self.attachmentURLs)
         self.createdDateValue = entry.created.toDate(with: DateFormatter.erStringToDateFormatter)
         self.createdDatePresentable = self.createdDateValue?.toString(with: DateFormatter.erDateToStringFormatter) ?? ""
     }
@@ -37,3 +39,4 @@ struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
         self.isFavorited = isFavorite
     }
 }
+

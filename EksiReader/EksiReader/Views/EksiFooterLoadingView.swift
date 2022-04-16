@@ -25,7 +25,7 @@ class EksiFooterLoadingView: UIView {
         backgroundColor = .clear
         let loadingAnimationView = AnimationView()
         loadingAnimationView.translatesAutoresizingMaskIntoConstraints = true
-        let loadingAnimation = Animation.named("EksiLoadingView")
+        let loadingAnimation = Animation.named("lemonLoading")
         loadingAnimationView.animation = loadingAnimation
         self.addSubview(loadingAnimationView)
 

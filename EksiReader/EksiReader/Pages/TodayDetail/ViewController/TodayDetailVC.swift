@@ -28,6 +28,7 @@ extension TodayDetailVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+       
     }
     
     override func viewDidLoad() {
@@ -60,6 +61,8 @@ extension TodayDetailVC {
                 self?.viewModel.favorite(id: entryId)
             }.shareItem { [weak self] _, entryId in
                 self?.viewModel.share(id: entryId)
+            }.reportItem { [weak self] _, entryId in
+                NSLog("REPORT: \(entryId)")
             }
     }
 }
