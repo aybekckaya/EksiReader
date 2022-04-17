@@ -43,3 +43,8 @@ struct TodayTopicRequest: Encodable {
         case page = "p"
     }
 }
+
+// MARK: - Entry
+struct EntryRequest: Encodable {
+    let id: Int
+}

@@ -14,4 +14,12 @@ class TodayDetailRouter {
         let activityViewController = UIActivityViewController(activityItems: [eksiLink], applicationActivities: nil)
         ERNavUtility.showActivityViewController(activityViewController)
     }
+
+    func routeToEntry(entryId: Int) {
+        let router = EntryRouter()
+        let dataController = EntryDataController(entryId: entryId)
+        let viewModel = EntryViewModel(dataController: dataController, router: router)
+        let viewController = EntryVC(viewModel: viewModel)
+        ERNavUtility.push(viewController: viewController)
+    }
 }

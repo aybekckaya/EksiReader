@@ -49,6 +49,10 @@ extension TodayDetailViewModel {
         currentPresentations = newPresentations
         return newPresentations
     }
+
+    func navigateToEntryViewController(entryId: Int) {
+        self.router.routeToEntry(entryId: entryId)
+    }
 }
 
 

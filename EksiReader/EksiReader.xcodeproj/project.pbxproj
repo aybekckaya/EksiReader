@@ -72,6 +72,11 @@
 		A369A613280C5AD900494B40 /* EksiCloudCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A612280C5AD900494B40 /* EksiCloudCache.swift */; };
 		A369A616280C5E8700494B40 /* SwiftHash in Frameworks */ = {isa = PBXBuildFile; productRef = A369A615280C5E8700494B40 /* SwiftHash */; };
 		A369A61C280C6E0A00494B40 /* NetworkingDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */; };
+		A369A625280CA2C900494B40 /* EntryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A624280CA2C900494B40 /* EntryPresentation.swift */; };
+		A369A627280CA2D700494B40 /* EntryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A626280CA2D700494B40 /* EntryRouter.swift */; };
+		A369A629280CA31200494B40 /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A628280CA31200494B40 /* EntryViewModel.swift */; };
+		A369A62B280CA32000494B40 /* EntryDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A62A280CA32000494B40 /* EntryDataController.swift */; };
+		A369A62D280CA32B00494B40 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A62C280CA32B00494B40 /* EntryVC.swift */; };
 		A37B7870280499F900DED4F1 /* EksiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B786F280499F900DED4F1 /* EksiError.swift */; };
 		A37B787228049CF300DED4F1 /* TodayPresentations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787128049CF300DED4F1 /* TodayPresentations.swift */; };
 		A37B78752804AE5800DED4F1 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78742804AE5800DED4F1 /* TodayCell.swift */; };
@@ -185,6 +190,11 @@
 		A331004D27FCD25500431F26 /* TodayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVC.swift; sourceTree = "<group>"; };
 		A369A612280C5AD900494B40 /* EksiCloudCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiCloudCache.swift; sourceTree = "<group>"; };
 		A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingDataResponse.swift; sourceTree = "<group>"; };
+		A369A624280CA2C900494B40 /* EntryPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPresentation.swift; sourceTree = "<group>"; };
+		A369A626280CA2D700494B40 /* EntryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRouter.swift; sourceTree = "<group>"; };
+		A369A628280CA31200494B40 /* EntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewModel.swift; sourceTree = "<group>"; };
+		A369A62A280CA32000494B40 /* EntryDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDataController.swift; sourceTree = "<group>"; };
+		A369A62C280CA32B00494B40 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
 		A37B786F280499F900DED4F1 /* EksiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiError.swift; sourceTree = "<group>"; };
 		A37B787128049CF300DED4F1 /* TodayPresentations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPresentations.swift; sourceTree = "<group>"; };
 		A37B78742804AE5800DED4F1 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
@@ -451,6 +461,7 @@
 		A331004A27FCD22C00431F26 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				A369A61D280CA27E00494B40 /* Entry */,
 				A37B78832804E9B100DED4F1 /* TodayDetail */,
 				A331004B27FCD23800431F26 /* Today */,
 			);
@@ -536,6 +547,66 @@
 				A311FC2C2802C59700EE27A3 /* NetworkingLogProvider.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		A369A61D280CA27E00494B40 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				A369A623280CA2AB00494B40 /* Presentation */,
+				A369A622280CA2A400494B40 /* Router */,
+				A369A621280CA29D00494B40 /* View */,
+				A369A620280CA29700494B40 /* ViewModel */,
+				A369A61F280CA28E00494B40 /* DataController */,
+				A369A61E280CA28700494B40 /* ViewController */,
+			);
+			path = Entry;
+			sourceTree = "<group>";
+		};
+		A369A61E280CA28700494B40 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A369A62C280CA32B00494B40 /* EntryVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A369A61F280CA28E00494B40 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				A369A62A280CA32000494B40 /* EntryDataController.swift */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		A369A620280CA29700494B40 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A369A628280CA31200494B40 /* EntryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A369A621280CA29D00494B40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A369A622280CA2A400494B40 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A369A626280CA2D700494B40 /* EntryRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A369A623280CA2AB00494B40 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A369A624280CA2C900494B40 /* EntryPresentation.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		A37B78732804AE4900DED4F1 /* Views */ = {
@@ -818,12 +889,14 @@
 				A311FC412802C59800EE27A3 /* Networking.swift in Sources */,
 				A311FBFD2802A69E00EE27A3 /* Date+Extensions.swift in Sources */,
 				A311FBFC2802A69E00EE27A3 /* URL+Extensions.swift in Sources */,
+				A369A627280CA2D700494B40 /* EntryRouter.swift in Sources */,
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
 				A311FBFA2802A69E00EE27A3 /* ScrollableView.swift in Sources */,
 				A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */,
+				A369A62D280CA32B00494B40 /* EntryVC.swift in Sources */,
 				A37B78752804AE5800DED4F1 /* TodayCell.swift in Sources */,
 				A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */,
 				A32CA81B280ADFD7005DE47B /* TopicViewStyling.swift in Sources */,
@@ -856,6 +929,7 @@
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A37B788F2804EA7200DED4F1 /* TodayDetailViewModel.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
+				A369A629280CA31200494B40 /* EntryViewModel.swift in Sources */,
 				A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */,
 				A311FC002802A69E00EE27A3 /* DeclarativeTableView.swift in Sources */,
 				A32CA831280B6135005DE47B /* Reachability.swift in Sources */,
@@ -873,6 +947,7 @@
 				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
 				A3E8E890280763A7006DF479 /* TopicEntryPresentation.swift in Sources */,
 				A3F5D0B827FD346D0031FA1F /* UIViewController+Extensions.swift in Sources */,
+				A369A625280CA2C900494B40 /* EntryPresentation.swift in Sources */,
 				A3E8E88E28073CBE006DF479 /* ERProtocol.swift in Sources */,
 				A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */,
 				A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */,
@@ -887,6 +962,7 @@
 				A311FC3C2802C59800EE27A3 /* NetworkingRequestProtocols.swift in Sources */,
 				A311FC3B2802C59800EE27A3 /* NetworkingJsonResponse.swift in Sources */,
 				A32CA819280ADFAD005DE47B /* TodaysViewStyling.swift in Sources */,
+				A369A62B280CA32000494B40 /* EntryDataController.swift in Sources */,
 				A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */,
 				A32CA822280AEFF6005DE47B /* UIImageCacheExtension.swift in Sources */,
 				A311FC422802C59800EE27A3 /* NetworkingDataRequest.swift in Sources */,

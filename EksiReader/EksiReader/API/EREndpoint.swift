@@ -28,6 +28,7 @@ enum EREndpoint {
     case authorizationToken
     case today(page: Int)
     case topic(id: Int, page: Int)
+    case entry(id: Int)
 }
 
 // MARK: - Identifier
@@ -40,6 +41,8 @@ extension EREndpoint {
             return "TodayRequest-Page-\(page)"
         case .topic(let id, let page):
             return "TodayTopic-Page-\(page)-id-\(id)"
+        case .entry(let id):
+            return "EntryDetail-Id-\(id)"
         }
     }
 }
@@ -62,10 +65,13 @@ extension EREndpoint {
             return todaysRequest(page: page)
         case .topic(_, let page):
             return topicRequest(page: page)
+        case .entry(let id):
+            return entryRequest(id: id)
         }
     }
 }
 
+// https://api.eksisozluk.com/v2/entry/102
 // MARK: - URL Builder
 extension EREndpoint {
     private func buildURL() -> String {
@@ -76,6 +82,8 @@ extension EREndpoint {
             return Const.baseURL + Const.version + "/index/today/"
         case .topic(let id, _ ):
             return Const.baseURL + Const.version + "/topic/\(id)"
+        case .entry(let id):
+            return Const.baseURL + Const.version + "/entry/\(id)"
         }
 
     }
@@ -99,6 +107,20 @@ extension EREndpoint {
             .requestModel(reqModel)
             .headers(headers)
 
+        return req
+    }
+
+    private func entryRequest(id: Int) -> NetworkingDataRequest? {
+        let reqModel = EntryRequest(id: id)
+        let headers: [NetworkingRequestHeader] = [
+            .contentTypeValue(.urlEncodedForm),
+           // .bearerToken(accessToken),
+            EREndpoint.Const.clientSecretHeader
+        ]
+        let url = buildURL()
+        let req = NetworkingDataRequest(url: url, method: .get)
+            .headers(headers)
+            .requestModel(reqModel)
         return req
     }
 

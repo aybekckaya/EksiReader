@@ -56,7 +56,8 @@ extension TodayDetailVC {
                 _viewModel.resetEntries()
                 _viewModel.loadNewItems()
             }.selectedItem { _, indexPath, presentation in
-                //NSLog("Selected: \(presentation)")
+                let _viewModel = self.viewModel
+                _viewModel.navigateToEntryViewController(entryId: presentation.id)
             }.favoriteItem { [weak self] _, entryId in
                 self?.viewModel.favorite(id: entryId)
             }.shareItem { [weak self] _, entryId in
