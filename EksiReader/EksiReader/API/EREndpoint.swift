@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftHash
 
 protocol EksiRequestable {
     func request() -> NetworkingDataRequest?
@@ -28,6 +28,28 @@ enum EREndpoint {
     case authorizationToken
     case today(page: Int)
     case topic(id: Int, page: Int)
+}
+
+// MARK: - Identifier
+extension EREndpoint {
+    private func identifier() -> String {
+        switch self {
+        case .authorizationToken:
+            return "AuthorizationToken"
+        case .today(let page):
+            return "TodayRequest-Page-\(page)"
+        case .topic(let id, let page):
+            return "TodayTopic-Page-\(page)-id-\(id)"
+        }
+    }
+}
+
+// MARK: - Hash
+extension EREndpoint {
+    func hash() -> String {
+        let req = buildURL() + identifier()
+        return MD5(req)
+    }
 }
 
 // MARK: - Request

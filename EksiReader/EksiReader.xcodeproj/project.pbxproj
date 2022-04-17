@@ -69,6 +69,9 @@
 		A331003C27FCD1C900431F26 /* EksiReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */; };
 		A331003E27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */; };
 		A331004E27FCD25500431F26 /* TodayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331004D27FCD25500431F26 /* TodayVC.swift */; };
+		A369A613280C5AD900494B40 /* EksiCloudCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A612280C5AD900494B40 /* EksiCloudCache.swift */; };
+		A369A616280C5E8700494B40 /* SwiftHash in Frameworks */ = {isa = PBXBuildFile; productRef = A369A615280C5E8700494B40 /* SwiftHash */; };
+		A369A61C280C6E0A00494B40 /* NetworkingDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */; };
 		A37B7870280499F900DED4F1 /* EksiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B786F280499F900DED4F1 /* EksiError.swift */; };
 		A37B787228049CF300DED4F1 /* TodayPresentations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787128049CF300DED4F1 /* TodayPresentations.swift */; };
 		A37B78752804AE5800DED4F1 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78742804AE5800DED4F1 /* TodayCell.swift */; };
@@ -180,6 +183,8 @@
 		A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiReaderUITests.swift; sourceTree = "<group>"; };
 		A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A331004D27FCD25500431F26 /* TodayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVC.swift; sourceTree = "<group>"; };
+		A369A612280C5AD900494B40 /* EksiCloudCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiCloudCache.swift; sourceTree = "<group>"; };
+		A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingDataResponse.swift; sourceTree = "<group>"; };
 		A37B786F280499F900DED4F1 /* EksiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiError.swift; sourceTree = "<group>"; };
 		A37B787128049CF300DED4F1 /* TodayPresentations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPresentations.swift; sourceTree = "<group>"; };
 		A37B78742804AE5800DED4F1 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
@@ -215,6 +220,7 @@
 			files = (
 				A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
+				A369A616280C5E8700494B40 /* SwiftHash in Frameworks */,
 				A32CA82B280B313F005DE47B /* Loaf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,11 +324,11 @@
 		A311FC122802A92D00EE27A3 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				A369A611280C5AC100494B40 /* Cloud */,
 				A311FC132802A94400EE27A3 /* ERApplication.swift */,
 				A311FC152802A99800EE27A3 /* NavigationUtility.swift */,
 				A311FC172802AFCD00EE27A3 /* Configuration.swift */,
 				A311FC242802C11700EE27A3 /* Const.swift */,
-				A311FC482802F53400EE27A3 /* EksiCloud.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -359,20 +365,10 @@
 		A311FC2B2802C57C00EE27A3 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				A311FC332802C59800EE27A3 /* Networking.swift */,
-				A311FC322802C59800EE27A3 /* NetworkingConsoleLogger.swift */,
-				A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */,
-				A311FC312802C59700EE27A3 /* NetworkingError.swift */,
-				A311FC2D2802C59700EE27A3 /* NetworkingJsonResponse.swift */,
-				A311FC2C2802C59700EE27A3 /* NetworkingLogProvider.swift */,
-				A311FC2F2802C59700EE27A3 /* NetworkingRequestHeader.swift */,
-				A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */,
-				A311FC2E2802C59700EE27A3 /* NetworkingRequestProtocols.swift */,
-				A311FC362802C59800EE27A3 /* NetworkingResponse.swift */,
-				A311FC372802C59800EE27A3 /* NetworkingSession.swift */,
-				A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */,
-				A311FC392802C59800EE27A3 /* NetworkingValidator.swift */,
-				A311FC302802C59700EE27A3 /* NetworkSessionConfiguration.swift */,
+				A369A61A280C6D9F00494B40 /* Logger */,
+				A369A619280C6D5F00494B40 /* Request */,
+				A369A618280C6D5800494B40 /* Response */,
+				A369A617280C6D5000494B40 /* Core */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -491,6 +487,58 @@
 				A311FC092802A79300EE27A3 /* TodayViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A369A611280C5AC100494B40 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC482802F53400EE27A3 /* EksiCloud.swift */,
+				A369A612280C5AD900494B40 /* EksiCloudCache.swift */,
+			);
+			path = Cloud;
+			sourceTree = "<group>";
+		};
+		A369A617280C6D5000494B40 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC302802C59700EE27A3 /* NetworkSessionConfiguration.swift */,
+				A311FC392802C59800EE27A3 /* NetworkingValidator.swift */,
+				A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */,
+				A311FC372802C59800EE27A3 /* NetworkingSession.swift */,
+				A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */,
+				A311FC2F2802C59700EE27A3 /* NetworkingRequestHeader.swift */,
+				A311FC312802C59700EE27A3 /* NetworkingError.swift */,
+				A311FC332802C59800EE27A3 /* Networking.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A369A618280C6D5800494B40 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC362802C59800EE27A3 /* NetworkingResponse.swift */,
+				A311FC2D2802C59700EE27A3 /* NetworkingJsonResponse.swift */,
+				A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		A369A619280C6D5F00494B40 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC2E2802C59700EE27A3 /* NetworkingRequestProtocols.swift */,
+				A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		A369A61A280C6D9F00494B40 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				A311FC322802C59800EE27A3 /* NetworkingConsoleLogger.swift */,
+				A311FC2C2802C59700EE27A3 /* NetworkingLogProvider.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		A37B78732804AE4900DED4F1 /* Views */ = {
@@ -640,6 +688,7 @@
 				A37B78772804B97100DED4F1 /* Lottie */,
 				A32CA81D280AE7E3005DE47B /* Kingfisher */,
 				A32CA82A280B313F005DE47B /* Loaf */,
+				A369A615280C5E8700494B40 /* SwiftHash */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -717,6 +766,7 @@
 				A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */,
+				A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -816,6 +866,8 @@
 				A37B788B2804EA2200DED4F1 /* TodayDetailRouter.swift in Sources */,
 				A311FBF82802A69E00EE27A3 /* StackedView.swift in Sources */,
 				A32CA82D280B5C19005DE47B /* LottieRefreshControl.swift in Sources */,
+				A369A613280C5AD900494B40 /* EksiCloudCache.swift in Sources */,
+				A369A61C280C6E0A00494B40 /* NetworkingDataResponse.swift in Sources */,
 				A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */,
 				A37B788D2804EA3E00DED4F1 /* TodayDetailDataController.swift in Sources */,
 				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
@@ -1212,6 +1264,14 @@
 				minimumVersion = 0.6.0;
 			};
 		};
+		A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onmyway133/SwiftHash.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1232,6 +1292,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */;
 			productName = Loaf;
+		};
+		A369A615280C5E8700494B40 /* SwiftHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */;
+			productName = SwiftHash;
 		};
 		A37B78772804B97100DED4F1 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

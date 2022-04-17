@@ -11,6 +11,7 @@ typealias EksiCloudResponseCallback<T: Decodable> = (T?) -> Void
 
 class EksiCloud {
     static let shared = EksiCloud()
+    private let cloudCache = EksiCloudCache()
 
     private var reachability = try? Reachability()
     private var authToken: AuthToken?
@@ -24,7 +25,7 @@ extension EksiCloud {
         // if not reachable , no need to call auth token , because we will be reading
         // from cached files
         guard isNetworkReachable() else {
-            self._call(endpoint: endpoint, responseType: responseType, callback: callback)
+            self._callFromCloud(endpoint: endpoint, responseType: responseType, callback: callback)
             return
         }
 
@@ -34,9 +35,34 @@ extension EksiCloud {
     }
 }
 
+// MARK: - Cache
+extension EksiCloud {
+    private func _callFromCloud<T: Decodable>(endpoint: EREndpoint,
+                                              responseType: T.Type,
+                                              callback: @escaping EksiCloudResponseCallback<T>) {
+        let hashedURL = endpoint.hash()
+        guard cloudCache.canReadFromCache(for: hashedURL) else {
+            callback(nil)
+            return
+        }
+
+        cloudCache
+            .readFromCache(for: hashedURL) { data in
+                do {
+                    let model = try JSONDecoder().decode(T.self, from: data)
+                    callback(model)
+                } catch let error {
+                    NSLog("Err: \(error)")
+                    callback(nil)
+                }
+            }
+    }
+}
+
 // MARK: - Reachablity
 extension EksiCloud {
     private func isNetworkReachable() -> Bool {
+        return false
         guard let reachability = reachability else {
             self.reachability = try? Reachability()
             return true
@@ -85,13 +111,15 @@ extension EksiCloud {
         networker
             .consoleLogProvider([.request, .response])
             .request(request)
-            .onCompleted{ [weak self] networker in
-                self?.removeNetworker(networker: networker)
-            }.onDecodableResponse(of: responseType, callback: callback)
-            .onError { error in
+            .onDataResponse { data in
+                NSLog("Data: \(data)")
+            }.onError { error in
                 NSLog("Error: \(error)")
                 callback(nil)
-            }.call()
+            }.onCompleted{ [weak self] networker in
+                self?.removeNetworker(networker: networker)
+            }.onDecodableResponse(of: responseType, callback: callback)
+            .call()
     }
 
     private func request(endpoint: EREndpoint) -> NetworkingDataRequest? {

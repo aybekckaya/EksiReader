@@ -66,6 +66,14 @@ extension NetworkingCore {
     }
 
     @discardableResult
+    func onDataResponse(callback: @escaping NetworkingResponseSuccessCallback<Data>) -> NetworkingCore {
+        let provider = NetworkingDataResponse()
+        provider.onSuccess(callback)
+        self.responseProviders.append(provider)
+        return self 
+    }
+
+    @discardableResult
     func call() -> NetworkingCore {
         guard let request = self.request else {
             return self

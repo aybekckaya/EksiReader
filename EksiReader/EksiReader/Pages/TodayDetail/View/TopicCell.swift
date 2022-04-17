@@ -59,6 +59,9 @@ extension TopicCell {
             .align(with: .right(of: lblContent, value: .constant(0)))
             .height(.min(1)) // add Min
             .ratio(to: .width(of: self.contentView, value: 1.0))
+            .onTap { _ in
+                NSLog("YARRAKKKK")
+            }
 
         cellInputView
             .add(into: self.contentView)
