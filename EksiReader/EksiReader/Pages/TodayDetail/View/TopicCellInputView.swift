@@ -110,8 +110,9 @@ extension TopicCellInputView {
         let stackView = UIStackView
             .stackView(alignment: .fill, distribution: .fill, spacing: 48, axis: .horizontal)
             .add(into: self)
-            .height(.constant(20))
+            .leading(.constant(0))
             .trailing(.constant(0))
+            .height(.constant(20))
             .centerY(.constant(0))
             .asStackView()
 
@@ -122,20 +123,20 @@ extension TopicCellInputView {
                 self.delegate?.topicCellInputViewFavoriteDidTapped(self)
             }
 
-//        attachItemView
-//            .add(intoStackView: stackView)
-//
-//        shareItemView
-//            .add(intoStackView: stackView)
-//            .onTap { _ in
-//                self.delegate?.topicCellInputViewShareDidTapped(self)
-//            }
-//
-//        reportItemView
-//            .add(intoStackView: stackView)
-//            .onTap { _ in
-//                self.delegate?.topicCellInputViewReportDidTapped(self)
-//            }
+        attachItemView
+            .add(intoStackView: stackView)
+
+        shareItemView
+            .add(intoStackView: stackView)
+            .onTap { _ in
+                self.delegate?.topicCellInputViewShareDidTapped(self)
+            }
+
+        reportItemView
+            .add(intoStackView: stackView)
+            .onTap { _ in
+                self.delegate?.topicCellInputViewReportDidTapped(self)
+            }
     }
 }
 
