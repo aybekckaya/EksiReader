@@ -118,23 +118,24 @@ extension TopicCellInputView {
         favoriteItemView
             .add(intoStackView: stackView)
             .onTap { _ in
+                NSLog("Favorite Tapped")
                 self.delegate?.topicCellInputViewFavoriteDidTapped(self)
             }
 
-        attachItemView
-            .add(intoStackView: stackView)
-
-        shareItemView
-            .add(intoStackView: stackView)
-            .onTap { _ in
-                self.delegate?.topicCellInputViewShareDidTapped(self)
-            }
-
-        reportItemView
-            .add(intoStackView: stackView)
-            .onTap { _ in
-                self.delegate?.topicCellInputViewReportDidTapped(self)
-            }
+//        attachItemView
+//            .add(intoStackView: stackView)
+//
+//        shareItemView
+//            .add(intoStackView: stackView)
+//            .onTap { _ in
+//                self.delegate?.topicCellInputViewShareDidTapped(self)
+//            }
+//
+//        reportItemView
+//            .add(intoStackView: stackView)
+//            .onTap { _ in
+//                self.delegate?.topicCellInputViewReportDidTapped(self)
+//            }
     }
 }
 

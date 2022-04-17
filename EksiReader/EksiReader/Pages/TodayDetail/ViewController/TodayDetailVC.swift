@@ -56,7 +56,7 @@ extension TodayDetailVC {
                 _viewModel.resetEntries()
                 _viewModel.loadNewItems()
             }.selectedItem { _, indexPath, presentation in
-                NSLog("Selected: \(presentation)")
+                //NSLog("Selected: \(presentation)")
             }.favoriteItem { [weak self] _, entryId in
                 self?.viewModel.favorite(id: entryId)
             }.shareItem { [weak self] _, entryId in
@@ -93,6 +93,7 @@ extension TodayDetailVC {
                 self.listView.updateFooterViewVisibility(isVisible: isVisible)
             case .loading(let isVisible):
                 isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
+               // break
             case .presentations(let _):
 
                 let updatedPresentations = self.viewModel.updatedPresentations()

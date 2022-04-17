@@ -13,6 +13,7 @@ class NetworkingCore {
     private var request: NetworkRequest?
     private var session: NetworkingSession?
     private var errorCallback: NetworkingResponseErrorCallback?
+
     private var responseProviders: [NetworkingResponseProvider] = []
     private var logProviders: [NetworkingLogProvider] = []
     private var onCompletedCallback: NetworkingResponseOnCompletedCallback?

@@ -16,12 +16,12 @@ class NetworkingURLRequestBuilder {
         self.sessionConfiguration = sessionConfiguration
     }
 
-    func build() -> (errors: [NetworkingError], request: URLRequest?) {
+    func build() -> (error: NetworkingError?, request: URLRequest?) {
         guard let url = URL(string: request.url) else {
-            return (errors: [.urlCannotBeFormed], request: nil)
+            return (error: .urlCannotBeFormed, request: nil)
         }
         let req = urlRequest(with: url)
-        return (errors: [], request: req)
+        return (error: nil, request: req)
     }
 }
 

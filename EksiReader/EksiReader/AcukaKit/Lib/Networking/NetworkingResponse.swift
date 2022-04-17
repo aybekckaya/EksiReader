@@ -13,16 +13,14 @@ typealias NetworkingResponseSuccessCallback<T> = (T) -> Void
 typealias NetworkingResponseOnCompletedCallback = (NetworkingCore) -> Void
 
 protocol NetworkingResponseProvider {
-    //associatedtype T
-    func handleResponse(_ res: NetworkingResponse)
-//    func onSuccess(_ callback: NetworkingResponseSuccessCallback<T>)
-//    func onError(_ callback: NetworkingResponseErrorCallback)
+   // func handleResponse(_ res: NetworkingResponse)
+    func handleResponseData(_ responseData: Data) -> NetworkingError?
 }
 
-protocol NetworkingErrorPresentable {
-    var errorCallback: NetworkingResponseErrorCallback? { get }
-    func onError(_ callback: NetworkingResponseErrorCallback?)
-}
+//protocol NetworkingErrorPresentable {
+//    var errorCallback: NetworkingResponseErrorCallback? { get }
+//    func onError(_ callback: NetworkingResponseErrorCallback?)
+//}
 
 // MARK: - NetworkingResponse
 class NetworkingResponse {
@@ -64,6 +62,7 @@ class NetworkingResponse {
         guard let _response = _response else { return .responseModelIsNull }
         guard let httpResponse = _response as? HTTPURLResponse else { return .responseCannotConvertedToHTTPResponse(response: _response) }
         guard (200...299).contains(httpResponse.statusCode) else { return .responseCodeIsNotSatisfied(response: httpResponse) }
+        guard let _ = _data else { return .responseDataIsNil }
         return nil
     }
 }

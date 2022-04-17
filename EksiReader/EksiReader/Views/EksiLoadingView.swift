@@ -80,10 +80,10 @@ extension EksiLoadingView {
     }
 
     static func hide() {
-//        DispatchQueue.main.async {
-//            let vv = KeyWindow.subviews.first { $0.tag == ERKey.loadingViewTag }
-//            guard  let view = vv else { return }
-//            view.removeFromSuperview()
-//        }
+        DispatchQueue.main.async {
+            let vv = KeyWindow.subviews.first { $0.tag == ERKey.loadingViewTag }
+            guard  let view = vv else { return }
+            view.removeFromSuperview()
+        }
     }
 }

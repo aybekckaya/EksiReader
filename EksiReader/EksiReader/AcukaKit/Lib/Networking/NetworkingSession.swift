@@ -49,19 +49,13 @@ extension NetworkingSession {
 // MARK: - Call Session
 extension NetworkingSession {
     private func _call() {
-        responseProviders
-           .compactMap { $0 as? NetworkingErrorPresentable }
-           .forEach {
-               $0.onError(self.errorCallback)
-           }
-
         let requestBuilder = NetworkingURLRequestBuilder(request: request,
                                                          sessionConfiguration: sessionConfiguration)
         let builtRequest = requestBuilder.build()
 
         guard let urlRequest = builtRequest.request else {
-            builtRequest.errors.forEach { error in
-                    self.errorCallback?(error)
+            if let error = builtRequest.error {
+                self.errorCallback?(error)
             }
             self.onCompletedCallback?()
             return
@@ -78,7 +72,7 @@ extension NetworkingSession {
                     let handler = NetworkDataHandler(response: response,
                                                      responseProviders: responseProviders,
                                                      logProviders: logProviders)
-                    handler.handle()
+                    let _ = handler.handle()
                     onCompletedCallback?()
                     return
                 }
@@ -86,7 +80,9 @@ extension NetworkingSession {
                 let handler = NetworkDataHandler(response: response,
                                                  responseProviders: responseProviders,
                                                  logProviders: logProviders)
-                handler.handle()
+                if let error = handler.handle() {
+                    self?.errorCallback?(error)
+                }
                 self?.dataTask = nil
                 onCompletedCallback?()
             }
@@ -148,11 +144,23 @@ private class NetworkDataHandler {
         self.logProviders = logProviders
     }
 
-    func handle() {
+    func handle() -> NetworkingError? {
         self.logResponse()
+        var error: NetworkingError? = nil
         self.providers.forEach {
-            $0.handleResponse(self.response)
+            error = self.handleResponse(of: $0)
         }
+        return error
+    }
+
+    private func handleResponse(of provider: NetworkingResponseProvider) -> NetworkingError?  {
+        if let error = response.error {
+            return error
+        }
+        guard let data = response.data else {
+            return NetworkingError.responseDataIsNil
+        }
+        return provider.handleResponseData(data)
     }
 
     private func logResponse() {

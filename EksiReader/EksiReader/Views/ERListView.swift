@@ -45,10 +45,13 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
             .add(into: self)
             .fit()
 
-        let refreshViewFrame = CGRect(origin: .zero, size: .init(width: self.frame.size.width, height: 64))
-        let refreshView = EksiFooterLoadingView(frame: refreshViewFrame)
-        refreshView.backgroundColor = Styling.Application.backgroundColor
-        refreshControl.addSubview(refreshView)
+//        let refreshViewFrame = CGRect(origin: .zero, size: .init(width: self.frame.size.width, height: 64))
+//        let refreshView = EksiFooterLoadingView(frame: refreshViewFrame)
+//        refreshView.backgroundColor = Styling.Application.backgroundColor
+//        refreshControl.addSubview(refreshView)
+//        tableViewItems.refreshControl = refreshControl
+//        refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
+
         tableViewItems.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
 
@@ -61,13 +64,16 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
             }.didSelectCell { tableView, presentation, indexPath in
                 self.itemsSelectedCallback?(self, indexPath, presentation)
             }.didScrollTable { tableView, offset in
-                self.refreshControl.updateProgress(with: offset.y)
+               self.refreshControl.updateProgress(with: offset.y)
             }
     }
 
     func configure(with items: [T]) {
         self.tableViewItems.updateItems(items)
-        //self.refreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+            self.refreshControl.endRefreshing()
+        }
+
     }
 
     @discardableResult
@@ -109,10 +115,11 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
     func updateFooterViewVisibility(isVisible: Bool) {
         tableViewItems
             .footerView {
-                guard isVisible else { return nil }
-                let frame = CGRect(origin: .zero, size: .init(width: self.tableViewItems.frame.size.width, height: 64))
-                let view = EksiFooterLoadingView(frame: frame)
-                return view
+                return nil
+//                guard isVisible else { return nil }
+//                let frame = CGRect(origin: .zero, size: .init(width: self.tableViewItems.frame.size.width, height: 64))
+//                let view = EksiFooterLoadingView(frame: frame)
+//                return view
             }
     }
 
