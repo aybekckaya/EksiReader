@@ -70,10 +70,7 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
 
     func configure(with items: [T]) {
         self.tableViewItems.updateItems(items)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-            self.refreshControl.endRefreshing()
-        }
-
+        self.refreshControl.endRefreshing()
     }
 
     @discardableResult

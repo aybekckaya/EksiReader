@@ -25,7 +25,7 @@ extension EksiCloud {
         // if not reachable , no need to call auth token , because we will be reading
         // from cached files
         guard isNetworkReachable() else {
-            self._callFromCloud(endpoint: endpoint, responseType: responseType, callback: callback)
+            self._callFromCacheCloud(endpoint: endpoint, responseType: responseType, callback: callback)
             return
         }
 
@@ -37,7 +37,7 @@ extension EksiCloud {
 
 // MARK: - Cache
 extension EksiCloud {
-    private func _callFromCloud<T: Decodable>(endpoint: EREndpoint,
+    private func _callFromCacheCloud<T: Decodable>(endpoint: EREndpoint,
                                               responseType: T.Type,
                                               callback: @escaping EksiCloudResponseCallback<T>) {
         let hashedURL = endpoint.hash()
@@ -48,6 +48,10 @@ extension EksiCloud {
 
         cloudCache
             .readFromCache(for: hashedURL) { data in
+                guard let data = data else {
+                    callback(nil)
+                    return
+                }
                 do {
                     let model = try JSONDecoder().decode(T.self, from: data)
                     callback(model)
@@ -62,7 +66,7 @@ extension EksiCloud {
 // MARK: - Reachablity
 extension EksiCloud {
     private func isNetworkReachable() -> Bool {
-        return false
+       // return false
         guard let reachability = reachability else {
             self.reachability = try? Reachability()
             return true
@@ -105,6 +109,7 @@ extension EksiCloud {
             return
         }
 
+        let hashedRequest = endpoint.hash()
         let networker = NetworkingCore(identifier: UUID().uuidString)
         self.networkers.append(networker)
 
@@ -112,6 +117,9 @@ extension EksiCloud {
             .consoleLogProvider([.request, .response])
             .request(request)
             .onDataResponse { data in
+                self.cloudCache.writeToCache(data: data, filename: hashedRequest) {
+
+                }
                 NSLog("Data: \(data)")
             }.onError { error in
                 NSLog("Error: \(error)")

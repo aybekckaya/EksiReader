@@ -11,10 +11,12 @@ typealias EksiCloudCacheReadCallback = (Data?) -> Void
 class EksiCloudCache {
     enum Const {
         static let directory: String = "CloudCache"
+        static let maxSizeInCache: UInt = 20971520 // 20 MB
     }
 
     init() {
         createDirectoryIfNotExist()
+        removeCachedFilesIfNeeded()
     }
 }
 
@@ -74,9 +76,51 @@ extension EksiCloudCache {
 }
 
 
-// MARK: -
+// MARK: - Cache File Updaters
 extension EksiCloudCache {
+    private func removeCachedFilesIfNeeded() {
+        DispatchQueue.global().async {
+            let folderURL = URL
+                .documentsDirectory
+                .appendingPathComponent(Const.directory)
+            let folderSize = folderURL.folderSize()
+            guard folderSize >= Const.maxSizeInCache else { return }
+            let filesToBeDeleted = self.deletableFileURLs(for: folderSize)
+            filesToBeDeleted.forEach { $0.removeFile() }
+        }
+    }
 
+    private func deletableFileURLs(for folderSize: UInt) -> [URL] {
+        struct ERCacheFile {
+            let url: URL
+            let modificationDate: Date
+            let fileSize: UInt
+        }
+
+        let diffSize = folderSize - Const.maxSizeInCache
+        let cacheFiles: [ERCacheFile] = URL
+            .documentsDirectory
+            .appendingPathComponent(Const.directory)
+            .directoryContents()
+            .filter { $0.isDirectory == false }
+            .compactMap {
+                let attributeModel = URLFileAttribute(url: $0)
+                let model = ERCacheFile(url: $0,
+                                        modificationDate: attributeModel.modificationDate ?? Date(timeIntervalSince1970: 0),
+                                        fileSize: attributeModel.fileSize ?? 0)
+                return model
+            }.sorted { $0.modificationDate < $1.modificationDate }
+
+        var urls: [URL] = []
+        var size: UInt = 0
+        cacheFiles.forEach {
+            if size < diffSize {
+                urls.append($0.url)
+            }
+            size += $0.fileSize
+        }
+        return urls
+    }
 }
 
 
