@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 // MARK: - TopicCellInfoView
-class TopicCellInfoView: UIView {
+class EntryAuthorView: UIView {
 
     private let mainStackView = UIStackView
         .stackView(alignment: .fill, distribution: .fill, spacing: 8, axis: .horizontal)
@@ -54,7 +54,7 @@ class TopicCellInfoView: UIView {
 }
 
 // MARK: - Set Up UI
-extension TopicCellInfoView {
+extension EntryAuthorView {
     private func setUpUI() {
         self.backgroundColor = .clear
 
@@ -87,7 +87,7 @@ extension TopicCellInfoView {
 }
 
 // MARK: - Public
-extension TopicCellInfoView {
+extension EntryAuthorView {
     func configure(date: String, nick: String, profileURL: String?) {
         imViewProfile.image = nil 
         lblNick.text = nick
@@ -97,16 +97,16 @@ extension TopicCellInfoView {
 }
 
 // MARK: - Declarative UI
-extension TopicCellInfoView {
-    static func topicCellInfoView() -> TopicCellInfoView {
-        let view = TopicCellInfoView()
+extension EntryAuthorView {
+    static func topicCellInfoView() -> EntryAuthorView {
+        let view = EntryAuthorView()
         view.translatesAutoresizingMaskIntoConstraints = false 
         return view
     }
 }
 
 extension UIView {
-    func asTopicCellInfoView() -> TopicCellInfoView {
-        return self as! TopicCellInfoView
+    func asTopicCellInfoView() -> EntryAuthorView {
+        return self as! EntryAuthorView
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct TopicEntryPresentation: DeclarativeListItem, PagablePresentation {
+struct EntryPresentation: DeclarativeListItem, PagablePresentation {
     typealias PresentationEntry = TodayTopicEntry
 
     let id: Int

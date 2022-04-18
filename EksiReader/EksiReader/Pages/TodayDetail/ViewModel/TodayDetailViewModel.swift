@@ -10,13 +10,13 @@ import Foundation
 class TodayDetailViewModel: PagableViewModel {
     typealias DataController = TodayDetailDataController
     typealias Router = TodayDetailRouter
-    typealias Presentation = TopicEntryPresentation
+    typealias Presentation = EntryPresentation
     typealias Entry = TodayTopicEntry
 
     var dataController: TodayDetailDataController
     var router: TodayDetailRouter
-    var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<TopicEntryPresentation>>?
-    var currentPresentations: [TopicEntryPresentation] = []
+    var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<EntryPresentation>>?
+    var currentPresentations: [EntryPresentation] = []
 
     required init(dataController: TodayDetailDataController, router: TodayDetailRouter) {
         self.dataController = dataController
@@ -39,8 +39,8 @@ extension TodayDetailViewModel {
         }
     }
 
-    func updatedPresentations() -> [TopicEntryPresentation] {
-        var newPresentations: [TopicEntryPresentation] = []
+    func updatedPresentations() -> [EntryPresentation] {
+        var newPresentations: [EntryPresentation] = []
         currentPresentations.forEach {
             var presentation = $0
             presentation.setFavorited(dataController.isEntryFavorited(entryId: $0.id))

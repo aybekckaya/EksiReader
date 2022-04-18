@@ -12,7 +12,7 @@ typealias ERListCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C,
 typealias ERListItemSelectedCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>, IndexPath, T) -> Void
 typealias ERListItemInputSelectedCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>, Int) -> Void
 
-class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelegate {
+class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentViewDelegate {
 
     private let tableViewItems: DeclarativeTableView<C, T> =
     DeclarativeTableView<C, T>
@@ -139,15 +139,15 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, TopicCellDelega
 //        _viewModel.loadNewItems()
     }
 
-    func topicCellDidTappedShare(_ cell: TopicCell, entryId: Int) {
+    func entryContentViewDidTappedShare(_ view: EntryContentView, entryId: Int) {
         shareDidTappedCallback?(self, entryId)
     }
 
-    func topicCellDidTappedFavorite(_ cell: TopicCell, entryId: Int) {
+    func entryContentViewDidTappedFavorite(_ view: EntryContentView, entryId: Int) {
         favoriteDidTappedCallback?(self, entryId)
     }
 
-    func topicCellDidTappedReport(_ cell: TopicCell, entryId: Int) {
+    func entryContentViewDidTappedReport(_ view: EntryContentView, entryId: Int) {
         reportDidTappedCallback?(self, entryId)
     }
 }

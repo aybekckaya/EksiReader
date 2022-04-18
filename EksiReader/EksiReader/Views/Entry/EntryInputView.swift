@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-protocol TopicCellInputViewDelegate: AnyObject {
-    func topicCellInputViewShareDidTapped(_ view: TopicCellInputView)
-    func topicCellInputViewFavoriteDidTapped(_ view: TopicCellInputView)
-    func topicCellInputViewReportDidTapped(_ view: TopicCellInputView)
+protocol EntryInputViewDelegate: AnyObject {
+    func entryInputViewShareDidTapped(_ view: EntryInputView)
+    func entryInputViewFavoriteDidTapped(_ view: EntryInputView)
+    func entryInputViewReportDidTapped(_ view: EntryInputView)
 }
 
 // MARK: - TopicCellInputItemView
-class TopicCellInputItemView: UIView {
+class EntryInputItemView: UIView {
     private let imView = UIImageView
         .imageView()
         .tintColor(.white.withAlphaComponent(0.8))
@@ -60,35 +60,35 @@ class TopicCellInputItemView: UIView {
     }
 }
 
-extension TopicCellInputItemView {
-    static func topicCellInputItemView() -> TopicCellInputItemView {
-        let view = TopicCellInputItemView()
+extension EntryInputItemView {
+    static func topicCellInputItemView() -> EntryInputItemView {
+        let view = EntryInputItemView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
 }
 
 extension UIView {
-    func asTopicCellInputItemView() -> TopicCellInputItemView {
-        return self as! TopicCellInputItemView
+    func asTopicCellInputItemView() -> EntryInputItemView {
+        return self as! EntryInputItemView
     }
 }
 
 
 // MARK: - TopicCellInputView
-class TopicCellInputView: UIView {
-    private weak var delegate: TopicCellInputViewDelegate?
+class EntryInputView: UIView {
+    private weak var delegate: EntryInputViewDelegate?
 
-    private let favoriteItemView = TopicCellInputItemView
+    private let favoriteItemView = EntryInputItemView
         .topicCellInputItemView()
 
-    private let shareItemView = TopicCellInputItemView
+    private let shareItemView = EntryInputItemView
         .topicCellInputItemView()
 
-    private let reportItemView = TopicCellInputItemView
+    private let reportItemView = EntryInputItemView
         .topicCellInputItemView()
 
-    private let attachItemView = TopicCellInputItemView
+    private let attachItemView = EntryInputItemView
         .topicCellInputItemView()
 
 
@@ -103,7 +103,7 @@ class TopicCellInputView: UIView {
 }
 
 // MARK: - Set Up UI
-extension TopicCellInputView {
+extension EntryInputView {
     private func setUpUI() {
         backgroundColor = .clear
 
@@ -120,7 +120,7 @@ extension TopicCellInputView {
             .add(intoStackView: stackView)
             .onTap { _ in
                 NSLog("Favorite Tapped")
-                self.delegate?.topicCellInputViewFavoriteDidTapped(self)
+                self.delegate?.entryInputViewFavoriteDidTapped(self)
             }
 
         attachItemView
@@ -129,20 +129,20 @@ extension TopicCellInputView {
         shareItemView
             .add(intoStackView: stackView)
             .onTap { _ in
-                self.delegate?.topicCellInputViewShareDidTapped(self)
+                self.delegate?.entryInputViewShareDidTapped(self)
             }
 
         reportItemView
             .add(intoStackView: stackView)
             .onTap { _ in
-                self.delegate?.topicCellInputViewReportDidTapped(self)
+                self.delegate?.entryInputViewReportDidTapped(self)
             }
     }
 }
 
 // MARK: - Public
-extension TopicCellInputView {
-    func configure(favoriteCount: Int, isFavoritedByUser: Bool, attachmentCount: Int, delegate: TopicCellInputViewDelegate) {
+extension EntryInputView {
+    func configure(favoriteCount: Int, isFavoritedByUser: Bool, attachmentCount: Int, delegate: EntryInputViewDelegate) {
         self.delegate = delegate
         favoriteItemView
             .configure(image: isFavoritedByUser ? "heart.fill" : "heart", value: "\(favoriteCount)")
@@ -166,34 +166,34 @@ extension TopicCellInputView {
 
 
 // MARK: -
-extension TopicCellInputView {
+extension EntryInputView {
 
 }
 
 
 // MARK: -
-extension TopicCellInputView {
+extension EntryInputView {
 
 }
 
 
 // MARK: -
-extension TopicCellInputView {
+extension EntryInputView {
 
 }
 
 // MARK: - Declarative UI
-extension TopicCellInputView {
-    static func topicCellInputView() -> TopicCellInputView {
-        let view = TopicCellInputView()
+extension EntryInputView {
+    static func topicCellInputView() -> EntryInputView {
+        let view = EntryInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
 }
 
 extension UIView {
-    func asTopicCellInputView() -> TopicCellInputView {
-        return self as! TopicCellInputView
+    func asTopicCellInputView() -> EntryInputView {
+        return self as! EntryInputView
     }
 }
 

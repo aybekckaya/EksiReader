@@ -11,7 +11,7 @@ import Loaf
 
 class TodayDetailVC: ERViewController {
     private let viewModel: TodayDetailViewModel
-    private let listView: ERListView<TopicCell, TopicEntryPresentation> = .init()
+    private let listView: ERListView<TopicCell, EntryPresentation> = .init()
 
     init(viewModel: TodayDetailViewModel) {
         self.viewModel = viewModel
@@ -35,6 +35,7 @@ extension TodayDetailVC {
         super.viewDidLoad()
         setUpUI()
         addListeners()
+
         var _viewModel = viewModel
         _viewModel.loadNewItems()
     }
