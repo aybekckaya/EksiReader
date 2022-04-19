@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - TopicCell
 class TopicCell: UITableViewCell, ERListCell {
-    typealias T = EntryPresentation
+    typealias T = TopicItemPresentation
 
     private let entryContentView = EntryContentView
         .entryContentView()
@@ -41,7 +41,7 @@ extension TopicCell {
         entryContentView.setDelegate(value)
     }
 
-    func configure(with item: EntryPresentation) {
+    func configure(with item: TopicItemPresentation) {
         entryContentView.configure(with: item)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TodayDetailDataController: PagableDataController {
+class TopicDataController: PagableDataController {
 
     private let topicId: Int
     private var storage: ERStorage?
@@ -16,10 +16,10 @@ class TodayDetailDataController: PagableDataController {
         return storage ?? APP.storage
     }
 
-    typealias T = TodayTopicEntry
+    typealias T = TopicEntry
     typealias Response = TodayTopicResponse
 
-    var entries: [TodayTopicEntry] = []
+    var entries: [TopicEntry] = []
     var currentPage: Int = 0
     var totalPageCount: Int = .max
     var response: TodayTopicResponse?
@@ -36,7 +36,7 @@ class TodayDetailDataController: PagableDataController {
 }
 
 // MARK: - Public
-extension TodayDetailDataController {
+extension TopicDataController {
     func isEntryFavorited(entryId: Int) -> Bool {
         return currentStorage.localStorageModel.favoritedEntries.contains(entryId)
     }

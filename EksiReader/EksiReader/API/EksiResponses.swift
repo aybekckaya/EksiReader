@@ -34,7 +34,7 @@ struct AuthTokenResponse: ERBaseResponse {
 }
 
 // MARK: - Todays Response
-struct TodaysEntry: Decodable {
+struct TopicListEntry: Decodable {
     let fullCount: Int
     let title: String
     let id: Int
@@ -51,7 +51,7 @@ struct TodaysEntry: Decodable {
 }
 
 struct TodaysResponse: ERBaseResponse, ERPagable {
-    typealias T = TodaysEntry
+    typealias T = TopicListEntry
     var success: Bool?
     var message: String?
     var entries: [T]
@@ -74,13 +74,13 @@ struct TodaysResponse: ERBaseResponse, ERPagable {
         let dataContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
         self.pageIndex = try dataContainer.decodeIfPresent(Int.self, forKey: .pageIndex) ?? 0
-        self.entries = try dataContainer.decode([TodaysEntry].self, forKey: .entries)
+        self.entries = try dataContainer.decode([TopicListEntry].self, forKey: .entries)
        // let entriesContainer = try dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .entries)
     }
 }
 
 // MARK: - Today Topic Response
-struct TodayTopicEntry: Decodable {
+struct TopicEntry: Decodable {
     let author: EksiAuthor?
     let id: Int
     let content: String
@@ -117,10 +117,10 @@ struct EksiAuthor: Decodable {
 }
 
 struct TodayTopicResponse: ERBaseResponse, ERPagable, ERResponseTitle {
-    typealias T = TodayTopicEntry
+    typealias T = TopicEntry
     var success: Bool?
     var message: String?
-    var entries: [TodayTopicEntry]
+    var entries: [TopicEntry]
     var pageCount: Int
     var pageIndex: Int
     var title: String?
@@ -143,20 +143,20 @@ struct TodayTopicResponse: ERBaseResponse, ERPagable, ERResponseTitle {
         self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
         self.pageIndex = try dataContainer.decodeIfPresent(Int.self, forKey: .pageIndex) ?? 0
         self.title = try dataContainer.decodeIfPresent(String.self, forKey: .title) ?? ""
-        self.entries = try dataContainer.decode([TodayTopicEntry].self, forKey: .entries)
+        self.entries = try dataContainer.decode([TopicEntry].self, forKey: .entries)
        // let entriesContainer = try dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .entries)
     }
 }
 
 struct EntryResponse: ERBaseResponse, ERPagable, ERResponseTitle {
-    typealias T = TodayTopicEntry
+    typealias T = TopicEntry
     
     var pageCount: Int
     var pageIndex: Int
     var success: Bool?
     var message: String?
     var title: String?
-    var entries: [TodayTopicEntry]
+    var entries: [TopicEntry]
 
     enum CodingKeys: String, CodingKey {
         case message = "Message"
@@ -176,7 +176,7 @@ struct EntryResponse: ERBaseResponse, ERPagable, ERResponseTitle {
         self.pageCount = try dataContainer.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
         self.pageIndex = try dataContainer.decodeIfPresent(Int.self, forKey: .pageIndex) ?? 0
         self.title = try dataContainer.decodeIfPresent(String.self, forKey: .title) ?? ""
-        self.entries = try dataContainer.decode([TodayTopicEntry].self, forKey: .entries)
+        self.entries = try dataContainer.decode([TopicEntry].self, forKey: .entries)
 
     }
 }

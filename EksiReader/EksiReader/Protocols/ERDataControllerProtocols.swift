@@ -97,3 +97,22 @@ extension PagableDataController {
             }
     }
 }
+
+// MARK: - ERBaseResponse
+protocol ERBaseResponse where Self: Decodable {
+    var success: Bool? { get set }
+    var message: String? {get set}
+}
+
+// MARK: - ERPagable
+protocol ERPagable {
+    associatedtype T
+    var pageCount: Int { get set }
+    var pageIndex: Int { get set }
+    var entries: [T] { get set }
+}
+
+protocol ERResponseTitle {
+    var title: String? { get set }
+}
+

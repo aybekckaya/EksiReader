@@ -24,17 +24,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            print(familyName, fontNames)
 //        })
 
-//        let dataController = TodayDataController()
-//        let router = TodayRouter()
-//        let viewModel = TodayViewModel(dataController: dataController, router: router)
-//        let vc = TodayVC(viewModel: viewModel)
-//        ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
-
-        let dataController = TodayDetailDataController(topicId: 7238539)
-        let router = TodayDetailRouter()
-        let viewModel = TodayDetailViewModel(dataController: dataController, router: router)
-        let vc = TodayDetailVC(viewModel: viewModel)
+        let dataController = TopicListDataController()
+        let router = TopicListRouter()
+        let viewModel = TopicListViewModel(dataController: dataController, router: router)
+        let vc = TopicListViewController(viewModel: viewModel)
         ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
+
+//        let dataController = TopicDataController(topicId: 7238539)
+//        let router = TopicRouter()
+//        let viewModel = TopicViewModel(dataController: dataController, router: router)
+//        let vc = TopicViewController(viewModel: viewModel)
+//        ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
 
 //        // 136159318
 //        let router = EntryRouter()

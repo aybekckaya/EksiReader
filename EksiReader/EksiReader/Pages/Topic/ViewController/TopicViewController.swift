@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import Loaf
 
-class TodayDetailVC: ERViewController {
-    private let viewModel: TodayDetailViewModel
-    private let listView: ERListView<TopicCell, EntryPresentation> = .init()
+class TopicViewController: ERViewController {
+    private let viewModel: TopicViewModel
+    private let listView: ERListView<TopicCell, TopicItemPresentation> = .init()
 
-    init(viewModel: TodayDetailViewModel) {
+    init(viewModel: TopicViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,7 +24,7 @@ class TodayDetailVC: ERViewController {
 }
 
 // MARK: - Lifecycle
-extension TodayDetailVC {
+extension TopicViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -42,7 +42,7 @@ extension TodayDetailVC {
 }
 
 // MARK: - Set Up UI
-extension TodayDetailVC {
+extension TopicViewController {
     private func setUpUI() {
         listView
             .add(into: self.view)
@@ -70,7 +70,7 @@ extension TodayDetailVC {
 }
 
 // MARK: - UI Update
-extension TodayDetailVC {
+extension TopicViewController {
     private func showToast(message: String) {
         Loaf(message,
              presentingDirection: .vertical,
@@ -80,7 +80,7 @@ extension TodayDetailVC {
 }
 
 // MARK: - Listeners
-extension TodayDetailVC {
+extension TopicViewController {
     private func addListeners() {
         var _viewModel = viewModel
         _viewModel.bind { change in

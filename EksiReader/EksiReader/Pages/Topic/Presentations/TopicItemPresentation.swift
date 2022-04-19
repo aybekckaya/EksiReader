@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-struct EntryPresentation: DeclarativeListItem, PagablePresentation {
-    typealias PresentationEntry = TodayTopicEntry
+struct TopicItemPresentation: DeclarativeListItem, PagablePresentation {
+    typealias PresentationEntry = TopicEntry
 
     let id: Int
     let authorName: String
@@ -23,7 +23,7 @@ struct EntryPresentation: DeclarativeListItem, PagablePresentation {
 
     private(set) var isFavorited: Bool = false
 
-    init(entry: TodayTopicEntry) {
+    init(entry: TopicEntry) {
         self.id = entry.id
         self.authorName = entry.author?.nick ?? ""
         self.authorImageURL = entry.avatarUrl

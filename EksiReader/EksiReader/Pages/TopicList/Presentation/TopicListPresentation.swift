@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-struct TodayPresentation: DeclarativeListItem, PagablePresentation {
-    typealias PresentationEntry = TodaysEntry
+struct TopicListItemPresentation: DeclarativeListItem, PagablePresentation {
+    typealias PresentationEntry = TopicListEntry
 
     let id: Int
     let title: String

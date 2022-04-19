@@ -16,7 +16,7 @@ protocol EntryContentViewDelegate: AnyObject {
 
 class EntryContentView: UIView {
     private weak var delegate: EntryContentViewDelegate?
-    private var presentation: EntryPresentation?
+    private var presentation: TopicItemPresentation?
 
     private let viewEntryText = EntryTextContentView
         .entryTextContentView()
@@ -67,7 +67,7 @@ class EntryContentView: UIView {
         self.delegate = value
     }
 
-    func configure(with item: EntryPresentation) {
+    func configure(with item: TopicItemPresentation) {
         self.presentation = item
 
         viewEntryText.configure(text: item.content)

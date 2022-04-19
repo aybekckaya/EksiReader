@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-class TodayVC: ERViewController {
-    private let viewModel: TodayViewModel
-    private let listView: ERListView<TodayCell, TodayPresentation> = .init()
+class TopicListViewController: ERViewController {
+    private let viewModel: TopicListViewModel
+    private let listView: ERListView<TopicListCell, TopicListItemPresentation> = .init()
 
-    init(viewModel: TodayViewModel) {
+    init(viewModel: TopicListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -23,7 +23,7 @@ class TodayVC: ERViewController {
 }
 
 // MARK: - Lifecycle
-extension TodayVC {
+extension TopicListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -35,7 +35,7 @@ extension TodayVC {
 }
 
 // MARK: - Set Up UI
-extension TodayVC {
+extension TopicListViewController {
     private func setUpUI() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
@@ -57,7 +57,7 @@ extension TodayVC {
 }
 
 // MARK: - Actions
-extension TodayVC {
+extension TopicListViewController {
     @objc private func refreshItems() {
         var _viewModel = viewModel
         _viewModel.resetEntries()
@@ -66,7 +66,7 @@ extension TodayVC {
 }
 
 // MARK: - Listeners
-extension TodayVC {
+extension TopicListViewController {
     private func addListeners() {
         var _viewModel = viewModel
         _viewModel.bind { [weak self] change in
@@ -76,8 +76,8 @@ extension TodayVC {
 }
 
 // MARK: - Handle Change Handler Data
-extension TodayVC {
-    private func handle(_ change: PagableViewModelChange<TodayPresentation>) {
+extension TopicListViewController {
+    private func handle(_ change: PagableViewModelChange<TopicListItemPresentation>) {
         switch change {
         case .title(let title):
             self.title = "Bugün"
@@ -100,32 +100,32 @@ extension TodayVC {
 }
 
 // MARK: -
-extension TodayVC {
+extension TopicListViewController {
 
 }
 
 // MARK: -
-extension TodayVC {
+extension TopicListViewController {
 
 }
 
 // MARK: -
-extension TodayVC {
+extension TopicListViewController {
 
 }
 
 // MARK: -
-extension TodayVC {
+extension TopicListViewController {
 
 }
 
 // MARK: -
-extension TodayVC {
+extension TopicListViewController {
 
 }
 
 // MARK: -
-extension TodayVC {
+extension TopicListViewController {
 
 }
 

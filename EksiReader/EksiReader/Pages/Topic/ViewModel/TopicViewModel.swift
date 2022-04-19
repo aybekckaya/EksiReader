@@ -7,25 +7,25 @@
 
 import Foundation
 
-class TodayDetailViewModel: PagableViewModel {
-    typealias DataController = TodayDetailDataController
-    typealias Router = TodayDetailRouter
-    typealias Presentation = EntryPresentation
-    typealias Entry = TodayTopicEntry
+class TopicViewModel: PagableViewModel {
+    typealias DataController = TopicDataController
+    typealias Router = TopicRouter
+    typealias Presentation = TopicItemPresentation
+   // typealias Entry = DataController.T 
 
-    var dataController: TodayDetailDataController
-    var router: TodayDetailRouter
-    var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<EntryPresentation>>?
-    var currentPresentations: [EntryPresentation] = []
+    var dataController: TopicDataController
+    var router: TopicRouter
+    var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<TopicItemPresentation>>?
+    var currentPresentations: [TopicItemPresentation] = []
 
-    required init(dataController: TodayDetailDataController, router: TodayDetailRouter) {
+    required init(dataController: TopicDataController, router: TopicRouter) {
         self.dataController = dataController
         self.router = router
     }
 }
 
 // MARK: - Public
-extension TodayDetailViewModel {
+extension TopicViewModel {
     func share(id: Int) {
         let link = "https://eksisozluk.com/entry/\(id)"
         router.showShareSheet(eksiLink: link)
@@ -39,8 +39,8 @@ extension TodayDetailViewModel {
         }
     }
 
-    func updatedPresentations() -> [EntryPresentation] {
-        var newPresentations: [EntryPresentation] = []
+    func updatedPresentations() -> [TopicItemPresentation] {
+        var newPresentations: [TopicItemPresentation] = []
         currentPresentations.forEach {
             var presentation = $0
             presentation.setFavorited(dataController.isEntryFavorited(entryId: $0.id))

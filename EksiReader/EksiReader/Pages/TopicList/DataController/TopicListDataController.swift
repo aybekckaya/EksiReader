@@ -7,13 +7,13 @@
 
 import Foundation
 
-class TodayDataController: PagableDataController {
+class TopicListDataController: PagableDataController {
     var response: TodaysResponse?
 
-    typealias T = TodaysEntry
+    typealias T = TopicListEntry
     typealias Response = TodaysResponse
 
-    var entries: [TodaysEntry] = []
+    var entries: [TopicListEntry] = []
     var currentPage: Int = 0
     var totalPageCount: Int = Int.max
 
@@ -29,7 +29,7 @@ class TodayDataController: PagableDataController {
 }
 
 // MARK: - Public
-extension TodayDataController {
+extension TopicListDataController {
 
 }
 

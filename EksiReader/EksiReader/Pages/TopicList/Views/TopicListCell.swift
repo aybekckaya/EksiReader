@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-class TodayCell: UITableViewCell, ERListCell {
+class TopicListCell: UITableViewCell, ERListCell {
 
 
-    typealias T = TodayPresentation
+    typealias T = TopicListItemPresentation
 
 
     private let lblTitle = UILabel
@@ -54,7 +54,7 @@ class TodayCell: UITableViewCell, ERListCell {
             .margin(to: .left(of: lblCount, value: .constant(-16)))
     }
 
-    func configure(with item: TodayPresentation) {
+    func configure(with item: TopicListItemPresentation) {
         lblTitle.attributedText = item.attributedTitle
         lblCount.text = "(\(item.count))"
     }
