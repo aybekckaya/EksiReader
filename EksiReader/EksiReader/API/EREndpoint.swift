@@ -30,7 +30,8 @@ enum EREndpoint {
     case today(page: Int)
     case topic(id: Int, page: Int)
     case entry(id: Int)
-    case popular()
+    case popular(page: Int, channelFilterData: Data)
+    //case popular()
 }
 
 // MARK: - Identifier
@@ -45,6 +46,9 @@ extension EREndpoint {
             return "TodayTopic-Page-\(page)-id-\(id)"
         case .entry(let id):
             return "EntryDetail-Id-\(id)"
+        case .popular(let page, let channelFilterData):
+            let text = String(data: channelFilterData, encoding: .utf8)
+            return "Popular-Page-\(page)-Data-\(text ?? "")"
         }
     }
 }
@@ -69,6 +73,8 @@ extension EREndpoint {
             return topicRequest(page: page)
         case .entry(let id):
             return entryRequest(id: id)
+        case .popular(let page, let channelFilterData):
+            return popularRequest(page: page, filterData: channelFilterData)
         }
     }
 }
@@ -86,6 +92,8 @@ extension EREndpoint {
             return Const.baseURL + Const.version + "/topic/\(id)"
         case .entry(let id):
             return Const.baseURL + Const.version + "/entry/\(id)"
+        case .popular(let page, _):
+            return Const.baseURL + Const.version + "/index/popular/?p=\(page)"
         }
 
     }
@@ -154,6 +162,23 @@ extension EREndpoint {
         let req = NetworkingDataRequest(url: url, method: .get)
             .headers(headers)
             .requestModel(reqModel)
+
+        return req
+    }
+
+    private func popularRequest(page: Int, filterData: Data) -> NetworkingDataRequest? {
+       // let reqModel = PopularRequest(page: page)
+        let headers: [NetworkingRequestHeader] = [
+            .contentTypeValue(.json),
+            //.contentTypeValue(.urlEncodedForm),
+           // .bearerToken(accessToken),
+            EREndpoint.Const.clientSecretHeader
+        ]
+
+        let url = buildURL()
+        let req = NetworkingDataRequest(url: url, method: .post)
+            .headers(headers)
+            .requestData(filterData)
 
         return req
     }

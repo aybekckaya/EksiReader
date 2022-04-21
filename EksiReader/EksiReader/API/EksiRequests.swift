@@ -48,3 +48,12 @@ struct TodayTopicRequest: Encodable {
 struct EntryRequest: Encodable {
     let id: Int
 }
+
+// MARK: - Popular
+struct PopularRequest: Encodable {
+    let page: Int
+
+    enum CodingKeys: String, CodingKey {
+        case page = "p"
+    }
+}

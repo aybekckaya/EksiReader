@@ -12,6 +12,7 @@ let APP = ERApplication()
 
 class ERApplication {
     let storage = ERStorage()
+    let channelManager = ChannelManager()
 }
 
 // MARK: - Public

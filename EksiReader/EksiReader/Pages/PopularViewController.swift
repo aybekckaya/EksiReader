@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+class PopularViewController: TopicListViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}

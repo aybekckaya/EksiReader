@@ -38,7 +38,7 @@ struct TopicListEntry: Decodable {
     let fullCount: Int
     let title: String
     let id: Int
-    let day: String
+    let day: String?
     let matchedCount: Int
 
     enum CodingKeys: String, CodingKey {
@@ -177,6 +177,8 @@ struct EntryResponse: ERBaseResponse, ERPagable, ERResponseTitle {
         self.pageIndex = try dataContainer.decodeIfPresent(Int.self, forKey: .pageIndex) ?? 0
         self.title = try dataContainer.decodeIfPresent(String.self, forKey: .title) ?? ""
         self.entries = try dataContainer.decode([TopicEntry].self, forKey: .entries)
-
     }
 }
+
+// MARK: - Popular
+

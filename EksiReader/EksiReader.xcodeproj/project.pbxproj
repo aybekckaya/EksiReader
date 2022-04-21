@@ -101,6 +101,7 @@
 		A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C22810A0FB00E44823 /* PopularViewController.swift */; };
 		A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */; };
 		A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */; };
+		A3CE88CA28120C9B00E44823 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C928120C9B00E44823 /* ChannelManager.swift */; };
 		A3E8E89428076993006DF479 /* ERListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E89328076993006DF479 /* ERListView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
@@ -227,6 +228,7 @@
 		A3CE88C22810A0FB00E44823 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERNavigationTitleView.swift; sourceTree = "<group>"; };
 		A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
+		A3CE88C928120C9B00E44823 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		A3E8E89328076993006DF479 /* ERListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERListView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 		A311FC122802A92D00EE27A3 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				A3CE88C828120C7A00E44823 /* Manager */,
 				A369A611280C5AC100494B40 /* Cloud */,
 				A311FC132802A94400EE27A3 /* ERApplication.swift */,
 				A311FC152802A99800EE27A3 /* NavigationUtility.swift */,
@@ -759,6 +762,14 @@
 			path = TabbarController;
 			sourceTree = "<group>";
 		};
+		A3CE88C828120C7A00E44823 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A3CE88C928120C9B00E44823 /* ChannelManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		A3E8E88C28073CA5006DF479 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,6 +992,7 @@
 				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
 				A331004E27FCD25500431F26 /* TopicListViewController.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
+				A3CE88CA28120C9B00E44823 /* ChannelManager.swift in Sources */,
 				A32CA824280AF1B3005DE47B /* EntryInputView.swift in Sources */,
 				A32CA828280B0F11005DE47B /* ERStorage.swift in Sources */,
 				A311FC3D2802C59800EE27A3 /* NetworkingRequestHeader.swift in Sources */,

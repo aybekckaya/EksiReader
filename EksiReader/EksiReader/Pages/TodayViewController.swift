@@ -14,15 +14,6 @@ class TodayViewController: TopicListViewController {
     }
 }
 
-
-class PopularViewController: TopicListViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
-
-
-
 class SearchViewController: TopicListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()

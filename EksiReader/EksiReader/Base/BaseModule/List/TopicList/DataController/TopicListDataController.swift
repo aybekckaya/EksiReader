@@ -38,7 +38,11 @@ class TopicListDataController: PagableDataController {
         case .today:
             return .today(page: currentPage)
         case .popular:
-            return nil
+            let currentChannels = APP.channelManager.currentChannelFilter
+            guard let jsonData = try? JSONEncoder().encode(currentChannels) else {
+                return nil
+            }
+            return .popular(page: currentPage, channelFilterData: jsonData)
         case .search:
             return nil
         case .settings:

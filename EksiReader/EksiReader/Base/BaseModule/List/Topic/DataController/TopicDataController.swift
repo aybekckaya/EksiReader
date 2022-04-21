@@ -8,6 +8,8 @@
 import Foundation
 
 class TopicDataController: PagableDataController {
+    typealias T = TopicEntry
+    typealias Response = TodayTopicResponse
 
     private let topicId: Int
     private var storage: ERStorage?
@@ -15,9 +17,6 @@ class TopicDataController: PagableDataController {
     var currentStorage: ERStorage {
         return storage ?? APP.storage
     }
-
-    typealias T = TopicEntry
-    typealias Response = TodayTopicResponse
 
     var entries: [TopicEntry] = []
     var currentPage: Int = 0
