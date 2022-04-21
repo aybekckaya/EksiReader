@@ -24,11 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            print(familyName, fontNames)
 //        })
 
-        let dataController = TopicListDataController()
-        let router = TopicListRouter()
-        let viewModel = TopicListViewModel(dataController: dataController, router: router)
-        let vc = TopicListViewController(viewModel: viewModel)
-        ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
+//        let dataController = TopicListDataController()
+//        let router = TopicListRouter()
+//        let viewModel = TopicListViewModel(dataController: dataController, router: router)
+//        let vc = TopicListViewController(viewModel: viewModel)
+//        ERNavUtility.setWindowRoot(window: self.window, viewController: vc)
 
 //        let dataController = TopicDataController(topicId: 7238539)
 //        let router = TopicRouter()
@@ -43,6 +43,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let viewController = EntryVC(viewModel: viewModel)
 //        ERNavUtility.setWindowRoot(window: self.window, viewController: viewController)
 
+        ERNavUtility.initialize()
+        let tabbarController = EksiTabbarController()
+        ERNavUtility.setWindowRoot(window: self.window, tabBarController: tabbarController)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

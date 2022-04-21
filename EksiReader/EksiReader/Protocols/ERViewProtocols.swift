@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+// MARK: - ERBaseViewController
+//protocol ERBaseViewController where Self: ERViewController {
+//    func setTitle(_ title: String?)
+//}
+
 // MARK: - ERListCell
 protocol ERListCell where Self: UITableViewCell {
     associatedtype T
@@ -19,11 +24,3 @@ protocol PagablePresentation {
     associatedtype PresentationEntry
     init(entry: PresentationEntry)
 }
-
-//protocol ERListableViewProtocol {
-//
-//}
-//
-//class ERListViewController<>: ERViewController {
-//
-//}

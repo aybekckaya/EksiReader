@@ -69,6 +69,7 @@
 		A331003C27FCD1C900431F26 /* EksiReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */; };
 		A331003E27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */; };
 		A331004E27FCD25500431F26 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331004D27FCD25500431F26 /* TopicListViewController.swift */; };
+		A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3362BD2280F6C0D00425CCA /* TodayViewController.swift */; };
 		A369A613280C5AD900494B40 /* EksiCloudCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A612280C5AD900494B40 /* EksiCloudCache.swift */; };
 		A369A616280C5E8700494B40 /* SwiftHash in Frameworks */ = {isa = PBXBuildFile; productRef = A369A615280C5E8700494B40 /* SwiftHash */; };
 		A369A61C280C6E0A00494B40 /* NetworkingDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */; };
@@ -95,6 +96,9 @@
 		A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */; };
 		A37B78802804CF0B00DED4F1 /* EksiLoadingView.json in Resources */ = {isa = PBXBuildFile; fileRef = A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */; };
 		A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */; };
+		A392F6BF280F119E00FB32C6 /* EksiTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */; };
+		A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = A392F6C4280F233100FB32C6 /* SwipeableTabBarController */; };
+		A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C22810A0FB00E44823 /* PopularViewController.swift */; };
 		A3E8E89428076993006DF479 /* ERListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E89328076993006DF479 /* ERListView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
@@ -192,6 +196,7 @@
 		A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiReaderUITests.swift; sourceTree = "<group>"; };
 		A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A331004D27FCD25500431F26 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
+		A3362BD2280F6C0D00425CCA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		A369A612280C5AD900494B40 /* EksiCloudCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiCloudCache.swift; sourceTree = "<group>"; };
 		A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingDataResponse.swift; sourceTree = "<group>"; };
 		A369A626280CA2D700494B40 /* EntryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRouter.swift; sourceTree = "<group>"; };
@@ -216,6 +221,8 @@
 		A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiLoadingView.swift; sourceTree = "<group>"; };
 		A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EksiLoadingView.json; sourceTree = "<group>"; };
 		A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiFooterLoadingView.swift; sourceTree = "<group>"; };
+		A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiTabbarController.swift; sourceTree = "<group>"; };
+		A3CE88C22810A0FB00E44823 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		A3E8E89328076993006DF479 /* ERListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERListView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
@@ -236,6 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */,
 				A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
 				A369A616280C5E8700494B40 /* SwiftHash in Frameworks */,
@@ -313,6 +321,7 @@
 		A311FC0B2802A7AE00EE27A3 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				A3362BD0280F6B1100425CCA /* BaseModule */,
 				A311FC0C2802A7C100EE27A3 /* ERViewController.swift */,
 				A311FC0E2802A7ED00EE27A3 /* ERNavigationController.swift */,
 			);
@@ -470,9 +479,8 @@
 		A331004A27FCD22C00431F26 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				A369A641280E2A2C00494B40 /* Topic */,
-				A369A61D280CA27E00494B40 /* Entry */,
-				A331004B27FCD23800431F26 /* TopicList */,
+				A3362BD2280F6C0D00425CCA /* TodayViewController.swift */,
+				A3CE88C22810A0FB00E44823 /* PopularViewController.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -504,6 +512,24 @@
 				A311FC092802A79300EE27A3 /* TopicListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A3362BD0280F6B1100425CCA /* BaseModule */ = {
+			isa = PBXGroup;
+			children = (
+				A3362BD1280F6B1C00425CCA /* List */,
+			);
+			path = BaseModule;
+			sourceTree = "<group>";
+		};
+		A3362BD1280F6B1C00425CCA /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A369A641280E2A2C00494B40 /* Topic */,
+				A369A61D280CA27E00494B40 /* Entry */,
+				A331004B27FCD23800431F26 /* TopicList */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		A369A611280C5AC100494B40 /* Cloud */ = {
@@ -700,6 +726,7 @@
 		A37B78792804BD5A00DED4F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A392F6BD280F108900FB32C6 /* TabbarController */,
 				A369A630280CB82500494B40 /* Entry */,
 				A37B787A2804BD7000DED4F1 /* EksiLoadingView.swift */,
 				A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */,
@@ -716,6 +743,14 @@
 				A32CA82E280B5C3A005DE47B /* lemonLoading.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		A392F6BD280F108900FB32C6 /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */,
+			);
+			path = TabbarController;
 			sourceTree = "<group>";
 		};
 		A3E8E88C28073CA5006DF479 /* Protocols */ = {
@@ -780,6 +815,7 @@
 				A32CA81D280AE7E3005DE47B /* Kingfisher */,
 				A32CA82A280B313F005DE47B /* Loaf */,
 				A369A615280C5E8700494B40 /* SwiftHash */,
+				A392F6C4280F233100FB32C6 /* SwipeableTabBarController */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -858,6 +894,7 @@
 				A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */,
 				A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */,
+				A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -915,6 +952,7 @@
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
+				A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
 				A369A63E280DF62B00494B40 /* StringExtensions.swift in Sources */,
 				A369A650280E2A2C00494B40 /* TopicItemPresentation.swift in Sources */,
@@ -932,6 +970,7 @@
 				A311FC4D2803334800EE27A3 /* EksiResponses.swift in Sources */,
 				A37B7870280499F900DED4F1 /* EksiError.swift in Sources */,
 				A32CA817280ADF5C005DE47B /* MainStyling.swift in Sources */,
+				A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */,
 				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
 				A331004E27FCD25500431F26 /* TopicListViewController.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
@@ -942,6 +981,7 @@
 				A369A62F280CB2DB00494B40 /* ERDataControllerProtocols.swift in Sources */,
 				A369A652280E2A2C00494B40 /* TopicViewController.swift in Sources */,
 				A311FC012802A69E00EE27A3 /* UICollectionView+Extensions.swift in Sources */,
+				A392F6BF280F119E00FB32C6 /* EksiTabbarController.swift in Sources */,
 				A369A63B280DF51200494B40 /* ERViewProtocols.swift in Sources */,
 				A311FBFF2802A69E00EE27A3 /* DeclarativeCVSizeCalculator.swift in Sources */,
 				A311FC2A2802C44300EE27A3 /* Promise+Extras.swift in Sources */,
@@ -1380,6 +1420,14 @@
 				kind = branch;
 			};
 		};
+		A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marcosgriselli/SwipeableTabBarController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1402,6 +1450,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		A392F6C4280F233100FB32C6 /* SwipeableTabBarController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */;
+			productName = SwipeableTabBarController;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

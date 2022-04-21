@@ -80,7 +80,8 @@ extension TopicListViewController {
     private func handle(_ change: PagableViewModelChange<TopicListItemPresentation>) {
         switch change {
         case .title(let title):
-            self.title = "Bugün"
+            NSLog("Current Title: \(title), old Title: \(self.title)")
+           // self.title = "Aybek"
         case .loading(let isVisible):
             isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
         case .footerViewLoading(let isVisible):

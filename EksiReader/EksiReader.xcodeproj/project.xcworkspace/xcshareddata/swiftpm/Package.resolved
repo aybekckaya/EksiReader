@@ -36,6 +36,15 @@
           "revision": "a900fc3f33c67eb33c9e650651edf6e23a410b3c",
           "version": "2.0.2"
         }
+      },
+      {
+        "package": "SwipeableTabBarController",
+        "repositoryURL": "https://github.com/marcosgriselli/SwipeableTabBarController.git",
+        "state": {
+          "branch": null,
+          "revision": "f90f5142a9cd119f8929cec1bfcf78aa0a2f2e8f",
+          "version": "3.4.2"
+        }
       }
     ]
   },

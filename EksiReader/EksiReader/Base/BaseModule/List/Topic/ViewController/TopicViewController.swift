@@ -87,6 +87,7 @@ extension TopicViewController {
             switch change {
             case .title(let title):
                 self.title = title
+               
             case .fetchNewItemsEnabled(let isEnabled):
                 self.listView.fetchNewItemsEnabled(isEnabled: isEnabled)
             case .error(let error):
