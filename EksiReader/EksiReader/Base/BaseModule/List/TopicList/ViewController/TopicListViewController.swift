@@ -50,8 +50,8 @@ extension TopicListViewController {
             }.resetItems { list in
                 self.refreshItems()
             }.selectedItem { list, indexPath, presentation in
-                var _viewModel = self.viewModel
-                _viewModel.selectItem(withIdentifier: presentation.id)
+                //var _viewModel = self.viewModel
+                self.viewModel.selectItem(withIdentifier: presentation.id)
             }
     }
 }
@@ -80,8 +80,7 @@ extension TopicListViewController {
     private func handle(_ change: PagableViewModelChange<TopicListItemPresentation>) {
         switch change {
         case .title(let title):
-            NSLog("Current Title: \(title), old Title: \(self.title)")
-           // self.title = "Aybek"
+            self.setTitle(viewModel.getTitle())
         case .loading(let isVisible):
             isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
         case .footerViewLoading(let isVisible):

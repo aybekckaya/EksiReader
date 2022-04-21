@@ -9,5 +9,12 @@ import Foundation
 import UIKit
 
 class ERNavigationController: UINavigationController {
-    
+//    private let titleView = ERNavigationTitleView
+//        .erNavigationTitleView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+
+    }
 }

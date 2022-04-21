@@ -8,7 +8,7 @@
 import Foundation
 
 class TopicListDataController: PagableDataController {
-    var response: TodaysResponse?
+    let pageTitle: String?
 
     typealias T = TopicListEntry
     typealias Response = TodaysResponse
@@ -16,15 +16,14 @@ class TopicListDataController: PagableDataController {
     var entries: [TopicListEntry] = []
     var currentPage: Int = 0
     var totalPageCount: Int = Int.max
+    var response: TodaysResponse?
 
     var endpoint: EREndpoint {
         EREndpoint.today(page: currentPage)
     }
 
-   
-
-    init() {
-
+    init(pageTitle: String?) {
+        self.pageTitle = pageTitle
     }
 }
 

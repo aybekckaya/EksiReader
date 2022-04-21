@@ -99,6 +99,7 @@
 		A392F6BF280F119E00FB32C6 /* EksiTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */; };
 		A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = A392F6C4280F233100FB32C6 /* SwipeableTabBarController */; };
 		A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C22810A0FB00E44823 /* PopularViewController.swift */; };
+		A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */; };
 		A3E8E89428076993006DF479 /* ERListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E89328076993006DF479 /* ERListView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
@@ -223,6 +224,7 @@
 		A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiFooterLoadingView.swift; sourceTree = "<group>"; };
 		A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiTabbarController.swift; sourceTree = "<group>"; };
 		A3CE88C22810A0FB00E44823 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERNavigationTitleView.swift; sourceTree = "<group>"; };
 		A3E8E89328076993006DF479 /* ERListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERListView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 				A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */,
 				A3E8E89328076993006DF479 /* ERListView.swift */,
 				A32CA82C280B5C19005DE47B /* LottieRefreshControl.swift */,
+				A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
 				A3F5D0B827FD346D0031FA1F /* UIViewController+Extensions.swift in Sources */,
 				A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */,
+				A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */,
 				A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */,
 				A311FC082802A77400EE27A3 /* TopicListDataController.swift in Sources */,
 				A311FBF72802A69E00EE27A3 /* ScrollableViewController.swift in Sources */,

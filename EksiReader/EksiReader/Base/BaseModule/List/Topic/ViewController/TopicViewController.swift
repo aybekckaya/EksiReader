@@ -86,8 +86,8 @@ extension TopicViewController {
         _viewModel.bind { change in
             switch change {
             case .title(let title):
-                self.title = title
-               
+                self.setTitle(title)
+             
             case .fetchNewItemsEnabled(let isEnabled):
                 self.listView.fetchNewItemsEnabled(isEnabled: isEnabled)
             case .error(let error):

@@ -35,6 +35,9 @@ extension TopicListViewModel {
 
     }
 
+    func getTitle() -> String {
+        dataController.pageTitle ?? ""
+    }
 }
 
 // MARK: - Response Handler
