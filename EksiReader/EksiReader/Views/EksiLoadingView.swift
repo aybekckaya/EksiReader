@@ -65,23 +65,25 @@ class EksiLoadingView: UIView {
 }
 
 extension EksiLoadingView {
-    static func show() {
+    static func show(in view: UIView? = nil) {
         DispatchQueue.main.async {
-            let vv = KeyWindow.subviews.first { $0.tag == ERKey.loadingViewTag }
+            let superView = view ?? KeyWindow
+            let vv = superView.subviews.first { $0.tag == ERKey.loadingViewTag }
             guard vv == nil else {
                 return
             }
             let view = EksiLoadingView()
             view.tag = ERKey.loadingViewTag
-            KeyWindow.addSubview(view)
+            superView.addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
             view.fit()
         }
     }
 
-    static func hide() {
+    static func hide(from view: UIView? = nil) {
         DispatchQueue.main.async {
-            let vv = KeyWindow.subviews.first { $0.tag == ERKey.loadingViewTag }
+            let superView = view ?? KeyWindow
+            let vv = superView.subviews.first { $0.tag == ERKey.loadingViewTag }
             guard  let view = vv else { return }
             view.removeFromSuperview()
         }

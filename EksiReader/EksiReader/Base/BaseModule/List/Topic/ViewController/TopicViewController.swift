@@ -87,7 +87,7 @@ extension TopicViewController {
             switch change {
             case .title(let title):
                 self.setTitle(title)
-             
+
             case .fetchNewItemsEnabled(let isEnabled):
                 self.listView.fetchNewItemsEnabled(isEnabled: isEnabled)
             case .error(let error):
@@ -95,8 +95,8 @@ extension TopicViewController {
             case .footerViewLoading(let isVisible):
                 self.listView.updateFooterViewVisibility(isVisible: isVisible)
             case .loading(let isVisible):
-                isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
-               // break
+                isVisible ? self.showFullSizeLoading() : self.hideFullSizeLoading()
+             
             case .presentations(let _):
 
                 let updatedPresentations = self.viewModel.updatedPresentations()

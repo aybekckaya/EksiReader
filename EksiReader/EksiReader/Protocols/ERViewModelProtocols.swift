@@ -103,6 +103,10 @@ extension PagableViewModel {
             trigger(.loading(isVisible: false))
             return
         }
+        guard let _ = dataController.endpoint else {
+            trigger(.loading(isVisible: false))
+            return
+        }
         trigger(.loading(isVisible: true))
     }
 

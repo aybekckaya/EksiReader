@@ -117,9 +117,7 @@ extension EksiCloud {
             .consoleLogProvider([.request, .response])
             .request(request)
             .onDataResponse { data in
-                self.cloudCache.writeToCache(data: data, filename: hashedRequest) {
-
-                }
+                self.cloudCache.writeToCache(data: data, filename: hashedRequest) { }
                 NSLog("Data: \(data)")
             }.onError { error in
                 NSLog("Error: \(error)")

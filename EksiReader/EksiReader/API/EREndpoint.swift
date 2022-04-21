@@ -14,6 +14,7 @@ protocol EksiRequestable {
 
 enum EREndpoint {
     enum Const {
+        static let changablePageIndex = -1
         static let baseURL: String = "https://api.eksisozluk.com/"
         static let version: String = "v2"
         static let clientSecret: String = "eabb8841-258d-4561-89a6-66c6501dee83"
@@ -29,6 +30,7 @@ enum EREndpoint {
     case today(page: Int)
     case topic(id: Int, page: Int)
     case entry(id: Int)
+    case popular()
 }
 
 // MARK: - Identifier

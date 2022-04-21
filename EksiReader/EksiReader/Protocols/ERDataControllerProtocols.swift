@@ -53,7 +53,7 @@ protocol PagableDataController {
     var entries: [T] { get set }
     var currentPage: Int { get set }
     var totalPageCount: Int { get set }
-    var endpoint: EREndpoint { get }
+    var endpoint: EREndpoint? { get }
     var response: Response? { get set }
 
     mutating func reset()
@@ -75,14 +75,25 @@ extension PagableDataController {
         return currentPage + 1 < totalPageCount
     }
 
+    func iterateToNextPage() {
+        var _self = self
+        _self.currentPage += 1
+    }
+
     mutating func loadNewItems(_ callback: @escaping PagableDataControllerCallback<T>) {
+        var _self = self
         guard canLoadNewItems() else {
             callback(entries, [], nil)
             return
         }
 
-        var _self = self
-        _self.currentPage += 1
+        iterateToNextPage()
+
+        guard let endpoint = self.endpoint else {
+            callback(entries, [], nil)
+            return
+        }
+
         EksiCloud.shared
             .call(endpoint: endpoint, responseType: Response.self) { response in
                 _self.response = response

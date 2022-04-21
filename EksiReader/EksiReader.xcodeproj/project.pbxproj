@@ -41,7 +41,7 @@
 		A311FC412802C59800EE27A3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC332802C59800EE27A3 /* Networking.swift */; };
 		A311FC422802C59800EE27A3 /* NetworkingDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */; };
 		A311FC432802C59800EE27A3 /* NetworkingRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */; };
-		A311FC442802C59800EE27A3 /* NetworkingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC362802C59800EE27A3 /* NetworkingResponse.swift */; };
+		A311FC442802C59800EE27A3 /* NetworkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC362802C59800EE27A3 /* NetworkResponseModel.swift */; };
 		A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC372802C59800EE27A3 /* NetworkingSession.swift */; };
 		A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */; };
 		A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC392802C59800EE27A3 /* NetworkingValidator.swift */; };
@@ -100,6 +100,7 @@
 		A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = A392F6C4280F233100FB32C6 /* SwipeableTabBarController */; };
 		A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C22810A0FB00E44823 /* PopularViewController.swift */; };
 		A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */; };
+		A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */; };
 		A3E8E89428076993006DF479 /* ERListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E89328076993006DF479 /* ERListView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
@@ -167,7 +168,7 @@
 		A311FC332802C59800EE27A3 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A311FC342802C59800EE27A3 /* NetworkingDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingDataRequest.swift; sourceTree = "<group>"; };
 		A311FC352802C59800EE27A3 /* NetworkingRequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingRequestMethod.swift; sourceTree = "<group>"; };
-		A311FC362802C59800EE27A3 /* NetworkingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingResponse.swift; sourceTree = "<group>"; };
+		A311FC362802C59800EE27A3 /* NetworkResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponseModel.swift; sourceTree = "<group>"; };
 		A311FC372802C59800EE27A3 /* NetworkingSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingSession.swift; sourceTree = "<group>"; };
 		A311FC382802C59800EE27A3 /* NetworkingURLRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingURLRequestBuilder.swift; sourceTree = "<group>"; };
 		A311FC392802C59800EE27A3 /* NetworkingValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingValidator.swift; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 		A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiTabbarController.swift; sourceTree = "<group>"; };
 		A3CE88C22810A0FB00E44823 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERNavigationTitleView.swift; sourceTree = "<group>"; };
+		A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
 		A3E8E89328076993006DF479 /* ERListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERListView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
@@ -561,7 +563,7 @@
 		A369A618280C6D5800494B40 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				A311FC362802C59800EE27A3 /* NetworkingResponse.swift */,
+				A311FC362802C59800EE27A3 /* NetworkResponseModel.swift */,
 				A311FC2D2802C59700EE27A3 /* NetworkingJsonResponse.swift */,
 				A369A61B280C6E0A00494B40 /* NetworkingDataResponse.swift */,
 			);
@@ -652,6 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				A369A63D280DF62B00494B40 /* StringExtensions.swift */,
+				A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -956,6 +959,7 @@
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
 				A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */,
+				A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
 				A369A63E280DF62B00494B40 /* StringExtensions.swift in Sources */,
 				A369A650280E2A2C00494B40 /* TopicItemPresentation.swift in Sources */,
@@ -990,7 +994,7 @@
 				A311FC2A2802C44300EE27A3 /* Promise+Extras.swift in Sources */,
 				A311FC0F2802A7ED00EE27A3 /* ERNavigationController.swift in Sources */,
 				A3F5D0BB27FD346D0031FA1F /* UIViewGestureExtension.swift in Sources */,
-				A311FC442802C59800EE27A3 /* NetworkingResponse.swift in Sources */,
+				A311FC442802C59800EE27A3 /* NetworkResponseModel.swift in Sources */,
 				A311FC232802C0A100EE27A3 /* KeychainWrapper.swift in Sources */,
 				A311FC1F2802BD4D00EE27A3 /* AuthToken.swift in Sources */,
 				A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */,

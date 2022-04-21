@@ -18,12 +18,32 @@ class TopicListDataController: PagableDataController {
     var totalPageCount: Int = Int.max
     var response: TodaysResponse?
 
-    var endpoint: EREndpoint {
-        EREndpoint.today(page: currentPage)
+    var endpoint: EREndpoint? {
+        return getEndpoint()
     }
 
-    init(pageTitle: String?) {
-        self.pageTitle = pageTitle
+    private var tabbarItem: EksiTabbarItem?
+
+    init(tabbarItem: EksiTabbarItem? = nil) {
+        self.tabbarItem = tabbarItem
+        self.pageTitle = tabbarItem?.title 
+    }
+
+    func getEndpoint() -> EREndpoint? {
+        guard let tabbarItem = self.tabbarItem else {
+            return nil
+        }
+
+        switch tabbarItem {
+        case .today:
+            return .today(page: currentPage)
+        case .popular:
+            return nil
+        case .search:
+            return nil
+        case .settings:
+            return nil
+        }
     }
 }
 

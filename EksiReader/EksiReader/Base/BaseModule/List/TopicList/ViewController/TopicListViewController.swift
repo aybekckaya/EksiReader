@@ -82,7 +82,7 @@ extension TopicListViewController {
         case .title(let title):
             self.setTitle(viewModel.getTitle())
         case .loading(let isVisible):
-            isVisible ? EksiLoadingView.show() : EksiLoadingView.hide()
+            isVisible ? self.showFullSizeLoading() : self.hideFullSizeLoading()
         case .footerViewLoading(let isVisible):
             listView.updateFooterViewVisibility(isVisible: isVisible)
         case .presentations(let itemPresentations):

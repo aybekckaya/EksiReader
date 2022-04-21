@@ -68,7 +68,7 @@ extension NetworkingSession {
         self.dataTask = urlRequest
             .sessionDataTask { [weak self] response in
                 guard let _ = self else {
-                    let response = NetworkingResponse(error: .objectDeallocated)
+                    let response = NetworkResponseModel(error: .objectDeallocated)
                     let handler = NetworkDataHandler(response: response,
                                                      responseProviders: responseProviders,
                                                      logProviders: logProviders)
@@ -93,11 +93,8 @@ extension NetworkingSession {
 // MARK: - Loggers
 extension NetworkingSession {
     private func logRequest(_ req: NetworkRequest, urlRequest: URLRequest) {
-        let logText = RequestLogger.logText(req, urlRequest: urlRequest)
         logProviders.forEach {
-            if $0.enabledLogTypes.contains(.request) {
-                $0.log(logText)
-            }
+            $0.logRequest(req, urlRequest: urlRequest)
         }
     }
 }
@@ -120,7 +117,7 @@ private extension URLRequest {
         return URLSession
             .shared
             .dataTask(with: self) { data, response, error in
-                let response = NetworkingResponse(data: data,
+                let response = NetworkResponseModel(data: data,
                                                   error: error,
                                                   response: response)
                 callback(response)
@@ -132,11 +129,11 @@ private extension URLRequest {
 
 // MARK: - { Class } Data Handler
 private class NetworkDataHandler {
-    private let response: NetworkingResponse
+    private let response: NetworkResponseModel
     private let providers: [NetworkingResponseProvider]
     private let logProviders: [NetworkingLogProvider]
 
-    init(response: NetworkingResponse,
+    init(response: NetworkResponseModel,
          responseProviders: [NetworkingResponseProvider],
          logProviders: [NetworkingLogProvider] ) {
         self.response = response
@@ -164,51 +161,9 @@ private class NetworkDataHandler {
     }
 
     private func logResponse() {
-        let logText = ResponseLogger.logText(response: response)
         logProviders.forEach { provider in
-            if provider.enabledLogTypes.contains(.response) {
-                provider.log(logText)
-            }
+            provider.logResponse(response)
         }
     }
 }
 
-// MARK: - {Class} Request Logger
-private class RequestLogger {
-    static func logText(_ req: NetworkRequest, urlRequest: URLRequest) -> String {
-        let headerVal = urlRequest.allHTTPHeaderFields?.map { (key, value) -> String in
-            return "\(key) : \(value)"
-        }.joined(separator: "\n") ?? "No Header"
-
-        let bodyString = req.requestData.toString() ?? "nil"
-
-        var text = "\n\nRequest \n"
-        text += "\n"
-        text += "URL: \n\(req.url)"
-        text += "\n"
-        text += "\n"
-        text += "Method: \(req.method.stringify)"
-        text += "\n"
-        text += "\n"
-        text += "Headers:"
-        text += "\n"
-        text += headerVal
-        text += "\n"
-        text += "\n"
-        text += "Request Data: \n"
-        text += bodyString
-
-        text += "\n"
-        text += "\n"
-        return text
-    }
-
-
-}
-
-// MARK: - {Class} Response Logger
-private class ResponseLogger {
-    static func logText(response: NetworkingResponse) -> String {
-        return ""
-    }
-}

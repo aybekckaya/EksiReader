@@ -16,7 +16,8 @@ protocol NetworkingLogProvider {
     var enabledLogTypes: [NetworkingLogType] { get }
 
     init(enabledLogTypes: [NetworkingLogType])
-    func log(_ value: Any?)
+    func logRequest(_ request: NetworkRequest?, urlRequest: URLRequest?)
+    func logResponse(_ response: NetworkResponseModel?)
 }
 
 // MARK: - Data Extensions
@@ -35,7 +36,6 @@ extension Optional where Wrapped == Data {
         return str
     }
 }
-
 
 
 //

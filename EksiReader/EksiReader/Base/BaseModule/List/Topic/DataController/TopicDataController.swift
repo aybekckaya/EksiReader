@@ -24,7 +24,7 @@ class TopicDataController: PagableDataController {
     var totalPageCount: Int = .max
     var response: TodayTopicResponse?
 
-    var endpoint: EREndpoint {
+    var endpoint: EREndpoint? {
         return EREndpoint.topic(id: topicId, page: currentPage)
     }
 

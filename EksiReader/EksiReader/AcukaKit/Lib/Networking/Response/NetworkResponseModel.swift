@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias NetworkingResponseCallback = (NetworkingResponse) -> Void
+typealias NetworkingResponseCallback = (NetworkResponseModel) -> Void
 typealias NetworkingResponseErrorCallback = (NetworkingError) -> Void
 typealias NetworkingResponseSuccessCallback<T> = (T) -> Void
 typealias NetworkingResponseOnCompletedCallback = (NetworkingCore) -> Void
@@ -22,11 +22,12 @@ protocol NetworkingResponseProvider {
 //    func onError(_ callback: NetworkingResponseErrorCallback?)
 //}
 
+
 // MARK: - NetworkingResponse
-class NetworkingResponse {
-    private var _data: Data?
-    private var _error: NetworkingError?
-    private var _response: URLResponse?
+class NetworkResponseModel {
+    private(set) var _data: Data?
+    private(set) var _error: NetworkingError?
+    private(set) var _response: URLResponse?
 
     var error: NetworkingError? {
         return errorModel()
