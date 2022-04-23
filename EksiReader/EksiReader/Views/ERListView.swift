@@ -20,6 +20,8 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
 
     private let refreshControl = LottieRefreshControl()
 
+    private var sortingType: ERListSortType = .firstToLast
+
     private var loadNewItemsCallback: ERListCallback<C, T>?
     private var refreshItemsCallback: ERListCallback<C, T>?
     private var itemsSelectedCallback: ERListItemSelectedCallback<C, T>?
@@ -45,13 +47,6 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
             .add(into: self)
             .fit()
 
-//        let refreshViewFrame = CGRect(origin: .zero, size: .init(width: self.frame.size.width, height: 64))
-//        let refreshView = EksiFooterLoadingView(frame: refreshViewFrame)
-//        refreshView.backgroundColor = Styling.Application.backgroundColor
-//        refreshControl.addSubview(refreshView)
-//        tableViewItems.refreshControl = refreshControl
-//        refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
-
         tableViewItems.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
 
@@ -76,6 +71,12 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
     @discardableResult
     func loadNewItems(_ callback: ERListCallback<C, T>?) -> ERListView<C, T> {
         self.loadNewItemsCallback = callback
+        return self
+    }
+
+    @discardableResult
+    func sortingType(_ value: ERListSortType) -> ERListView<C, T> {
+        self.sortingType = value 
         return self
     }
 
@@ -113,10 +114,6 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
         tableViewItems
             .footerView {
                 return nil
-//                guard isVisible else { return nil }
-//                let frame = CGRect(origin: .zero, size: .init(width: self.tableViewItems.frame.size.width, height: 64))
-//                let view = EksiFooterLoadingView(frame: frame)
-//                return view
             }
     }
 
@@ -134,9 +131,6 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
 
     @objc private func refreshItems() {
         self.refreshItemsCallback?(self)
-//        var _viewModel = viewModel
-//        _viewModel.resetEntries()
-//        _viewModel.loadNewItems()
     }
 
     func entryContentViewDidTappedShare(_ view: EntryContentView, entryId: Int) {

@@ -33,6 +33,8 @@ protocol PagableViewModel {
     var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>? { get set }
     var currentPresentations: [Presentation] { get set }
 
+    var listSortingType: ERListSortType { get }
+
     init(dataController: DataController,
          router: Router)
 
@@ -60,8 +62,8 @@ extension PagableViewModel {
         var _dataController = dataController
         var _self = self
         _dataController.loadNewItems { currentEntries, newEntries, error in
-            let _currentEntries = (currentEntries as? [Entry]) ?? []
-            let _newEntries = (newEntries as? [Entry]) ?? []
+            let _currentEntries = (currentEntries as [Entry]) 
+            let _newEntries = (newEntries as [Entry])
             _self.handleData(currentEntries: _currentEntries, newEntries: _newEntries, error: error)
             _self.updateLoadingViewVisiblity(forcedVisiblity: nil)
             _self.updateTitle()
@@ -73,10 +75,46 @@ extension PagableViewModel {
             guard let presentationEntry = $0 as? Presentation.PresentationEntry else { return nil }
             return Presentation.init(entry: presentationEntry)
         }
-        currentPresentations.append(contentsOf: newPresentations)
+
+        let dateSortedItems = dateSortedPresentations(from: newPresentations)
+        currentPresentations.append(contentsOf: dateSortedItems)
+        
         trigger(.presentations(itemPresentations: currentPresentations))
         updateFooterLoadingViewVisibility()
     }
+
+    private func dateSortedPresentations(from presentations: [Presentation]) -> [Presentation] {
+        let dateablePresentations = presentations
+            .compactMap { $0 as? DateablePresentation }
+
+        if dateablePresentations.isEmpty {
+            return presentations
+        }
+
+        switch self.listSortingType {
+        case .firstToLast:
+            return dateablePresentations
+                .sorted { prs1, prs2 in
+                    let date1 = prs1.createdDateValue ?? Date(timeIntervalSince1970: 0)
+                    let date2 = prs2.createdDateValue ?? Date(timeIntervalSince1970: 0)
+                    return date1 < date2
+                }.compactMap {
+                    return $0 as? Presentation
+                }
+        case .lastToFirst:
+            return dateablePresentations
+                .sorted { prs1, prs2 in
+                    let date1 = prs1.createdDateValue ?? Date(timeIntervalSince1970: 0)
+                    let date2 = prs2.createdDateValue ?? Date(timeIntervalSince1970: 0)
+                    return date1 > date2
+                }.compactMap {
+                    return $0 as? Presentation
+                }
+        }
+
+    }
+
+
 
     private func updateFooterLoadingViewVisibility() {
         guard !currentPresentations.isEmpty else {

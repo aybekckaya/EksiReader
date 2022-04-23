@@ -49,6 +49,7 @@ extension TopicViewController {
             .fit()
 
         listView
+            .sortingType(.lastToFirst)
             .loadNewItems { _ in
                 var _viewModel = self.viewModel
                 _viewModel.loadNewItems()
@@ -96,9 +97,8 @@ extension TopicViewController {
                 self.listView.updateFooterViewVisibility(isVisible: isVisible)
             case .loading(let isVisible):
                 isVisible ? self.showFullSizeLoading() : self.hideFullSizeLoading()
-             
-            case .presentations(let _):
 
+            case .presentations( _):
                 let updatedPresentations = self.viewModel.updatedPresentations()
                 self.listView.configure(with: updatedPresentations)
             case .reloadItemsAtIndexes(let indexes):

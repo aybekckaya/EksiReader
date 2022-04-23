@@ -18,6 +18,10 @@ class TopicViewModel: PagableViewModel {
     var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<TopicItemPresentation>>?
     var currentPresentations: [TopicItemPresentation] = []
 
+    var listSortingType: ERListSortType {
+        dataController.sortingType
+    }
+
     required init(dataController: TopicDataController, router: TopicRouter) {
         self.dataController = dataController
         self.router = router
@@ -47,6 +51,7 @@ extension TopicViewModel {
             newPresentations.append(presentation)
         }
         currentPresentations = newPresentations
+//            .sorted { ($0.createdDateValue ?? Date(timeIntervalSince1970: 0)) < ($1.createdDateValue ?? Date(timeIntervalSince1970: 0))  }
         return newPresentations
     }
 

@@ -19,6 +19,7 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
     private var cellDidSelectClosure: ((DeclarativeTableView, G, IndexPath) -> Void)?
     private var willDisplayCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
     private var willDisplayLastCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
+    private var willDisplayFirstCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
     private var didEndDisplayCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
     private var didScrollTableClosure: ((DeclarativeTableView, CGPoint) -> Void)?
     private var footerViewClosure: (() -> UIView?)?
@@ -71,6 +72,7 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
         callWillDisplayCellClosure(cell: cell, indexPath: indexPath)
         callFooterViewClosure(indexPath: indexPath)
         callWillDisplayLastCellClosure(cell: cell, indexPath: indexPath)
+        callWillDisplayFirstCellClosure(cell: cell, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -106,6 +108,19 @@ extension DeclarativeTableView {
 
         let model = items[indexPath.row]
         willDisplayLastCellClosure(self, currentCell, model, indexPath)
+    }
+
+    private func callWillDisplayFirstCellClosure(cell: UITableViewCell, indexPath: IndexPath) {
+        guard
+            let willDisplayFirstCellClosure = willDisplayFirstCellClosure,
+            let currentCell: T = cell as? T,
+            indexPath.row == 0
+        else {
+            return
+        }
+
+        let model = items[indexPath.row]
+        willDisplayFirstCellClosure(self, currentCell, model, indexPath)
     }
 
     private func callWillDisplayCellClosure(cell: UITableViewCell, indexPath: IndexPath) {
@@ -162,6 +177,12 @@ extension DeclarativeTableView {
     @discardableResult
     func willDisplayLastCell(_ closure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?) -> DeclarativeTableView {
         self.willDisplayLastCellClosure = closure
+        return self
+    }
+
+    @discardableResult
+    func willDisplayFirstCell(_ closure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?) -> DeclarativeTableView {
+        self.willDisplayFirstCellClosure = closure
         return self
     }
 

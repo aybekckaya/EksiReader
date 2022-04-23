@@ -24,3 +24,8 @@ protocol PagablePresentation {
     associatedtype PresentationEntry
     init(entry: PresentationEntry)
 }
+
+// MARK: - Dateable Presentation
+protocol DateablePresentation {
+    var createdDateValue: Date? { get }
+}

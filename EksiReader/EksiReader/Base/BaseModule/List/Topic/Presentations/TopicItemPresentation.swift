@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct TopicItemPresentation: DeclarativeListItem, PagablePresentation {
+struct TopicItemPresentation: DeclarativeListItem, PagablePresentation, DateablePresentation {
     typealias PresentationEntry = TopicEntry
 
     let id: Int
@@ -18,8 +18,12 @@ struct TopicItemPresentation: DeclarativeListItem, PagablePresentation {
     let favoriteCount: Int
     let commentCount: Int
     let createdDatePresentable: String
-    let createdDateValue: Date?
+    let _createdDateValue: Date?
     let attachmentURLs: [String]
+
+    var createdDateValue: Date? {
+        _createdDateValue
+    }
 
     private(set) var isFavorited: Bool = false
 
@@ -31,8 +35,8 @@ struct TopicItemPresentation: DeclarativeListItem, PagablePresentation {
         self.commentCount = entry.commentCount
         self.attachmentURLs = entry.content.getLinks()
         self.content = entry.content.attributedTopicContent(links: self.attachmentURLs)
-        self.createdDateValue = entry.created.toDate(with: DateFormatter.erStringToDateFormatter)
-        self.createdDatePresentable = self.createdDateValue?.toString(with: DateFormatter.erDateToStringFormatter) ?? ""
+        self._createdDateValue = entry.created.toDate(with: DateFormatter.erStringToDateFormatter)
+        self.createdDatePresentable = self._createdDateValue?.toString(with: DateFormatter.erDateToStringFormatter) ?? ""
     }
 
     mutating func setFavorited(_ isFavorite: Bool) {

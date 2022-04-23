@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum ERListSortType {
+    case firstToLast
+    case lastToFirst
+}
+
 // MARK: - PagableDataControllerParser
 // current_page, max_page
 typealias PagableDataControllerParserCallback<T> = ([T], [T], EksiError?, Int, Int) -> Void
@@ -45,39 +50,73 @@ class PagableDataControllerParser<T: ERBaseResponse & ERPagable, E: Decodable> {
 // MARK: - PagableDataController
 // current_entries, new_entries, error
 typealias PagableDataControllerCallback<T> = ([T], [T], EksiError?) -> Void
+typealias PagableDataControllerCloudCallback<T> = ([T], [T], EksiError?, Int, Int) -> Void
 
 protocol PagableDataController {
     associatedtype T: Decodable
     associatedtype Response: ERBaseResponse & ERPagable
 
     var entries: [T] { get set }
-    var currentPage: Int { get set }
-    var totalPageCount: Int { get set }
+    var currentPageIndex: Int { get set }
+    var finalPageIndex: Int { get set }
     var endpoint: EREndpoint? { get }
     var response: Response? { get set }
+    var sortingType: ERListSortType { get }
 
     mutating func reset()
     func canLoadNewItems() -> Bool
     mutating func loadNewItems(_ callback: @escaping PagableDataControllerCallback<T>)
-
-//    func loadNewItems(_ callback: @escaping PagableDataControllerCallback<T>)
-//    func handleResponse(response: Response, callback: @escaping PagableDataControllerCallback<T>)
 }
 
 extension PagableDataController {
     mutating func reset() {
         entries = []
-        currentPage = 0
-        totalPageCount = Int.max
+        switch sortingType {
+        case .firstToLast:
+            currentPageIndex = 0
+            finalPageIndex = Int.max
+        case .lastToFirst:
+            currentPageIndex = Int.max
+            finalPageIndex = 0
+        }
     }
 
     func canLoadNewItems() -> Bool {
-        return currentPage + 1 < totalPageCount
+        switch sortingType {
+        case .firstToLast:
+            return currentPageIndex + 1 < finalPageIndex
+        case .lastToFirst:
+            return currentPageIndex - 1 > 0
+        }
     }
 
     func iterateToNextPage() {
         var _self = self
-        _self.currentPage += 1
+        if _self.shouldMakePagingRequest() {
+            return
+        }
+        switch sortingType {
+        case .firstToLast:
+            _self.currentPageIndex += 1
+        case .lastToFirst:
+            _self.currentPageIndex -= 1
+        }
+    }
+
+    private func shouldMakePagingRequest() -> Bool {
+        if sortingType == .firstToLast { return false }
+        return self.currentPageIndex == Int.max
+    }
+
+    mutating private func addNewEntries(_ newEntries: [T]) {
+        if sortingType == .firstToLast {
+            entries.append(contentsOf: newEntries)
+        } else if sortingType == .lastToFirst {
+            let reversedNewEntries = newEntries.reversed()
+            reversedNewEntries.forEach {
+                entries.insert($0, at: 0)
+            }
+        }
     }
 
     mutating func loadNewItems(_ callback: @escaping PagableDataControllerCallback<T>) {
@@ -89,21 +128,45 @@ extension PagableDataController {
 
         iterateToNextPage()
 
-        guard let endpoint = self.endpoint else {
-            callback(entries, [], nil)
+        if shouldMakePagingRequest() {
+            _callCloud(endpoint: _self.endpoint) { _, _, _, _currentPage, _totalPage in
+                _self.currentPageIndex = _self.sortingType == .firstToLast ? _currentPage : _totalPage
+                _self.finalPageIndex = _self.sortingType == .firstToLast ? _totalPage : _currentPage
+
+                _self._callCloud(endpoint: _self.endpoint) { currEntries, newEntries, error, currPage, totalPage in
+                    _self.currentPageIndex = _self.sortingType == .firstToLast ? currPage : totalPage
+                    _self.finalPageIndex = _self.sortingType == .firstToLast ? totalPage : currPage
+                    if currPage == totalPage {
+                        _self.finalPageIndex = 1
+                    }
+                    _self.addNewEntries(newEntries)
+                    callback(currEntries, newEntries, error)
+                }
+            }
+        } else {
+            _callCloud(endpoint: _self.endpoint) { currEntries, newEntries, error, currPage, totalPage in
+                _self.currentPageIndex = currPage
+                _self.finalPageIndex = _self.sortingType == .firstToLast ? totalPage : 1
+                _self.addNewEntries(newEntries)
+                callback(currEntries, newEntries, error)
+            }
+        }
+    }
+
+    mutating private func _callCloud(endpoint: EREndpoint?,
+                             _ callback: @escaping PagableDataControllerCloudCallback<T>) {
+        var _self = self
+        guard let endpoint = _self.endpoint else {
+            callback(entries, [], nil, currentPageIndex, finalPageIndex)
             return
         }
-
         EksiCloud.shared
             .call(endpoint: endpoint, responseType: Response.self) { response in
                 _self.response = response
-                let parser: PagableDataControllerParser<Response, T> = .init(response: response, currentEntries: _self.entries)
+                let parser: PagableDataControllerParser<Response, T> = .init(response: response,
+                                                                             currentEntries: _self.entries)
                 parser.parse { currentEntries, newEntries, error, pageIndex, pageCount in
-                    _self.currentPage = pageIndex
-                    _self.totalPageCount = pageCount
-                    //_self.totalPageCount = 3
-                    _self.entries.append(contentsOf: newEntries)
-                    callback(_self.entries, newEntries, error)
+                    callback(_self.entries, newEntries, error, pageIndex, pageCount)
                 }
             }
     }

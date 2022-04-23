@@ -14,12 +14,16 @@ class TopicListDataController: PagableDataController {
     typealias Response = TodaysResponse
 
     var entries: [TopicListEntry] = []
-    var currentPage: Int = 0
-    var totalPageCount: Int = Int.max
+    var currentPageIndex: Int = 0
+    var finalPageIndex: Int = Int.max
     var response: TodaysResponse?
 
     var endpoint: EREndpoint? {
         return getEndpoint()
+    }
+
+    var sortingType: ERListSortType {
+        return .firstToLast
     }
 
     private var tabbarItem: EksiTabbarItem?
@@ -36,13 +40,13 @@ class TopicListDataController: PagableDataController {
 
         switch tabbarItem {
         case .today:
-            return .today(page: currentPage)
+            return .today(page: currentPageIndex)
         case .popular:
             let currentChannels = APP.channelManager.currentChannelFilter
             guard let jsonData = try? JSONEncoder().encode(currentChannels) else {
                 return nil
             }
-            return .popular(page: currentPage, channelFilterData: jsonData)
+            return .popular(page: currentPageIndex, channelFilterData: jsonData)
         case .search:
             return nil
         case .settings:
