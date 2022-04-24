@@ -8,19 +8,10 @@
 import Foundation
 import UIKit
 
-//let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
-//let underlineAttributedString = NSAttributedString(string: "StringWithUnderLine", attributes: underlineAttribute)
-//myLabel.attributedText = underlineAttributedString
-
 extension String {
     var attributedString: NSAttributedString {
         NSAttributedString(string: self)
     }
-
-//    func rangeOf(text: String) -> NSRange {
-//        NSRange(location: <#T##Int#>, length: <#T##Int#>)
-//        return self.index(of: text)
-//    }
 }
 
 extension String {

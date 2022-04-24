@@ -63,9 +63,9 @@ extension TopicViewModel {
         return newPresentations
     }
 
-    func navigateToEntryViewController(entryId: Int) {
-        self.router.routeToEntry(entryId: entryId)
-    }
+//    func navigateToEntryViewController(entryId: Int) {
+//        self.router.routeToEntry(entryId: entryId)
+//    }
 }
 
 

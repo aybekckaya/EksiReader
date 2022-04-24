@@ -8,14 +8,16 @@
 import Foundation
 import UIKit
 
-class EntryTextContentView: UIView {
+class EntryTextContentView: UIView, UITextViewDelegate {
 
-    private let lblContent = UILabel
-        .label()
+    private let textViewContent = UITextView
+        .textview()
         .font(Styling.TopicCell.contentLabelFont)
         .textColor(Styling.TopicCell.contentColor)
         .alignment(.left)
-        .numberOfLines(0)
+        .isEditable(false)
+        .scrollEnabled(false)
+        .isSelectable(true)
 
     init() {
         super.init(frame: .zero)
@@ -27,17 +29,23 @@ class EntryTextContentView: UIView {
     }
 
     private func setUpUI() {
-        lblContent
+        textViewContent
             .add(into: self)
             .leading(.constant(16))
             .trailing(.constant(16))
             .top(.constant(16))
             .bottom(.constant(16))
+            .height(.min(1))
+        textViewContent.dataDetectorTypes = .link
     }
 
     func configure(text: NSAttributedString) {
-        lblContent.attributedText = text
+        textViewContent.attributedText = text
     }
+
+//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+//        return true
+//    }
 }
 
 // MARK: - Declarative UI

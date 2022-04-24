@@ -594,6 +594,24 @@ extension UITextField {
 // MARK: - UITextView
 extension UITextView {
     @discardableResult
+    public func isSelectable(_ value: Bool) -> UITextView {
+        self.isSelectable = value
+        return self
+    }
+
+    @discardableResult
+    public func scrollEnabled(_ value: Bool) -> UITextView {
+        self.isScrollEnabled = value
+        return self
+    }
+
+    @discardableResult
+    public func alignment(_ value: NSTextAlignment) -> UITextView {
+        self.textAlignment = value
+        return self
+    }
+
+    @discardableResult
     public func textColor(_ color: UIColor) -> UITextView {
         self.textColor = color
         return self

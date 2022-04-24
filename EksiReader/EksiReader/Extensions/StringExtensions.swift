@@ -31,15 +31,33 @@ extension String {
         paragraphStyle.lineHeightMultiple = 1.2
 
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
-                                      value:paragraphStyle,
-                                      range:NSMakeRange(0, attributedString.length))
+                                      value: paragraphStyle,
+                                      range: NSMakeRange(0, attributedString.length))
 
-        let string = NSString(string: self)
-        links.forEach { str in
-            let range = string.range(of: str)
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.thick.rawValue, range: range)
-            attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor.white, range: range)
-        }
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor,
+                                      value: Styling.TopicCell.contentColor,
+                                      range: NSMakeRange(0, attributedString.length))
+
+        attributedString.addAttribute(NSAttributedString.Key.font,
+                                      value: Styling.TopicCell.contentLabelFont,
+                                      range: NSMakeRange(0, attributedString.length))
+
+//        let string = NSString(string: self)
+//        links.forEach { str in
+//            let range = string.range(of: str)
+//            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+//            attributedString.addAttribute(NSAttributedString.Key.underlineColor,
+//                                          value: Styling.TopicCell.contentColor,
+//                                          range: range)
+//
+//            attributedString.addAttribute(NSAttributedString.Key.foregroundColor,
+//                                          value: Styling.TopicCell.contentColor,
+//                                          range: NSMakeRange(0, attributedString.length))
+//
+//            attributedString.addAttribute(NSAttributedString.Key.font,
+//                                          value: Styling.TopicCell.contentLabelFont,
+//                                          range: NSMakeRange(0, attributedString.length))
+//        }
 
         return attributedString
     }
