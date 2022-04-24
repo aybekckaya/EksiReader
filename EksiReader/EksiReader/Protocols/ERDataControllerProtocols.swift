@@ -59,16 +59,25 @@ protocol PagableDataController {
     var entries: [T] { get set }
     var currentPageIndex: Int { get set }
     var finalPageIndex: Int { get set }
+    var totalPages: Int { get set }
     var endpoint: EREndpoint? { get }
     var response: Response? { get set }
     var sortingType: ERListSortType { get }
 
     mutating func reset()
     func canLoadNewItems() -> Bool
+    func currentVisiblePage(from visiblePageIndexes: [Int]) -> Int
     mutating func loadNewItems(_ callback: @escaping PagableDataControllerCallback<T>)
 }
 
 extension PagableDataController {
+    func currentVisiblePage(from visiblePageIndexes: [Int]) -> Int  {
+        guard visiblePageIndexes.count > 0 else { return 1 }
+        var sum: Int = 0
+        visiblePageIndexes.forEach { sum += $0 }
+        return Int(sum / visiblePageIndexes.count)
+    }
+
     mutating func reset() {
         entries = []
         switch sortingType {
@@ -130,10 +139,12 @@ extension PagableDataController {
 
         if shouldMakePagingRequest() {
             _callCloud(endpoint: _self.endpoint) { _, _, _, _currentPage, _totalPage in
+                _self.totalPages = _totalPage
                 _self.currentPageIndex = _self.sortingType == .firstToLast ? _currentPage : _totalPage
                 _self.finalPageIndex = _self.sortingType == .firstToLast ? _totalPage : _currentPage
 
                 _self._callCloud(endpoint: _self.endpoint) { currEntries, newEntries, error, currPage, totalPage in
+                    _self.totalPages = _totalPage
                     _self.currentPageIndex = _self.sortingType == .firstToLast ? currPage : totalPage
                     _self.finalPageIndex = _self.sortingType == .firstToLast ? totalPage : currPage
                     if currPage == totalPage {
@@ -145,6 +156,7 @@ extension PagableDataController {
             }
         } else {
             _callCloud(endpoint: _self.endpoint) { currEntries, newEntries, error, currPage, totalPage in
+                _self.totalPages = totalPage
                 _self.currentPageIndex = currPage
                 _self.finalPageIndex = _self.sortingType == .firstToLast ? totalPage : 1
                 _self.addNewEntries(newEntries)

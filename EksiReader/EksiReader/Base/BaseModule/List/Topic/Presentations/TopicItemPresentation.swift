@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-struct TopicItemPresentation: DeclarativeListItem, PagablePresentation, DateablePresentation {
+protocol PagableListItem: DeclarativeListItem {
+    var page: Int { get }
+}
+
+struct TopicItemPresentation: PagableListItem, PagablePresentation, DateablePresentation {
+
     typealias PresentationEntry = TopicEntry
 
     let id: Int
@@ -20,15 +25,16 @@ struct TopicItemPresentation: DeclarativeListItem, PagablePresentation, Dateable
     let createdDatePresentable: String
     let _createdDateValue: Date?
     let attachmentURLs: [String]
+    let entryPage: Int
 
-    var createdDateValue: Date? {
-        _createdDateValue
-    }
+    var createdDateValue: Date? { _createdDateValue }
+    var page: Int { entryPage }
 
     private(set) var isFavorited: Bool = false
 
-    init(entry: TopicEntry) {
+    init(entry: TopicEntry, entryPage: Int) {
         self.id = entry.id
+        self.entryPage = entryPage
         self.authorName = entry.author?.nick ?? ""
         self.authorImageURL = entry.avatarUrl
         self.favoriteCount = entry.favoriteCount

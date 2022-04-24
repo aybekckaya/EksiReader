@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 
-typealias ERListCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>) -> Void
-typealias ERListItemSelectedCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>, IndexPath, T) -> Void
-typealias ERListItemInputSelectedCallback<C: ERListCell, T: DeclarativeListItem> = (ERListView<C, T>, Int) -> Void
+typealias ERListCallback<C: ERListCell, T: PagableListItem> = (ERListView<C, T>) -> Void
+typealias ERListItemSelectedCallback<C: ERListCell, T: PagableListItem> = (ERListView<C, T>, IndexPath, T) -> Void
+typealias ERListItemInputSelectedCallback<C: ERListCell, T: PagableListItem> = (ERListView<C, T>, Int) -> Void
+typealias ERListItemVisibleCellsCallback<C: ERListCell, T: PagableListItem> = (ERListView<C, T>, [T]) -> Void
 
-class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentViewDelegate {
+class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDelegate {
 
     private let tableViewItems: DeclarativeTableView<C, T> =
     DeclarativeTableView<C, T>
@@ -28,6 +29,7 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
     private var favoriteDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
     private var shareDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
     private var reportDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
+    private var visiblePageCallback: ERListItemVisibleCellsCallback<C, T>?
 
     init() {
         super.init(frame: .zero)
@@ -39,7 +41,6 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
     }
 
     private func setUpUI() {
-
         tableViewItems.separatorStyle = .singleLine
         tableViewItems.separatorColor = .white.withAlphaComponent(0.5)
         tableViewItems.backgroundColor = .clear
@@ -60,7 +61,24 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
                 self.itemsSelectedCallback?(self, indexPath, presentation)
             }.didScrollTable { tableView, offset in
                self.refreshControl.updateProgress(with: offset.y)
+            }.visibleCells { tableView, cells, items, indexPaths in
+                self.callVisiblePageCallback(items: items)
             }
+    }
+
+    private func callVisiblePageCallback(items: [T]) {
+        guard
+            let visiblePageCallback = visiblePageCallback,
+            items.count > 0
+        else { return }
+        visiblePageCallback(self, items)
+    }
+
+    func setTopContentInset(_ value: CGFloat) {
+        self.tableViewItems.contentInset = UIEdgeInsets(top: value,
+                                                        left:  self.tableViewItems.contentInset.left,
+                                                        bottom:  self.tableViewItems.contentInset.bottom,
+                                                        right:  self.tableViewItems.contentInset.bottom)
     }
 
     func configure(with items: [T]) {
@@ -71,6 +89,12 @@ class ERListView<C: ERListCell, T: DeclarativeListItem>: UIView, EntryContentVie
     @discardableResult
     func loadNewItems(_ callback: ERListCallback<C, T>?) -> ERListView<C, T> {
         self.loadNewItemsCallback = callback
+        return self
+    }
+
+    @discardableResult
+    func visiblePage(_ callback: ERListItemVisibleCellsCallback<C, T>?) -> ERListView<C, T> {
+        self.visiblePageCallback = callback
         return self
     }
 

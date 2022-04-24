@@ -16,7 +16,8 @@ class ERViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Styling.Application.backgroundColor
-        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = Styling.Application.navigationBarColor
+        self.navigationController?.navigationBar.tintColor = Styling.Application.navigationBarTitleColor
 
         titleView.translatesAutoresizingMaskIntoConstraints = true
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)

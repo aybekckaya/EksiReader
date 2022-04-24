@@ -11,8 +11,8 @@ import UIKit
 class ERNavigationTitleView: UIView {
     private let lblTitle = UILabel
         .label()
-        .font(C.Font.bold.font(size: 16))
-        .textColor(.white)
+        .font(Styling.Application.navigationBarTitleFont)
+        .textColor(Styling.Application.navigationBarTitleColor)
         .alignment(.center)
         .numberOfLines(0)
 

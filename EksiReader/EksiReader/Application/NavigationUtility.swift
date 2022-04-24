@@ -12,6 +12,7 @@ let ERNavUtility = NavigationUtility()
 
 class NavigationUtility {
     private var tabBarController: EksiTabbarController!
+    private var window: UIWindow!
 
     private var activeNavigationController: ERNavigationController {
         let viewControllers = tabBarController.viewControllers!
@@ -20,29 +21,45 @@ class NavigationUtility {
         return currentNavConStack
     }
 
-    public func initialize() {
-        let val: CGFloat = 10 / 255
-        let barColor = UIColor(red: val, green: val, blue: val, alpha: 1.0)
+    public func initialize(with window: UIWindow?, tabBarController: EksiTabbarController) {
+        self.tabBarController = tabBarController
+        self.window = window!
+//        self.tabBar.unselectedItemTintColor = UIColor.black
+//        self.tabBar.tintColor = UIColor.white
+//
+//        let appearance = UITabBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = .red
+//        self.tabBar.scrollEdgeAppearance = appearance
+//        self.tabBar.standardAppearance = appearance
+
+
 
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = barColor
+        navBarAppearance.backgroundColor = Styling.Application.navigationBarColor
+        navBarAppearance.shadowColor = .clear
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
         UINavigationBar.appearance().standardAppearance = navBarAppearance
 
         let tabbarAppearance = UITabBarAppearance()
         tabbarAppearance.configureWithOpaqueBackground()
-        tabbarAppearance.backgroundColor = barColor
+        tabbarAppearance.backgroundColor = Styling.Application.tabBarColor
 
         UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance
         UITabBar.appearance().standardAppearance = tabbarAppearance
+        tabBarController.tabBar.unselectedItemTintColor = Styling.Application.tabbarUnSelectedItemTintColor
+        tabBarController.tabBar.tintColor = Styling.Application.tabbarTintColor
     }
 
+    public func showRootViewController() {
+        window.rootViewController = self.tabBarController
+        window.makeKeyAndVisible()
+    }
 
     public func setWindowRoot(window: UIWindow?, tabBarController: EksiTabbarController) {
-        self.tabBarController = tabBarController
-        window?.rootViewController = self.tabBarController
-        window?.makeKeyAndVisible()
+
+
     }
 
     public func push(viewController: ERViewController) {

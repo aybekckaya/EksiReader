@@ -8,19 +8,22 @@
 import Foundation
 import UIKit
 
-struct TopicListItemPresentation: DeclarativeListItem, PagablePresentation {
+struct TopicListItemPresentation: PagableListItem, PagablePresentation {
     typealias PresentationEntry = TopicListEntry
 
     let id: Int
     let title: String
     let count: Int
     let attributedTitle: NSAttributedString
+    let entryPage: Int
 
-init(entry: PresentationEntry) {
+    var page: Int { entryPage }
+
+    init(entry: PresentationEntry, entryPage: Int) {
         self.id = entry.id
+        self.entryPage = entryPage
         self.title = entry.title
         self.count = entry.fullCount
         self.attributedTitle = entry.title.attributedTodayTitle()
     }
 }
-

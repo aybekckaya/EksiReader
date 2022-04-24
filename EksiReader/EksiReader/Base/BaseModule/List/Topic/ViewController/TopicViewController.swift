@@ -9,9 +9,20 @@ import Foundation
 import UIKit
 import Loaf
 
-class TopicViewController: ERViewController {
+class TopicViewController: ERViewController, PagableViewController {
+
+    typealias Cell = TopicCell
+    typealias PresentationItem = TopicItemPresentation
+    typealias ViewModel = TopicViewModel
+
+    var _viewModel: TopicViewModel { viewModel }
+    var showsPagingIndicatorView: Bool { true }
+    var pageIndicatorView: ERPagingView? { _pageIndicatorView }
+    var listView: ERListView<Cell, PresentationItem> { _listView }
+
     private let viewModel: TopicViewModel
-    private let listView: ERListView<TopicCell, TopicItemPresentation> = .init()
+    private let _listView: ERListView<TopicCell, TopicItemPresentation> = .init()
+    private let _pageIndicatorView = ERPagingView.erPagingView()
 
     init(viewModel: TopicViewModel) {
         self.viewModel = viewModel
@@ -27,13 +38,12 @@ class TopicViewController: ERViewController {
 extension TopicViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-       
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        initializePagableViewController()
         addListeners()
 
         var _viewModel = viewModel
@@ -44,11 +54,12 @@ extension TopicViewController {
 // MARK: - Set Up UI
 extension TopicViewController {
     private func setUpUI() {
-        listView
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        _listView
             .add(into: self.view)
             .fit()
 
-        listView
+        _listView
             .sortingType(.lastToFirst)
             .loadNewItems { _ in
                 var _viewModel = self.viewModel
@@ -66,6 +77,8 @@ extension TopicViewController {
                 self?.viewModel.share(id: entryId)
             }.reportItem { [weak self] _, entryId in
                 NSLog("REPORT: \(entryId)")
+            }.visiblePage { _, currentPage in
+                
             }
     }
 }
@@ -90,21 +103,23 @@ extension TopicViewController {
                 self.setTitle(title)
 
             case .fetchNewItemsEnabled(let isEnabled):
-                self.listView.fetchNewItemsEnabled(isEnabled: isEnabled)
+                self._listView.fetchNewItemsEnabled(isEnabled: isEnabled)
             case .error(let error):
                 break
             case .footerViewLoading(let isVisible):
-                self.listView.updateFooterViewVisibility(isVisible: isVisible)
+                self._listView.updateFooterViewVisibility(isVisible: isVisible)
             case .loading(let isVisible):
                 isVisible ? self.showFullSizeLoading() : self.hideFullSizeLoading()
 
             case .presentations( _):
                 let updatedPresentations = self.viewModel.updatedPresentations()
-                self.listView.configure(with: updatedPresentations)
+                self._listView.configure(with: updatedPresentations)
             case .reloadItemsAtIndexes(let indexes):
                 break
             case .infoToast( let message):
                 self.showToast(message: message)
+            case .pages(currentPage: let currentPage, totalPage: let totalPage):
+                self.pageIndicatorView?.updateTitle(currentPage: currentPage, totalPage: totalPage)
             }
         }
     }

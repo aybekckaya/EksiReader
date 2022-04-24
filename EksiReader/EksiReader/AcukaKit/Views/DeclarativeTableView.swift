@@ -15,6 +15,7 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
     private var items: [G] = []
 
     private var cellForRowClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
+    private var visibleCellsClosure: ((DeclarativeTableView, [T], [G], [IndexPath]) -> Void)?
     private var cellHeightClosure: ((DeclarativeTableView, G, IndexPath) -> CGFloat)?
     private var cellDidSelectClosure: ((DeclarativeTableView, G, IndexPath) -> Void)?
     private var willDisplayCellClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
@@ -37,8 +38,6 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let closure = cellForRowClosure else { fatalError("Implement cell for row closure") }
@@ -87,16 +86,35 @@ class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableV
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let didScrollTableClosure = didScrollTableClosure else {
-            return
-        }
-        didScrollTableClosure(self, scrollView.contentOffset)
+        callScrollViewDidScroll(scrollView.contentOffset)
+        callVisibleCells()
     }
 
 }
 
 // MARK: - Delegate / Datasource helpers
 extension DeclarativeTableView {
+    private func callScrollViewDidScroll(_ contentOffset: CGPoint) {
+        guard let didScrollTableClosure = didScrollTableClosure else {
+            return
+        }
+        didScrollTableClosure(self, contentOffset)
+    }
+
+    private func callVisibleCells() {
+        guard let visibleCellsClosure = visibleCellsClosure else { return }
+        guard let cells: [T] = self.visibleCells as? [T] else { return }
+        var elements: [G] = []
+        var indexPaths: [IndexPath] = []
+        cells.forEach {
+            if let indexPath = self.indexPath(for: $0) {
+                indexPaths.append(indexPath)
+                elements.append(items[indexPath.row])
+            }
+        }
+        visibleCellsClosure(self, cells, elements, indexPaths)
+    }
+
     private func callWillDisplayLastCellClosure(cell: UITableViewCell, indexPath: IndexPath) {
         guard
             let willDisplayLastCellClosure = willDisplayLastCellClosure,
@@ -165,6 +183,10 @@ extension DeclarativeTableView {
         DispatchQueue.main.async {
             self.reload()
             self.layoutIfNeeded()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                self.callVisibleCells()
+            }
+
         }
     }
 
@@ -228,6 +250,11 @@ extension DeclarativeTableView {
         return self
     }
 
+    @discardableResult
+    func visibleCells(_ closure: ((DeclarativeTableView, [T], [G], [IndexPath]) -> Void)?) -> DeclarativeTableView {
+        self.visibleCellsClosure = closure
+        return self
+    }
 }
 
 // MARK: - Declarative UI

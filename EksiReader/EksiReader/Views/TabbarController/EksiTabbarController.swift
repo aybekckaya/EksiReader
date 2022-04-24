@@ -39,20 +39,6 @@ enum EksiTabbarItem {
             return "newspaper"
         }
     }
-
-//    func endpoint(for page: Int) -> EREndpoint? {
-//        switch self {
-//        case .today:
-//            return .today(page: page)
-//        case .popular:
-//            return nil
-//        case .search:
-//            return nil
-//        case .settings:
-//            return nil
-//        }
-//    }
-
 }
 
 class EksiTabbarController: UITabBarController {
@@ -60,12 +46,6 @@ class EksiTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabbarItems()
-        setupUI()
-    }
-
-    func setupUI() {
-        self.tabBar.unselectedItemTintColor = UIColor.black
-        self.tabBar.tintColor = UIColor.white
     }
 
     private func tabbarItems() {

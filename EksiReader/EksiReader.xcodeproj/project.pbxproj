@@ -89,6 +89,8 @@
 		A369A651280E2A2C00494B40 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A649280E2A2C00494B40 /* TopicCell.swift */; };
 		A369A652280E2A2C00494B40 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A64B280E2A2C00494B40 /* TopicViewController.swift */; };
 		A369A653280E2A2C00494B40 /* TopicRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A64D280E2A2C00494B40 /* TopicRouter.swift */; };
+		A37A760528145B7600637BF9 /* CustomViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760428145B7600637BF9 /* CustomViewStyling.swift */; };
+		A37AE2092814330800AC9EBB /* ERPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AE2082814330800AC9EBB /* ERPagingView.swift */; };
 		A37B7870280499F900DED4F1 /* EksiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B786F280499F900DED4F1 /* EksiError.swift */; };
 		A37B787228049CF300DED4F1 /* TopicListPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787128049CF300DED4F1 /* TopicListPresentation.swift */; };
 		A37B78752804AE5800DED4F1 /* TopicListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78742804AE5800DED4F1 /* TopicListCell.swift */; };
@@ -218,6 +220,8 @@
 		A369A649280E2A2C00494B40 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		A369A64B280E2A2C00494B40 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		A369A64D280E2A2C00494B40 /* TopicRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicRouter.swift; sourceTree = "<group>"; };
+		A37A760428145B7600637BF9 /* CustomViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewStyling.swift; sourceTree = "<group>"; };
+		A37AE2082814330800AC9EBB /* ERPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERPagingView.swift; sourceTree = "<group>"; };
 		A37B786F280499F900DED4F1 /* EksiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiError.swift; sourceTree = "<group>"; };
 		A37B787128049CF300DED4F1 /* TopicListPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListPresentation.swift; sourceTree = "<group>"; };
 		A37B78742804AE5800DED4F1 /* TopicListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListCell.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 				A32CA816280ADF5C005DE47B /* MainStyling.swift */,
 				A32CA818280ADFAD005DE47B /* TodaysViewStyling.swift */,
 				A32CA81A280ADFD7005DE47B /* TopicViewStyling.swift */,
+				A37A760428145B7600637BF9 /* CustomViewStyling.swift */,
 			);
 			path = Styling;
 			sourceTree = "<group>";
@@ -741,6 +746,7 @@
 				A3E8E89328076993006DF479 /* ERListView.swift */,
 				A32CA82C280B5C19005DE47B /* LottieRefreshControl.swift */,
 				A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */,
+				A37AE2082814330800AC9EBB /* ERPagingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -969,6 +975,7 @@
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
+				A37A760528145B7600637BF9 /* CustomViewStyling.swift in Sources */,
 				A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */,
 				A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
@@ -1012,6 +1019,7 @@
 				A311FC472802C59800EE27A3 /* NetworkingValidator.swift in Sources */,
 				A3E8E89428076993006DF479 /* ERListView.swift in Sources */,
 				A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */,
+				A37AE2092814330800AC9EBB /* ERPagingView.swift in Sources */,
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
 				A369A629280CA31200494B40 /* EntryViewModel.swift in Sources */,

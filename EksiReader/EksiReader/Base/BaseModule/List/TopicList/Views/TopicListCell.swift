@@ -10,9 +10,7 @@ import UIKit
 
 class TopicListCell: UITableViewCell, ERListCell {
 
-
     typealias T = TopicListItemPresentation
-
 
     private let lblTitle = UILabel
         .label()

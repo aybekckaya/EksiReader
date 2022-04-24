@@ -43,9 +43,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let viewController = EntryVC(viewModel: viewModel)
 //        ERNavUtility.setWindowRoot(window: self.window, viewController: viewController)
 
-        ERNavUtility.initialize()
+
+
+//           self.tabController.tabBar.standardAppearance = appearance
+//           self.tabController.tabBar.scrollEdgeAppearance = view.standardAppearance
         let tabbarController = EksiTabbarController()
-        ERNavUtility.setWindowRoot(window: self.window, tabBarController: tabbarController)
+        ERNavUtility.initialize(with: window, tabBarController: tabbarController)
+        ERNavUtility.showRootViewController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

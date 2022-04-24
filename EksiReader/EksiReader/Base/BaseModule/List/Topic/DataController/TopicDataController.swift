@@ -18,6 +18,7 @@ class TopicDataController: PagableDataController {
     var entries: [TopicEntry] = []
     var currentPageIndex: Int = 0
     var finalPageIndex: Int = Int.max
+    var totalPages: Int = 0
     var response: TodayTopicResponse?
 
     var endpoint: EREndpoint? {

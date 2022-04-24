@@ -8,12 +8,24 @@
 import Foundation
 import UIKit
 
-class TopicListViewController: ERViewController {
-    private let viewModel: TopicListViewModel
-    private let listView: ERListView<TopicListCell, TopicListItemPresentation> = .init()
+class TopicListViewController: ERViewController, PagableViewController {
+
+    typealias Cell = TopicListCell
+    typealias PresentationItem = TopicListItemPresentation
+    typealias ViewModel = TopicListViewModel
+
+    let _viewModel: TopicListViewModel
+
+    var viewModel: TopicListViewModel { _viewModel }
+    var showsPagingIndicatorView: Bool { true }
+    var pageIndicatorView: ERPagingView? { _pageIndicatorView }
+    var listView: ERListView<TopicListCell, TopicListItemPresentation> { _listView }
+
+    private let _pageIndicatorView = ERPagingView.erPagingView()
+    private let _listView: ERListView<Cell, PresentationItem> = .init()
 
     init(viewModel: TopicListViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,8 +39,10 @@ extension TopicListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        initializePagableViewController()
         addListeners()
-        var _viewModel = viewModel
+
+        var _viewModel = _viewModel
         _viewModel.loadNewItems()
         _viewModel.initializeViewModel()
     }
@@ -39,19 +53,21 @@ extension TopicListViewController {
     private func setUpUI() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
-        listView
+        _listView
             .add(into: self.view)
             .fit()
 
-        listView
+        _listView
             .loadNewItems { list in
-                var _viewModel = self.viewModel
+                var _viewModel = self._viewModel
                 _viewModel.loadNewItems()
             }.resetItems { list in
                 self.refreshItems()
             }.selectedItem { list, indexPath, presentation in
                 //var _viewModel = self.viewModel
-                self.viewModel.selectItem(withIdentifier: presentation.id)
+                self._viewModel.selectItem(withIdentifier: presentation.id)
+            }.visiblePage { _, presentations in
+                self.viewModel.visiblePresentations(presentations)
             }
     }
 }
@@ -59,7 +75,7 @@ extension TopicListViewController {
 // MARK: - Actions
 extension TopicListViewController {
     @objc private func refreshItems() {
-        var _viewModel = viewModel
+        var _viewModel = _viewModel
         _viewModel.resetEntries()
         _viewModel.loadNewItems()
     }
@@ -68,7 +84,7 @@ extension TopicListViewController {
 // MARK: - Listeners
 extension TopicListViewController {
     private func addListeners() {
-        var _viewModel = viewModel
+        var _viewModel = _viewModel
         _viewModel.bind { [weak self] change in
             self?.handle(change)
         }
@@ -79,22 +95,24 @@ extension TopicListViewController {
 extension TopicListViewController {
     private func handle(_ change: PagableViewModelChange<TopicListItemPresentation>) {
         switch change {
-        case .title(let title):
-            self.setTitle(viewModel.getTitle())
+        case .title(_):
+            self.setTitle(_viewModel.getTitle())
         case .loading(let isVisible):
             isVisible ? self.showFullSizeLoading() : self.hideFullSizeLoading()
         case .footerViewLoading(let isVisible):
-            listView.updateFooterViewVisibility(isVisible: isVisible)
+            _listView.updateFooterViewVisibility(isVisible: isVisible)
         case .presentations(let itemPresentations):
-            listView.configure(with: itemPresentations)
-        case .error(let error):
+            _listView.configure(with: itemPresentations)
+        case .error(_):
             break
         case .fetchNewItemsEnabled(let isEnabled):
-            listView.fetchNewItemsEnabled(isEnabled: isEnabled)
-        case .reloadItemsAtIndexes(let indexes):
+            _listView.fetchNewItemsEnabled(isEnabled: isEnabled)
+        case .reloadItemsAtIndexes(_):
             break
-        case .infoToast(let message):
+        case .infoToast(_):
             break 
+        case .pages(let currentPage, let totalPage):
+            self.pageIndicatorView?.updateTitle(currentPage: currentPage, totalPage: totalPage)
         }
     }
 }

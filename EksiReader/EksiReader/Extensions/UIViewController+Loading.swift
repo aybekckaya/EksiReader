@@ -17,3 +17,18 @@ extension ERViewController {
         EksiLoadingView.hide(from: self.view)
     }
 }
+
+
+extension UIViewController {
+    var statusBarHeight: CGFloat {
+        return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 20.0)
+    }
+
+    var navigationBarHeight: CGFloat {
+        return (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }
+
+    var topbarHeight: CGFloat {
+            return statusBarHeight + navigationBarHeight
+        }
+}

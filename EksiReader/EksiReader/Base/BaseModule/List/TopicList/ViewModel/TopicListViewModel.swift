@@ -17,6 +17,7 @@ class TopicListViewModel: PagableViewModel {
     var dataController: TopicListDataController
     var router: TopicListRouter
     var changeHandler: PagableViewModelChangeCallback<PagableViewModelChange<TopicListItemPresentation>>?
+
     var currentPresentations: [TopicListItemPresentation] = []
 
     var listSortingType: ERListSortType {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+typealias PagableViewModelChangeCallback<T> = (T) -> Void
 
 // MARK: - PagableViewModel
 enum PagableViewModelChange<P> {
@@ -18,9 +19,10 @@ enum PagableViewModelChange<P> {
     case fetchNewItemsEnabled(isEnabled: Bool)
     case reloadItemsAtIndexes(indexes: [Int])
     case infoToast(message: String)
+    case pages(currentPage: Int, totalPage: Int)
 }
 
-typealias PagableViewModelChangeCallback<T> = (T) -> Void
+// MARK:- Pagable View Model
 protocol PagableViewModel {
     associatedtype DataController: PagableDataController
     associatedtype Router
@@ -41,10 +43,17 @@ protocol PagableViewModel {
     mutating func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>)
     mutating func resetEntries()
     mutating func loadNewItems()
+    func visiblePresentations(_ presentations: [Presentation])
     func trigger(_ change: PagableViewModelChange<Presentation>)
 }
 
 extension PagableViewModel {
+
+    func visiblePresentations(_ presentations: [Presentation]) {
+        let presentationPageIndexes: [Int] = presentations.map { $0.page }
+        let currentVisiblePageIndex = dataController.currentVisiblePage(from: presentationPageIndexes)
+        trigger(.pages(currentPage: currentVisiblePageIndex, totalPage: dataController.totalPages))
+    }
 
     mutating func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>) {
         self.changeHandler = callback
@@ -64,22 +73,29 @@ extension PagableViewModel {
         _dataController.loadNewItems { currentEntries, newEntries, error in
             let _currentEntries = (currentEntries as [Entry]) 
             let _newEntries = (newEntries as [Entry])
-            _self.handleData(currentEntries: _currentEntries, newEntries: _newEntries, error: error)
+            _self.handleData(currentEntries: _currentEntries,
+                             newEntries: _newEntries,
+                             error: error,
+                             entryPage: _dataController.currentPageIndex)
             _self.updateLoadingViewVisiblity(forcedVisiblity: nil)
             _self.updateTitle()
         }
     }
 
-    private mutating func handleData(currentEntries: [Entry], newEntries: [Entry], error: EksiError?) {
+    private mutating func handleData(currentEntries: [Entry],
+                                     newEntries: [Entry],
+                                     error: EksiError?,
+                                     entryPage: Int) {
         let newPresentations: [Presentation] = newEntries.compactMap {
             guard let presentationEntry = $0 as? Presentation.PresentationEntry else { return nil }
-            return Presentation.init(entry: presentationEntry)
+            return Presentation.init(entry: presentationEntry, entryPage: entryPage)
         }
 
         let dateSortedItems = dateSortedPresentations(from: newPresentations)
         currentPresentations.append(contentsOf: dateSortedItems)
         
         trigger(.presentations(itemPresentations: currentPresentations))
+        trigger(.pages(currentPage: dataController.currentPageIndex, totalPage: dataController.totalPages))
         updateFooterLoadingViewVisibility()
     }
 
@@ -111,10 +127,7 @@ extension PagableViewModel {
                     return $0 as? Presentation
                 }
         }
-
     }
-
-
 
     private func updateFooterLoadingViewVisibility() {
         guard !currentPresentations.isEmpty else {
