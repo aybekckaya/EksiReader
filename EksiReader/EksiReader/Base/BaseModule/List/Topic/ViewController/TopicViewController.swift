@@ -55,6 +55,10 @@ extension TopicViewController {
 extension TopicViewController {
     private func setUpUI() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+
+        let imageSort = UIImage(systemName: "arrow.up.arrow.down")!
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: imageSort, style: .plain, target: self, action: #selector(sortingDidTapped))
+
         _listView
             .add(into: self.view)
             .fit()
@@ -80,6 +84,13 @@ extension TopicViewController {
             }.visiblePage { _, presentations in
                 self.viewModel.visiblePresentations(presentations)
             }
+    }
+}
+
+// MARK: - Actions
+extension TopicViewController {
+    @objc private func sortingDidTapped() {
+        viewModel.toggleSortingType()
     }
 }
 

@@ -62,6 +62,7 @@ extension PagableViewModel {
     mutating func resetEntries() {
         var _dataController = dataController
         _dataController.reset()
+        currentPresentations = []
     }
 
     mutating func loadNewItems() {

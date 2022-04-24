@@ -30,6 +30,14 @@ class TopicViewModel: PagableViewModel {
 
 // MARK: - Public
 extension TopicViewModel {
+    func toggleSortingType() {
+        var _self = self
+        dataController.toggleSortingType()
+        dataController.reset()
+        _self.resetEntries()
+        _self.loadNewItems()
+    }
+
     func share(id: Int) {
         let link = "https://eksisozluk.com/entry/\(id)"
         router.showShareSheet(eksiLink: link)

@@ -14,6 +14,7 @@ class TopicDataController: PagableDataController {
 
     private let topicId: Int
     private var storage: ERStorage?
+    private var _sortingType: ERListSortType = .lastToFirst
 
     var entries: [TopicEntry] = []
     var currentPageIndex: Int = 0
@@ -21,18 +22,9 @@ class TopicDataController: PagableDataController {
     var totalPages: Int = 0
     var response: TodayTopicResponse?
 
-    var endpoint: EREndpoint? {
-        return EREndpoint.topic(id: topicId, page: currentPageIndex)
-    }
-
-    var currentStorage: ERStorage {
-        return storage ?? APP.storage
-    }
-
-    var sortingType: ERListSortType {
-        return .lastToFirst
-    }
-
+    var endpoint: EREndpoint? { EREndpoint.topic(id: topicId, page: currentPageIndex) }
+    var currentStorage: ERStorage { storage ?? APP.storage }
+    var sortingType: ERListSortType { _sortingType }
 
     // Use  storage  as dependency when testing
     init(topicId: Int, storage: ERStorage? = nil) {
@@ -51,6 +43,14 @@ class TopicDataController: PagableDataController {
 
 // MARK: - Public
 extension TopicDataController {
+    func toggleSortingType() {
+        if _sortingType == .lastToFirst {
+            _sortingType = .firstToLast
+        } else {
+            _sortingType = .lastToFirst
+        }
+    }
+
     func isEntryFavorited(entryId: Int) -> Bool {
         return currentStorage.localStorageModel.favoritedEntries.contains(entryId)
     }
