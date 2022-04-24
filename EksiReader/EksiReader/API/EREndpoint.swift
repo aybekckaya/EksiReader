@@ -31,7 +31,7 @@ enum EREndpoint {
     case topic(id: Int, page: Int)
     case entry(id: Int)
     case popular(page: Int, channelFilterData: Data)
-    //case popular()
+
 }
 
 // MARK: - Identifier
@@ -49,6 +49,7 @@ extension EREndpoint {
         case .popular(let page, let channelFilterData):
             let text = String(data: channelFilterData, encoding: .utf8)
             return "Popular-Page-\(page)-Data-\(text ?? "")"
+        
         }
     }
 }

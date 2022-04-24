@@ -14,16 +14,3 @@ class TodayViewController: TopicListViewController {
     }
 }
 
-class SearchViewController: TopicListViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
-
-
-class SettingsViewController: TopicListViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
-

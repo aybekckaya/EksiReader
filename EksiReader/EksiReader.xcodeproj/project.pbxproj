@@ -90,6 +90,11 @@
 		A369A652280E2A2C00494B40 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A64B280E2A2C00494B40 /* TopicViewController.swift */; };
 		A369A653280E2A2C00494B40 /* TopicRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A64D280E2A2C00494B40 /* TopicRouter.swift */; };
 		A37A760528145B7600637BF9 /* CustomViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760428145B7600637BF9 /* CustomViewStyling.swift */; };
+		A37A760D28157D0400637BF9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760C28157D0400637BF9 /* SearchViewController.swift */; };
+		A37A760F28157D2000637BF9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760E28157D2000637BF9 /* SettingsViewModel.swift */; };
+		A37A761128157D3800637BF9 /* SettingsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761028157D3800637BF9 /* SettingsDataController.swift */; };
+		A37A761328157D5200637BF9 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761228157D5200637BF9 /* SettingsPresenter.swift */; };
+		A37A761528157D6000637BF9 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761428157D6000637BF9 /* SettingsRouter.swift */; };
 		A37AE2092814330800AC9EBB /* ERPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AE2082814330800AC9EBB /* ERPagingView.swift */; };
 		A37B7870280499F900DED4F1 /* EksiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B786F280499F900DED4F1 /* EksiError.swift */; };
 		A37B787228049CF300DED4F1 /* TopicListPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787128049CF300DED4F1 /* TopicListPresentation.swift */; };
@@ -221,6 +226,11 @@
 		A369A64B280E2A2C00494B40 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		A369A64D280E2A2C00494B40 /* TopicRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicRouter.swift; sourceTree = "<group>"; };
 		A37A760428145B7600637BF9 /* CustomViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewStyling.swift; sourceTree = "<group>"; };
+		A37A760C28157D0400637BF9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A37A760E28157D2000637BF9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		A37A761028157D3800637BF9 /* SettingsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataController.swift; sourceTree = "<group>"; };
+		A37A761228157D5200637BF9 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		A37A761428157D6000637BF9 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		A37AE2082814330800AC9EBB /* ERPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERPagingView.swift; sourceTree = "<group>"; };
 		A37B786F280499F900DED4F1 /* EksiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiError.swift; sourceTree = "<group>"; };
 		A37B787128049CF300DED4F1 /* TopicListPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListPresentation.swift; sourceTree = "<group>"; };
@@ -491,6 +501,7 @@
 		A331004A27FCD22C00431F26 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				A37A760628157CC200637BF9 /* Settings */,
 				A3362BD2280F6C0D00425CCA /* TodayViewController.swift */,
 				A3CE88C22810A0FB00E44823 /* PopularViewController.swift */,
 			);
@@ -724,6 +735,58 @@
 			isa = PBXGroup;
 			children = (
 				A369A64D280E2A2C00494B40 /* TopicRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A37A760628157CC200637BF9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A37A760B28157CF000637BF9 /* Router */,
+				A37A760A28157CEB00637BF9 /* Presenter */,
+				A37A760928157CDD00637BF9 /* DataController */,
+				A37A760828157CD700637BF9 /* ViewModel */,
+				A37A760728157CD100637BF9 /* ViewController */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A37A760728157CD100637BF9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A37A760C28157D0400637BF9 /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A37A760828157CD700637BF9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A37A760E28157D2000637BF9 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A37A760928157CDD00637BF9 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				A37A761028157D3800637BF9 /* SettingsDataController.swift */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		A37A760A28157CEB00637BF9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A37A761228157D5200637BF9 /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A37A760B28157CF000637BF9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A37A761428157D6000637BF9 /* SettingsRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -965,6 +1028,7 @@
 			files = (
 				A3F5D0B927FD346D0031FA1F /* UIEdgeInsets+Extensions.swift in Sources */,
 				A369A651280E2A2C00494B40 /* TopicCell.swift in Sources */,
+				A37A761528157D6000637BF9 /* SettingsRouter.swift in Sources */,
 				A369A634280CC13100494B40 /* EntryContentView.swift in Sources */,
 				A311FC252802C11700EE27A3 /* Const.swift in Sources */,
 				A311FC3E2802C59800EE27A3 /* NetworkSessionConfiguration.swift in Sources */,
@@ -975,7 +1039,9 @@
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
+				A37A760D28157D0400637BF9 /* SearchViewController.swift in Sources */,
 				A37A760528145B7600637BF9 /* CustomViewStyling.swift in Sources */,
+				A37A761328157D5200637BF9 /* SettingsPresenter.swift in Sources */,
 				A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */,
 				A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */,
 				A3F5D0B727FD346D0031FA1F /* KeyboardListener.swift in Sources */,
@@ -988,6 +1054,7 @@
 				A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */,
 				A32CA81B280ADFD7005DE47B /* TopicViewStyling.swift in Sources */,
 				A3F5D0B627FD346D0031FA1F /* Debouncer.swift in Sources */,
+				A37A761128157D3800637BF9 /* SettingsDataController.swift in Sources */,
 				A311FC0A2802A79300EE27A3 /* TopicListViewModel.swift in Sources */,
 				A369A653280E2A2C00494B40 /* TopicRouter.swift in Sources */,
 				A311FC062802A75C00EE27A3 /* TopicListRouter.swift in Sources */,
@@ -1008,6 +1075,7 @@
 				A369A652280E2A2C00494B40 /* TopicViewController.swift in Sources */,
 				A311FC012802A69E00EE27A3 /* UICollectionView+Extensions.swift in Sources */,
 				A392F6BF280F119E00FB32C6 /* EksiTabbarController.swift in Sources */,
+				A37A760F28157D2000637BF9 /* SettingsViewModel.swift in Sources */,
 				A369A63B280DF51200494B40 /* ERViewProtocols.swift in Sources */,
 				A311FBFF2802A69E00EE27A3 /* DeclarativeCVSizeCalculator.swift in Sources */,
 				A311FC2A2802C44300EE27A3 /* Promise+Extras.swift in Sources */,

@@ -71,27 +71,30 @@ class EksiTabbarController: UITabBarController {
                                                 selectedImage: nil)
         arrNavigationControllers.append(popularNavCon)
 
-        let searchDataController = TopicListDataController(tabbarItem: .search)
-        let searchRouter = TopicListRouter()
-        let searchViewModel = TopicListViewModel(dataController: searchDataController, router: searchRouter)
-        let searchViewController = SearchViewController(viewModel: searchViewModel)
-        let searchNavCon = ERNavigationController(rootViewController: searchViewController)
-        searchNavCon.tabBarItem = UITabBarItem(title: EksiTabbarItem.search.title,
-                                               image: UIImage(systemName: EksiTabbarItem.search.icon),
-                                               selectedImage: nil)
-        arrNavigationControllers.append(searchNavCon)
-
-        let settingsDataController = TopicListDataController(tabbarItem: .settings)
-        let settingsRouter = TopicListRouter()
-        let settingsViewModel = TopicListViewModel(dataController: settingsDataController, router: settingsRouter)
-        let settingsViewController = SearchViewController(viewModel: settingsViewModel)
+        let settingsDataController = SettingsDataController()
+        let settingsRouter = SettingsRouter()
+        let settingsViewModel = SettingsViewModel(dataController: settingsDataController, router: settingsRouter)
+        let settingsViewController = SettingsViewController(viewModel: settingsViewModel)
         let settingsNavCon = ERNavigationController(rootViewController: settingsViewController)
         settingsNavCon.tabBarItem = UITabBarItem(title: EksiTabbarItem.settings.title,
-                                                 image: UIImage(systemName: EksiTabbarItem.settings.icon),
-                                                 selectedImage: nil)
+                                                                                                  image: UIImage(systemName: EksiTabbarItem.settings.icon),
+                                                                                                  selectedImage: nil)
         arrNavigationControllers.append(settingsNavCon)
 
+
+
+//        let settingsDataController = TopicListDataController(tabbarItem: .settings)
+//        let settingsRouter = TopicListRouter()
+//        let settingsViewModel = TopicListViewModel(dataController: settingsDataController, router: settingsRouter)
+//        let settingsViewController = SearchViewController(viewModel: settingsViewModel)
+//        let settingsNavCon = ERNavigationController(rootViewController: settingsViewController)
+//        settingsNavCon.tabBarItem = UITabBarItem(title: EksiTabbarItem.settings.title,
+//                                                 image: UIImage(systemName: EksiTabbarItem.settings.icon),
+//                                                 selectedImage: nil)
+//        arrNavigationControllers.append(settingsNavCon)
+
         viewControllers = arrNavigationControllers
+
     }
 
 
