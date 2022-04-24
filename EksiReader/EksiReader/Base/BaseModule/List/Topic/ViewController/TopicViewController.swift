@@ -77,8 +77,8 @@ extension TopicViewController {
                 self?.viewModel.share(id: entryId)
             }.reportItem { [weak self] _, entryId in
                 NSLog("REPORT: \(entryId)")
-            }.visiblePage { _, currentPage in
-                
+            }.visiblePage { _, presentations in
+                self.viewModel.visiblePresentations(presentations)
             }
     }
 }

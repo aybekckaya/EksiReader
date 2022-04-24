@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-// MARK: - Todays View
+// MARK: - Topic List View
 extension Styling {
-    struct TodaysView {
+    struct TopicListView {
 
     }
 
-    struct TodaysCell {
+    struct TopicListCell {
         static var titleLineSpacing: CGFloat {
             return 8
         }
@@ -37,6 +37,11 @@ extension Styling {
 
         static var countLabelColor: UIColor {
             return Styling.Application.generalTextColor.withAlphaComponent(0.7)
+        }
+
+        static var separatorColor: UIColor {
+            let value: CGFloat = 255.0 / 255.0
+            return UIColor(red: value, green: value, blue: value, alpha: 0.4)
         }
     }
 }

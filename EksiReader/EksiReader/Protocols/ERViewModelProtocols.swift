@@ -93,9 +93,7 @@ extension PagableViewModel {
 
         let dateSortedItems = dateSortedPresentations(from: newPresentations)
         currentPresentations.append(contentsOf: dateSortedItems)
-        
         trigger(.presentations(itemPresentations: currentPresentations))
-        trigger(.pages(currentPage: dataController.currentPageIndex, totalPage: dataController.totalPages))
         updateFooterLoadingViewVisibility()
     }
 

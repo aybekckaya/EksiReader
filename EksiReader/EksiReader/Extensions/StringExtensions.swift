@@ -13,7 +13,7 @@ extension String {
         let attributedString = NSMutableAttributedString(string: self)
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = Styling.TodaysCell.titleLineSpacing
+        paragraphStyle.lineSpacing = Styling.TopicListCell.titleLineSpacing
         paragraphStyle.lineHeightMultiple = 1
 
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
@@ -27,7 +27,7 @@ extension String {
         let attributedString = NSMutableAttributedString(string: self)
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = Styling.TodaysCell.titleLineSpacing
+        paragraphStyle.lineSpacing = Styling.TopicListCell.titleLineSpacing
         paragraphStyle.lineHeightMultiple = 1.2
 
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle,

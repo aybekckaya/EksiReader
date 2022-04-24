@@ -32,6 +32,15 @@ extension TopicCell {
         entryContentView
             .add(into: self.contentView)
             .fit()
+
+        UIView
+            .view()
+            .backgroundColor(Styling.TopicListCell.separatorColor)
+            .add(into: self)
+            .bottom(.constant(0))
+            .leading(.constant(0))
+            .trailing(.constant(0))
+            .height(.constant(0.5))
     }
 }
 

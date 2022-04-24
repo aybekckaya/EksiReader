@@ -14,17 +14,17 @@ class TopicListViewController: ERViewController, PagableViewController {
     typealias PresentationItem = TopicListItemPresentation
     typealias ViewModel = TopicListViewModel
 
-    let _viewModel: TopicListViewModel
+    let _viewModel: ViewModel
 
-    var viewModel: TopicListViewModel { _viewModel }
+    var viewModel: ViewModel { _viewModel }
     var showsPagingIndicatorView: Bool { true }
     var pageIndicatorView: ERPagingView? { _pageIndicatorView }
-    var listView: ERListView<TopicListCell, TopicListItemPresentation> { _listView }
+    var listView: ERListView<Cell, PresentationItem> { _listView }
 
     private let _pageIndicatorView = ERPagingView.erPagingView()
     private let _listView: ERListView<Cell, PresentationItem> = .init()
 
-    init(viewModel: TopicListViewModel) {
+    init(viewModel: ViewModel) {
         self._viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

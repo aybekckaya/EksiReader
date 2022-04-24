@@ -14,15 +14,15 @@ class TopicListCell: UITableViewCell, ERListCell {
 
     private let lblTitle = UILabel
         .label()
-        .font(Styling.TodaysCell.titleFont)
-        .textColor(Styling.TodaysCell.titleColor)
+        .font(Styling.TopicListCell.titleFont)
+        .textColor(Styling.TopicListCell.titleColor)
         .alignment(.left)
         .numberOfLines(0)
 
     private let lblCount = UILabel
         .label()
-        .font(Styling.TodaysCell.countLabelFont)
-        .textColor(Styling.TodaysCell.countLabelColor)
+        .font(Styling.TopicListCell.countLabelFont)
+        .textColor(Styling.TopicListCell.countLabelColor)
         .alignment(.right)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -40,16 +40,25 @@ class TopicListCell: UITableViewCell, ERListCell {
         lblCount
             .add(into: self)
             .trailing(.constant(16))
-            .top(.constant(Styling.TodaysCell.verticalMargin))
-            .bottom(.constant(Styling.TodaysCell.verticalMargin))
+            .top(.constant(Styling.TopicListCell.verticalMargin))
+            .bottom(.constant(Styling.TopicListCell.verticalMargin))
             .width(.min(64))
 
         lblTitle
             .add(into: self)
             .leading(.constant(16))
-            .top(.constant(Styling.TodaysCell.verticalMargin))
-            .bottom(.constant(Styling.TodaysCell.verticalMargin))
+            .top(.constant(Styling.TopicListCell.verticalMargin))
+            .bottom(.constant(Styling.TopicListCell.verticalMargin))
             .margin(to: .left(of: lblCount, value: .constant(-16)))
+
+        UIView
+            .view()
+            .backgroundColor(Styling.TopicListCell.separatorColor)
+            .add(into: self)
+            .bottom(.constant(0))
+            .leading(.constant(0))
+            .trailing(.constant(0))
+            .height(.constant(0.5))
     }
 
     func configure(with item: TopicListItemPresentation) {
