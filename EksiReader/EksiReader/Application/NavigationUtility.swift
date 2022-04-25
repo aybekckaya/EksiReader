@@ -57,9 +57,8 @@ class NavigationUtility {
         window.makeKeyAndVisible()
     }
 
-    public func setWindowRoot(window: UIWindow?, tabBarController: EksiTabbarController) {
-
-
+    public func topMostViewController() -> UIViewController? {
+        return window.visibleViewController()
     }
 
     public func push(viewController: ERViewController) {
@@ -72,5 +71,55 @@ class NavigationUtility {
             
         }
     }
+
+    public func showBottomSheetViewController(_ viewController: ERViewController) {
+        viewController.modalPresentationStyle = .pageSheet
+        viewController.sheetPresentationController?.detents = [.medium()]
+        activeNavigationController.present(viewController, animated: true) {
+            
+        }
+    }
     
 }
+
+extension UIWindow {
+
+    func visibleViewController() -> UIViewController? {
+        if let rootViewController: UIViewController = self.rootViewController {
+            return UIWindow.getVisibleViewControllerFrom(vc: rootViewController)
+        }
+        return nil
+    }
+
+    static func getVisibleViewControllerFrom(vc:UIViewController) -> UIViewController {
+        if let navigationController = vc as? UINavigationController,
+            let visibleController = navigationController.visibleViewController  {
+            return UIWindow.getVisibleViewControllerFrom( vc: visibleController )
+        } else if let tabBarController = vc as? UITabBarController,
+            let selectedTabController = tabBarController.selectedViewController {
+            return UIWindow.getVisibleViewControllerFrom(vc: selectedTabController )
+        } else {
+            if let presentedViewController = vc.presentedViewController {
+                return UIWindow.getVisibleViewControllerFrom(vc: presentedViewController)
+            } else {
+                return vc
+            }
+        }
+    }
+}
+
+//let detailViewController = DetailViewController()
+//    let nav = UINavigationController(rootViewController: detailViewController)
+//    // 1
+//    nav.modalPresentationStyle = .pageSheet
+//
+//
+//    // 2
+//    if let sheet = nav.sheetPresentationController {
+//
+//        // 3
+//        sheet.detents = [.medium(), .large()]
+//
+//    }
+//    // 4
+//    present(nav, animated: true, completion: nil)

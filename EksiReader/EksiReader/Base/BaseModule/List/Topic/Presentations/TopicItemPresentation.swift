@@ -17,6 +17,7 @@ struct TopicItemPresentation: PagableListItem, PagablePresentation, DateablePres
     typealias PresentationEntry = TopicEntry
 
     let id: Int
+    let authorId: Int
     let authorName: String
     let authorImageURL: String?
     let content: NSAttributedString
@@ -31,9 +32,11 @@ struct TopicItemPresentation: PagableListItem, PagablePresentation, DateablePres
     var page: Int { entryPage }
 
     private(set) var isFavorited: Bool = false
+    private(set) var isAuthorBlocked: Bool = false
 
     init(entry: TopicEntry, entryPage: Int) {
         self.id = entry.id
+        self.authorId = entry.author?.id ?? -1
         self.entryPage = entryPage
         self.authorName = entry.author?.nick ?? ""
         self.authorImageURL = entry.avatarUrl
@@ -47,6 +50,10 @@ struct TopicItemPresentation: PagableListItem, PagablePresentation, DateablePres
 
     mutating func setFavorited(_ isFavorite: Bool) {
         self.isFavorited = isFavorite
+    }
+
+    mutating func setAuthorBlocked(_ value: Bool) {
+        self.isAuthorBlocked = value 
     }
 }
 

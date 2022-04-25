@@ -48,6 +48,7 @@
 		A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC482802F53400EE27A3 /* EksiCloud.swift */; };
 		A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC4A2803333900EE27A3 /* EksiRequests.swift */; };
 		A311FC4D2803334800EE27A3 /* EksiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311FC4C2803334800EE27A3 /* EksiResponses.swift */; };
+		A3188D2C2815FCCC00F646E8 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3188D2B2815FCCC00F646E8 /* Author.swift */; };
 		A32CA814280AD5A5005DE47B /* EntryAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA813280AD5A5005DE47B /* EntryAuthorView.swift */; };
 		A32CA817280ADF5C005DE47B /* MainStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA816280ADF5C005DE47B /* MainStyling.swift */; };
 		A32CA819280ADFAD005DE47B /* TopicListViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA818280ADFAD005DE47B /* TopicListViewStyling.swift */; };
@@ -90,11 +91,17 @@
 		A369A652280E2A2C00494B40 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A64B280E2A2C00494B40 /* TopicViewController.swift */; };
 		A369A653280E2A2C00494B40 /* TopicRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A64D280E2A2C00494B40 /* TopicRouter.swift */; };
 		A37A760528145B7600637BF9 /* CustomViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760428145B7600637BF9 /* CustomViewStyling.swift */; };
-		A37A760D28157D0400637BF9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760C28157D0400637BF9 /* SearchViewController.swift */; };
+		A37A760D28157D0400637BF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760C28157D0400637BF9 /* SettingsViewController.swift */; };
 		A37A760F28157D2000637BF9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A760E28157D2000637BF9 /* SettingsViewModel.swift */; };
 		A37A761128157D3800637BF9 /* SettingsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761028157D3800637BF9 /* SettingsDataController.swift */; };
 		A37A761328157D5200637BF9 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761228157D5200637BF9 /* SettingsPresenter.swift */; };
 		A37A761528157D6000637BF9 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761428157D6000637BF9 /* SettingsRouter.swift */; };
+		A37A761E2815D33400637BF9 /* ReportPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761D2815D33400637BF9 /* ReportPresentation.swift */; };
+		A37A76202815D34400637BF9 /* ReportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A761F2815D34400637BF9 /* ReportRouter.swift */; };
+		A37A76222815D34F00637BF9 /* ReportDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A76212815D34F00637BF9 /* ReportDataController.swift */; };
+		A37A76242815D37600637BF9 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A76232815D37600637BF9 /* ReportViewModel.swift */; };
+		A37A76262815D3D500637BF9 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A76252815D3D500637BF9 /* ReportViewController.swift */; };
+		A37A76282815D76A00637BF9 /* AuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A76272815D76A00637BF9 /* AuthorView.swift */; };
 		A37AE2092814330800AC9EBB /* ERPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37AE2082814330800AC9EBB /* ERPagingView.swift */; };
 		A37B7870280499F900DED4F1 /* EksiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B786F280499F900DED4F1 /* EksiError.swift */; };
 		A37B787228049CF300DED4F1 /* TopicListPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B787128049CF300DED4F1 /* TopicListPresentation.swift */; };
@@ -183,6 +190,7 @@
 		A311FC482802F53400EE27A3 /* EksiCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiCloud.swift; sourceTree = "<group>"; };
 		A311FC4A2803333900EE27A3 /* EksiRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiRequests.swift; sourceTree = "<group>"; };
 		A311FC4C2803334800EE27A3 /* EksiResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiResponses.swift; sourceTree = "<group>"; };
+		A3188D2B2815FCCC00F646E8 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		A32CA813280AD5A5005DE47B /* EntryAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAuthorView.swift; sourceTree = "<group>"; };
 		A32CA816280ADF5C005DE47B /* MainStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStyling.swift; sourceTree = "<group>"; };
 		A32CA818280ADFAD005DE47B /* TopicListViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewStyling.swift; sourceTree = "<group>"; };
@@ -226,11 +234,17 @@
 		A369A64B280E2A2C00494B40 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		A369A64D280E2A2C00494B40 /* TopicRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicRouter.swift; sourceTree = "<group>"; };
 		A37A760428145B7600637BF9 /* CustomViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewStyling.swift; sourceTree = "<group>"; };
-		A37A760C28157D0400637BF9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A37A760C28157D0400637BF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A37A760E28157D2000637BF9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		A37A761028157D3800637BF9 /* SettingsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataController.swift; sourceTree = "<group>"; };
 		A37A761228157D5200637BF9 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		A37A761428157D6000637BF9 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		A37A761D2815D33400637BF9 /* ReportPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPresentation.swift; sourceTree = "<group>"; };
+		A37A761F2815D34400637BF9 /* ReportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportRouter.swift; path = EksiReader/Pages/Report/Presentation/ReportRouter.swift; sourceTree = SOURCE_ROOT; };
+		A37A76212815D34F00637BF9 /* ReportDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDataController.swift; sourceTree = "<group>"; };
+		A37A76232815D37600637BF9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		A37A76252815D3D500637BF9 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		A37A76272815D76A00637BF9 /* AuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
 		A37AE2082814330800AC9EBB /* ERPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERPagingView.swift; sourceTree = "<group>"; };
 		A37B786F280499F900DED4F1 /* EksiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiError.swift; sourceTree = "<group>"; };
 		A37B787128049CF300DED4F1 /* TopicListPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListPresentation.swift; sourceTree = "<group>"; };
@@ -353,6 +367,7 @@
 			children = (
 				A311FC1E2802BD4D00EE27A3 /* AuthToken.swift */,
 				A37B786F280499F900DED4F1 /* EksiError.swift */,
+				A3188D2B2815FCCC00F646E8 /* Author.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -501,6 +516,7 @@
 		A331004A27FCD22C00431F26 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				A37A76172815D2EB00637BF9 /* Report */,
 				A37A760628157CC200637BF9 /* Settings */,
 				A3362BD2280F6C0D00425CCA /* TodayViewController.swift */,
 				A3CE88C22810A0FB00E44823 /* PopularViewController.swift */,
@@ -754,7 +770,7 @@
 		A37A760728157CD100637BF9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A37A760C28157D0400637BF9 /* SearchViewController.swift */,
+				A37A760C28157D0400637BF9 /* SettingsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -791,6 +807,58 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		A37A76172815D2EB00637BF9 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				A37A761C2815D31E00637BF9 /* Presentation */,
+				A37A761B2815D31700637BF9 /* Router */,
+				A37A761A2815D30300637BF9 /* DataController */,
+				A37A76192815D2FC00637BF9 /* ViewModel */,
+				A37A76182815D2F400637BF9 /* ViewController */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		A37A76182815D2F400637BF9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A37A76252815D3D500637BF9 /* ReportViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A37A76192815D2FC00637BF9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A37A76232815D37600637BF9 /* ReportViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A37A761A2815D30300637BF9 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				A37A76212815D34F00637BF9 /* ReportDataController.swift */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		A37A761B2815D31700637BF9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A37A761F2815D34400637BF9 /* ReportRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A37A761C2815D31E00637BF9 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A37A761D2815D33400637BF9 /* ReportPresentation.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		A37B78732804AE4900DED4F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +878,7 @@
 				A32CA82C280B5C19005DE47B /* LottieRefreshControl.swift */,
 				A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */,
 				A37AE2082814330800AC9EBB /* ERPagingView.swift */,
+				A37A76272815D76A00637BF9 /* AuthorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1027,6 +1096,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3F5D0B927FD346D0031FA1F /* UIEdgeInsets+Extensions.swift in Sources */,
+				A37A76222815D34F00637BF9 /* ReportDataController.swift in Sources */,
 				A369A651280E2A2C00494B40 /* TopicCell.swift in Sources */,
 				A37A761528157D6000637BF9 /* SettingsRouter.swift in Sources */,
 				A369A634280CC13100494B40 /* EntryContentView.swift in Sources */,
@@ -1037,9 +1107,10 @@
 				A311FBFC2802A69E00EE27A3 /* URL+Extensions.swift in Sources */,
 				A369A627280CA2D700494B40 /* EntryRouter.swift in Sources */,
 				A3F5D0B327FD346D0031FA1F /* DeclarativeLayout.swift in Sources */,
+				A37A761E2815D33400637BF9 /* ReportPresentation.swift in Sources */,
 				A3F5D0B427FD346D0031FA1F /* DeclarativeUI.swift in Sources */,
 				A32CA820280AE946005DE47B /* DateFormatter+Extensions.swift in Sources */,
-				A37A760D28157D0400637BF9 /* SearchViewController.swift in Sources */,
+				A37A760D28157D0400637BF9 /* SettingsViewController.swift in Sources */,
 				A37A760528145B7600637BF9 /* CustomViewStyling.swift in Sources */,
 				A37A761328157D5200637BF9 /* SettingsPresenter.swift in Sources */,
 				A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */,
@@ -1076,6 +1147,7 @@
 				A311FC012802A69E00EE27A3 /* UICollectionView+Extensions.swift in Sources */,
 				A392F6BF280F119E00FB32C6 /* EksiTabbarController.swift in Sources */,
 				A37A760F28157D2000637BF9 /* SettingsViewModel.swift in Sources */,
+				A37A76242815D37600637BF9 /* ReportViewModel.swift in Sources */,
 				A369A63B280DF51200494B40 /* ERViewProtocols.swift in Sources */,
 				A311FBFF2802A69E00EE27A3 /* DeclarativeCVSizeCalculator.swift in Sources */,
 				A311FC2A2802C44300EE27A3 /* Promise+Extras.swift in Sources */,
@@ -1091,6 +1163,7 @@
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
 				A369A629280CA31200494B40 /* EntryViewModel.swift in Sources */,
+				A37A76262815D3D500637BF9 /* ReportViewController.swift in Sources */,
 				A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */,
 				A311FC002802A69E00EE27A3 /* DeclarativeTableView.swift in Sources */,
 				A369A632280CB84C00494B40 /* EntryTextContentView.swift in Sources */,
@@ -1105,6 +1178,8 @@
 				A369A61C280C6E0A00494B40 /* NetworkingDataResponse.swift in Sources */,
 				A311FC182802AFCD00EE27A3 /* Configuration.swift in Sources */,
 				A311FC492802F53400EE27A3 /* EksiCloud.swift in Sources */,
+				A37A76202815D34400637BF9 /* ReportRouter.swift in Sources */,
+				A3188D2C2815FCCC00F646E8 /* Author.swift in Sources */,
 				A3F5D0B827FD346D0031FA1F /* UIViewController+Extensions.swift in Sources */,
 				A311FC162802A99800EE27A3 /* NavigationUtility.swift in Sources */,
 				A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */,
@@ -1114,6 +1189,7 @@
 				A3F5D0BC27FD346D0031FA1F /* UINib+Loading.swift in Sources */,
 				A311FC1D2802BC6F00EE27A3 /* EREndpoint.swift in Sources */,
 				A37B787228049CF300DED4F1 /* TopicListPresentation.swift in Sources */,
+				A37A76282815D76A00637BF9 /* AuthorView.swift in Sources */,
 				A369A64E280E2A2C00494B40 /* TopicViewModel.swift in Sources */,
 				A311FC0D2802A7C100EE27A3 /* ERViewController.swift in Sources */,
 				A311FBFB2802A69E00EE27A3 /* UITableView+Extensions.swift in Sources */,

@@ -25,11 +25,34 @@ class TopicViewModel: PagableViewModel {
     required init(dataController: TopicDataController, router: TopicRouter) {
         self.dataController = dataController
         self.router = router
+        addListeners()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+// MARK: - Listeners
+extension TopicViewModel {
+    private func addListeners() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.reloadTopicList, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            let newPresentations = self.updatedPresentations()
+            self.changeHandler?(.presentations(itemPresentations: newPresentations))
+        }
     }
 }
 
 // MARK: - Public
 extension TopicViewModel {
+    func navigateToReport(entryId: Int) {
+        let entry = dataController.getEntry(by: entryId)
+        guard let author = entry.author else { return }
+        let authorModel = Author(id: author.id, nick: author.nick, avatarURL: entry.avatarUrl)
+        router.showReportSheet(author: authorModel)
+    }
+    
     func toggleSortingType() {
         var _self = self
         dataController.toggleSortingType()
@@ -56,16 +79,12 @@ extension TopicViewModel {
         currentPresentations.forEach {
             var presentation = $0
             presentation.setFavorited(dataController.isEntryFavorited(entryId: $0.id))
+            presentation.setAuthorBlocked(dataController.isAuthorBlocked(authorId: $0.authorId))
             newPresentations.append(presentation)
         }
         currentPresentations = newPresentations
-//            .sorted { ($0.createdDateValue ?? Date(timeIntervalSince1970: 0)) < ($1.createdDateValue ?? Date(timeIntervalSince1970: 0))  }
         return newPresentations
     }
-
-//    func navigateToEntryViewController(entryId: Int) {
-//        self.router.routeToEntry(entryId: entryId)
-//    }
 }
 
 

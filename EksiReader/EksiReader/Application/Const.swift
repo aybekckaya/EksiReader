@@ -12,4 +12,8 @@ struct ERKey {
     static let loadingViewTag = 1071
     static let localStorageDirectoryPath = "Local"
     static let localStorageFilePath = "LocalStorage"
+
+    struct NotificationName {
+        static let reloadTopicList = Notification.Name("reloadTopicListNotificationName")
+    }
 }

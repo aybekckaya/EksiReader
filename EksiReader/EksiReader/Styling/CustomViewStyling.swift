@@ -23,6 +23,13 @@ extension Styling {
         static var titleFont: UIFont {
             return C.Font.regular.font(size: 12)
         }
+    }
+}
 
+extension Styling {
+    struct ReportView {
+        static var nickFont: UIFont {
+            return C.Font.italic.font(size: 15)
+        }
     }
 }

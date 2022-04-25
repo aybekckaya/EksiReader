@@ -22,4 +22,13 @@ class TopicRouter {
         let viewController = EntryVC(viewModel: viewModel)
         ERNavUtility.push(viewController: viewController)
     }
+
+    func showReportSheet(author: Author) {
+        let dataController = ReportDataController(author: author)
+        let router = ReportRouter()
+        let viewModel = ReportViewModel(dataController: dataController, router: router)
+        let viewController = ReportViewController(viewModel: viewModel)
+        ERNavUtility.showBottomSheetViewController(viewController)
+    }
 }
+

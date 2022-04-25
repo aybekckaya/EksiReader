@@ -27,6 +27,11 @@ extension Styling {
             return C.Font.italic.font(size: 12)
         }
 
+        static var imageViewBGColor: UIColor {
+            return .darkGray
+        }
+
+
         static var nickLabelTextColor: UIColor {
             return Styling.Application.generalTextColor.withAlphaComponent(1.0)
         }

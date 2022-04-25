@@ -52,6 +52,11 @@ extension TopicCell {
 
     func configure(with item: TopicItemPresentation) {
         entryContentView.configure(with: item)
+        if item.isAuthorBlocked {
+            entryContentView.alpha = 0.3
+        } else {
+            entryContentView.alpha = 1.0
+        }
     }
 }
 

@@ -34,7 +34,7 @@ class EntryAuthorView: UIView {
         .imageView()
         .contentMode(.scaleAspectFill)
         .clipToBounds(true)
-        .backgroundColor(.systemGray)
+        .backgroundColor(Styling.TopicCell.imageViewBGColor)
         .asImageView()
 
 

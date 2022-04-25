@@ -10,30 +10,47 @@ import Foundation
 typealias ERStorageCallback = (ERLocalModel) -> Void
 
 struct ERLocalModel: Codable {
-    let favoritedEntries: [Int]
-    let favoritedAuthors: [Int]
+    var favoritedEntries: [Int]
+    var favoritedAuthors: [Int]
+    var blockedAuthors: [Int]
 
     enum CodingKeys: String, CodingKey {
         case favoritedEntries = "favoritedEntries"
         case favoritedAuthors = "favoritedAuthors"
+        case blockedAuthors = "blockedAuthors"
     }
 
-    init(favoritedEntries: [Int], favoritedAuthors: [Int]) {
+    init(favoritedEntries: [Int], favoritedAuthors: [Int], blockedAuthors: [Int]) {
         self.favoritedAuthors = favoritedAuthors
         self.favoritedEntries = favoritedEntries
+        self.blockedAuthors = blockedAuthors
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.favoritedEntries = try container.decodeIfPresent([Int].self, forKey: .favoritedEntries) ?? []
         self.favoritedAuthors = try container.decodeIfPresent([Int].self, forKey: .favoritedAuthors) ?? []
+        self.blockedAuthors = try container.decodeIfPresent([Int].self, forKey: .blockedAuthors) ?? []
+    }
+
+    mutating func setFavoritedEntries(_ value: [Int]) {
+        self.favoritedEntries = value
+    }
+
+    mutating func setFavoritedAuthors(_ value: [Int]) {
+        self.favoritedAuthors = value
+    }
+
+    mutating func setBlockedAuthors(_ value: [Int]) {
+        self.blockedAuthors = value
     }
 
     static var empty: ERLocalModel {
-        return .init(favoritedEntries: [], favoritedAuthors: [])
+        return .init(favoritedEntries: [], favoritedAuthors: [], blockedAuthors: [])
     }
 }
 
+// MARK: - ERStorage
 class ERStorage {
     private(set) var localStorageModel: ERLocalModel = .empty
 
@@ -52,6 +69,14 @@ class ERStorage {
         self.writeLocalStorage(localStorageModel) { _ in
 
         }
+    }
+
+    func toggleFavoriteStatus(of entryId: Int) {
+        changeFavoriteStatus(of: entryId)
+    }
+
+    func toggleAuthorBlockingStatus(of authorId: Int) {
+        changeAuthorBlockingStatus(of: authorId)
     }
 
      private func readLocalStorage(callback: @escaping ERStorageCallback) {
@@ -109,3 +134,36 @@ class ERStorage {
         filePath.createFileIfNotExists()
     }
 }
+
+// MARK: - Favorite
+extension ERStorage {
+    private func changeFavoriteStatus(of entryId: Int) {
+        var currentFavoritedItems: [Int] = localStorageModel.favoritedEntries
+        var newFavoritedItems: [Int] = []
+        if localStorageModel.favoritedEntries.contains(entryId) {
+            newFavoritedItems = currentFavoritedItems
+                .filter { $0 != entryId }
+        } else {
+            currentFavoritedItems.append(entryId)
+            newFavoritedItems = currentFavoritedItems
+        }
+        localStorageModel.setFavoritedEntries(newFavoritedItems)
+    }
+}
+
+// MARK: - Block
+extension ERStorage {
+    private func changeAuthorBlockingStatus(of authorId: Int) {
+        var currentFavoritedItems: [Int] = localStorageModel.blockedAuthors
+        var newFavoritedItems: [Int] = []
+        if localStorageModel.blockedAuthors.contains(authorId) {
+            newFavoritedItems = currentFavoritedItems
+                .filter { $0 != authorId }
+        } else {
+            currentFavoritedItems.append(authorId)
+            newFavoritedItems = currentFavoritedItems
+        }
+        localStorageModel.setBlockedAuthors(newFavoritedItems)
+    }
+}
+

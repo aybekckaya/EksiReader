@@ -43,6 +43,11 @@ class TopicDataController: PagableDataController {
 
 // MARK: - Public
 extension TopicDataController {
+    func getEntry(by id: Int) -> TopicEntry {
+        return entries
+            .first { $0.id == id }!
+    }
+
     func toggleSortingType() {
         if _sortingType == .lastToFirst {
             _sortingType = .firstToLast
@@ -55,19 +60,11 @@ extension TopicDataController {
         return currentStorage.localStorageModel.favoritedEntries.contains(entryId)
     }
 
+    func isAuthorBlocked(authorId: Int) -> Bool {
+        return currentStorage.localStorageModel.blockedAuthors.contains(authorId)
+    }
+
     func changeFavoriteStatusOfEntry(entryId: Int) {
-        let currentFavoritedItems: [Int] = currentStorage.localStorageModel.favoritedEntries
-        var newFavoritedItems: [Int] = []
-
-        if isEntryFavorited(entryId: entryId) {
-            newFavoritedItems = currentFavoritedItems
-                .filter { $0 != entryId }
-        } else {
-            newFavoritedItems.append(entryId)
-        }
-
-        let newStorageModel: ERLocalModel = .init(favoritedEntries: newFavoritedItems,
-                                                  favoritedAuthors: currentStorage.localStorageModel.favoritedAuthors)
-        currentStorage.setLocalStorageModel(newStorageModel)
+        currentStorage.toggleFavoriteStatus(of: entryId)
     }
 }
