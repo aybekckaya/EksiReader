@@ -25,6 +25,7 @@ class TopicListCell: UITableViewCell, ERListCell {
         .textColor(Styling.TopicListCell.countLabelColor)
         .alignment(.right)
 
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpUI()

@@ -49,9 +49,7 @@ class TopicListDataController: PagableDataController {
                 return nil
             }
             return .popular(page: currentPageIndex, channelFilterData: jsonData)
-        case .search:
-            return nil
-        case .settings:
+        case .search, .settings, .notification:
             return nil
         }
     }

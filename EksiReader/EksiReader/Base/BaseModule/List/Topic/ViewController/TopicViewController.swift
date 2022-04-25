@@ -57,7 +57,11 @@ extension TopicViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
         let imageSort = UIImage(systemName: "arrow.up.arrow.down")!
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: imageSort, style: .plain, target: self, action: #selector(sortingDidTapped))
+        let sortButtonItem = UIBarButtonItem(image: imageSort, style: .plain, target: self, action: #selector(sortingDidTapped))
+        let imageWatch = UIImage(systemName: "eye")!
+        let watchButtonItem = UIBarButtonItem(image: imageWatch, style: .plain, target: self, action: #selector(sortingDidTapped))
+        navigationItem.rightBarButtonItems = [sortButtonItem, watchButtonItem]
+
 
         _listView
             .add(into: self.view)

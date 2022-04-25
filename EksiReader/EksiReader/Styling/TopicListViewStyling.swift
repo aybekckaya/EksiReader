@@ -41,7 +41,7 @@ extension Styling {
 
         static var separatorColor: UIColor {
             let value: CGFloat = 255.0 / 255.0
-            return UIColor(red: value, green: value, blue: value, alpha: 0.4)
+            return UIColor(red: value, green: value, blue: value, alpha: 0.2)
         }
     }
 }

@@ -13,6 +13,7 @@ enum EksiTabbarItem {
     case popular
     case search
     case settings
+    case notification
 
     var title: String {
         switch self {
@@ -24,6 +25,8 @@ enum EksiTabbarItem {
             return "Ara"
         case .popular:
             return "Gündem"
+        case .notification:
+            return "Bildirimler"
         }
     }
 
@@ -37,6 +40,8 @@ enum EksiTabbarItem {
             return "magnifyingglass"
         case .popular:
             return "newspaper"
+        case .notification:
+            return "bell"
         }
     }
 }
@@ -70,6 +75,16 @@ class EksiTabbarController: UITabBarController {
                                                 image: UIImage(systemName: EksiTabbarItem.popular.icon),
                                                 selectedImage: nil)
         arrNavigationControllers.append(popularNavCon)
+
+        let notificationDataController = NotificationDataController()
+        let notificationRouter = NotificationRouter()
+        let notificationViewModel = NotificationViewModel(dataController: notificationDataController, router: notificationRouter)
+        let notificationViewController = NotificationViewController(viewModel: notificationViewModel)
+        let notificationNavCon = ERNavigationController(rootViewController: notificationViewController)
+        notificationNavCon.tabBarItem = UITabBarItem(title: EksiTabbarItem.notification.title,
+                                                                                                  image: UIImage(systemName: EksiTabbarItem.notification.icon),
+                                                                                                  selectedImage: nil)
+        arrNavigationControllers.append(notificationNavCon)
 
         let settingsDataController = SettingsDataController()
         let settingsRouter = SettingsRouter()

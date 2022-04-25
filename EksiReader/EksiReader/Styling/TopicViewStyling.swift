@@ -45,7 +45,7 @@ extension Styling {
         }
 
         static var contentLabelFont: UIFont {
-            return C.Font.regular.font(size: 13)
+            return C.Font.regular.font(size: 14)
         }
 
         static var contentColor: UIColor {
