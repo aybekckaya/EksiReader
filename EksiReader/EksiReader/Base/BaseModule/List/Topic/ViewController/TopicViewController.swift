@@ -90,6 +90,8 @@ extension TopicViewController {
             }.selectedAuthor { _, authorId in
                 self.viewModel.navigateToAuthorInfo(authorId: authorId)
             }
+
+        _listView.backgroundColor = .clear
     }
 }
 

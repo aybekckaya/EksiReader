@@ -63,6 +63,8 @@ class EntryContentView: UIView {
             .bottom(.constant(8))
             .height(.constant(44))
             .align(with: .right(of: infoView, value: .constant(-8)))
+
+        self.backgroundColor = .clear
     }
 
     func setDelegate(_ value: EntryContentViewDelegate) {

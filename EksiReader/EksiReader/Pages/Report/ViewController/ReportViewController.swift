@@ -83,7 +83,7 @@ extension ReportViewController {
 // MARK: - Set Up UI
 extension ReportViewController {
     private func setUpUI() {
-        self.view.backgroundColor = Styling.Application.navigationBarColor
+        self.view.backgroundColor = Styling.Application.backgroundColor
 
         stackView
             .add(into: self.view)

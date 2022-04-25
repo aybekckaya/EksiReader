@@ -18,6 +18,8 @@ class EntryTextContentView: UIView, UITextViewDelegate {
         .isEditable(false)
         .scrollEnabled(false)
         .isSelectable(true)
+        .backgroundColor(.clear)
+        .asTextView()
 
     init() {
         super.init(frame: .zero)

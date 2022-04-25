@@ -29,6 +29,7 @@ class TopicCell: UITableViewCell, ERListCell {
 // MARK: -
 extension TopicCell {
     private func setUpUI() {
+        self.backgroundColor = .clear
         entryContentView
             .add(into: self.contentView)
             .fit()
