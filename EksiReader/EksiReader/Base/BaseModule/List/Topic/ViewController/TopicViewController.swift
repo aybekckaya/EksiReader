@@ -83,6 +83,8 @@ extension TopicViewController {
                 self?.viewModel.navigateToReport(entryId: entryId)
             }.visiblePage { _, presentations in
                 self.viewModel.visiblePresentations(presentations)
+            }.selectedAuthor { _, authorId in
+                self.viewModel.navigateToAuthorInfo(authorId: authorId)
             }
     }
 }

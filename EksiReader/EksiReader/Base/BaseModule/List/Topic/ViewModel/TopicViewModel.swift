@@ -46,6 +46,13 @@ extension TopicViewModel {
 
 // MARK: - Public
 extension TopicViewModel {
+    func navigateToAuthorInfo(authorId: Int) {
+        guard authorId != -1 else { return }
+        let authorNick = dataController.entries.first { $0.author?.id == authorId }?.author?.nick
+        guard let authorNick = authorNick else { return }
+        router.routeToAuthorInfo(authorNick: authorNick)
+    }
+
     func navigateToReport(entryId: Int) {
         let entry = dataController.getEntry(by: entryId)
         guard let author = entry.author else { return }

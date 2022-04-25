@@ -12,6 +12,7 @@ protocol EntryContentViewDelegate: AnyObject {
     func entryContentViewDidTappedShare(_ view: EntryContentView, entryId: Int)
     func entryContentViewDidTappedFavorite(_ view: EntryContentView, entryId: Int)
     func entryContentViewDidTappedReport(_ view: EntryContentView, entryId: Int)
+    func entryContentViewDidTappedAuthorInfo(_ view: EntryContentView, authorId: Int)
 }
 
 class EntryContentView: UIView {
@@ -51,7 +52,8 @@ class EntryContentView: UIView {
             .height(.min(1)) 
             .ratio(to: .width(of: self, value: 1.0))
             .onTap { _ in
-                NSLog("YARRAKKKK")
+                self.delegate?.entryContentViewDidTappedAuthorInfo(self,
+                                                                   authorId: self.presentation?.authorId ?? -1)
             }
 
         cellInputView

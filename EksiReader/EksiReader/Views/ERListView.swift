@@ -29,6 +29,7 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
     private var favoriteDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
     private var shareDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
     private var reportDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
+    private var authorDidTappedCallback: ERListItemInputSelectedCallback<C, T>?
     private var visiblePageCallback: ERListItemVisibleCellsCallback<C, T>?
 
     init() {
@@ -135,6 +136,12 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
         return self
     }
 
+    @discardableResult
+    func selectedAuthor(_ callback: ERListItemInputSelectedCallback<C,T>?) -> ERListView<C, T> {
+        self.authorDidTappedCallback = callback
+        return self
+    }
+
     func updateFooterViewVisibility(isVisible: Bool) {
         tableViewItems
             .footerView {
@@ -168,5 +175,10 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
 
     func entryContentViewDidTappedReport(_ view: EntryContentView, entryId: Int) {
         reportDidTappedCallback?(self, entryId)
+    }
+
+    func entryContentViewDidTappedAuthorInfo(_ view: EntryContentView, authorId: Int) {
+        
+        authorDidTappedCallback?(self, authorId)
     }
 }

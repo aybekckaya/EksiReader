@@ -30,5 +30,11 @@ class TopicRouter {
         let viewController = ReportViewController(viewModel: viewModel)
         ERNavUtility.showBottomSheetViewController(viewController)
     }
+
+    func routeToAuthorInfo(authorNick: String) {
+        // https://eksisozluk.com/biri/cobainscream
+        guard let url = URL(string: "https://eksisozluk.com/biri/\(authorNick)") else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }
 
