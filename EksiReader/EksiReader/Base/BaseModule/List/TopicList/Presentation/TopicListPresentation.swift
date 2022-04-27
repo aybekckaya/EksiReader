@@ -18,6 +18,7 @@ struct TopicListItemPresentation: PagableListItem, PagablePresentation {
     let entryPage: Int
 
     var page: Int { entryPage }
+    private(set) var isFollowing: Bool = false
 
     init(entry: PresentationEntry, entryPage: Int) {
         self.id = entry.id
@@ -25,5 +26,9 @@ struct TopicListItemPresentation: PagableListItem, PagablePresentation {
         self.title = entry.title
         self.count = entry.fullCount
         self.attributedTitle = entry.title.attributedTodayTitle()
+    }
+
+    mutating func setIsFollowing(_ value: Bool) {
+        self.isFollowing = value 
     }
 }

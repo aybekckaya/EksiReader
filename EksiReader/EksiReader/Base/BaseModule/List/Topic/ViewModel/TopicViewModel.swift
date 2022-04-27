@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftEntryKit
 
 class TopicViewModel: PagableViewModel {
     typealias DataController = TopicDataController
@@ -46,7 +47,7 @@ extension TopicViewModel {
             self.toggleFollowStatus()
         }
 
-        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.reloadTopicList, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.reloadTopicEntries, object: nil, queue: nil) { [weak self] _ in
             guard let self = self else { return }
             let newPresentations = self.updatedPresentations()
             self.changeHandler?(.presentations(itemPresentations: newPresentations))
@@ -64,6 +65,11 @@ extension TopicViewModel {
 // MARK: - Public
 extension TopicViewModel {
     func navigateToFilterOptions() {
+//        let viewController = TopicFilterViewController(soritngType: listSortingType,
+//                                                       isFollowingEntry: dataController.isTopicFollowing())
+//        var attributes = EKAttributes()
+//        attributes.position = .bottom
+//        SwiftEntryKit.display(entry: viewController, using: attributes, presentInsideKeyWindow: true)
         self.router.showMenuSheet(soritngType: listSortingType,
                                   isFollowingTopic: dataController.isTopicFollowing())
     }

@@ -39,6 +39,10 @@ class TopicDataController: PagableDataController {
             self.finalPageIndex = 0
         }
     }
+
+    deinit {
+        NSLog("DEINIT Topic Data Controller")
+    }
 }
 
 // MARK: - Public
@@ -49,6 +53,10 @@ extension TopicDataController {
 
     func toggleTopicFollowStatus() {
         currentStorage.toggleTopicFollowingStatus(of: topicId)
+        NSLog("Toggling: \(topicId), Following Topics: \(currentStorage.localStorageModel.followingEntries)")
+        let notificationModel = TopicFollowStatusNotificationModel(topicId: topicId,
+                                                                   isFollowing: isTopicFollowing())
+        NotificationCenter.default.post(name: ERKey.NotificationName.reloadTopicList, object: notificationModel)
     }
 
     func getEntry(by id: Int) -> TopicEntry {

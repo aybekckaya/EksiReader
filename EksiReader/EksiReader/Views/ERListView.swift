@@ -35,10 +35,23 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
     init() {
         super.init(frame: .zero)
         setUpUI()
+        addListeners()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    private func addListeners() {
+
+//        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedEntryFollowStatus, object: nil, queue: nil) { [weak self] _ in
+//            guard let self = self else { return }
+//            self.tableViewItems.reload()
+//        }
     }
 
     private func setUpUI() {
@@ -54,16 +67,20 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
         refreshControl.addTarget(self, action: #selector(refreshItems), for: .valueChanged)
 
         tableViewItems
-            .cellAtIndex { tableView, cell, presentation, IndexPath in
+            .cellAtIndex { [weak self] tableView, cell, presentation, IndexPath in
+                guard let self = self else { return }
                 cell.configure(with: presentation as! C.T)
                 if let cell = cell as? TopicCell {
                     cell.setDelegate(self)
                 }
-            }.didSelectCell { tableView, presentation, indexPath in
+            }.didSelectCell {  [weak self] tableView, presentation, indexPath in
+                guard let self = self else { return }
                 self.itemsSelectedCallback?(self, indexPath, presentation)
-            }.didScrollTable { tableView, offset in
+            }.didScrollTable {[weak self]  tableView, offset in
+                guard let self = self else { return }
                self.refreshControl.updateProgress(with: offset.y)
-            }.visibleCells { tableView, cells, items, indexPaths in
+            }.visibleCells { [weak self] tableView, cells, items, indexPaths in
+                guard let self = self else { return }
                 self.callVisiblePageCallback(items: items)
             }
     }
@@ -81,6 +98,10 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
                                                         left:  self.tableViewItems.contentInset.left,
                                                         bottom:  self.tableViewItems.contentInset.bottom,
                                                         right:  self.tableViewItems.contentInset.bottom)
+    }
+
+    func getItems() -> [T] {
+        return self.tableViewItems.items
     }
 
     func configure(with items: [T]) {
@@ -152,7 +173,8 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
     func fetchNewItemsEnabled(isEnabled: Bool) {
         if isEnabled {
             tableViewItems
-                .willDisplayLastCell { tableView, cell, presentation, indexPath in
+                .willDisplayLastCell { [weak self] tableView, cell, presentation, indexPath in
+                    guard let self = self else { return }
                     NSLog("Last Cell Visible")
                     self.loadNewItemsCallback?(self)
             }
@@ -178,7 +200,6 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
     }
 
     func entryContentViewDidTappedAuthorInfo(_ view: EntryContentView, authorId: Int) {
-        
         authorDidTappedCallback?(self, authorId)
     }
 }

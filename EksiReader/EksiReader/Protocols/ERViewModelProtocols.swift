@@ -23,7 +23,7 @@ enum PagableViewModelChange<P> {
 }
 
 // MARK:- Pagable View Model
-protocol PagableViewModel {
+protocol PagableViewModel: AnyObject {
     associatedtype DataController: PagableDataController
     associatedtype Router
     associatedtype Presentation: PagablePresentation
@@ -40,14 +40,18 @@ protocol PagableViewModel {
     init(dataController: DataController,
          router: Router)
 
-    mutating func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>)
-    mutating func resetEntries()
-    mutating func loadNewItems()
+     func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>)
+     func resetEntries()
+     func loadNewItems()
     func visiblePresentations(_ presentations: [Presentation])
     func trigger(_ change: PagableViewModelChange<Presentation>)
+    func reloadPresentations()
 }
 
 extension PagableViewModel {
+    func reloadPresentations() {
+
+    }
 
     func visiblePresentations(_ presentations: [Presentation]) {
         let presentationPageIndexes: [Int] = presentations.map { $0.page }
@@ -55,23 +59,23 @@ extension PagableViewModel {
         trigger(.pages(currentPage: currentVisiblePageIndex, totalPage: dataController.totalPages))
     }
 
-    mutating func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>) {
+     func bind(_ callback: @escaping PagableViewModelChangeCallback<PagableViewModelChange<Presentation>>) {
         self.changeHandler = callback
     }
 
-    mutating func resetEntries() {
+     func resetEntries() {
         var _dataController = dataController
         _dataController.reset()
         currentPresentations = []
     }
 
-    mutating func loadNewItems() {
+     func loadNewItems() {
         updateTitle()
         updateFooterLoadingViewVisibility()
         updateLoadingViewVisiblity(forcedVisiblity: nil)
         var _dataController = dataController
-        var _self = self
-        _dataController.loadNewItems { currentEntries, newEntries, error in
+        _dataController.loadNewItems { [weak self] currentEntries, newEntries, error in
+            guard let _self = self else { return }
             let _currentEntries = (currentEntries as [Entry]) 
             let _newEntries = (newEntries as [Entry])
             _self.handleData(currentEntries: _currentEntries,
@@ -83,7 +87,7 @@ extension PagableViewModel {
         }
     }
 
-    private mutating func handleData(currentEntries: [Entry],
+    private  func handleData(currentEntries: [Entry],
                                      newEntries: [Entry],
                                      error: EksiError?,
                                      entryPage: Int) {
@@ -93,9 +97,28 @@ extension PagableViewModel {
         }
 
         let dateSortedItems = dateSortedPresentations(from: newPresentations)
-        currentPresentations.append(contentsOf: dateSortedItems)
+        let followStatusUpdatedItems = setFollowingStatuses(dateSortedItems)
+        if followStatusUpdatedItems.isEmpty {
+            currentPresentations.append(contentsOf: dateSortedItems)
+        } else {
+            currentPresentations.append(contentsOf: followStatusUpdatedItems)
+        }
+
         trigger(.presentations(itemPresentations: currentPresentations))
         updateFooterLoadingViewVisibility()
+    }
+
+    private func setFollowingStatuses(_ presentations: [Presentation]) -> [Presentation] {
+        let storage = APP.storage
+        var newPresentations: [TopicListItemPresentation] = []
+        presentations.forEach {
+            if var listPresentation = $0 as? TopicListItemPresentation {
+                let isFollowing = storage.isEntryFollowing(entryId: listPresentation.id)
+                listPresentation.setIsFollowing(isFollowing)
+                newPresentations.append(listPresentation)
+            }
+        }
+        return newPresentations.compactMap { $0 as? Presentation }
     }
 
     private func dateSortedPresentations(from presentations: [Presentation]) -> [Presentation] {

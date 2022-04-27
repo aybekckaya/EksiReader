@@ -32,6 +32,10 @@ class TopicListViewController: ERViewController, PagableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK: - Lifecycle
@@ -87,6 +91,23 @@ extension TopicListViewController {
         var _viewModel = _viewModel
         _viewModel.bind { [weak self] change in
             self?.handle(change)
+        }
+
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.reloadTopicList, object: nil, queue: nil) { [weak self] notification in
+            guard let self = self else { return }
+            if let _ = notification.object as? TopicFollowStatusNotificationModel {
+                let storage = APP.storage
+                
+                let newPresentations: [TopicListItemPresentation] = self._listView
+                    .getItems()
+                    .compactMap {
+                        var presentation = $0
+                        let isFollowing = storage.isEntryFollowing(entryId: $0.id)
+                        presentation.setIsFollowing(isFollowing)
+                        return presentation
+                }
+                self.listView.configure(with: newPresentations)
+            }
         }
     }
 }

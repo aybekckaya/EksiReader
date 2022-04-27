@@ -73,10 +73,12 @@ extension TopicViewController {
 
         _listView
             .sortingType(.lastToFirst)
-            .loadNewItems { _ in
+            .loadNewItems { [weak self] _ in
+                guard let self = self else { return }
                 var _viewModel = self.viewModel
                 _viewModel.loadNewItems()
-            }.resetItems { _ in
+            }.resetItems { [weak self] _ in
+                guard let self = self else { return }
                 var _viewModel = self.viewModel
                 _viewModel.resetEntries()
                 _viewModel.loadNewItems()
@@ -89,10 +91,10 @@ extension TopicViewController {
                 self?.viewModel.share(id: entryId)
             }.reportItem { [weak self] _, entryId in
                 self?.viewModel.navigateToReport(entryId: entryId)
-            }.visiblePage { _, presentations in
-                self.viewModel.visiblePresentations(presentations)
-            }.selectedAuthor { _, authorId in
-                self.viewModel.navigateToAuthorInfo(authorId: authorId)
+            }.visiblePage { [weak self] _, presentations in
+                self?.viewModel.visiblePresentations(presentations)
+            }.selectedAuthor { [weak self]  _, authorId in
+                self?.viewModel.navigateToAuthorInfo(authorId: authorId)
             }
 
         _listView.backgroundColor = .clear
@@ -123,12 +125,12 @@ extension TopicViewController {
 // MARK: - Listeners
 extension TopicViewController {
     private func addListeners() {
-        var _viewModel = viewModel
-        _viewModel.bind { change in
+        let _viewModel = viewModel
+        _viewModel.bind { [weak self] change in
+            guard let self = self else { return }
             switch change {
             case .title(let title):
                 self.setTitle(title)
-
             case .fetchNewItemsEnabled(let isEnabled):
                 self._listView.fetchNewItemsEnabled(isEnabled: isEnabled)
             case .error(let error):

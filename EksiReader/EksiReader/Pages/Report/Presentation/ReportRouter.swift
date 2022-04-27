@@ -11,7 +11,7 @@ class ReportRouter {
     func dismissReportViewController() {
         guard let visibleViewController = ERNavUtility.topMostViewController() else { return }
         visibleViewController.dismiss(animated: true) {
-            NotificationCenter.default.post(name: ERKey.NotificationName.reloadTopicList, object: nil)
+            NotificationCenter.default.post(name: ERKey.NotificationName.reloadTopicEntries, object: nil)
         }
     }
 }

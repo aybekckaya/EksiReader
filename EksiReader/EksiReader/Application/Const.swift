@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct TopicFollowStatusNotificationModel {
+    let topicId: Int
+    let isFollowing: Bool
+}
+
 struct ERKey {
     static let authToken = "AuthToken"
     static let loadingViewTag = 1071
@@ -14,8 +19,9 @@ struct ERKey {
     static let localStorageFilePath = "LocalStorage"
 
     struct NotificationName {
-        static let reloadTopicList = Notification.Name("reloadTopicListNotificationName")
+        static let reloadTopicEntries = Notification.Name("reloadTopicEntries")
         static let changedSortingType = Notification.Name("changedSortingType")
         static let changedEntryFollowStatus =  Notification.Name("changedEntryFollowStatus")
+        static let reloadTopicList =  Notification.Name("reloadTopicList")
     }
 }

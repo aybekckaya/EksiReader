@@ -39,6 +39,10 @@ extension Styling {
             return Styling.Application.generalTextColor.withAlphaComponent(0.7)
         }
 
+        static var followSignColor: UIColor {
+            return UIColor.systemBlue
+        }
+
         static var separatorColor: UIColor {
             let value: CGFloat = 255.0 / 255.0
             return UIColor(red: value, green: value, blue: value, alpha: 0.2)

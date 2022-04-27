@@ -25,6 +25,12 @@ class TopicListCell: UITableViewCell, ERListCell {
         .textColor(Styling.TopicListCell.countLabelColor)
         .alignment(.right)
 
+    private let viewFollowSign = UIView
+        .view()
+        .backgroundColor(Styling.TopicListCell.followSignColor)
+
+    private let followContainerView = UIView
+        .view()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,19 +44,40 @@ class TopicListCell: UITableViewCell, ERListCell {
     private func setUpUI() {
         self.backgroundColor = Styling.Application.backgroundColor
 
-        lblCount
+        let stackViewRight = UIStackView
+            .stackView(alignment: .fill, distribution: .fill, spacing: 0, axis: .horizontal)
+
+        stackViewRight
             .add(into: self)
-            .trailing(.constant(16))
-            .top(.constant(Styling.TopicListCell.verticalMargin))
-            .bottom(.constant(Styling.TopicListCell.verticalMargin))
-            .width(.min(64))
+            .trailing(.constant(8))
+            .centerY(.constant(0))
+            .height(.constant(16))
+
+        lblCount
+            .add(intoStackView: stackViewRight)
+            .width(.min(48))
+
+        followContainerView
+            .add(intoStackView: stackViewRight)
+            .width(.constant(16))
+
+        viewFollowSign
+            .add(into: followContainerView)
+            .width(.constant(8))
+            .height(.constant(8))
+            .centerX(.constant(0))
+            .centerY(.constant(1))
+
+        viewFollowSign
+            .roundCorners(by: 4)
 
         lblTitle
             .add(into: self)
             .leading(.constant(16))
             .top(.constant(Styling.TopicListCell.verticalMargin))
             .bottom(.constant(Styling.TopicListCell.verticalMargin))
-            .margin(to: .left(of: lblCount, value: .constant(-16)))
+
+        lblTitle.trailingAnchor.constraint(equalTo: stackViewRight.leadingAnchor, constant: 0).isActive = true
 
         UIView
             .view()
@@ -65,6 +92,7 @@ class TopicListCell: UITableViewCell, ERListCell {
     func configure(with item: TopicListItemPresentation) {
         lblTitle.attributedText = item.attributedTitle
         lblCount.text = "(\(item.count))"
+        followContainerView.isHidden = !item.isFollowing
     }
 
 //    func configure(_ item: TodayPresentation) {

@@ -12,7 +12,7 @@ protocol DeclarativeListItem {}
 
 class DeclarativeTableView<T: UITableViewCell, G: DeclarativeListItem>: UITableView, UITableViewDelegate, UITableViewDataSource {
 
-    private var items: [G] = []
+    private(set) var items: [G] = []
 
     private var cellForRowClosure: ((DeclarativeTableView, T, G, IndexPath) -> Void)?
     private var visibleCellsClosure: ((DeclarativeTableView, [T], [G], [IndexPath]) -> Void)?
