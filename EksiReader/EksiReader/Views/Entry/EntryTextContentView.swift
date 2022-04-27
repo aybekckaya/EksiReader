@@ -38,6 +38,7 @@ class EntryTextContentView: UIView, UITextViewDelegate {
             .top(.constant(16))
             .bottom(.constant(16))
             .height(.min(1))
+        textViewContent.delegate = self
         textViewContent.dataDetectorTypes = .link
     }
 
@@ -45,9 +46,15 @@ class EntryTextContentView: UIView, UITextViewDelegate {
         textViewContent.attributedText = text
     }
 
-//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-//        return true
-//    }
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+
+        guard let urlString = URL.absoluteString.components(separatedBy: "%20").first,  let url = Foundation.URL(string: urlString.replacingOccurrences(of: "0.000000", with: "?")) else { return false }
+        NSLog("url: \(url)")
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+
+
+        return false
+    }
 }
 
 // MARK: - Declarative UI
