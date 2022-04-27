@@ -68,6 +68,7 @@ class TopicFilterViewController: ERViewController {
     private func addListeners() {
         watchInputView
             .onTap { _ in
+                self.dismiss(animated: true, completion: nil)
                 NotificationCenter.default.post(name: ERKey.NotificationName.changedEntryFollowStatus, object: nil)
             }
 
@@ -78,3 +79,4 @@ class TopicFilterViewController: ERViewController {
             }
     }
 }
+

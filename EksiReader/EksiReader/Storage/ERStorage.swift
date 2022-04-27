@@ -13,17 +13,20 @@ struct ERLocalModel: Codable {
     var favoritedEntries: [Int]
     var favoritedAuthors: [Int]
     var blockedAuthors: [Int]
+    var followingEntries: [Int]
 
     enum CodingKeys: String, CodingKey {
         case favoritedEntries = "favoritedEntries"
         case favoritedAuthors = "favoritedAuthors"
         case blockedAuthors = "blockedAuthors"
+        case followingEntries = "followingEntries"
     }
 
-    init(favoritedEntries: [Int], favoritedAuthors: [Int], blockedAuthors: [Int]) {
+    init(favoritedEntries: [Int], favoritedAuthors: [Int], blockedAuthors: [Int], followingEntries: [Int]) {
         self.favoritedAuthors = favoritedAuthors
         self.favoritedEntries = favoritedEntries
         self.blockedAuthors = blockedAuthors
+        self.followingEntries = followingEntries
     }
 
     init(from decoder: Decoder) throws {
@@ -31,6 +34,7 @@ struct ERLocalModel: Codable {
         self.favoritedEntries = try container.decodeIfPresent([Int].self, forKey: .favoritedEntries) ?? []
         self.favoritedAuthors = try container.decodeIfPresent([Int].self, forKey: .favoritedAuthors) ?? []
         self.blockedAuthors = try container.decodeIfPresent([Int].self, forKey: .blockedAuthors) ?? []
+        self.followingEntries = try container.decodeIfPresent([Int].self, forKey: .followingEntries) ?? []
     }
 
     mutating func setFavoritedEntries(_ value: [Int]) {
@@ -45,8 +49,12 @@ struct ERLocalModel: Codable {
         self.blockedAuthors = value
     }
 
+    mutating func setFollowingEntries(_ value: [Int]) {
+        self.followingEntries = value
+    }
+
     static var empty: ERLocalModel {
-        return .init(favoritedEntries: [], favoritedAuthors: [], blockedAuthors: [])
+        return .init(favoritedEntries: [], favoritedAuthors: [], blockedAuthors: [], followingEntries: [])
     }
 }
 
@@ -69,6 +77,14 @@ class ERStorage {
         self.writeLocalStorage(localStorageModel) { _ in
 
         }
+    }
+
+    func toggleTopicFollowingStatus(of entryId: Int) {
+        changeFollowingStatus(of: entryId)
+    }
+
+    func isEntryFollowing(entryId: Int) -> Bool {
+        return localStorageModel.followingEntries.contains(entryId)
     }
 
     func toggleFavoriteStatus(of entryId: Int) {
@@ -167,3 +183,18 @@ extension ERStorage {
     }
 }
 
+// MARK: - Follow Entry
+extension ERStorage {
+    private func changeFollowingStatus(of entryId: Int) {
+        var currentFollowingEntries = localStorageModel.followingEntries
+        var newFollowingEntries: [Int] = []
+        if localStorageModel.followingEntries.contains(entryId) {
+            newFollowingEntries = currentFollowingEntries
+                .filter { $0 != entryId }
+        } else {
+            currentFollowingEntries.append(entryId)
+            newFollowingEntries = currentFollowingEntries
+        }
+        localStorageModel.setFollowingEntries(newFollowingEntries)
+    }
+}

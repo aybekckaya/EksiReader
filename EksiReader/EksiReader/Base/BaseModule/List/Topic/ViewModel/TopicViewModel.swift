@@ -36,12 +36,14 @@ class TopicViewModel: PagableViewModel {
 // MARK: - Listeners
 extension TopicViewModel {
     private func addListeners() {
-        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedSortingType, object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedSortingType, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
             self.toggleSortingType()
         }
 
-        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedEntryFollowStatus, object: nil, queue: nil) { _ in
-            NSLog("EntryFollow Changed")
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedEntryFollowStatus, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.toggleFollowStatus()
         }
 
         NotificationCenter.default.addObserver(forName: ERKey.NotificationName.reloadTopicList, object: nil, queue: nil) { [weak self] _ in
@@ -52,10 +54,18 @@ extension TopicViewModel {
     }
 }
 
+// MARK: - Follow / Unfollow
+extension TopicViewModel {
+    private func toggleFollowStatus() {
+        dataController.toggleTopicFollowStatus()
+    }
+}
+
 // MARK: - Public
 extension TopicViewModel {
     func navigateToFilterOptions() {
-        self.router.showMenuSheet(soritngType: listSortingType, isFollowingEntry: true)
+        self.router.showMenuSheet(soritngType: listSortingType,
+                                  isFollowingTopic: dataController.isTopicFollowing())
     }
 
     func navigateToAuthorInfo(authorId: Int) {
@@ -79,6 +89,8 @@ extension TopicViewModel {
         _self.resetEntries()
         _self.loadNewItems()
     }
+
+
 
     func share(id: Int) {
         let link = "https://eksisozluk.com/entry/\(id)"
@@ -105,6 +117,8 @@ extension TopicViewModel {
         return newPresentations
     }
 }
+
+
 
 
 

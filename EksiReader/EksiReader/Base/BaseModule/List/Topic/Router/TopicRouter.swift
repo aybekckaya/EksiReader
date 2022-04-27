@@ -31,8 +31,8 @@ class TopicRouter {
         ERNavUtility.showBottomSheetViewController(viewController)
     }
 
-    func showMenuSheet(soritngType: ERListSortType, isFollowingEntry: Bool) {
-        let viewController = TopicFilterViewController(soritngType: soritngType, isFollowingEntry: isFollowingEntry)
+    func showMenuSheet(soritngType: ERListSortType, isFollowingTopic: Bool) {
+        let viewController = TopicFilterViewController(soritngType: soritngType, isFollowingEntry: isFollowingTopic)
         ERNavUtility.showBottomSheetViewController(viewController)
     }
 

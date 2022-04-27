@@ -43,6 +43,14 @@ class TopicDataController: PagableDataController {
 
 // MARK: - Public
 extension TopicDataController {
+    func isTopicFollowing() -> Bool {
+        return currentStorage.isEntryFollowing(entryId: topicId)
+    }
+
+    func toggleTopicFollowStatus() {
+        currentStorage.toggleTopicFollowingStatus(of: topicId)
+    }
+
     func getEntry(by id: Int) -> TopicEntry {
         return entries
             .first { $0.id == id }!
