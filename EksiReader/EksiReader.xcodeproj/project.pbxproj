@@ -70,6 +70,7 @@
 		A331003C27FCD1C900431F26 /* EksiReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003B27FCD1C900431F26 /* EksiReaderUITests.swift */; };
 		A331003E27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331003D27FCD1C900431F26 /* EksiReaderUITestsLaunchTests.swift */; };
 		A331004E27FCD25500431F26 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A331004D27FCD25500431F26 /* TopicListViewController.swift */; };
+		A33141992818757200927CF1 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = A33141982818757200927CF1 /* SwiftEntryKit */; };
 		A3362BD3280F6C0D00425CCA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3362BD2280F6C0D00425CCA /* TodayViewController.swift */; };
 		A369A613280C5AD900494B40 /* EksiCloudCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A612280C5AD900494B40 /* EksiCloudCache.swift */; };
 		A369A616280C5E8700494B40 /* SwiftHash in Frameworks */ = {isa = PBXBuildFile; productRef = A369A615280C5E8700494B40 /* SwiftHash */; };
@@ -120,6 +121,10 @@
 		A3DD03BF2816EB5B00D9ADB8 /* NotificationDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03BE2816EB5B00D9ADB8 /* NotificationDataController.swift */; };
 		A3DD03C12816EB7600D9ADB8 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03C02816EB7600D9ADB8 /* NotificationViewModel.swift */; };
 		A3DD03C32816EBE300D9ADB8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03C22816EBE300D9ADB8 /* NotificationViewController.swift */; };
+		A3DD03C52817216F00D9ADB8 /* UIBarButton+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03C42817216F00D9ADB8 /* UIBarButton+Frame.swift */; };
+		A3DD03C7281731E900D9ADB8 /* AnimativeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03C6281731E900D9ADB8 /* AnimativeModalView.swift */; };
+		A3DD03C9281770B100D9ADB8 /* TopicFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03C8281770B100D9ADB8 /* TopicFilterViewController.swift */; };
+		A3DD03CB2817758F00D9ADB8 /* TappableInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD03CA2817758F00D9ADB8 /* TappableInputView.swift */; };
 		A3E8E89428076993006DF479 /* ERListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8E89328076993006DF479 /* ERListView.swift */; };
 		A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */; };
 		A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */; };
@@ -265,6 +270,10 @@
 		A3DD03BE2816EB5B00D9ADB8 /* NotificationDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataController.swift; sourceTree = "<group>"; };
 		A3DD03C02816EB7600D9ADB8 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		A3DD03C22816EBE300D9ADB8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		A3DD03C42817216F00D9ADB8 /* UIBarButton+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButton+Frame.swift"; sourceTree = "<group>"; };
+		A3DD03C6281731E900D9ADB8 /* AnimativeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimativeModalView.swift; sourceTree = "<group>"; };
+		A3DD03C8281770B100D9ADB8 /* TopicFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFilterViewController.swift; sourceTree = "<group>"; };
+		A3DD03CA2817758F00D9ADB8 /* TappableInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableInputView.swift; sourceTree = "<group>"; };
 		A3E8E89328076993006DF479 /* ERListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERListView.swift; sourceTree = "<group>"; };
 		A3F5D0A427FD346D0031FA1F /* DeclarativeAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeAnimations.swift; sourceTree = "<group>"; };
 		A3F5D0A527FD346D0031FA1F /* DeclarativeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarativeString.swift; sourceTree = "<group>"; };
@@ -287,6 +296,7 @@
 			files = (
 				A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */,
 				A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */,
+				A33141992818757200927CF1 /* SwiftEntryKit in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
 				A369A616280C5E8700494B40 /* SwiftHash in Frameworks */,
 				A32CA82B280B313F005DE47B /* Loaf in Frameworks */,
@@ -699,6 +709,7 @@
 			children = (
 				A369A63D280DF62B00494B40 /* StringExtensions.swift */,
 				A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */,
+				A3DD03C42817216F00D9ADB8 /* UIBarButton+Frame.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -744,6 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				A369A649280E2A2C00494B40 /* TopicCell.swift */,
+				A3DD03C8281770B100D9ADB8 /* TopicFilterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -888,6 +900,8 @@
 				A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */,
 				A37AE2082814330800AC9EBB /* ERPagingView.swift */,
 				A37A76272815D76A00637BF9 /* AuthorView.swift */,
+				A3DD03C6281731E900D9ADB8 /* AnimativeModalView.swift */,
+				A3DD03CA2817758F00D9ADB8 /* TappableInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1031,6 +1045,7 @@
 				A32CA82A280B313F005DE47B /* Loaf */,
 				A369A615280C5E8700494B40 /* SwiftHash */,
 				A392F6C4280F233100FB32C6 /* SwipeableTabBarController */,
+				A33141982818757200927CF1 /* SwiftEntryKit */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -1110,6 +1125,7 @@
 				A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */,
 				A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */,
 				A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */,
+				A33141972818757200927CF1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -1185,6 +1201,7 @@
 				A37B78752804AE5800DED4F1 /* TopicListCell.swift in Sources */,
 				A37B787B2804BD7000DED4F1 /* EksiLoadingView.swift in Sources */,
 				A32CA81B280ADFD7005DE47B /* TopicViewStyling.swift in Sources */,
+				A3DD03C52817216F00D9ADB8 /* UIBarButton+Frame.swift in Sources */,
 				A3F5D0B627FD346D0031FA1F /* Debouncer.swift in Sources */,
 				A37A761128157D3800637BF9 /* SettingsDataController.swift in Sources */,
 				A311FC0A2802A79300EE27A3 /* TopicListViewModel.swift in Sources */,
@@ -1196,6 +1213,7 @@
 				A32CA817280ADF5C005DE47B /* MainStyling.swift in Sources */,
 				A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */,
 				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
+				A3DD03CB2817758F00D9ADB8 /* TappableInputView.swift in Sources */,
 				A331004E27FCD25500431F26 /* TopicListViewController.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
 				A3CE88CA28120C9B00E44823 /* ChannelManager.swift in Sources */,
@@ -1223,6 +1241,7 @@
 				A3E8E89428076993006DF479 /* ERListView.swift in Sources */,
 				A311FC4B2803333900EE27A3 /* EksiRequests.swift in Sources */,
 				A37AE2092814330800AC9EBB /* ERPagingView.swift in Sources */,
+				A3DD03C7281731E900D9ADB8 /* AnimativeModalView.swift in Sources */,
 				A311FC292802C44300EE27A3 /* Promise.swift in Sources */,
 				A3F5D0B127FD346D0031FA1F /* DeclarativeAnimations.swift in Sources */,
 				A369A629280CA31200494B40 /* EntryViewModel.swift in Sources */,
@@ -1249,6 +1268,7 @@
 				A331001B27FCD1C700431F26 /* AppDelegate.swift in Sources */,
 				A311FC082802A77400EE27A3 /* TopicListDataController.swift in Sources */,
 				A311FBF72802A69E00EE27A3 /* ScrollableViewController.swift in Sources */,
+				A3DD03C9281770B100D9ADB8 /* TopicFilterViewController.swift in Sources */,
 				A3F5D0BC27FD346D0031FA1F /* UINib+Loading.swift in Sources */,
 				A311FC1D2802BC6F00EE27A3 /* EREndpoint.swift in Sources */,
 				A37B787228049CF300DED4F1 /* TopicListPresentation.swift in Sources */,
@@ -1640,6 +1660,14 @@
 				minimumVersion = 0.6.0;
 			};
 		};
+		A33141972818757200927CF1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aybekckaya/SwiftEntryKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onmyway133/SwiftHash.git";
@@ -1676,6 +1704,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */;
 			productName = Loaf;
+		};
+		A33141982818757200927CF1 /* SwiftEntryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A33141972818757200927CF1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
+			productName = SwiftEntryKit;
 		};
 		A369A615280C5E8700494B40 /* SwiftHash */ = {
 			isa = XCSwiftPackageProductDependency;

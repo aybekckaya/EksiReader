@@ -33,8 +33,6 @@ class NavigationUtility {
 //        self.tabBar.scrollEdgeAppearance = appearance
 //        self.tabBar.standardAppearance = appearance
 
-
-
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = Styling.Application.navigationBarColor

@@ -15,5 +15,7 @@ struct ERKey {
 
     struct NotificationName {
         static let reloadTopicList = Notification.Name("reloadTopicListNotificationName")
+        static let changedSortingType = Notification.Name("changedSortingType")
+        static let changedEntryFollowStatus =  Notification.Name("changedEntryFollowStatus")
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Loaf
+import SwiftEntryKit
 
 class TopicViewController: ERViewController, PagableViewController {
 
@@ -56,12 +57,15 @@ extension TopicViewController {
     private func setUpUI() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
-        let imageSort = UIImage(systemName: "arrow.up.arrow.down")!
-        let sortButtonItem = UIBarButtonItem(image: imageSort, style: .plain, target: self, action: #selector(sortingDidTapped))
-        let imageWatch = UIImage(systemName: "eye")!
-        let watchButtonItem = UIBarButtonItem(image: imageWatch, style: .plain, target: self, action: #selector(sortingDidTapped))
-        navigationItem.rightBarButtonItems = [sortButtonItem, watchButtonItem]
+//        let imageSort = UIImage(systemName: "arrow.up.arrow.down")!
+//        let sortButtonItem = UIBarButtonItem(image: imageSort, style: .plain, target: self, action: #selector(sortingDidTapped))
+//        let imageWatch = UIImage(systemName: "eye")!
+//        let watchButtonItem = UIBarButtonItem(image: imageWatch, style: .plain, target: self, action: #selector(sortingDidTapped))
+//        navigationItem.rightBarButtonItems = [sortButtonItem, watchButtonItem]
 
+        let imageSort = UIImage(systemName: "circle.grid.3x3")!
+        let sortButtonItem = UIBarButtonItem(image: imageSort, style: .plain, target: self, action: #selector(menuViewDidTapped(_:)))
+        navigationItem.rightBarButtonItem = sortButtonItem
 
         _listView
             .add(into: self.view)
@@ -97,6 +101,10 @@ extension TopicViewController {
 
 // MARK: - Actions
 extension TopicViewController {
+    @objc private func menuViewDidTapped(_ sender: UIBarButtonItem) {
+        viewModel.navigateToFilterOptions()
+    }
+
     @objc private func sortingDidTapped() {
         viewModel.toggleSortingType()
     }

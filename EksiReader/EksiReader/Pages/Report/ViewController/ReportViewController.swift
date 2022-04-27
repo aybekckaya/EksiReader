@@ -8,54 +8,13 @@
 import Foundation
 import UIKit
 
-fileprivate class ReportInputView: UIView {
-    private let contentView = UIView
-        .view()
-
-    private let lblTitle = UILabel
-        .label()
-        .font(C.Font.bold.font(size: 15))
-        .textColor(.white)
-        .alignment(.center)
-
-    init() {
-        super.init(frame: .zero)
-        setUpUI()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setUpUI() {
-        contentView
-            .add(into: self)
-            .top(.constant(8))
-            .leading(.constant(24))
-            .trailing(.constant(24))
-            .bottom(.constant(8))
-            .height(.constant(48))
-
-        contentView.roundCorners(by: 8)
-
-        lblTitle
-            .add(into: contentView)
-            .fit()
-    }
-
-    func configure(title: String, backgroundColor: UIColor) {
-        contentView.backgroundColor = backgroundColor
-        lblTitle.text = title
-    }
-}
-
 class ReportViewController: ERViewController {
     private let viewModel: ReportViewModel
 
     private let authorView = AuthorView
         .authorView()
 
-    private let inputViewBlockUser = ReportInputView()
+    private let inputViewBlockUser = TappableInputView()
 
     let stackView = UIStackView
         .stackView(alignment: .fill, distribution: .fill, spacing: 0, axis: .vertical)

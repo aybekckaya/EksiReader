@@ -36,6 +36,14 @@ class TopicViewModel: PagableViewModel {
 // MARK: - Listeners
 extension TopicViewModel {
     private func addListeners() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedSortingType, object: nil, queue: nil) { _ in
+            self.toggleSortingType()
+        }
+
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedEntryFollowStatus, object: nil, queue: nil) { _ in
+            NSLog("EntryFollow Changed")
+        }
+
         NotificationCenter.default.addObserver(forName: ERKey.NotificationName.reloadTopicList, object: nil, queue: nil) { [weak self] _ in
             guard let self = self else { return }
             let newPresentations = self.updatedPresentations()
@@ -46,6 +54,10 @@ extension TopicViewModel {
 
 // MARK: - Public
 extension TopicViewModel {
+    func navigateToFilterOptions() {
+        self.router.showMenuSheet(soritngType: listSortingType, isFollowingEntry: true)
+    }
+
     func navigateToAuthorInfo(authorId: Int) {
         guard authorId != -1 else { return }
         let authorNick = dataController.entries.first { $0.author?.id == authorId }?.author?.nick

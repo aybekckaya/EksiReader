@@ -31,6 +31,11 @@ class TopicRouter {
         ERNavUtility.showBottomSheetViewController(viewController)
     }
 
+    func showMenuSheet(soritngType: ERListSortType, isFollowingEntry: Bool) {
+        let viewController = TopicFilterViewController(soritngType: soritngType, isFollowingEntry: isFollowingEntry)
+        ERNavUtility.showBottomSheetViewController(viewController)
+    }
+
     func routeToAuthorInfo(authorNick: String) {
         // https://eksisozluk.com/biri/cobainscream
         guard let url = URL(string: "https://eksisozluk.com/biri/\(authorNick)") else { return }

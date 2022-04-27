@@ -12,6 +12,8 @@ struct Styling {
 
 }
 
+
+
 // MARK: - Application
 extension Styling {
     struct Application {
