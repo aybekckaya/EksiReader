@@ -48,11 +48,12 @@ class EntryTextContentView: UIView, UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
-        guard let urlString = URL.absoluteString.components(separatedBy: "%20").first,  let url = Foundation.URL(string: urlString.replacingOccurrences(of: "0.000000", with: "?")) else { return false }
+        guard
+            let urlString = URL.absoluteString.components(separatedBy: "%20").first,
+            let url = Foundation.URL(string: urlString.replacingOccurrences(of: "0.000000", with: "?"))
+        else { return false }
         NSLog("url: \(url)")
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-
-
         return false
     }
 }
