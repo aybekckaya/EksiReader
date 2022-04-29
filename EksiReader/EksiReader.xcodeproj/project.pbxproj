@@ -113,6 +113,13 @@
 		A37B78822804CF7300DED4F1 /* EksiFooterLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */; };
 		A392F6BF280F119E00FB32C6 /* EksiTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */; };
 		A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = A392F6C4280F233100FB32C6 /* SwipeableTabBarController */; };
+		A3B1C842281CA42900156023 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C841281CA42900156023 /* FirebaseAnalytics */; };
+		A3B1C844281CA42900156023 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C843281CA42900156023 /* FirebaseAnalyticsSwift-Beta */; };
+		A3B1C846281CA42900156023 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C845281CA42900156023 /* FirebaseCrashlytics */; };
+		A3B1C848281CA42900156023 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C847281CA42900156023 /* FirebasePerformance */; };
+		A3B1C84A281CA42900156023 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C849281CA42900156023 /* FirebaseRemoteConfig */; };
+		A3B1C84C281CA42900156023 /* FirebaseRemoteConfigSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C84B281CA42900156023 /* FirebaseRemoteConfigSwift-Beta */; };
+		A3B1C84E281CA66500156023 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3B1C84D281CA66500156023 /* GoogleService-Info.plist */; };
 		A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C22810A0FB00E44823 /* PopularViewController.swift */; };
 		A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */; };
 		A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */; };
@@ -262,6 +269,7 @@
 		A37B787F2804CF0B00DED4F1 /* EksiLoadingView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EksiLoadingView.json; sourceTree = "<group>"; };
 		A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiFooterLoadingView.swift; sourceTree = "<group>"; };
 		A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiTabbarController.swift; sourceTree = "<group>"; };
+		A3B1C84D281CA66500156023 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3CE88C22810A0FB00E44823 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERNavigationTitleView.swift; sourceTree = "<group>"; };
 		A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
@@ -294,10 +302,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3B1C84A281CA42900156023 /* FirebaseRemoteConfig in Frameworks */,
+				A3B1C842281CA42900156023 /* FirebaseAnalytics in Frameworks */,
 				A392F6C5280F233100FB32C6 /* SwipeableTabBarController in Frameworks */,
+				A3B1C848281CA42900156023 /* FirebasePerformance in Frameworks */,
+				A3B1C844281CA42900156023 /* FirebaseAnalyticsSwift-Beta in Frameworks */,
 				A32CA81E280AE7E3005DE47B /* Kingfisher in Frameworks */,
 				A33141992818757200927CF1 /* SwiftEntryKit in Frameworks */,
+				A3B1C84C281CA42900156023 /* FirebaseRemoteConfigSwift-Beta in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
+				A3B1C846281CA42900156023 /* FirebaseCrashlytics in Frameworks */,
 				A369A616280C5E8700494B40 /* SwiftHash in Frameworks */,
 				A32CA82B280B313F005DE47B /* Loaf in Frameworks */,
 			);
@@ -473,6 +487,7 @@
 		A331000E27FCD1C700431F26 = {
 			isa = PBXGroup;
 			children = (
+				A3B1C84D281CA66500156023 /* GoogleService-Info.plist */,
 				A331001927FCD1C700431F26 /* EksiReader */,
 				A331003027FCD1C900431F26 /* EksiReaderTests */,
 				A331003A27FCD1C900431F26 /* EksiReaderUITests */,
@@ -1033,6 +1048,7 @@
 				A331001327FCD1C700431F26 /* Sources */,
 				A331001427FCD1C700431F26 /* Frameworks */,
 				A331001527FCD1C700431F26 /* Resources */,
+				A3B1C84F281CAC0C00156023 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1046,6 +1062,12 @@
 				A369A615280C5E8700494B40 /* SwiftHash */,
 				A392F6C4280F233100FB32C6 /* SwipeableTabBarController */,
 				A33141982818757200927CF1 /* SwiftEntryKit */,
+				A3B1C841281CA42900156023 /* FirebaseAnalytics */,
+				A3B1C843281CA42900156023 /* FirebaseAnalyticsSwift-Beta */,
+				A3B1C845281CA42900156023 /* FirebaseCrashlytics */,
+				A3B1C847281CA42900156023 /* FirebasePerformance */,
+				A3B1C849281CA42900156023 /* FirebaseRemoteConfig */,
+				A3B1C84B281CA42900156023 /* FirebaseRemoteConfigSwift-Beta */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -1126,6 +1148,7 @@
 				A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */,
 				A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */,
 				A33141972818757200927CF1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
+				A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -1145,6 +1168,7 @@
 			files = (
 				A331002727FCD1C900431F26 /* LaunchScreen.storyboard in Resources */,
 				A37B78802804CF0B00DED4F1 /* EksiLoadingView.json in Resources */,
+				A3B1C84E281CA66500156023 /* GoogleService-Info.plist in Resources */,
 				A32CA82F280B5C3A005DE47B /* lemonLoading.json in Resources */,
 				A331002427FCD1C900431F26 /* Assets.xcassets in Resources */,
 			);
@@ -1165,6 +1189,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A3B1C84F281CAC0C00156023 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A331001327FCD1C700431F26 /* Sources */ = {
@@ -1459,6 +1505,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8FMTT8DQ4W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EksiReader/Info.plist;
@@ -1486,6 +1533,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8FMTT8DQ4W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EksiReader/Info.plist;
@@ -1692,6 +1740,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1724,6 +1780,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */;
 			productName = SwipeableTabBarController;
+		};
+		A3B1C841281CA42900156023 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		A3B1C843281CA42900156023 /* FirebaseAnalyticsSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAnalyticsSwift-Beta";
+		};
+		A3B1C845281CA42900156023 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		A3B1C847281CA42900156023 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		A3B1C849281CA42900156023 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		A3B1C84B281CA42900156023 /* FirebaseRemoteConfigSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseRemoteConfigSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

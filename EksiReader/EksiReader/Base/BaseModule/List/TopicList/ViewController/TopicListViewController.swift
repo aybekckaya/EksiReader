@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class TopicListViewController: ERViewController, PagableViewController {
 
@@ -42,11 +43,18 @@ class TopicListViewController: ERViewController, PagableViewController {
 extension TopicListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+          AnalyticsParameterItemID: "ItemID-Aybek",
+          AnalyticsParameterItemName: "TopicListViewController",
+          AnalyticsParameterContentType: "Content",
+        ])
+
         setUpUI()
         initializePagableViewController()
         addListeners()
 
-        var _viewModel = _viewModel
+        let _viewModel = _viewModel
         _viewModel.loadNewItems()
         _viewModel.initializeViewModel()
     }
@@ -63,7 +71,7 @@ extension TopicListViewController {
 
         _listView
             .loadNewItems { list in
-                var _viewModel = self._viewModel
+                let _viewModel = self._viewModel
                 _viewModel.loadNewItems()
             }.resetItems { list in
                 self.refreshItems()
@@ -79,7 +87,7 @@ extension TopicListViewController {
 // MARK: - Actions
 extension TopicListViewController {
     @objc private func refreshItems() {
-        var _viewModel = _viewModel
+        let _viewModel = _viewModel
         _viewModel.resetEntries()
         _viewModel.loadNewItems()
     }
@@ -88,7 +96,7 @@ extension TopicListViewController {
 // MARK: - Listeners
 extension TopicListViewController {
     private func addListeners() {
-        var _viewModel = _viewModel
+        let _viewModel = _viewModel
         _viewModel.bind { [weak self] change in
             self?.handle(change)
         }
