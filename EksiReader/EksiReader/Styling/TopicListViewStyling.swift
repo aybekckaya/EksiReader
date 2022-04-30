@@ -32,20 +32,19 @@ extension Styling {
         }
 
         static var titleColor: UIColor {
-            return Styling.Application.generalTextColor.withAlphaComponent(0.9)
+            return DarkColorTheme.dominantTextColor
         }
 
         static var countLabelColor: UIColor {
-            return Styling.Application.generalTextColor.withAlphaComponent(0.7)
+            return DarkColorTheme.passiveTextColor
         }
 
         static var followSignColor: UIColor {
-            return UIColor.systemBlue
+            return DarkColorTheme.neutralColor
         }
 
         static var separatorColor: UIColor {
-            let value: CGFloat = 255.0 / 255.0
-            return UIColor(red: value, green: value, blue: value, alpha: 0.2)
+            return DarkColorTheme.separatorColor
         }
     }
 }

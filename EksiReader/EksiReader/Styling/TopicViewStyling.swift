@@ -20,7 +20,7 @@ extension Styling {
         }
 
         static var dateLabelTextColor: UIColor {
-            return Styling.Application.generalTextColor.withAlphaComponent(0.7)
+            return DarkColorTheme.passiveTextColor
         }
 
         static var nickLabelFont: UIFont {
@@ -33,7 +33,7 @@ extension Styling {
 
 
         static var nickLabelTextColor: UIColor {
-            return Styling.Application.generalTextColor.withAlphaComponent(1.0)
+            return DarkColorTheme.dominantTextColor
         }
 
         static var titleLineSpacing: CGFloat {
@@ -49,7 +49,7 @@ extension Styling {
         }
 
         static var contentColor: UIColor {
-            return Styling.Application.generalTextColor.withAlphaComponent(0.9)
+            return DarkColorTheme.dominantTextColor
         }
 
 

@@ -18,12 +18,7 @@ struct Styling {
 extension Styling {
     struct Application {
         static var backgroundColor: UIColor {
-            let val: CGFloat = 21 / 255.0
-            return UIColor(red: val, green: val, blue: val, alpha: 1.0)
-        }
-
-        static var generalTextColor: UIColor {
-            return C.Color.white
+            return DarkColorTheme.background
         }
     }
 }
@@ -31,13 +26,11 @@ extension Styling {
 // MARK: - Navigation Bar
 extension Styling.Application {
     static var navigationBarColor: UIColor {
-        let val: CGFloat = 16 / 255.0
-        return UIColor(red: val, green: val, blue: val, alpha: 1.0)
+        return DarkColorTheme.barColor
     }
 
     static var navigationBarTitleColor: UIColor {
-        let val: CGFloat = 255.0 / 255.0
-        return UIColor(red: val, green: val, blue: val, alpha: 1.0)
+        return DarkColorTheme.barTintColor
     }
 
     static var navigationBarTitleFont: UIFont {
@@ -48,18 +41,15 @@ extension Styling.Application {
 // MARK: - Tab Bar
 extension Styling.Application {
     static var tabBarColor: UIColor {
-        let val: CGFloat = 16 / 255.0
-        return UIColor(red: val, green: val, blue: val, alpha: 1.0)
+        return DarkColorTheme.barColor
     }
 
     static var tabbarTintColor: UIColor {
-        let val: CGFloat = 255.0 / 255.0
-        return UIColor(red: val, green: val, blue: val, alpha: 1.0)
+        return DarkColorTheme.barTintColor
     }
 
     static var tabbarUnSelectedItemTintColor: UIColor {
-        let val: CGFloat = 10.0 / 255.0
-        return UIColor(red: val, green: val, blue: val, alpha: 1.0)
+        return DarkColorTheme.tabbarUnSelected
     }
 }
 
