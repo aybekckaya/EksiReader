@@ -13,6 +13,16 @@ class ERViewController: UIViewController {
     private let titleView = ERNavigationTitleView
         .erNavigationTitleView()
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        EksiAnalytics.screenAppear(self)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        EksiAnalytics.screenDissapear(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Styling.Application.backgroundColor

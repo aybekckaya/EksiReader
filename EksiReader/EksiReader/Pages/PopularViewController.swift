@@ -9,6 +9,16 @@ import Foundation
 import UIKit
 
 class PopularViewController: TopicListViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        EksiAnalytics.screenAppear(self)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        EksiAnalytics.screenDissapear(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

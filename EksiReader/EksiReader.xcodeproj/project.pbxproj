@@ -120,6 +120,7 @@
 		A3B1C84A281CA42900156023 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C849281CA42900156023 /* FirebaseRemoteConfig */; };
 		A3B1C84C281CA42900156023 /* FirebaseRemoteConfigSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A3B1C84B281CA42900156023 /* FirebaseRemoteConfigSwift-Beta */; };
 		A3B1C84E281CA66500156023 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3B1C84D281CA66500156023 /* GoogleService-Info.plist */; };
+		A3B1C851281CB21E00156023 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B1C850281CB21E00156023 /* AnalyticsManager.swift */; };
 		A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C22810A0FB00E44823 /* PopularViewController.swift */; };
 		A3CE88C52811A99F00E44823 /* ERNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */; };
 		A3CE88C7281205D200E44823 /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */; };
@@ -270,6 +271,7 @@
 		A37B78812804CF7300DED4F1 /* EksiFooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiFooterLoadingView.swift; sourceTree = "<group>"; };
 		A392F6BE280F119E00FB32C6 /* EksiTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EksiTabbarController.swift; sourceTree = "<group>"; };
 		A3B1C84D281CA66500156023 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A3B1C850281CB21E00156023 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		A3CE88C22810A0FB00E44823 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		A3CE88C42811A99F00E44823 /* ERNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERNavigationTitleView.swift; sourceTree = "<group>"; };
 		A3CE88C6281205D200E44823 /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 			isa = PBXGroup;
 			children = (
 				A3CE88C928120C9B00E44823 /* ChannelManager.swift */,
+				A3B1C850281CB21E00156023 /* AnalyticsManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1330,6 +1333,7 @@
 				A369A62B280CA32000494B40 /* EntryDataController.swift in Sources */,
 				A3F5D0B227FD346D0031FA1F /* DeclarativeString.swift in Sources */,
 				A32CA822280AEFF6005DE47B /* UIImageCacheExtension.swift in Sources */,
+				A3B1C851281CB21E00156023 /* AnalyticsManager.swift in Sources */,
 				A311FC422802C59800EE27A3 /* NetworkingDataRequest.swift in Sources */,
 				A369A640280DF66100494B40 /* ERViewModelProtocols.swift in Sources */,
 				A331001D27FCD1C700431F26 /* SceneDelegate.swift in Sources */,
