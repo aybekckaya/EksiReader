@@ -21,6 +21,15 @@ extension UIView {
     }
 }
 
+// MARK: - UISwitch {View Factory}
+extension UISwitch {
+    public static func switcher() -> UISwitch {
+        let view = UISwitch(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+}
+
 // MARK: - UIStackView {View Factory}
 extension UIStackView {
     public static func stackView(alignment: UIStackView.Alignment, distribution: UIStackView.Distribution, spacing: CGFloat, axis: NSLayoutConstraint.Axis) -> UIStackView {
@@ -197,6 +206,10 @@ extension UIView {
 
 // MARK: - Casting
 extension UIView {
+    public func asUISwitch() -> UISwitch {
+        return self as! UISwitch
+    }
+
     public func asVisualEffectsView() -> UIVisualEffectView {
         return self as! UIVisualEffectView
     }
@@ -300,6 +313,15 @@ extension UIControl {
         controlValueChanged(self)
     }
 
+}
+
+// MARK: - Switch
+extension UISwitch {
+    @discardableResult
+    public func isOn(_ value: Bool) -> UISwitch {
+        self.isOn = value
+        return self
+    }
 }
 
 // MARK: - Slider

@@ -42,23 +42,29 @@ extension String {
                                       value: Styling.TopicCell.contentLabelFont,
                                       range: NSMakeRange(0, attributedString.length))
 
-//        let string = NSString(string: self)
-//        links.forEach { str in
-//            let range = string.range(of: str)
-//            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-//            attributedString.addAttribute(NSAttributedString.Key.underlineColor,
-//                                          value: Styling.TopicCell.contentColor,
-//                                          range: range)
-//
-//            attributedString.addAttribute(NSAttributedString.Key.foregroundColor,
-//                                          value: Styling.TopicCell.contentColor,
-//                                          range: NSMakeRange(0, attributedString.length))
-//
-//            attributedString.addAttribute(NSAttributedString.Key.font,
-//                                          value: Styling.TopicCell.contentLabelFont,
-//                                          range: NSMakeRange(0, attributedString.length))
-//        }
-
         return attributedString
+    }
+}
+
+// MARK: - Line Height / Spacing
+extension NSAttributedString {
+    func lineHeight(_ height: CGFloat) -> NSAttributedString {
+        let _self = NSMutableAttributedString(attributedString: self)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = height
+        _self.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                      value:paragraphStyle,
+                                      range:NSMakeRange(0, _self.length))
+        return NSAttributedString(attributedString: _self)
+    }
+
+    func lineSpacing(_ space: CGFloat) -> NSAttributedString {
+        let _self = NSMutableAttributedString(attributedString: self)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = space 
+        _self.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                      value:paragraphStyle,
+                                      range:NSMakeRange(0, _self.length))
+        return NSAttributedString(attributedString: _self)
     }
 }

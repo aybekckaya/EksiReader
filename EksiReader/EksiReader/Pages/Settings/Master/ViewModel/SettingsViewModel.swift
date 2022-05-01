@@ -13,7 +13,7 @@ typealias SettingsViewModelChangeCallback<T> = (T) -> Void
 enum SettingsViewModelChange<P> {
     case title(title: String?)
     case loading(isVisible: Bool)
-    case presentations(itemPresentations: [P])
+    case presentation(itemPresentation: P)
     case error(error: EksiError)
 }
 
@@ -22,8 +22,22 @@ class SettingsViewModel {
     private let dataController: SettingsDataController
     private let router: SettingsRouter
 
+    var changeHandler: SettingsViewModelChangeCallback<SettingsViewModelChange<SettingsPresentation>>?
+
     init(dataController: SettingsDataController, router: SettingsRouter) {
         self.dataController = dataController
         self.router = router
+    }
+
+    func initialize() {
+        let items = dataController.getSettingsItems()
+        let presentation: SettingsPresentation = .init(settingsItems: items)
+        let title = "Ayarlar"
+        changeHandler?(.title(title: title))
+        changeHandler?(.presentation(itemPresentation: presentation))
+    }
+
+    func selectedItem(_ presentation: SettingsItemPresentation) {
+        router.navigateToDetail(itemId: presentation.itemId)
     }
 }

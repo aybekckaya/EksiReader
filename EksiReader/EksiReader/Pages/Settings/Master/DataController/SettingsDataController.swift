@@ -8,5 +8,8 @@
 import Foundation
 
 class SettingsDataController {
-    
+
+    func getSettingsItems() -> [SettingsItem] {
+        return [.theme, .textSize]
+    }
 }
