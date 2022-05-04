@@ -9,20 +9,32 @@ import Foundation
 import UIKit
 
 protocol SettingsDetailInputPresentation {
-
+    var identifier: String { get set }
+    var title: String { get set }
+    var description: String? { get set }
+    var isEnabled: Bool { get set }
 }
 
-struct SwitcherInputPresentation: SettingsDetailInputPresentation {
-    let identifier: String
-    let title: String
-    let description: String?
-    let isOn: Bool
+class SwitcherInputPresentation: SettingsDetailInputPresentation {
+    var isEnabled: Bool = false
+    var identifier: String = ""
+    var title: String = ""
+    var description: String? = nil
+    var isOn: Bool = false
 }
 
-struct SettingsDetailInputSection {
-    let inputs: [SettingsDetailInputPresentation]
+class TickInputPresentation: SettingsDetailInputPresentation {
+    var isEnabled: Bool = false
+    var identifier: String = ""
+    var title: String = ""
+    var description: String? = nil
+    var isChecked: Bool = false
 }
 
-struct SettingsDetailPresentation {
-    let sections: [SettingsDetailInputSection]
+class SettingsDetailInputSection {
+    var inputs: [SettingsDetailInputPresentation] = []
+}
+
+class SettingsDetailPresentation {
+    var sections: [SettingsDetailInputSection] = []
 }

@@ -17,6 +17,8 @@ struct ERKey {
     static let loadingViewTag = 1071
     static let localStorageDirectoryPath = "Local"
     static let localStorageFilePath = "LocalStorage"
+    static let currentThemeKey = "CurrentColorTheme"
+    static let usesDeviceConstantsThemeKey = "UsesDeviceConstantsThemeKey"
 
     struct NotificationName {
         static let reloadTopicEntries = Notification.Name("reloadTopicEntries")

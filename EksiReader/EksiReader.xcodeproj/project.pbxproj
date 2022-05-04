@@ -155,6 +155,9 @@
 		A3F5D0BA27FD346D0031FA1F /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0AE27FD346D0031FA1F /* CGRect+Extensions.swift */; };
 		A3F5D0BB27FD346D0031FA1F /* UIViewGestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0AF27FD346D0031FA1F /* UIViewGestureExtension.swift */; };
 		A3F5D0BC27FD346D0031FA1F /* UINib+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5D0B027FD346D0031FA1F /* UINib+Loading.swift */; };
+		E9044D1C2821EDF600177DEB /* SwitcherInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9044D1B2821EDF600177DEB /* SwitcherInputView.swift */; };
+		E9044D1E2821EFE700177DEB /* TickInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9044D1D2821EFE700177DEB /* TickInputView.swift */; };
+		E9044D20282209CD00177DEB /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9044D1F282209CD00177DEB /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,6 +318,9 @@
 		A3F5D0AE27FD346D0031FA1F /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		A3F5D0AF27FD346D0031FA1F /* UIViewGestureExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewGestureExtension.swift; sourceTree = "<group>"; };
 		A3F5D0B027FD346D0031FA1F /* UINib+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINib+Loading.swift"; sourceTree = "<group>"; };
+		E9044D1B2821EDF600177DEB /* SwitcherInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherInputView.swift; sourceTree = "<group>"; };
+		E9044D1D2821EFE700177DEB /* TickInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickInputView.swift; sourceTree = "<group>"; };
+		E9044D1F282209CD00177DEB /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,7 +447,6 @@
 				A311FC152802A99800EE27A3 /* NavigationUtility.swift */,
 				A311FC172802AFCD00EE27A3 /* Configuration.swift */,
 				A311FC242802C11700EE27A3 /* Const.swift */,
-				A3E0A761281DB4FC008D19F3 /* EksiTheme.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -960,6 +965,7 @@
 		A3CE88C828120C7A00E44823 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				E9044D21282209FC00177DEB /* Theme */,
 				A3CE88C928120C9B00E44823 /* ChannelManager.swift */,
 				A3B1C850281CB21E00156023 /* AnalyticsManager.swift */,
 			);
@@ -1034,6 +1040,7 @@
 		A3E0A766281DC2F3008D19F3 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				E9044D1A2821EDE600177DEB /* Views */,
 				A3E0A76B281DC319008D19F3 /* ViewController */,
 				A3E0A76A281DC312008D19F3 /* ViewModel */,
 				A3E0A769281DC30A008D19F3 /* DataController */,
@@ -1138,6 +1145,24 @@
 				A32CA81F280AE946005DE47B /* DateFormatter+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E9044D1A2821EDE600177DEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E9044D1B2821EDF600177DEB /* SwitcherInputView.swift */,
+				E9044D1D2821EFE700177DEB /* TickInputView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E9044D21282209FC00177DEB /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A3E0A761281DB4FC008D19F3 /* EksiTheme.swift */,
+				E9044D1F282209CD00177DEB /* ThemeManager.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1365,8 +1390,10 @@
 				A32CA817280ADF5C005DE47B /* MainStyling.swift in Sources */,
 				A3CE88C32810A0FB00E44823 /* PopularViewController.swift in Sources */,
 				A311FC452802C59800EE27A3 /* NetworkingSession.swift in Sources */,
+				E9044D1E2821EFE700177DEB /* TickInputView.swift in Sources */,
 				A3DD03CB2817758F00D9ADB8 /* TappableInputView.swift in Sources */,
 				A331004E27FCD25500431F26 /* TopicListViewController.swift in Sources */,
+				E9044D1C2821EDF600177DEB /* SwitcherInputView.swift in Sources */,
 				A311FC3F2802C59800EE27A3 /* NetworkingError.swift in Sources */,
 				A3CE88CA28120C9B00E44823 /* ChannelManager.swift in Sources */,
 				A32CA824280AF1B3005DE47B /* EntryInputView.swift in Sources */,
@@ -1436,6 +1463,7 @@
 				A311FBFB2802A69E00EE27A3 /* UITableView+Extensions.swift in Sources */,
 				A311FC3A2802C59800EE27A3 /* NetworkingLogProvider.swift in Sources */,
 				A311FC3C2802C59800EE27A3 /* NetworkingRequestProtocols.swift in Sources */,
+				E9044D20282209CD00177DEB /* ThemeManager.swift in Sources */,
 				A311FC3B2802C59800EE27A3 /* NetworkingJsonResponse.swift in Sources */,
 				A32CA819280ADFAD005DE47B /* TopicListViewStyling.swift in Sources */,
 				A369A62B280CA32000494B40 /* EntryDataController.swift in Sources */,
