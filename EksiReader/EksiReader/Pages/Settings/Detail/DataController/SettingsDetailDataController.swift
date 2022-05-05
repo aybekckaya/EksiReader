@@ -24,10 +24,16 @@ class SettingsDetailDataController {
     struct Theme {
         func shouldUseDeviceValues(_ value: Bool) {
             APP.themeManager.setIsUsingDeviceValues(value)
+            NotificationCenter.default.post(name: ERKey.NotificationName.colorThemeChanged, object: nil)
         }
         
         func setColorTheme(_ value: ColorTheme) {
+            let currentTheme = getCurrentTheme()
             APP.themeManager.setCurrentTheme(value)
+            if currentTheme.identifier != value.identifier {
+                NotificationCenter.default.post(name: ERKey.NotificationName.colorThemeChanged, object: nil)
+            }
+            
         }
         
         func getCurrentTheme() -> ColorTheme {

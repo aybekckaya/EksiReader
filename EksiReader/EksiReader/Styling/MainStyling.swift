@@ -12,13 +12,12 @@ struct Styling {
 
 }
 
-
-
 // MARK: - Application
 extension Styling {
     struct Application {
         static var backgroundColor: UIColor {
-            return DarkColorTheme.background
+            let colorTheme = APP.themeManager.getCurrentTheme()
+            return colorTheme.background
         }
     }
 }

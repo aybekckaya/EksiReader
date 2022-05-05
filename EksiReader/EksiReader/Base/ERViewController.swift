@@ -25,6 +25,12 @@ class ERViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { _ in
+           // self.view.backgroundColor = Styling.Application.backgroundColor
+            self.view.setNeedsDisplay()
+        }
+        
         self.view.backgroundColor = Styling.Application.backgroundColor
         self.navigationController?.navigationBar.barTintColor = Styling.Application.navigationBarColor
         self.navigationController?.navigationBar.tintColor = Styling.Application.navigationBarTitleColor

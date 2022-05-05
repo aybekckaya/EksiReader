@@ -8,6 +8,22 @@
 import Foundation
 import UIKit
 
+// MARK: - ERViewReloadable
+protocol ERViewReloadable where Self: UIView {
+    func reloadView()
+    func reloadChildren()
+}
+
+extension ERViewReloadable {
+    func reloadChildren() {
+        self.subviews
+            .compactMap { $0 as? ERViewReloadable }
+            .forEach { $0.reloadView() }
+    }
+}
+
+
+
 // MARK: - ERBaseViewController
 //protocol ERBaseViewController where Self: ERViewController {
 //    func setTitle(_ title: String?)

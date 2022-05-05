@@ -15,7 +15,7 @@ protocol ColorTheme {
     static var lightItemBackground: UIColor { get }
     static var dominantTextColor: UIColor { get }
     static var passiveTextColor: UIColor { get }
-    static var background: UIColor { get }
+    var background: UIColor { get }
     static var barColor: UIColor { get }
     static var barTintColor: UIColor { get }
     static var tabbarUnSelected: UIColor { get }
@@ -33,7 +33,7 @@ struct DarkColorTheme: ColorTheme {
     static var negativeColor = UIColor(red: 255.0 / 255.0, green: 59.0 / 255.0, blue: 48.0 / 255.0, alpha: 1.0)
     static var dominantTextColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     static var passiveTextColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.7)
-    static var background = UIColor(red: 21 / 255.0, green: 21 / 255.0, blue: 21 / 255.0, alpha: 1.0)
+    var background = UIColor(red: 21 / 255.0, green: 21 / 255.0, blue: 21 / 255.0, alpha: 1.0)
     static var barColor = UIColor(red: 16 / 255.0, green: 16 / 255.0, blue: 16 / 255.0, alpha: 1.0)
     static var barTintColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     static var tabbarUnSelected = UIColor(red: 10 / 255.0, green: 10 / 255.0, blue: 10 / 255.0, alpha: 1.0)
@@ -49,7 +49,7 @@ struct LightColorTheme: ColorTheme {
     static var negativeColor = UIColor(red: 255.0 / 255.0, green: 59.0 / 255.0, blue: 48.0 / 255.0, alpha: 1.0)
     static var dominantTextColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     static var passiveTextColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.7)
-    static var background = UIColor(red: 210 / 255.0, green: 210 / 255.0, blue: 210 / 255.0, alpha: 1.0)
+    var background = UIColor(red: 210 / 255.0, green: 210 / 255.0, blue: 210 / 255.0, alpha: 1.0)
     static var barColor = UIColor(red: 16 / 255.0, green: 16 / 255.0, blue: 16 / 255.0, alpha: 1.0)
     static var barTintColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     static var tabbarUnSelected = UIColor(red: 10 / 255.0, green: 10 / 255.0, blue: 10 / 255.0, alpha: 1.0)

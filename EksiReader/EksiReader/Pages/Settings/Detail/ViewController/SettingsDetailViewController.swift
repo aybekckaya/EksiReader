@@ -57,6 +57,10 @@ extension SettingDetailViewController {
 // MARK: - Listeners
 extension SettingDetailViewController {
     private func addListeners() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { _ in
+            self.view.setNeedsDisplay()
+        }
+        
         viewModel.changeHandler = { [weak self] change in
             switch change {
             case .presentation(let presentation):
