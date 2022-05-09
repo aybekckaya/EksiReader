@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SwitcherInputView: UIView {
+class SwitcherInputView: UIView, ERViewReloadable {
     private let viewContent = UIView
         .view()
         .backgroundColor(Styling.SettingsDetailView.containterViewBackgroundColor)
@@ -54,6 +54,15 @@ class SwitcherInputView: UIView {
         lblTitle.text = title
         switcher.setOn(isOn, animated: false)
         switcher.addTarget(self, action: #selector(switcherValueChanged), for: .valueChanged)
+    }
+    
+    func reloadView() {
+        Anima.animate(with: .defaultAnimation(duration: 0.7, options: .curveEaseInOut), closure: {
+            self.viewContent.backgroundColor = Styling.SettingsDetailView.containterViewBackgroundColor
+            self.lblTitle.textColor = Styling.SettingsDetailView.itemTitleColor
+        }).start()
+        
+        self.reloadChildren()
     }
     
     func setIsOn(value: Bool, isAnimated: Bool) {

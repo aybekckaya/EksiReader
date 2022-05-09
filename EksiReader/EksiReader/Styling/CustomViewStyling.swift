@@ -12,11 +12,11 @@ import UIKit
 extension Styling {
     struct PagingView {
         static var backgroundColor: UIColor {
-            return DarkColorTheme.barColor
+            return APP.themeManager.getCurrentTheme().barColor
         }
 
         static var textColor: UIColor {
-            return DarkColorTheme.dominantTextColor
+            return APP.themeManager.getCurrentTheme().dominantTextColor
         }
 
         static var titleFont: UIFont {

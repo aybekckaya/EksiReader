@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-
-class SettingDetailViewController: ERViewController {
+class SettingDetailViewController: ERViewController, ERViewControllerReloadable {
     private let viewModel: SettingsDetailViewModel
 
     private let scrollableView = ScrollableView
@@ -24,6 +23,16 @@ class SettingDetailViewController: ERViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func reloadViews() {
+        super.reloadViews()
+        inputsDictionary.compactMap { key, value in
+            return value as? ERViewReloadable
+        }.forEach {
+            $0.reloadView()
+        }
+        self.reloadChildren()
     }
 }
 
@@ -57,9 +66,6 @@ extension SettingDetailViewController {
 // MARK: - Listeners
 extension SettingDetailViewController {
     private func addListeners() {
-        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { _ in
-            self.view.setNeedsDisplay()
-        }
         
         viewModel.changeHandler = { [weak self] change in
             switch change {
@@ -72,6 +78,8 @@ extension SettingDetailViewController {
             }
         }
     }
+    
+    
 }
 
 // MARK: - Handle Presentation

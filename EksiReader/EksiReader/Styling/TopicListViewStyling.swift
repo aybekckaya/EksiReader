@@ -32,19 +32,19 @@ extension Styling {
         }
 
         static var titleColor: UIColor {
-            return DarkColorTheme.dominantTextColor
+            return APP.themeManager.getCurrentTheme().dominantTextColor
         }
 
         static var countLabelColor: UIColor {
-            return DarkColorTheme.passiveTextColor
+            return APP.themeManager.getCurrentTheme().passiveTextColor
         }
 
         static var followSignColor: UIColor {
-            return DarkColorTheme.neutralColor
+            return APP.themeManager.getCurrentTheme().neutralColor
         }
 
         static var separatorColor: UIColor {
-            return DarkColorTheme.separatorColor
+            return APP.themeManager.getCurrentTheme().separatorColor
         }
     }
 }

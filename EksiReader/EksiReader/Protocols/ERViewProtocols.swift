@@ -22,6 +22,18 @@ extension ERViewReloadable {
     }
 }
 
+protocol ERViewControllerReloadable where Self: ERViewController {
+    func reloadChildren()
+}
+
+extension ERViewControllerReloadable {
+    func reloadChildren() {
+        self.view.subviews
+            .compactMap { $0 as? ERViewReloadable }
+            .forEach { $0.reloadView() }
+    }
+}
+
 
 
 // MARK: - ERBaseViewController

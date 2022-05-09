@@ -25,11 +25,11 @@ extension Styling {
 // MARK: - Navigation Bar
 extension Styling.Application {
     static var navigationBarColor: UIColor {
-        return DarkColorTheme.barColor
+        return APP.themeManager.getCurrentTheme().barColor
     }
 
     static var navigationBarTitleColor: UIColor {
-        return DarkColorTheme.barTintColor
+        return APP.themeManager.getCurrentTheme().barTintColor
     }
 
     static var navigationBarTitleFont: UIFont {
@@ -40,15 +40,15 @@ extension Styling.Application {
 // MARK: - Tab Bar
 extension Styling.Application {
     static var tabBarColor: UIColor {
-        return DarkColorTheme.barColor
+        return APP.themeManager.getCurrentTheme().barColor
     }
 
     static var tabbarTintColor: UIColor {
-        return DarkColorTheme.barTintColor
+        return APP.themeManager.getCurrentTheme().barTintColor
     }
 
     static var tabbarUnSelectedItemTintColor: UIColor {
-        return DarkColorTheme.tabbarUnSelected
+        return APP.themeManager.getCurrentTheme().tabbarUnSelected
     }
 }
 

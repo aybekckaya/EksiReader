@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TickInputView: UIView {
+class TickInputView: UIView, ERViewReloadable {
     private let viewContent = UIView
         .view()
         .backgroundColor(Styling.SettingsDetailView.containterViewBackgroundColor)
@@ -20,7 +20,7 @@ class TickInputView: UIView {
     
     private let imViewTick = UIImageView
         .imageView()
-        .tintColor(.cyan)
+        .tintColor(Styling.SettingsDetailView.tickColor)
         .contentMode(.scaleAspectFit)
     
     private var callback: (() -> Void)?
@@ -32,6 +32,15 @@ class TickInputView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func reloadView() {
+        Anima.animate(with: .defaultAnimation(duration: 0.7, options: .curveEaseInOut), closure: {
+            self.imViewTick.tintColor = Styling.SettingsDetailView.tickColor
+            self.lblTitle.textColor = Styling.SettingsDetailView.itemTitleColor
+            self.viewContent.backgroundColor = Styling.SettingsDetailView.containterViewBackgroundColor
+        }).start()
+        
     }
     
     private func setUpUI() {

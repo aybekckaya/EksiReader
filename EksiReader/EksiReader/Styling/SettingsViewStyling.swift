@@ -16,15 +16,15 @@ extension Styling {
             static let descriptionFont = C.Font.regular.font(size: 12)
 
             static var titleColor: UIColor {
-                return DarkColorTheme.dominantTextColor
+                return APP.themeManager.getCurrentTheme().dominantTextColor
             }
 
             static var descriptionColor: UIColor {
-                return DarkColorTheme.passiveTextColor
+                return APP.themeManager.getCurrentTheme().passiveTextColor
             }
 
             static var iconColor: UIColor {
-                return DarkColorTheme.passiveTextColor
+                return APP.themeManager.getCurrentTheme().passiveTextColor
             }
 
         }
@@ -35,7 +35,7 @@ extension Styling {
 extension Styling {
     struct SettingsDetailView {
         static var containterViewBackgroundColor: UIColor {
-            return DarkColorTheme.lightItemBackground
+            return APP.themeManager.getCurrentTheme().lightItemBackground
         }
 
         static var itemTitleFont: UIFont {
@@ -43,7 +43,11 @@ extension Styling {
         }
 
         static var itemTitleColor: UIColor {
-            return DarkColorTheme.dominantTextColor
+            return APP.themeManager.getCurrentTheme().dominantTextColor
+        }
+        
+        static var tickColor: UIColor {
+            return APP.themeManager.getCurrentTheme().passiveTextColor
         }
 
     }

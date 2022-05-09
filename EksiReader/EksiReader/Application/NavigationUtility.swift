@@ -20,7 +20,21 @@ class NavigationUtility {
         let currentNavConStack = viewControllers[currentIndex] as! ERNavigationController
         return currentNavConStack
     }
-
+    
+    init() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) {[weak self] _ in
+            self?.reloadView()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func reloadView() {
+        setNavigationBarBackgroundColor(Styling.Application.navigationBarColor)
+    }
+    
     public func initialize(with window: UIWindow?, tabBarController: EksiTabbarController) {
         self.tabBarController = tabBarController
         self.window = window!
@@ -39,6 +53,10 @@ class NavigationUtility {
         navBarAppearance.shadowColor = .clear
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
         UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().tintColor = Styling.Application.navigationBarTitleColor
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+//            navBarAppearance.backgroundColor = .red
+//        }
 
         let tabbarAppearance = UITabBarAppearance()
         tabbarAppearance.configureWithOpaqueBackground()
@@ -48,11 +66,24 @@ class NavigationUtility {
         UITabBar.appearance().standardAppearance = tabbarAppearance
         tabBarController.tabBar.unselectedItemTintColor = Styling.Application.tabbarUnSelectedItemTintColor
         tabBarController.tabBar.tintColor = Styling.Application.tabbarTintColor
+        
+       
     }
-
+    
     public func showRootViewController() {
         window.rootViewController = self.tabBarController
         window.makeKeyAndVisible()
+        setNavigationBarBackgroundColor(Styling.Application.navigationBarColor)
+        
+    }
+    
+    public func setNavigationBarBackgroundColor(_ color: UIColor) {
+        tabBarController
+            .viewControllers?
+            .compactMap { $0 as? ERNavigationController }
+            .forEach {
+                $0.setBackgroundColor(color)
+            }
     }
 
     public func topMostViewController() -> UIViewController? {

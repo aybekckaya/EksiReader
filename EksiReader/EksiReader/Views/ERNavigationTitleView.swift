@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ERNavigationTitleView: UIView {
+class ERNavigationTitleView: UIView, ERViewReloadable {
     private let lblTitle = UILabel
         .label()
         .font(Styling.Application.navigationBarTitleFont)
@@ -26,6 +26,10 @@ class ERNavigationTitleView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func reloadView() {
+        self.lblTitle.textColor = Styling.Application.navigationBarTitleColor
     }
 
     func setTitle(_ title: String?) {

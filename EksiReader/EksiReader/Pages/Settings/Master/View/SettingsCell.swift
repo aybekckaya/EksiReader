@@ -86,7 +86,7 @@ class SettingsCell: UITableViewCell {
             .leading(.constant(0))
             .trailing(.constant(0))
             .height(.constant(0.3))
-            .backgroundColor(DarkColorTheme.separatorColor)
+            .backgroundColor(APP.themeManager.getCurrentTheme().separatorColor)
     }
 
     func configureCell(presentation: SettingsItemPresentation) {

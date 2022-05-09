@@ -13,6 +13,10 @@ class ERViewController: UIViewController {
     private let titleView = ERNavigationTitleView
         .erNavigationTitleView()
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         EksiAnalytics.screenAppear(self)
@@ -25,22 +29,49 @@ class ERViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { _ in
-           // self.view.backgroundColor = Styling.Application.backgroundColor
-            self.view.setNeedsDisplay()
-        }
-        
-        self.view.backgroundColor = Styling.Application.backgroundColor
-        self.navigationController?.navigationBar.barTintColor = Styling.Application.navigationBarColor
-        self.navigationController?.navigationBar.tintColor = Styling.Application.navigationBarTitleColor
-
-        titleView.translatesAutoresizingMaskIntoConstraints = true
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        self.navigationItem.titleView = titleView
+        setUpUI()
+        addListeners()
     }
 
     func setTitle(_ title: String?) {
         titleView.setTitle(title)
+    }
+    
+    private func setUpUI() {
+        self.view.backgroundColor = Styling.Application.backgroundColor
+        titleView.translatesAutoresizingMaskIntoConstraints = true
+        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        self.navigationItem.titleView = titleView
+    }
+    
+    private func addListeners() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { [weak self] _ in
+            self?.reloadViews()
+        }
+    }
+    
+    // Blueprint
+    @objc func reloadViews() {
+        self.navigationController?.navigationBar.subviews.forEach {
+            NSLog("SubView: \($0)")
+        }
+        
+        self.tabBarController?.tabBar.subviews.forEach {
+            NSLog("Tabbar Subview: \($0)")
+        }
+        
+        Anima.animate(with: .defaultAnimation(duration: 0.7, options: .curveEaseInOut)) {
+           
+            self.view.backgroundColor = Styling.Application.backgroundColor
+            self.navigationController?.navigationBar.tintColor = Styling.Application.navigationBarTitleColor
+            (self.navigationItem.titleView as? ERViewReloadable)?.reloadView()
+          
+//            let navBarAppearance = UINavigationBarAppearance()
+//            navBarAppearance.configureWithOpaqueBackground()
+//            navBarAppearance.backgroundColor = .red
+//            navBarAppearance.shadowColor = .clear
+//            UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+//            UINavigationBar.appearance().standardAppearance = navBarAppearance
+        }.start()
     }
 }
