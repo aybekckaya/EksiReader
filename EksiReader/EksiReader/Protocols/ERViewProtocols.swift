@@ -45,6 +45,7 @@ extension ERViewControllerReloadable {
 protocol ERListCell where Self: UITableViewCell {
     associatedtype T
     func configure(with item: T)
+    func updateTheme()
 }
 
 // MARK: - Pagable Presentation

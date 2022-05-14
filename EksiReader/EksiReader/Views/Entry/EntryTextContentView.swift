@@ -46,6 +46,12 @@ class EntryTextContentView: UIView, UITextViewDelegate {
         textViewContent.attributedText = text
     }
 
+    func updateTheme() {
+        textViewContent
+            .font(Styling.TopicCell.contentLabelFont)
+            .textColor(Styling.TopicCell.contentColor)
+    }
+
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
         guard

@@ -48,10 +48,15 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
 
     private func addListeners() {
 
-//        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedEntryFollowStatus, object: nil, queue: nil) { [weak self] _ in
-//            guard let self = self else { return }
-//            self.tableViewItems.reload()
-//        }
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.changedEntryFollowStatus, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.tableViewItems.reload()
+        }
+
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.tableViewItems.reload()
+        }
     }
 
     private func setUpUI() {
@@ -73,6 +78,7 @@ class ERListView<C: ERListCell, T: PagableListItem>: UIView, EntryContentViewDel
                 if let cell = cell as? TopicCell {
                     cell.setDelegate(self)
                 }
+                cell.updateTheme()
             }.didSelectCell {  [weak self] tableView, presentation, indexPath in
                 guard let self = self else { return }
                 self.itemsSelectedCallback?(self, indexPath, presentation)

@@ -36,6 +36,10 @@ class SettingsCell: UITableViewCell {
         .clipToBounds(true)
         .tintColor(Styling.SettingsView.Cell.iconColor)
 
+    private let separatorView = UIView
+        .view()
+        .backgroundColor(APP.themeManager.getCurrentTheme().separatorColor)
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpUI()
@@ -79,13 +83,30 @@ class SettingsCell: UITableViewCell {
         lblDescription
             .add(intoStackView: stackView)
 
-        UIView
-            .view()
+        separatorView
             .add(into: self)
             .bottom(.constant(0))
             .leading(.constant(0))
             .trailing(.constant(0))
             .height(.constant(0.3))
+    }
+
+    func updateTheme() {
+        imViewIcon
+            .tintColor(Styling.SettingsView.Cell.iconColor)
+
+        iconRightArrow
+            .tintColor(Styling.SettingsView.Cell.iconColor)
+
+        lblTitle
+            .font(Styling.SettingsView.Cell.titleFont)
+            .textColor(Styling.SettingsView.Cell.titleColor)
+
+        lblDescription
+            .font(Styling.SettingsView.Cell.descriptionFont)
+            .textColor(Styling.SettingsView.Cell.descriptionColor)
+        
+        separatorView
             .backgroundColor(APP.themeManager.getCurrentTheme().separatorColor)
     }
 

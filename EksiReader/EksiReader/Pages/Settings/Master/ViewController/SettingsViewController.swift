@@ -36,6 +36,11 @@ extension SettingsViewController {
 // MARK: - Listeners
 extension SettingsViewController {
     private func addListeners() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.tableViewSettings.reload()
+        }
+        
         viewModel.changeHandler = { [weak self] change in
             self?.handleChange(change)
         }
@@ -71,6 +76,7 @@ extension SettingsViewController {
 
         tableViewSettings.cellAtIndex { table, cell, presentation, IndexPath in
             cell.configureCell(presentation: presentation)
+            cell.updateTheme()
         }.didSelectCell { table, presentation, indexPath in
             self.viewModel.selectedItem(presentation)
         }

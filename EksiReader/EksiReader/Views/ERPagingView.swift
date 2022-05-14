@@ -43,6 +43,15 @@ class ERPagingView: UIView {
     public func updateTitle(currentPage: Int, totalPage: Int) {
         lblTitle.text = "\(currentPage) / \(totalPage)"
     }
+
+    public func updateTheme() {
+        contentView
+            .backgroundColor(Styling.PagingView.backgroundColor)
+        lblTitle
+            .font(Styling.PagingView.titleFont)
+            .alignment(.center)
+            .textColor(Styling.PagingView.textColor)
+    }
 }
 
 // MARK: - Declarative UI

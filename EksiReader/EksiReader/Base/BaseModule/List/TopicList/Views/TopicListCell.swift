@@ -32,6 +32,10 @@ class TopicListCell: UITableViewCell, ERListCell {
     private let followContainerView = UIView
         .view()
 
+    private let separatorView = UIView
+        .view()
+        .backgroundColor(Styling.TopicListCell.separatorColor)
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpUI()
@@ -79,9 +83,7 @@ class TopicListCell: UITableViewCell, ERListCell {
 
         lblTitle.trailingAnchor.constraint(equalTo: stackViewRight.leadingAnchor, constant: 0).isActive = true
 
-        UIView
-            .view()
-            .backgroundColor(Styling.TopicListCell.separatorColor)
+        separatorView
             .add(into: self)
             .bottom(.constant(0))
             .leading(.constant(0))
@@ -89,21 +91,30 @@ class TopicListCell: UITableViewCell, ERListCell {
             .height(.constant(0.5))
     }
 
+    func updateTheme() {
+        lblTitle
+            .font(Styling.TopicListCell.titleFont)
+            .textColor(Styling.TopicListCell.titleColor)
+
+        lblCount
+            .font(Styling.TopicListCell.countLabelFont)
+            .textColor(Styling.TopicListCell.countLabelColor)
+
+        viewFollowSign
+            .backgroundColor(Styling.TopicListCell.followSignColor)
+
+        backgroundColor = Styling.Application.backgroundColor
+
+        separatorView
+            .backgroundColor(Styling.TopicListCell.separatorColor)
+    }
+
     func configure(with item: TopicListItemPresentation) {
         lblTitle.attributedText = item.attributedTitle
         lblCount.text = "(\(item.count))"
         followContainerView.isHidden = !item.isFollowing
     }
-
-//    func configure(_ item: TodayPresentation) {
-//        lblTitle.attributedText = item.attributedTitle
-//        lblCount.text = "(\(item.count))"
-//
-////        let length = Int.random(in: 50 ..< 1000)
-////        lblTitle.text = String.random(length: length)
-//    }
 }
-
 
 extension String {
     static func random(length: Int) -> String {

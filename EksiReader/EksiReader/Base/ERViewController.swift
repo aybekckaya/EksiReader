@@ -27,6 +27,17 @@ class ERViewController: UIViewController {
         EksiAnalytics.screenDissapear(self)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBar.tintColor = Styling.Application.navigationBarTitleColor
+        (self.navigationController as? ERNavigationController)?.setBackgroundColor(Styling.Application.navigationBarColor)
+//        (self.navigationController?.navigationItem.titleView as? ERNavigationTitleView)?.setTitleLabelTextColor(Styling.Application.navigationBarTitleColor)
+
+        titleView.reloadView()
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -52,13 +63,13 @@ class ERViewController: UIViewController {
     
     // Blueprint
     @objc func reloadViews() {
-        self.navigationController?.navigationBar.subviews.forEach {
-            NSLog("SubView: \($0)")
-        }
-        
-        self.tabBarController?.tabBar.subviews.forEach {
-            NSLog("Tabbar Subview: \($0)")
-        }
+//        self.navigationController?.navigationBar.subviews.forEach {
+//            NSLog("SubView: \($0)")
+//        }
+//
+//        self.tabBarController?.tabBar.subviews.forEach {
+//            NSLog("Tabbar Subview: \($0)")
+//        }
         
         Anima.animate(with: .defaultAnimation(duration: 0.7, options: .curveEaseInOut)) {
            

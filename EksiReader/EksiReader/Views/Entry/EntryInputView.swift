@@ -18,14 +18,14 @@ protocol EntryInputViewDelegate: AnyObject {
 class EntryInputItemView: UIView {
     private let imView = UIImageView
         .imageView()
-        .tintColor(.white.withAlphaComponent(0.8))
+        .tintColor(Styling.TopicCell.inputItemViewTintColor)
         .contentMode(.scaleAspectFill)
         .clipToBounds(true)
 
     private let lblValue = UILabel
         .label()
         .font(C.Font.regular.font(size: 12))
-        .textColor(.white.withAlphaComponent(0.8))
+        .textColor(Styling.TopicCell.inputItemViewTintColor)
         .alignment(.left)
 
     init() {
@@ -57,6 +57,11 @@ class EntryInputItemView: UIView {
         imView.image = imageObject
         lblValue.isHidden = value == nil
         lblValue.text = value ?? ""
+    }
+
+    func updateTheme() {
+        lblValue.textColor(Styling.TopicCell.inputItemViewTintColor)
+        imView.tintColor(Styling.TopicCell.inputItemViewTintColor)
     }
 }
 
@@ -142,6 +147,13 @@ extension EntryInputView {
 
 // MARK: - Public
 extension EntryInputView {
+    func updateTheme() {
+        favoriteItemView.updateTheme()
+        attachItemView.updateTheme()
+        shareItemView.updateTheme()
+        reportItemView.updateTheme()
+    }
+
     func configure(favoriteCount: Int, isFavoritedByUser: Bool, attachmentCount: Int, delegate: EntryInputViewDelegate) {
         self.delegate = delegate
         favoriteItemView

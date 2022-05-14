@@ -46,7 +46,27 @@ enum EksiTabbarItem {
     }
 }
 
-class EksiTabbarController: UITabBarController {
+class EksiTabbarController: UITabBarController, BarContainerBackgroundProtocol {
+    var barBackgroundColor: UIColor = .clear
+
+    var barSubviews: [UIView] {
+        self.tabBar.subviews
+    }
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { _ in
+            self.setBarBackground(backgroundColor: Styling.Application.tabBarColor)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

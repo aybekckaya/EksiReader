@@ -52,7 +52,9 @@ extension Styling {
             return APP.themeManager.getCurrentTheme().dominantTextColor
         }
 
-
+        static var inputItemViewTintColor: UIColor {
+            return APP.themeManager.getCurrentTheme().passiveTextColor
+        }
 
 
     }

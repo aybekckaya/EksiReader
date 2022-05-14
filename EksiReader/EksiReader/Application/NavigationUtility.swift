@@ -49,7 +49,7 @@ class NavigationUtility {
 
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = Styling.Application.navigationBarColor
+        navBarAppearance.backgroundColor = .clear
         navBarAppearance.shadowColor = .clear
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
         UINavigationBar.appearance().standardAppearance = navBarAppearance
@@ -66,8 +66,7 @@ class NavigationUtility {
         UITabBar.appearance().standardAppearance = tabbarAppearance
         tabBarController.tabBar.unselectedItemTintColor = Styling.Application.tabbarUnSelectedItemTintColor
         tabBarController.tabBar.tintColor = Styling.Application.tabbarTintColor
-        
-       
+
     }
     
     public func showRootViewController() {

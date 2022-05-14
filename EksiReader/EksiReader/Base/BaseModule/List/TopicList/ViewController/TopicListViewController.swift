@@ -41,6 +41,11 @@ class TopicListViewController: ERViewController, PagableViewController {
 
 // MARK: - Lifecycle
 extension TopicListViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.pageIndicatorView?.updateTheme()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -96,6 +101,11 @@ extension TopicListViewController {
 // MARK: - Listeners
 extension TopicListViewController {
     private func addListeners() {
+        NotificationCenter.default.addObserver(forName: ERKey.NotificationName.colorThemeChanged, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.pageIndicatorView?.updateTheme()
+        }
+
         let _viewModel = _viewModel
         _viewModel.bind { [weak self] change in
             self?.handle(change)

@@ -16,6 +16,10 @@ class TopicCell: UITableViewCell, ERListCell {
     private let entryContentView = EntryContentView
         .entryContentView()
 
+    private let separatorView = UIView
+        .view()
+        .backgroundColor(Styling.TopicListCell.separatorColor)
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpUI()
@@ -34,9 +38,7 @@ extension TopicCell {
             .add(into: self.contentView)
             .fit()
 
-        UIView
-            .view()
-            .backgroundColor(Styling.TopicListCell.separatorColor)
+        separatorView
             .add(into: self)
             .bottom(.constant(0))
             .leading(.constant(0))
@@ -47,6 +49,12 @@ extension TopicCell {
 
 // MARK: - Public
 extension TopicCell {
+    func updateTheme() {
+        entryContentView.updateTheme()
+        separatorView
+            .backgroundColor(Styling.TopicListCell.separatorColor)
+    }
+
     func setDelegate(_ value: EntryContentViewDelegate) {
         entryContentView.setDelegate(value)
     }

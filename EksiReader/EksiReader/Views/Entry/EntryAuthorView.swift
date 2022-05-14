@@ -94,6 +94,19 @@ extension EntryAuthorView {
         lblDate.text = date
         imViewProfile.setImage(with: profileURL)
     }
+
+    func updateTheme() {
+        lblDate
+            .font(Styling.TopicCell.dateLabelFont)
+            .textColor(Styling.TopicCell.dateLabelTextColor)
+
+        lblNick
+            .font(Styling.TopicCell.nickLabelFont)
+            .textColor(Styling.TopicCell.nickLabelTextColor)
+
+        imViewProfile
+            .backgroundColor(Styling.TopicCell.imageViewBGColor)
+    }
 }
 
 // MARK: - Declarative UI

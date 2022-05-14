@@ -35,6 +35,10 @@ class ERNavigationTitleView: UIView, ERViewReloadable {
     func setTitle(_ title: String?) {
         lblTitle.text = title
     }
+
+    func setTitleLabelTextColor(_ color: UIColor) {
+        self.lblTitle.textColor = Styling.Application.navigationBarTitleColor
+    }
 }
 
 // MARK: - Declarative UI

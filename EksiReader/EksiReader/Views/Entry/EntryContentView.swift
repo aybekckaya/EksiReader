@@ -83,6 +83,12 @@ class EntryContentView: UIView {
                            nick: item.authorName,
                            profileURL: item.authorImageURL)
     }
+
+    func updateTheme() {
+        viewEntryText.updateTheme()
+        infoView.updateTheme()
+        cellInputView.updateTheme()
+    }
 }
 
 
