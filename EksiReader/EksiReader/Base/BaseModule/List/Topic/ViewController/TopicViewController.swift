@@ -44,6 +44,19 @@ extension TopicViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        // text to share
+               let text = "This is some text that I want to share."
+
+               // set up activity view controller
+               let textToShare = [ text ]
+               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+
+               
+
+               // present the view controller
+               self.present(activityViewController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

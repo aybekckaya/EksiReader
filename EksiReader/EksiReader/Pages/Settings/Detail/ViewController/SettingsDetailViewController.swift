@@ -86,7 +86,7 @@ extension SettingDetailViewController {
 extension SettingDetailViewController {
     private func handlePresentation(_ presentation: SettingsDetailPresentation) {
         inputsDictionary = [:]
-        self.addSpace(48)
+        self.addSpace(16)
         presentation.sections.forEach { section in
             self.addSpace(24)
             section.inputs.forEach { input in

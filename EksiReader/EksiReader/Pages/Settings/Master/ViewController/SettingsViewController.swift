@@ -67,7 +67,7 @@ extension SettingsViewController {
 extension SettingsViewController {
     private func setUpUI() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        tableViewSettings.contentInset = .init(top: 64, left: 0, bottom: 0, right: 0)
+        tableViewSettings.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
         tableViewSettings
             .add(into: self.view)
             .fit()

@@ -94,7 +94,8 @@ class NavigationUtility {
     }
 
     public func showActivityViewController(_ viewController: UIActivityViewController) {
-        viewController.popoverPresentationController?.sourceView = activeNavigationController.view
+        guard let topController = topMostViewController() else { return }
+        viewController.popoverPresentationController?.sourceView = topController.view
         activeNavigationController.present(viewController, animated: true) {
             
         }

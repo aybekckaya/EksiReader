@@ -35,7 +35,7 @@ class ERViewController: UIViewController {
 //        (self.navigationController?.navigationItem.titleView as? ERNavigationTitleView)?.setTitleLabelTextColor(Styling.Application.navigationBarTitleColor)
 
         titleView.reloadView()
-        
+
     }
 
     override func viewDidLoad() {
@@ -72,7 +72,9 @@ class ERViewController: UIViewController {
 //        }
         
         Anima.animate(with: .defaultAnimation(duration: 0.7, options: .curveEaseInOut)) {
-           
+
+            self.tabBarController?.tabBar.unselectedItemTintColor = Styling.Application.tabbarUnSelectedItemTintColor
+            self.tabBarController?.tabBar.tintColor = Styling.Application.tabbarTintColor
             self.view.backgroundColor = Styling.Application.backgroundColor
             self.navigationController?.navigationBar.tintColor = Styling.Application.navigationBarTitleColor
             (self.navigationItem.titleView as? ERViewReloadable)?.reloadView()
