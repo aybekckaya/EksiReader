@@ -23,9 +23,12 @@ protocol ColorTheme {
     var neutralColor: UIColor { get }
     var positiveColor: UIColor { get }
     var negativeColor: UIColor { get }
+    var loadingViewBackgroundColor: UIColor { get }
 }
 
 struct DarkColorTheme: ColorTheme {
+    var loadingViewBackgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+    
      var identifier: String { "Dark" }
      var title: String { "Koyu" }
     var neutralColor = UIColor(red: 0 / 255.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
@@ -42,6 +45,7 @@ struct DarkColorTheme: ColorTheme {
 }
 
 struct LightColorTheme: ColorTheme {
+    var loadingViewBackgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
      var identifier: String { "Light" }
      var title: String { "Açık" }
      var neutralColor = UIColor(red: 0 / 255.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)

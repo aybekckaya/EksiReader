@@ -121,12 +121,15 @@ extension EntryInputView {
             .centerY(.constant(0))
             .asStackView()
 
-        favoriteItemView
-            .add(intoStackView: stackView)
-            .onTap { _ in
-                NSLog("Favorite Tapped")
-                self.delegate?.entryInputViewFavoriteDidTapped(self)
-            }
+        if C.Switch.favoriteEntryEnabled {
+            favoriteItemView
+                .add(intoStackView: stackView)
+                .onTap { _ in
+                    NSLog("Favorite Tapped")
+                    self.delegate?.entryInputViewFavoriteDidTapped(self)
+                }
+        }
+       
 
         attachItemView
             .add(intoStackView: stackView)
@@ -160,7 +163,7 @@ extension EntryInputView {
             .configure(image: isFavoritedByUser ? "heart.fill" : "heart", value: "\(favoriteCount)")
 
         shareItemView
-            .configure(image: "square.and.arrow.up", value: nil)
+            .configure(image: "doc.on.doc", value: nil)
 
         reportItemView
             .configure(image: "flag", value: nil)

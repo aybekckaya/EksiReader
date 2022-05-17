@@ -49,20 +49,21 @@ class TopicFilterViewController: ERViewController {
             .add(intoStackView: stackView)
            // .height(.constant(72))
 
-        watchInputView
-            .add(intoStackView: stackView)
-
         let sortInputViewTitle = soritngType == .lastToFirst ? "Eskiden yeniye sırala" : "Yeniden eskiye sırala"
         sortInputView.configure(title: sortInputViewTitle ,
                                 backgroundColor: .systemBlue,
                                 image: UIImage(systemName: "arrow.up.arrow.down"))
 
-        let watchInputViewTitle = isFollowingEntry ? "Konuyu takibi bırak" : "Konuyu takip et"
-        let watchInputViewColor = isFollowingEntry ? UIColor.systemRed : UIColor.systemBlue
-        watchInputView.configure(title: watchInputViewTitle,
-                                backgroundColor: watchInputViewColor,
-                                image: UIImage(systemName: "eye"))
-
+        if C.Switch.topicFollowEnabled {
+            watchInputView
+                .add(intoStackView: stackView)
+            
+            let watchInputViewTitle = isFollowingEntry ? "Konuyu takibi bırak" : "Konuyu takip et"
+            let watchInputViewColor = isFollowingEntry ? UIColor.systemRed : UIColor.systemBlue
+            watchInputView.configure(title: watchInputViewTitle,
+                                    backgroundColor: watchInputViewColor,
+                                    image: UIImage(systemName: "eye"))
+        }
     }
 
     private func addListeners() {

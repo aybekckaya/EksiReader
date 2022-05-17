@@ -138,6 +138,7 @@ extension TopicListViewController {
             self.setTitle(_viewModel.getTitle())
         case .loading(let isVisible):
             isVisible ? self.showFullSizeLoading() : self.hideFullSizeLoading()
+            
         case .footerViewLoading(let isVisible):
             _listView.updateFooterViewVisibility(isVisible: isVisible)
         case .presentations(let itemPresentations):

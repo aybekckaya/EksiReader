@@ -96,15 +96,17 @@ class EksiTabbarController: UITabBarController, BarContainerBackgroundProtocol {
                                                 selectedImage: nil)
         arrNavigationControllers.append(popularNavCon)
 
-        let notificationDataController = NotificationDataController()
-        let notificationRouter = NotificationRouter()
-        let notificationViewModel = NotificationViewModel(dataController: notificationDataController, router: notificationRouter)
-        let notificationViewController = NotificationViewController(viewModel: notificationViewModel)
-        let notificationNavCon = ERNavigationController(rootViewController: notificationViewController)
-        notificationNavCon.tabBarItem = UITabBarItem(title: EksiTabbarItem.notification.title,
-                                                                                                  image: UIImage(systemName: EksiTabbarItem.notification.icon),
-                                                                                                  selectedImage: nil)
-        arrNavigationControllers.append(notificationNavCon)
+        if C.Switch.notificationsViewEnabled {
+            let notificationDataController = NotificationDataController()
+            let notificationRouter = NotificationRouter()
+            let notificationViewModel = NotificationViewModel(dataController: notificationDataController, router: notificationRouter)
+            let notificationViewController = NotificationViewController(viewModel: notificationViewModel)
+            let notificationNavCon = ERNavigationController(rootViewController: notificationViewController)
+            notificationNavCon.tabBarItem = UITabBarItem(title: EksiTabbarItem.notification.title,
+                                                                                                      image: UIImage(systemName: EksiTabbarItem.notification.icon),
+                                                                                                      selectedImage: nil)
+            arrNavigationControllers.append(notificationNavCon)
+        }
 
         let settingsDataController = SettingsDataController()
         let settingsRouter = SettingsRouter()

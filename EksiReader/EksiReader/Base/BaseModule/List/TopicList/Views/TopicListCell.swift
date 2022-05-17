@@ -61,19 +61,23 @@ class TopicListCell: UITableViewCell, ERListCell {
             .add(intoStackView: stackViewRight)
             .width(.min(48))
 
-        followContainerView
-            .add(intoStackView: stackViewRight)
-            .width(.constant(16))
+       
+        if C.Switch.topicFollowEnabled {
+            followContainerView
+                .add(intoStackView: stackViewRight)
+                .width(.constant(16))
+            
+            viewFollowSign
+                .add(into: followContainerView)
+                .width(.constant(8))
+                .height(.constant(8))
+                .centerX(.constant(0))
+                .centerY(.constant(1))
 
-        viewFollowSign
-            .add(into: followContainerView)
-            .width(.constant(8))
-            .height(.constant(8))
-            .centerX(.constant(0))
-            .centerY(.constant(1))
-
-        viewFollowSign
-            .roundCorners(by: 4)
+            viewFollowSign
+                .roundCorners(by: 4)
+        }
+        
 
         lblTitle
             .add(into: self)

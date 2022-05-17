@@ -48,7 +48,7 @@ class EntryContentView: UIView {
         infoView
             .add(into: self)
             .margin(to: .bottom(of: viewEntryText, value: .constant(16)))
-            .align(with: .right(of: viewEntryText, value: .constant(0)))
+            .align(with: .right(of: viewEntryText, value: .constant(-16)))
             .height(.min(1)) 
             .ratio(to: .width(of: self, value: 1.0))
             .onTap { _ in

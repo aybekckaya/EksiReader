@@ -32,3 +32,27 @@ extension Styling {
         }
     }
 }
+
+extension Styling {
+    struct ToastView {
+        static var backgroundColor: UIColor {
+            APP.themeManager.getCurrentTheme().neutralColor
+        }
+        
+        static var textColor: UIColor {
+            UIColor.white
+        }
+        
+        static var textFont: UIFont {
+            C.Font.regular.font(size: 14)
+        }
+    }
+}
+
+extension Styling {
+    struct LoadingView {
+        static var backgroundColor: UIColor {
+            APP.themeManager.getCurrentTheme().loadingViewBackgroundColor
+        }
+    }
+}

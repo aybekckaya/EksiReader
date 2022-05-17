@@ -13,9 +13,9 @@ class EksiLoadingView: UIView {
 
     private let bgView = UIVisualEffectView
         .visualEffectView()
-        .blurEffect(.regular)
-        .backgroundColor(.black)
-        .opacity(0.8)
+        .blurEffect(.light)
+        .backgroundColor(.clear)
+        .opacity(0.0)
         .asVisualEffectsView()
 
 

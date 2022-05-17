@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import Loaf
+import Toaster
 import SwiftEntryKit
 
 class TopicViewController: ERViewController, PagableViewController {
@@ -44,19 +44,6 @@ extension TopicViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        // text to share
-               let text = "This is some text that I want to share."
-
-               // set up activity view controller
-               let textToShare = [ text ]
-               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-               
-
-               // present the view controller
-               self.present(activityViewController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -133,10 +120,7 @@ extension TopicViewController {
 // MARK: - UI Update
 extension TopicViewController {
     private func showToast(message: String) {
-        Loaf(message,
-             presentingDirection: .vertical,
-             dismissingDirection: .vertical,
-             sender: self).show()
+        ERToast.show(with: message)
     }
 }
 

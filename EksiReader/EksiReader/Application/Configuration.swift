@@ -13,7 +13,11 @@ struct C {
 }
 
 extension C {
-    static let showLinksInTable: Bool = true
+    struct Switch {
+        static let notificationsViewEnabled: Bool = false
+        static let topicFollowEnabled: Bool = false
+        static let favoriteEntryEnabled: Bool = false
+    }
 }
 
 

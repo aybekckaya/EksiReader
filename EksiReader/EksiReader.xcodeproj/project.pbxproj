@@ -58,7 +58,6 @@
 		A32CA822280AEFF6005DE47B /* UIImageCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA821280AEFF6005DE47B /* UIImageCacheExtension.swift */; };
 		A32CA824280AF1B3005DE47B /* EntryInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA823280AF1B3005DE47B /* EntryInputView.swift */; };
 		A32CA828280B0F11005DE47B /* ERStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA827280B0F11005DE47B /* ERStorage.swift */; };
-		A32CA82B280B313F005DE47B /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = A32CA82A280B313F005DE47B /* Loaf */; };
 		A32CA82D280B5C19005DE47B /* LottieRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA82C280B5C19005DE47B /* LottieRefreshControl.swift */; };
 		A32CA82F280B5C3A005DE47B /* lemonLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = A32CA82E280B5C3A005DE47B /* lemonLoading.json */; };
 		A32CA831280B6135005DE47B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CA830280B6135005DE47B /* Reachability.swift */; };
@@ -158,6 +157,8 @@
 		E9044D1C2821EDF600177DEB /* SwitcherInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9044D1B2821EDF600177DEB /* SwitcherInputView.swift */; };
 		E9044D1E2821EFE700177DEB /* TickInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9044D1D2821EFE700177DEB /* TickInputView.swift */; };
 		E9044D20282209CD00177DEB /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9044D1F282209CD00177DEB /* ThemeManager.swift */; };
+		E9AF3E38283321BA009F0385 /* Toaster in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF3E37283321BA009F0385 /* Toaster */; };
+		E9AF3E3A28332387009F0385 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF3E3928332387009F0385 /* ToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -321,6 +322,7 @@
 		E9044D1B2821EDF600177DEB /* SwitcherInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherInputView.swift; sourceTree = "<group>"; };
 		E9044D1D2821EFE700177DEB /* TickInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickInputView.swift; sourceTree = "<group>"; };
 		E9044D1F282209CD00177DEB /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E9AF3E3928332387009F0385 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,9 +339,9 @@
 				A33141992818757200927CF1 /* SwiftEntryKit in Frameworks */,
 				A3B1C84C281CA42900156023 /* FirebaseRemoteConfigSwift-Beta in Frameworks */,
 				A37B78782804B97100DED4F1 /* Lottie in Frameworks */,
+				E9AF3E38283321BA009F0385 /* Toaster in Frameworks */,
 				A3B1C846281CA42900156023 /* FirebaseCrashlytics in Frameworks */,
 				A369A616280C5E8700494B40 /* SwiftHash in Frameworks */,
-				A32CA82B280B313F005DE47B /* Loaf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,6 +943,7 @@
 				A37A76272815D76A00637BF9 /* AuthorView.swift */,
 				A3DD03C6281731E900D9ADB8 /* AnimativeModalView.swift */,
 				A3DD03CA2817758F00D9ADB8 /* TappableInputView.swift */,
+				E9AF3E3928332387009F0385 /* ToastView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1185,7 +1188,6 @@
 			packageProductDependencies = (
 				A37B78772804B97100DED4F1 /* Lottie */,
 				A32CA81D280AE7E3005DE47B /* Kingfisher */,
-				A32CA82A280B313F005DE47B /* Loaf */,
 				A369A615280C5E8700494B40 /* SwiftHash */,
 				A392F6C4280F233100FB32C6 /* SwipeableTabBarController */,
 				A33141982818757200927CF1 /* SwiftEntryKit */,
@@ -1195,6 +1197,7 @@
 				A3B1C847281CA42900156023 /* FirebasePerformance */,
 				A3B1C849281CA42900156023 /* FirebaseRemoteConfig */,
 				A3B1C84B281CA42900156023 /* FirebaseRemoteConfigSwift-Beta */,
+				E9AF3E37283321BA009F0385 /* Toaster */,
 			);
 			productName = EksiReader;
 			productReference = A331001727FCD1C700431F26 /* EksiReader.app */;
@@ -1271,11 +1274,11 @@
 			packageReferences = (
 				A37B78762804B97100DED4F1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */,
 				A369A614280C5E8700494B40 /* XCRemoteSwiftPackageReference "SwiftHash" */,
 				A392F6C3280F233100FB32C6 /* XCRemoteSwiftPackageReference "SwipeableTabBarController" */,
 				A33141972818757200927CF1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 				A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E9AF3E36283321BA009F0385 /* XCRemoteSwiftPackageReference "Toaster" */,
 			);
 			productRefGroup = A331001827FCD1C700431F26 /* Products */;
 			projectDirPath = "";
@@ -1372,6 +1375,7 @@
 				A369A650280E2A2C00494B40 /* TopicItemPresentation.swift in Sources */,
 				A311FBFA2802A69E00EE27A3 /* ScrollableView.swift in Sources */,
 				A3E0A762281DB4FC008D19F3 /* EksiTheme.swift in Sources */,
+				E9AF3E3A28332387009F0385 /* ToastView.swift in Sources */,
 				A311FC462802C59800EE27A3 /* NetworkingURLRequestBuilder.swift in Sources */,
 				A369A62D280CA32B00494B40 /* EntryVC.swift in Sources */,
 				A37B78752804AE5800DED4F1 /* TopicListCell.swift in Sources */,
@@ -1840,14 +1844,6 @@
 				kind = branch;
 			};
 		};
-		A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/schmidyy/Loaf.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.0;
-			};
-		};
 		A33141972818757200927CF1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aybekckaya/SwiftEntryKit.git";
@@ -1888,6 +1884,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		E9AF3E36283321BA009F0385 /* XCRemoteSwiftPackageReference "Toaster" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aybekckaya/Toaster.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1895,11 +1899,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A32CA81C280AE7E2005DE47B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		A32CA82A280B313F005DE47B /* Loaf */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A32CA829280B313F005DE47B /* XCRemoteSwiftPackageReference "Loaf" */;
-			productName = Loaf;
 		};
 		A33141982818757200927CF1 /* SwiftEntryKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1950,6 +1949,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A3B1C840281CA42900156023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseRemoteConfigSwift-Beta";
+		};
+		E9AF3E37283321BA009F0385 /* Toaster */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9AF3E36283321BA009F0385 /* XCRemoteSwiftPackageReference "Toaster" */;
+			productName = Toaster;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

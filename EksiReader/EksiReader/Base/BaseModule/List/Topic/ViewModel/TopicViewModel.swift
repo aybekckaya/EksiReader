@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftEntryKit
+import UIKit
 
 class TopicViewModel: PagableViewModel {
     typealias DataController = TopicDataController
@@ -97,7 +98,8 @@ extension TopicViewModel {
 
     func share(id: Int) {
         let link = "https://eksisozluk.com/entry/\(id)"
-        router.showShareSheet(eksiLink: link)
+        UIPasteboard.general.string = link
+        trigger(.infoToast(message: "\(link) \n kopyalandı"))
     }
 
     func favorite(id: Int) {
