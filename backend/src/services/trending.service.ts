@@ -2,13 +2,16 @@ import { TRENDING_CACHE_TTL_SECONDS } from "../config";
 import { TrendingFetchError } from "../errors/app-error";
 import type { TrendingData, TrendingPayload } from "../models/api";
 import { parseTrendingHtml } from "../parsers/trending.parser";
-import type { CacheRepository } from "../repositories/cache.repository";
+import type { CachedValue } from "../repositories/cache.repository";
 import type { TopicRepository } from "../repositories/topic.repository";
 import type { EksiClient } from "../clients/eksi.client";
 
 type Clock = () => number;
 type TrendingClient = Pick<EksiClient, "fetchTrendingPage">;
-type TrendingCache = Pick<CacheRepository, "get" | "put">;
+interface TrendingCache {
+  get(key: string): Promise<CachedValue<TrendingPayload> | null>;
+  put(key: string, payload: unknown, fetchedAt: number, expiresAt: number): Promise<void>;
+}
 type TopicStore = Pick<TopicRepository, "upsertMany">;
 
 export class TrendingService {

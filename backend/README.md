@@ -1,6 +1,6 @@
 # EksiReader Backend
 
-EksiReader Backend, Ekşi Sözlük'ün herkese açık gündem HTML'ini okuyup iOS veya başka istemcilerin tüketebileceği normalize JSON sunan, public ve read-only bir Cloudflare Worker'dır. Kimlik doğrulama ve kullanıcı işlemleri içermez.
+EksiReader Backend, Ekşi Sözlük'ün herkese açık gündem ve topic HTML'lerini okuyup istemcilerin tüketebileceği normalize JSON sunan, public ve read-only bir Cloudflare Worker'dır. Kimlik doğrulama ve kullanıcı işlemleri içermez.
 
 ## Teknoloji ve mimari
 
@@ -13,7 +13,7 @@ EksiReader Backend, Ekşi Sözlük'ün herkese açık gündem HTML'ini okuyup iO
 
 ```text
 HTTP route
-  -> TrendingService
+  -> TrendingService / TopicService
      -> D1 cache repository
      -> Ekşi HTTP client
      -> HTML parser
@@ -46,7 +46,7 @@ backend/
 
 ## Kurulum
 
-Node.js 20 veya üzeri gerekir.
+Node.js 20.9 veya üzeri gerekir.
 
 ```bash
 cd ~/Documents/EksiReader/backend
@@ -96,9 +96,10 @@ Başka bir terminalde:
 curl http://localhost:8787/health
 curl "http://localhost:8787/v1/trending?page=1"
 curl "http://localhost:8787/v1/trending?page=2"
+curl "http://localhost:8787/v1/topics/8136443?page=1&sort=popular"
 ```
 
-Geçerli `page` aralığı 1–20'dir ve parametre verilmezse 1 kullanılır.
+Trending için geçerli `page` aralığı 1–20, topic detail için 1–1000'dir. Parametre verilmezse `page=1` ve `sort=popular` kullanılır.
 
 ## Endpoint'ler
 
@@ -114,13 +115,81 @@ Ekşi'ye veya D1'e erişmeyen basit health check:
 
 Topic alanlarını `id`, `title`, `slug` ve `entryCount` olarak normalize eder. Pagination bilgisi HTML'deki `#quick-index-continue-link` üzerinden çıkarılır.
 
+### `GET /v1/topics/:topicId?page=1&sort=popular`
+
+Topic metadata, entry listesi ve pagination bilgisini tek bir Ekşi HTML isteğinden çıkarır. Şimdilik yalnızca `popular` sıralaması desteklenir.
+
+```bash
+curl "http://localhost:8787/v1/trending?page=1"
+curl "http://localhost:8787/v1/topics/8136443?page=1&sort=popular"
+```
+
+Topic endpoint'inden önce trending çağrısı yapılmalıdır. Backend, istemcinin gönderdiği `topicId` ile D1 `topics` tablosundan `slug` değerini bulur. Topic D1'de yoksa slug tahmin etmez ve `404 TOPIC_NOT_FOUND` döner. Bulunan slug ile şu biçimde tek upstream istek oluşturulur:
+
+```text
+https://eksisozluk.com/{slug}--{topicId}?a=popular
+https://eksisozluk.com/{slug}--{topicId}?a=popular&p=2
+```
+
+Bu tek HTML belgesinden `h1#title`, `.pager` ve `#entry-item-list > li#entry-item` parse edilir. Her entry için ayrı `/entry/:id` isteği yapılmaz. Entry içeriğinin düz metin sürümü HTML entity ve whitespace normalize edilerek `contentText` alanına yazılır. `contentHtml` linkleri korur; `script`, `style`, event handler ve JavaScript URL'leri temizlenir. Relative permalink ve protocol-relative avatar URL'leri absolute HTTPS URL'lerine çevrilir.
+
+Örnek kısaltılmış response:
+
+```json
+{
+  "success": true,
+  "data": {
+    "topic": {
+      "id": 8136443,
+      "title": "8 eylül 2026 real madrid inter maçı",
+      "slug": "8-eylul-2026-real-madrid-inter-maci",
+      "entryCount": 229
+    },
+    "entries": [
+      {
+        "id": 186257381,
+        "contentText": "örnek entry metni",
+        "contentHtml": "örnek entry metni",
+        "author": {
+          "id": 1200425,
+          "username": "örnek yazar",
+          "slug": "ornek-yazar",
+          "avatarUrl": "https://img.ekstat.com/profiles/ornek.jpg"
+        },
+        "dateText": "08.09.2026 19:50",
+        "favoriteCount": 0,
+        "commentCount": 0,
+        "likeCount": 0,
+        "permalink": "https://eksisozluk.com/entry/186257381"
+      }
+    ],
+    "pagination": {
+      "currentPage": 1,
+      "pageCount": 23,
+      "hasPreviousPage": false,
+      "previousPage": null,
+      "hasNextPage": true,
+      "nextPage": 2
+    },
+    "sort": "popular",
+    "cache": {
+      "cached": false,
+      "stale": false,
+      "fetchedAt": "2026-09-09T00:30:00.000Z"
+    }
+  }
+}
+```
+
 ## Cache ve hata davranışı
 
 - Cache key biçimi `trending:{page}`, TTL 60 saniyedir.
+- Topic cache key biçimi `topic:{topicId}:{sort}:{page}`, TTL 60 saniyedir.
 - Geçerli cache varsa Ekşi'ye yeni istek yapılmaz ve `cached: true` döner.
 - Cache yoksa HTML alınır, parse edilir; topic'ler D1 batch ile upsert edilir ve response cache'e yazılır.
 - Cache süresi dolmuşken Ekşi 403, 429, 5xx, timeout veya network hatası verirse eski kayıt `cached: true, stale: true` ile döner.
 - Kullanılabilir cache yoksa fetch hatası `502 TRENDING_FETCH_FAILED` olur.
+- Topic fetch veya parse yenilemesi başarısız olduğunda expired topic cache varsa `cached: true, stale: true` ile kullanılır. Cache yoksa kontrollü `TOPIC_FETCH_FAILED` veya `TOPIC_PARSE_FAILED` yanıtı döner.
 - `.topic-list` kaybolursa veya geçerli topic çıkmazsa parser sessizce boş liste döndürmez; `502 TRENDING_PARSE_FAILED` üretir.
 - Production hata yanıtları stack trace, upstream HTML veya Cloudflare iç detayları içermez.
 

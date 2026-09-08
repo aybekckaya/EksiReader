@@ -1,13 +1,11 @@
-import type { TrendingPayload } from "../models/api";
-
 interface CacheRow {
   payload: string;
   fetched_at: number;
   expires_at: number;
 }
 
-export interface CachedTrending {
-  payload: TrendingPayload;
+export interface CachedValue<TPayload> {
+  payload: TPayload;
   fetchedAt: number;
   expiresAt: number;
 }
@@ -15,7 +13,7 @@ export interface CachedTrending {
 export class CacheRepository {
   constructor(private readonly db: D1Database) {}
 
-  async get(key: string): Promise<CachedTrending | null> {
+  async get<TPayload>(key: string): Promise<CachedValue<TPayload> | null> {
     const row = await this.db
       .prepare(
         "SELECT payload, fetched_at, expires_at FROM response_cache WHERE cache_key = ?1",
@@ -29,7 +27,7 @@ export class CacheRepository {
 
     try {
       return {
-        payload: JSON.parse(row.payload) as TrendingPayload,
+        payload: JSON.parse(row.payload) as TPayload,
         fetchedAt: row.fetched_at,
         expiresAt: row.expires_at,
       };
@@ -41,7 +39,7 @@ export class CacheRepository {
 
   async put(
     key: string,
-    payload: TrendingPayload,
+    payload: unknown,
     fetchedAt: number,
     expiresAt: number,
   ): Promise<void> {

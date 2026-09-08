@@ -1,7 +1,30 @@
 import type { Topic } from "../models/topic";
 
+interface TopicRow {
+  id: number;
+  title: string;
+  slug: string;
+  entry_count: number;
+}
+
 export class TopicRepository {
   constructor(private readonly db: D1Database) {}
+
+  async findTopicById(id: number): Promise<Topic | null> {
+    const row = await this.db
+      .prepare("SELECT id, title, slug, entry_count FROM topics WHERE id = ?1")
+      .bind(id)
+      .first<TopicRow>();
+
+    return row === null
+      ? null
+      : {
+          id: row.id,
+          title: row.title,
+          slug: row.slug,
+          entryCount: row.entry_count,
+        };
+  }
 
   async upsertMany(topics: Topic[], lastSeenAt: number): Promise<void> {
     if (topics.length === 0) {

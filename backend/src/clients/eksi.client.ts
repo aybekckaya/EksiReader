@@ -2,7 +2,8 @@ import {
   EKSI_BASE_URL,
   EKSI_REQUEST_TIMEOUT_MS,
 } from "../config";
-import { TrendingFetchError } from "../errors/app-error";
+import { TopicFetchError, TrendingFetchError } from "../errors/app-error";
+import type { TopicSort } from "../models/entry";
 
 export type FetchImplementation = typeof fetch;
 
@@ -18,6 +19,28 @@ export class EksiClient {
       url.searchParams.set("p", String(page));
     }
 
+    return this.fetchHtml(url, (message, options) => new TrendingFetchError(message, options));
+  }
+
+  async fetchTopicPage(
+    slug: string,
+    topicId: number,
+    page: number,
+    sort: TopicSort,
+  ): Promise<string> {
+    const url = new URL(`/${slug}--${topicId}`, EKSI_BASE_URL);
+    url.searchParams.set("a", sort);
+    if (page > 1) {
+      url.searchParams.set("p", String(page));
+    }
+
+    return this.fetchHtml(url, (message, options) => new TopicFetchError(message, options));
+  }
+
+  private async fetchHtml(
+    url: URL,
+    createError: (message: string, options?: ErrorOptions) => TrendingFetchError | TopicFetchError,
+  ): Promise<string> {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), this.timeoutMs);
 
@@ -32,26 +55,26 @@ export class EksiClient {
       });
 
       if (response.status !== 200) {
-        throw new TrendingFetchError(`Ekşi HTTP ${response.status} döndürdü.`);
+        throw createError(`Ekşi HTTP ${response.status} döndürdü.`);
       }
 
       const contentType = response.headers.get("content-type") ?? "";
       if (!contentType.toLowerCase().includes("text/html")) {
-        throw new TrendingFetchError(`Beklenmeyen Content-Type: ${contentType || "yok"}.`);
+        throw createError(`Beklenmeyen Content-Type: ${contentType || "yok"}.`);
       }
 
       const html = await response.text();
       if (html.trim().length === 0) {
-        throw new TrendingFetchError("Ekşi boş HTML döndürdü.");
+        throw createError("Ekşi boş HTML döndürdü.");
       }
 
       return html;
     } catch (error) {
-      if (error instanceof TrendingFetchError) {
+      if (error instanceof TrendingFetchError || error instanceof TopicFetchError) {
         throw error;
       }
       const reason = error instanceof Error ? error.message : "Bilinmeyen network hatası";
-      throw new TrendingFetchError(`Ekşi isteği başarısız: ${reason}.`, { cause: error });
+      throw createError(`Ekşi isteği başarısız: ${reason}.`, { cause: error });
     } finally {
       clearTimeout(timeout);
     }

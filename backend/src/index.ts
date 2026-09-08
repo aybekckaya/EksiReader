@@ -1,6 +1,7 @@
 import { AppError } from "./errors/app-error";
 import type { Env } from "./env";
 import { healthRoute } from "./routes/health.route";
+import { topicRoute } from "./routes/topic.route";
 import { trendingRoute } from "./routes/trending.route";
 import { errorResponse, optionsResponse } from "./utils/response";
 
@@ -17,6 +18,10 @@ export default {
       }
       if (request.method === "GET" && url.pathname === "/v1/trending") {
         return await trendingRoute(request, env);
+      }
+      const topicMatch = /^\/v1\/topics\/([^/]+)$/u.exec(url.pathname);
+      if (request.method === "GET" && topicMatch?.[1] !== undefined) {
+        return await topicRoute(request, env, topicMatch[1]);
       }
       return errorResponse("NOT_FOUND", "Endpoint bulunamadı.", 404);
     } catch (error) {
