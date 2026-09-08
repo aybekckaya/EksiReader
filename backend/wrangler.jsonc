@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eksi-reader-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "eksi-reader-db",
+      "database_id": "ba67e13b-43fb-40bc-87f2-890a7bf805b7"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
