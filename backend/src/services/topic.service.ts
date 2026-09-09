@@ -7,7 +7,7 @@ import {
 } from "../errors/app-error";
 import type { TopicData, TopicPayload } from "../models/api";
 import type { TopicSort } from "../models/entry";
-import type { Topic } from "../models/topic";
+import type { TopicMetadata } from "../models/topic";
 import { parseTopicHtml } from "../parsers/topic.parser";
 import type { CachedValue } from "../repositories/cache.repository";
 
@@ -23,7 +23,11 @@ interface TopicCache {
 }
 
 interface TopicStore {
-  findTopicById(id: number): Promise<Topic | null>;
+  findTopicById(id: number): Promise<TopicMetadata | null>;
+  upsertResolvedTopic(
+    topic: { id: number; title: string; slug: string },
+    lastSeenAt: number,
+  ): Promise<void>;
 }
 
 export class TopicService {
@@ -59,7 +63,7 @@ export class TopicService {
       payload = {
         topic: {
           ...parsed.topic,
-          entryCount: metadata.entryCount,
+          ...(metadata.entryCount === null ? {} : { entryCount: metadata.entryCount }),
         },
         entries: parsed.entries,
         pagination: parsed.pagination,
@@ -76,12 +80,15 @@ export class TopicService {
       throw error;
     }
 
-    await this.cacheRepository.put(
-      cacheKey,
-      payload,
-      now,
-      now + TOPIC_CACHE_TTL_SECONDS,
-    );
+    await Promise.all([
+      this.cacheRepository.put(
+        cacheKey,
+        payload,
+        now,
+        now + TOPIC_CACHE_TTL_SECONDS,
+      ),
+      this.topicRepository.upsertResolvedTopic(payload.topic, now),
+    ]);
     return this.toData({ payload, fetchedAt: now, expiresAt: now + TOPIC_CACHE_TTL_SECONDS }, false, false);
   }
 

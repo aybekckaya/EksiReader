@@ -80,7 +80,19 @@ Uzak migration (production veritabanını değiştirir):
 npx wrangler d1 migrations apply eksi-reader-db --remote
 ```
 
-Migration, `topics` ve `response_cache` tablolarını gerekli indexlerle oluşturur.
+Migration'lar `topics` ve `response_cache` tablolarını, entry-count bilgi durumunu ve D1 arama indexi için `search_title` kolonunu oluşturur.
+
+Migration öncesinden kalan topic kayıtlarının normalize arama alanını doldurmak için:
+
+```bash
+npm run backfill-search-titles
+```
+
+Uzak D1 backfill işlemi production verisini değiştirir ve yalnızca bilinçli olarak çalıştırılmalıdır:
+
+```bash
+npm run backfill-search-titles -- --remote
+```
 
 ## Geliştirme ve doğrulama
 
@@ -97,6 +109,9 @@ curl http://localhost:8787/health
 curl "http://localhost:8787/v1/trending?page=1"
 curl "http://localhost:8787/v1/trending?page=2"
 curl "http://localhost:8787/v1/topics/8136443?page=1&sort=popular"
+curl "http://localhost:8787/v1/search/suggestions?q=ins"
+curl --get "http://localhost:8787/v1/search/resolve" \
+  --data-urlencode "q=instagramdaki 80's akımı"
 ```
 
 Trending için geçerli `page` aralığı 1–20, topic detail için 1–1000'dir. Parametre verilmezse `page=1` ve `sort=popular` kullanılır.
@@ -181,10 +196,57 @@ Bu tek HTML belgesinden `h1#title`, `.pager` ve `#entry-item-list > li#entry-ite
 }
 ```
 
+### `GET /v1/search/suggestions?q=ins`
+
+Suggestions tamamen yerel D1 `topics` tablosundan gelir; hiçbir external network isteği yapmaz ve `response_cache` kullanmaz. Trending, topic detail ve resolve upsert yolları her topic için Türkçe-toleranslı `search_title` alanını güncel tutar.
+
+```bash
+curl "http://localhost:8787/v1/search/suggestions?q=ins"
+```
+
+```json
+{
+  "success": true,
+  "data": {
+    "query": "ins",
+    "topics": [
+      {
+        "id": 8136213,
+        "title": "instagramdaki 80's akımı",
+        "slug": "instagramdaki-80s-akimi",
+        "entryCount": 840
+      }
+    ]
+  }
+}
+```
+
+Arama; trim, whitespace collapse, `tr-TR` lowercase ve Türkçe karakter/aksan normalizasyonu uygular. Exact eşleşme önce, ardından prefix eşleşmeler son görülme zamanına göre gelir. Prefix sonucu yoksa contains fallback çalışır. En fazla 10 topic döner. Resolve ile eklenen fakat gerçek entry sayısı henüz bilinmeyen topic'lerde `entryCount: null` kullanılır.
+
+Ekşi'nin `/autocomplete/query` endpoint'i server-side isteklerde Cloudflare Managed Challenge döndürdüğü için backend tarafından hiç kullanılmaz. Author suggestions ve author resolve desteklenmez. Client, kullanıcı yazarken yaklaşık 300 ms debounce uygulamalıdır.
+
+### `GET /v1/search/resolve?q=...`
+
+D1 suggestions içinde bulunmayan exact topic başlıkları için opsiyonel manuel fallback'tir:
+
+```bash
+curl --get "http://localhost:8787/v1/search/resolve" \
+  --data-urlencode "q=instagramdaki 80's akımı"
+```
+
+Backend `https://eksisozluk.com/?q=...` isteğini `redirect: manual` ile yapar; redirect'i takip edip büyük topic HTML'ini indirmez. `3xx Location` içinden topic id ve slug çıkarılır, `search_title` ile D1'e upsert edilir. Client daha sonra dönen id'yi mevcut topic endpoint'ine verir:
+
+```bash
+curl "http://localhost:8787/v1/topics/8136213?page=1&sort=popular"
+```
+
+Resolve isteği Managed Challenge alırsa bypass denenmez; API `503 SEARCH_RESOLVE_UNAVAILABLE` döndürür. `@author` sorguları `400 AUTHOR_RESOLVE_NOT_SUPPORTED` ile reddedilir.
+
 ## Cache ve hata davranışı
 
 - Cache key biçimi `trending:{page}`, TTL 60 saniyedir.
 - Topic cache key biçimi `topic:{topicId}:{sort}:{page}`, TTL 60 saniyedir.
+- Search suggestions doğrudan D1 index sorgusudur; response cache'e yazılmaz.
 - Geçerli cache varsa Ekşi'ye yeni istek yapılmaz ve `cached: true` döner.
 - Cache yoksa HTML alınır, parse edilir; topic'ler D1 batch ile upsert edilir ve response cache'e yazılır.
 - Cache süresi dolmuşken Ekşi 403, 429, 5xx, timeout veya network hatası verirse eski kayıt `cached: true, stale: true` ile döner.

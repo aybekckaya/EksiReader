@@ -5,6 +5,12 @@ export type ErrorCode =
   | "TOPIC_NOT_FOUND"
   | "TOPIC_FETCH_FAILED"
   | "TOPIC_PARSE_FAILED"
+  | "INVALID_SEARCH_QUERY"
+  | "SEARCH_SUGGESTIONS_FAILED"
+  | "SEARCH_RESOLVE_FAILED"
+  | "SEARCH_RESOLVE_NOT_FOUND"
+  | "SEARCH_RESOLVE_UNAVAILABLE"
+  | "AUTHOR_RESOLVE_NOT_SUPPORTED"
   | "TRENDING_FETCH_FAILED"
   | "TRENDING_PARSE_FAILED"
   | "INTERNAL_ERROR"
@@ -50,6 +56,38 @@ export class TopicParseError extends AppError {
   constructor(message: string, options?: ErrorOptions) {
     super("TOPIC_PARSE_FAILED", 502, "Başlık verisi işlenemedi.", options);
     this.name = "TopicParseError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class SearchSuggestionsError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("SEARCH_SUGGESTIONS_FAILED", 502, "Arama önerileri alınamadı.", options);
+    this.name = "SearchSuggestionsError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class SearchResolveError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("SEARCH_RESOLVE_FAILED", 502, "Başlık çözümlenemedi.", options);
+    this.name = "SearchResolveError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class SearchResolveNotFoundError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("SEARCH_RESOLVE_NOT_FOUND", 404, "Arama sonucu başlığa çözümlenemedi.", options);
+    this.name = "SearchResolveNotFoundError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class SearchResolveUnavailableError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("SEARCH_RESOLVE_UNAVAILABLE", 503, "Arama şu anda kullanılamıyor.", options);
+    this.name = "SearchResolveUnavailableError";
     Object.defineProperty(this, "message", { value: message });
   }
 }

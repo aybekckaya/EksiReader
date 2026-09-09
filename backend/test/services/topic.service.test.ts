@@ -1,20 +1,21 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { TopicFetchError } from "../../src/errors/app-error";
 import type { TopicPayload } from "../../src/models/api";
+import type { TopicMetadata } from "../../src/models/topic";
 import type { CachedValue } from "../../src/repositories/cache.repository";
 import { TopicService } from "../../src/services/topic.service";
 import topicHtml from "../fixtures/topic.html?raw";
 
 const NOW_MS = 1_789_000_000_000;
 const NOW_SECONDS = NOW_MS / 1_000;
-const TOPIC = {
+const TOPIC: TopicMetadata = {
   id: 8136443,
   title: "8 eylül 2026 real madrid inter maçı",
   slug: "8-eylul-2026-real-madrid-inter-maci",
   entryCount: 229,
 };
 const CACHED_PAYLOAD: TopicPayload = {
-  topic: TOPIC,
+  topic: { ...TOPIC, entryCount: 229 },
   entries: [{
     id: 186257381,
     contentText: "örnek",
@@ -45,7 +46,10 @@ function dependencies(initialCache: CachedValue<TopicPayload> | null = null) {
       get: vi.fn(async (): Promise<CachedValue<TopicPayload> | null> => cacheState.value),
       put: vi.fn().mockResolvedValue(undefined),
     },
-    topics: { findTopicById: vi.fn().mockResolvedValue(TOPIC) },
+    topics: {
+      findTopicById: vi.fn().mockResolvedValue(TOPIC),
+      upsertResolvedTopic: vi.fn().mockResolvedValue(undefined),
+    },
   };
 }
 
@@ -139,5 +143,15 @@ describe("TopicService", () => {
     const result = await service.getTopic(TOPIC.id, 1, "popular");
 
     expect(result.cache).toMatchObject({ cached: true, stale: true });
+  });
+
+  it("entry count bilinmiyorsa response'a sahte sıfır eklemez", async () => {
+    const deps = dependencies();
+    deps.topics.findTopicById.mockResolvedValue({ ...TOPIC, entryCount: null });
+    const service = new TopicService(deps.client, deps.cache, deps.topics, () => NOW_MS);
+
+    const result = await service.getTopic(TOPIC.id, 1, "popular");
+
+    expect(result.topic).not.toHaveProperty("entryCount");
   });
 });

@@ -5,6 +5,13 @@ export interface Topic {
   entryCount: number;
 }
 
+export interface TopicMetadata {
+  id: number;
+  title: string;
+  slug: string;
+  entryCount: number | null;
+}
+
 export interface Pagination {
   currentPage: number;
   nextPage: number | null;

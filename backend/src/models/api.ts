@@ -1,5 +1,6 @@
 import type { Pagination, Topic } from "./topic";
 import type { Entry, TopicDetail, TopicPagination, TopicSort } from "./entry";
+import type { ResolvedTopic, SearchSuggestions } from "./search";
 
 export interface CacheMetadata {
   cached: boolean;
@@ -35,6 +36,16 @@ export interface TopicData extends TopicPayload {
 export interface TopicResponse {
   success: true;
   data: TopicData;
+}
+
+export interface SearchSuggestionsResponse {
+  success: true;
+  data: SearchSuggestions;
+}
+
+export interface SearchResolveResponse {
+  success: true;
+  data: ResolvedTopic;
 }
 
 export interface ErrorResponse {

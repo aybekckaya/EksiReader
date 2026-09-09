@@ -1,6 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 import { EksiClient } from "../../src/clients/eksi.client";
-import { TopicFetchError, TrendingFetchError } from "../../src/errors/app-error";
+import {
+  SearchResolveError,
+  SearchResolveNotFoundError,
+  SearchResolveUnavailableError,
+  TopicFetchError,
+  TrendingFetchError,
+} from "../../src/errors/app-error";
 
 function mockFetch(response: Response): typeof fetch {
   return vi.fn<typeof fetch>().mockResolvedValue(response);
@@ -62,5 +68,51 @@ describe("EksiClient", () => {
     })));
     await expect(client.fetchTopicPage("ornek-konu", 42, 1, "popular"))
       .rejects.toBeInstanceOf(TopicFetchError);
+  });
+
+  it("resolve redirect'ini manual kullanıp Location döndürür", async () => {
+    const fetchMock = mockFetch(new Response(null, {
+      status: 302,
+      headers: { Location: "/ornek-konu--42" },
+    }));
+    const client = new EksiClient(fetchMock);
+
+    await expect(client.fetchSearchResolveLocation("örnek konu"))
+      .resolves.toBe("/ornek-konu--42");
+
+    const [url, init] = vi.mocked(fetchMock).mock.calls[0] ?? [];
+    expect(new URL(String(url)).searchParams.get("q")).toBe("örnek konu");
+    expect(init?.redirect).toBe("manual");
+    expect(fetchMock).toHaveBeenCalledOnce();
+  });
+
+  it("Location bulunmayan redirect için kontrollü hata verir", async () => {
+    const client = new EksiClient(mockFetch(new Response(null, { status: 302 })));
+    await expect(client.fetchSearchResolveLocation("örnek konu"))
+      .rejects.toBeInstanceOf(SearchResolveError);
+  });
+
+  it.each([403, 429, 500])("resolve HTTP %i için kontrollü hata verir", async (status) => {
+    const client = new EksiClient(mockFetch(new Response("no", { status })));
+    await expect(client.fetchSearchResolveLocation("örnek konu"))
+      .rejects.toBeInstanceOf(SearchResolveError);
+  });
+
+  it("resolve Managed Challenge'ı unavailable olarak sınıflandırır", async () => {
+    const client = new EksiClient(mockFetch(new Response("challenge", {
+      status: 403,
+      headers: { "cf-mitigated": "challenge" },
+    })));
+    await expect(client.fetchSearchResolveLocation("örnek konu"))
+      .rejects.toBeInstanceOf(SearchResolveUnavailableError);
+  });
+
+  it("resolve 200 HTML response'unu topic kabul etmez", async () => {
+    const client = new EksiClient(mockFetch(new Response("<html>arama</html>", {
+      status: 200,
+      headers: { "Content-Type": "text/html" },
+    })));
+    await expect(client.fetchSearchResolveLocation("serbest arama"))
+      .rejects.toBeInstanceOf(SearchResolveNotFoundError);
   });
 });
