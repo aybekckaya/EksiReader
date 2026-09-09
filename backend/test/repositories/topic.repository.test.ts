@@ -108,4 +108,20 @@ describe("TopicRepository search", () => {
       entryCount: null,
     }]);
   });
+
+  it("author entries topic'lerini batch upsert edip search index'e katar", async () => {
+    const repository = new TopicRepository(db);
+    await repository.upsertManyResolvedTopics([
+      { id: 38998, title: "İbanez gitar", slug: "ibanez-gitar" },
+      { id: 12345, title: "Elektro gitar", slug: "elektro-gitar" },
+    ], 300);
+
+    const result = await repository.searchTopics("ibanez", 10);
+    expect(result).toEqual([{
+      id: 38998,
+      title: "İbanez gitar",
+      slug: "ibanez-gitar",
+      entryCount: null,
+    }]);
+  });
 });

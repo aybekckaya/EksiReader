@@ -39,8 +39,18 @@ export class TopicRepository {
     topic: Pick<Topic, "id" | "title" | "slug">,
     lastSeenAt: number,
   ): Promise<void> {
-    await this.db
-      .prepare(
+    await this.upsertManyResolvedTopics([topic], lastSeenAt);
+  }
+
+  async upsertManyResolvedTopics(
+    topics: Pick<Topic, "id" | "title" | "slug">[],
+    lastSeenAt: number,
+  ): Promise<void> {
+    if (topics.length === 0) {
+      return;
+    }
+
+    const statement = this.db.prepare(
         `INSERT INTO topics (
            id, title, slug, entry_count, last_seen_at, entry_count_known, search_title
          ) VALUES (?1, ?2, ?3, 0, ?4, 0, ?5)
@@ -49,9 +59,16 @@ export class TopicRepository {
            slug = excluded.slug,
            search_title = excluded.search_title,
            last_seen_at = excluded.last_seen_at`,
-      )
-      .bind(topic.id, topic.title, topic.slug, lastSeenAt, normalizeSearchText(topic.title))
-      .run();
+    );
+    await this.db.batch(
+      topics.map((topic) => statement.bind(
+        topic.id,
+        topic.title,
+        topic.slug,
+        lastSeenAt,
+        normalizeSearchText(topic.title),
+      )),
+    );
   }
 
   async searchTopics(normalizedQuery: string, limit: number): Promise<SearchTopicSuggestion[]> {

@@ -11,6 +11,13 @@ export type ErrorCode =
   | "SEARCH_RESOLVE_NOT_FOUND"
   | "SEARCH_RESOLVE_UNAVAILABLE"
   | "AUTHOR_RESOLVE_NOT_SUPPORTED"
+  | "INVALID_AUTHOR_SLUG"
+  | "AUTHOR_NOT_FOUND"
+  | "AUTHOR_FETCH_FAILED"
+  | "AUTHOR_PARSE_FAILED"
+  | "AUTHOR_ENTRIES_FETCH_FAILED"
+  | "AUTHOR_ENTRIES_PARSE_FAILED"
+  | "AUTHOR_SOURCE_CHALLENGE"
   | "TRENDING_FETCH_FAILED"
   | "TRENDING_PARSE_FAILED"
   | "INTERNAL_ERROR"
@@ -88,6 +95,54 @@ export class SearchResolveUnavailableError extends AppError {
   constructor(message: string, options?: ErrorOptions) {
     super("SEARCH_RESOLVE_UNAVAILABLE", 503, "Arama şu anda kullanılamıyor.", options);
     this.name = "SearchResolveUnavailableError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class AuthorNotFoundError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("AUTHOR_NOT_FOUND", 404, "Yazar bulunamadı.", options);
+    this.name = "AuthorNotFoundError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class AuthorFetchError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("AUTHOR_FETCH_FAILED", 502, "Yazar profili alınamadı.", options);
+    this.name = "AuthorFetchError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class AuthorParseError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("AUTHOR_PARSE_FAILED", 502, "Yazar profili işlenemedi.", options);
+    this.name = "AuthorParseError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class AuthorEntriesFetchError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("AUTHOR_ENTRIES_FETCH_FAILED", 502, "Yazar entry'leri alınamadı.", options);
+    this.name = "AuthorEntriesFetchError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class AuthorEntriesParseError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("AUTHOR_ENTRIES_PARSE_FAILED", 502, "Yazar entry'leri işlenemedi.", options);
+    this.name = "AuthorEntriesParseError";
+    Object.defineProperty(this, "message", { value: message });
+  }
+}
+
+export class AuthorSourceChallengeError extends AppError {
+  constructor(message: string, options?: ErrorOptions) {
+    super("AUTHOR_SOURCE_CHALLENGE", 502, "Yazar kaynağı şu anda kullanılamıyor.", options);
+    this.name = "AuthorSourceChallengeError";
     Object.defineProperty(this, "message", { value: message });
   }
 }

@@ -1,6 +1,7 @@
 import { AppError } from "./errors/app-error";
 import type { Env } from "./env";
 import { healthRoute } from "./routes/health.route";
+import { authorEntriesRoute, authorProfileRoute } from "./routes/author.route";
 import { searchResolveRoute, searchSuggestionsRoute } from "./routes/search.route";
 import { topicRoute } from "./routes/topic.route";
 import { trendingRoute } from "./routes/trending.route";
@@ -25,6 +26,14 @@ export default {
       }
       if (request.method === "GET" && url.pathname === "/v1/search/resolve") {
         return await searchResolveRoute(request, env);
+      }
+      const authorEntriesMatch = /^\/v1\/authors\/([^/]+)\/entries$/u.exec(url.pathname);
+      if (request.method === "GET" && authorEntriesMatch?.[1] !== undefined) {
+        return await authorEntriesRoute(request, env, authorEntriesMatch[1]);
+      }
+      const authorProfileMatch = /^\/v1\/authors\/([^/]+)$/u.exec(url.pathname);
+      if (request.method === "GET" && authorProfileMatch?.[1] !== undefined) {
+        return await authorProfileRoute(request, env, authorProfileMatch[1]);
       }
       const topicMatch = /^\/v1\/topics\/([^/]+)$/u.exec(url.pathname);
       if (request.method === "GET" && topicMatch?.[1] !== undefined) {

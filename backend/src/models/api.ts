@@ -1,6 +1,12 @@
 import type { Pagination, Topic } from "./topic";
 import type { Entry, TopicDetail, TopicPagination, TopicSort } from "./entry";
 import type { ResolvedTopic, SearchSuggestions } from "./search";
+import type {
+  AuthorEntriesPagination,
+  AuthorEntryItem,
+  AuthorProfile,
+  AuthorSummary,
+} from "./author";
 
 export interface CacheMetadata {
   cached: boolean;
@@ -46,6 +52,34 @@ export interface SearchSuggestionsResponse {
 export interface SearchResolveResponse {
   success: true;
   data: ResolvedTopic;
+}
+
+export interface AuthorProfilePayload {
+  author: AuthorProfile;
+}
+
+export interface AuthorProfileData extends AuthorProfilePayload {
+  cache: CacheMetadata;
+}
+
+export interface AuthorProfileResponse {
+  success: true;
+  data: AuthorProfileData;
+}
+
+export interface AuthorEntriesPayload {
+  author: AuthorSummary;
+  items: AuthorEntryItem[];
+  pagination: AuthorEntriesPagination;
+}
+
+export interface AuthorEntriesData extends AuthorEntriesPayload {
+  cache: CacheMetadata;
+}
+
+export interface AuthorEntriesResponse {
+  success: true;
+  data: AuthorEntriesData;
 }
 
 export interface ErrorResponse {
